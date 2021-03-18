@@ -1,0 +1,27 @@
+{
+  "name": "librai",
+  "version": "1.0.0",
+  "description": "Don't judge a book by its cover, we'll judge it for you.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geroalexander/librai.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/geroalexander/librai/issues"
+  },
+  "homepage": "https://github.com/geroalexander/librai#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
