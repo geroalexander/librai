@@ -14,3 +14,7 @@ https://balsamiq.cloud/s8dhwg5/pynflwg
 ## Daily standups 
 
 8:30 AM unless otherwise specified :) 
+
+## Shared docs
+
+https://docs.google.com/document/d/1pAxtyun9X31P6DUFrutcyyzpQKFEuY2b8cWi7rJL5ek/edit?usp=sharing
