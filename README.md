@@ -5,6 +5,9 @@ Don't judge a book by its cover --- we'll judge it for you.
 ## Git workflow
 Refer to the Git workflow notes before committing / branching / merging 
 
+## Daily standups 
+8:30 AM unless otherwise specified :) 
+
 ## Monday Workspace
 https://pamelakaylin.monday.com/boards/1143592131
 
@@ -13,9 +16,6 @@ https://balsamiq.cloud/s8dhwg5/pynflwg
 
 ## User flow 
 https://lucid.app/lucidchart/invitations/accept/0921ac82-88cb-4b3e-b3aa-f36b43454ce0?viewport_loc=-156.81706485005628%2C71.55730143643345%2C2445.1282150406837%2C1227.1315948460717%2C0_0
-
-## Daily standups 
-8:30 AM unless otherwise specified :) 
 
 ## Colour scheme
 https://colorhunt.co/palette/271395
