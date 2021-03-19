@@ -3,7 +3,7 @@
 Don't judge a book by its cover --- we'll judge it for you.
 
 ## Git workflow
-Refer to the Git workflow notes before committing / branching / merging 
+Important: Refer to the Git workflow notes before committing / branching / merging! 
 
 ## Daily standups 
 8:30 AM unless otherwise specified :) 
