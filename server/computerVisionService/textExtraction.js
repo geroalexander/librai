@@ -5,6 +5,7 @@ const vision = require('@google-cloud/vision');
 
 const client = new vision.ImageAnnotatorClient();
 
+//dummy variable for experimenting
 const fileName =
   'https://kbimages1-a.akamaihd.net/9c7cd39a-f9cd-48d1-89c4-daf66190877d/1200/1200/False/flowers-for-algernon.jpg';
 
@@ -25,16 +26,18 @@ const extractText = async (image) => {
   });
 
   //METHOD 1 - extracting the capitalized words | METHOD 2 - extracting the first 6 words
-  const titles = textArr.filter((t) => t === t.toUpperCase());
+  const capitalizedWords = textArr.filter((t) => t === t.toUpperCase());
 
   let searchQuery;
-  console.log(titles, 'titles');
-  if (titles.length > 3) searchQuery = titles.join('+').toLowerCase();
+  console.log(capitalizedWords, 'capitalizedWords');
+  if (capitalizedWords.length > 3)
+    searchQuery = capitalizedWords.join('+').toLowerCase();
   else searchQuery = textArr.slice(0, 6).join('+').toLowerCase();
 
   return searchQuery;
 };
 
+//function call for setup, remove before launching client
 extractText(fileName);
 
 //TODOS

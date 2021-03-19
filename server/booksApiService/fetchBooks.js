@@ -11,7 +11,7 @@ const fetchBooks = (searchQuery) => {
     .then((res) => res.json())
     .then((json) => {
       if (json.items && json.items.length) {
-        return json.items.length > 3 ? json.items.slice(0, 3) : json.items[0];
+        return json.items.length >= 3 ? json.items.slice(0, 3) : json.items[0];
       }
     });
 };
