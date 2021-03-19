@@ -15,6 +15,10 @@ https://balsamiq.cloud/s8dhwg5/pynflwg
 
 8:30 AM unless otherwise specified :) 
 
+## Colour scheme
+
+https://colorhunt.co/palette/271395
+
 ## Overview: Original slides 
 
 https://docs.google.com/presentation/d/1Ys_48IRrdOWxfRlaLMNG7kIZcO4xA-4_nl_NvgIkjns/edit
