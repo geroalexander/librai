@@ -10,3 +10,7 @@ https://pamelakaylin.monday.com/boards/1143592131
 
 ## Wireframe
 https://balsamiq.cloud/s8dhwg5/pynflwg
+
+## Daily standups 
+
+8:30 AM unless otherwise specified
