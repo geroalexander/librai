@@ -16,6 +16,7 @@
 ---
 
 #### Committing
+**ALWAYS PULL BEFORE COMMITTING THE FIRST TIME ON A NEW/CHECKOUT BRANCH**
 
 For this project we will be using Conventional Commits through Commitizen, giving us clean and readable commit messages. The package should already be installed. So you just need to save it as a global dependancy on your computer. Use `npm install commitizen -g`, if that doesn't work, add the `sudo` command infront of `npm`. This is the basic structure:
 
@@ -47,6 +48,7 @@ Use the command `git push -u origin HEAD` when on the working branch. Alternativ
 4. Run the command `git push`.
 
 #### Merging
+**ALWAYS PULL BEFORE MERGING**
 
 1. Checkout the development branch using `git checkout development` or any other working branch that you wish to merge the working branch into.
 2. Git pull to update the branch before merging with working branch.
