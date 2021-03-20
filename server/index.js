@@ -5,7 +5,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 import sequelize from './models/index';
-const router = require('./router');
+const router = require('./routes/router.js');
 
 const app = express();
 const PORT = 3000;
@@ -22,12 +22,12 @@ app.use(router);
     });
     try {
       await sequelize.authenticate();
-      await sequelize.sync();
+      await sequelize.sync(); // { force: true } use this to drop all data from table
       console.log('👊 Connection to db successful');
     } catch (error) {
-      console.error('❌ Unable to connect to the database:', error);
+      console.error('❌ Database connection unsuccessful:', error);
     }
   } catch (err) {
-    console.log(err);
+    console.log('❌ Server connection unsuccessful', err);
   }
 })();

@@ -4,14 +4,31 @@ require('dotenv').config();
 const config = process.env;
 import { Sequelize } from 'sequelize';
 import associations from './associations';
-
 const { DB_NAME, DB_USER, DB_PASSWORD, DB_PORT, DB_HOST, DB_DIALECT } = config;
 
-// const seq = new Sequlize('DB_NAME', 'USERNAME', 'DB_PASSWORD', host...)
-const seq = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
   host: DB_HOST,
   dialect: DB_DIALECT,
   port: DB_PORT,
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000,
+  },
 });
 
-module.exports = seq;
+const modelDefiners = [
+  require('./users'),
+  require('./books'),
+  require('./ratings'),
+];
+
+// Define all models according to their files.
+modelDefiners.forEach((modelDefiner) => modelDefiner(sequelize));
+
+// Execute all associations after the models are defined
+// ... this stops circular dependencies
+associations(sequelize);
+
+module.exports = sequelize;
