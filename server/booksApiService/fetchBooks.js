@@ -19,8 +19,9 @@ const fetchBooks = (searchQuery) => {
         // commented out momentarily
         // return json.items.length >= 3 ? json.items.slice(0, 3) : json.items[0];
       }
-      console.log('No book retrieved');
-    });
+      console.log('Books not retrieved! fetchBooks');
+    })
+    .catch((e) => console.log(e));
 };
 
 module.exports = { fetchBooks };
