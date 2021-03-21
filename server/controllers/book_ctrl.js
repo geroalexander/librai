@@ -1,5 +1,5 @@
 const { books } = require('../models/books.js');
-const { ratings } = require('../models/ratings.js');
+const { interaction } = require('../models/interaction.js');
 
 const getRecommendedBooks = async (req, res) => {
   try {

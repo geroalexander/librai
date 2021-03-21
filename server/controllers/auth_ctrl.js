@@ -1,21 +1,24 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { user } = require('../models/users.js');
+const { user } = require('../models/users');
 
 const register = async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
-
+    console.log('req.body', req.body);
     // check if email already exisits, throw error if true
     // else
     // encrypt the password
     // then create new user with info
     // then sign the access token using userID
     // send the access token
+    const existingUser = user.findOne({ where: { email } });
+    if (existingUser) res.status(401).send('This user already exisits');
+    const createdUser = user.create({ firstName, lastName, email, password });
 
-    req.send(newUser).status(201);
+    req.send(createdUser).status(201);
   } catch (err) {
-    console.err(err);
+    console.error(err);
     res.status(400).send(err);
   }
 };
@@ -24,9 +27,10 @@ const login = async (req, res) => {
   // grab login info from body
   try {
     // check for user with email
-    // validate password with bycript
+    // if user doesnt exist, throw error
+    // else validate password with bycript
     // if false, throw error
-    // else sign the access token using User ID
+    // else sign the access token using user ID
     // send the access token
   } catch (err) {}
 };

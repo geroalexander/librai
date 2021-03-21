@@ -2,6 +2,7 @@
 const { Router } = require('express');
 const router = Router();
 const authCTRL = require('../controllers/auth_ctrl');
+const authMiddleware = require('./auth/authMiddleware');
 
 // ROUTES
 router.use('/user/*', require('./user_routes'));

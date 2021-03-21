@@ -3,14 +3,15 @@ const { INTEGER, BOOLEAN } = DataTypes;
 
 module.exports = (sequelize) => {
   return sequelize.define(
-    'rating',
+    'interaction',
     {
-      hasRead: {
+      isSaved: {
         type: BOOLEAN,
         default: false,
       },
       rating: {
         type: INTEGER,
+        default: null,
         validate: {
           // This is a custom validator that checks rating is given if user has read book
           ifUserHasReadNeedRating() {
