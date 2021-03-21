@@ -2,26 +2,36 @@ import { Sequelize } from 'sequelize';
 
 function associations(sequelize) {
   const { user, book, rating } = sequelize.models;
-
-  // User has many books - ??? saved books array
-
-  // Users have many ratings
-  // Ratings have one user
-  user.hasMany(rating);
-  rating.belongsTo(user, {
-    foreignKey: {
-      allowNull: false, // rating.userId
-    },
-  });
-
-  // Books have many ratings
-  // Ratings have one book
-  book.hasMany(rating);
-  rating.belongsTo(book, {
-    foreignKey: {
-      allowNull: false, // rating.bookId
-    },
-  });
+  user.belongsToMany(book, { through: rating });
+  book.belongsToMany(user, { through: rating });
 }
 
 export default associations;
+
+// User now has all these 'getter' methods on them..
+// ...and the inverse is also true --> book.getUsers() etc etc
+user.getBooks();
+user.countBooks();
+user.hasBook();
+user.hasBooks();
+user.setBooks();
+user.addBook();
+user.addBooks();
+user.removeBook();
+user.removeBooks();
+user.createBook();
+
+// The getter methods accept options just like the usual finder methods
+const allReadBooks = await user.getBooks({
+  where: {
+    rating: {
+      [Op.gte]: 4,
+    },
+  },
+});
+
+const allSavedBooks = await project.getBooks({
+  where: {
+    isRead: false,
+  },
+});

@@ -1,9 +1,9 @@
 const { DataTypes } = require('sequelize');
-const { STRING, INTEGER, ARRAY } = DataTypes;
+const { STRING, ARRAY } = DataTypes;
 
 module.exports = (sequelize) => {
   return sequelize.define('user', {
-    // sequelize adds id prop, createdAt, updatedAt, and also deletedAt if paranoid: true
+    // sequelize adds id prop
     firstName: {
       type: STRING,
       allowNull: false,
@@ -31,14 +31,6 @@ module.exports = (sequelize) => {
     favoriteGenres: {
       type: ARRAY(STRING),
       allowNull: false,
-    },
-    savedBooks: {
-      type: ARRAY(INTEGER),
-      default: [],
-    },
-    readBooks: {
-      type: ARRAY(INTEGER),
-      default: [],
     },
   });
 };
