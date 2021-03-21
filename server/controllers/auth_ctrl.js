@@ -1,13 +1,18 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { models } = require('../models/index');
-const { user, book } = models;
+const { user, book, interaction } = models;
+const Book = book;
+const User = user;
+const Interaction = interaction;
 
 const register = async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
     console.log('req.body', req.body);
     // check if email already exisits, throw error if true
+    const user = await 
+
     // else
     // encrypt the password
     // then create new user with info
@@ -24,9 +29,9 @@ const register = async (req, res) => {
     });
     console.log(createdUser);
     res.send(createdUser).status(201);
-  } catch (err) {
-    console.error(err);
-    res.status(400).send(err);
+  } catch (error) {
+    console.error(error, 'Could not register, fn.register');
+    res.status(400).send(error);
   }
 };
 
@@ -39,14 +44,14 @@ const login = async (req, res) => {
     // if false, throw error
     // else sign the access token using user ID
     // send the access token
-  } catch (err) {}
+  } catch (error) {}
 };
 
 const logout = async (req, res) => {
   try {
     // delete the token client side upon logout
     // invalidate the token (check how)
-  } catch (err) {}
+  } catch (error) {}
 };
 
 module.exports = {
