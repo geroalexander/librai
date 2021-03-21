@@ -1,4 +1,4 @@
-import { Sequelize } from 'sequelize';
+const { Sequelize } = require('sequelize');
 
 function associations(sequelize) {
   const { user, book, rating } = sequelize.models;
@@ -6,7 +6,7 @@ function associations(sequelize) {
   book.belongsToMany(user, { through: rating });
 }
 
-export default associations;
+module.exports = associations;
 
 // User now has all these 'getter' methods on them..
 // ...and the inverse is also true --> book.getUsers() etc etc

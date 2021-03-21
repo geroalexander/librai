@@ -1,10 +1,10 @@
 'use strict';
 
-import express from 'express';
+const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 
-import sequelize from './models/index';
+const sequelize = require('./models/index');
 const router = require('./routes/router.js');
 
 const app = express();

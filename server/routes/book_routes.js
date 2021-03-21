@@ -1,5 +1,6 @@
 'use strict';
-const router = express.Router();
+const { Router } = require('express');
+const router = Router();
 const bookCTRL = require('../controllers/book_ctrl.js');
 
 // GET RECOMENDATION BY USER-ID
@@ -15,4 +16,4 @@ router.get('/book/search', bookCTRL);
 // GET BOOK DETAILS
 router.get('/book/details/:bookID', bookCTRL); ///***
 
-module.exports = bookRoutes;
+module.exports = router;

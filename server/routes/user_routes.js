@@ -1,5 +1,6 @@
 'use strict';
-const router = express.Router();
+const { Router } = require('express');
+const router = Router();
 const userCTRL = require('../controllers/user_ctrl.js');
 
 // CREATE NEW USER
@@ -17,4 +18,4 @@ router.patch('/user/:userID/read/:bookID', userCTRL.updateReadBook);
 router.delete('/user/:userID/saved/:bookID', userCTRL.deleteSavedBook);
 router.delete('/user/:userID/read/:bookID', userCTRL.deleteReadBook);
 
-module.exports = userRoutes;
+module.exports = router;

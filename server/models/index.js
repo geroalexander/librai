@@ -2,8 +2,8 @@
 
 require('dotenv').config();
 const config = process.env;
-import { Sequelize } from 'sequelize';
-import associations from './associations';
+const { Sequelize } = require('sequelize');
+const associations = require('./associations');
 const { DB_NAME, DB_USER, DB_PASSWORD, DB_PORT, DB_HOST, DB_DIALECT } = config;
 
 const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
