@@ -1,13 +1,14 @@
-const { users } = require('../models/users.js');
+const { user } = require('../models/users.js');
 
 const createNewUser = async (req, res) => {
   try {
-    // deconstruct params|body
-    // some logic
+    const { firstName, lastName } = req.body;
+    const newUser = await user.create(firstName, lastName);
+
+    req.send(newUser).status(201);
   } catch (err) {
     console.err(err);
-    res.status(400);
-    res.send(err);
+    res.status(400).send(err);
   }
 };
 

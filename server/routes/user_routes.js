@@ -1,7 +1,7 @@
 'use strict';
 const { Router } = require('express');
 const router = Router();
-const userCTRL = require('../controllers/user_ctrl.js');
+const userCTRL = require('../controllers/user_ctrl');
 
 // CREATE NEW USER
 router.post('/user/create', userCTRL.createNewUser);

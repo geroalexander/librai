@@ -1,7 +1,7 @@
 'use strict';
 const { Router } = require('express');
 const router = Router();
-const bookCTRL = require('../controllers/book_ctrl.js');
+const bookCTRL = require('../controllers/book_ctrl');
 
 // GET RECOMENDATION BY USER-ID
 router.get('/book/:userID/recommend', bookCTRL);
