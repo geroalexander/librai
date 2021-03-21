@@ -30,7 +30,6 @@ module.exports = (sequelize) => {
     },
     favoriteGenres: {
       type: ARRAY(STRING),
-      allowNull: false,
     },
   });
 };

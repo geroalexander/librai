@@ -5,17 +5,17 @@ const userCTRL = require('../controllers/user_ctrl');
 const authMiddleware = require('./auth/authMiddleware');
 
 // GET DASHBOARD INFO
-router.get('/user/dashboard', authMiddleware, userCTRL.loadDashboard);
+router.get('/dashboard', userCTRL.loadDashboard);
 
 // GET SAVED/READ BOOKS BY USER-ID
-router.get('/user/profile', authMiddleware, userCTRL.getUserWithBooks);
+router.get('/profile', userCTRL.getUserWithBooks);
 
 // ADD/EDIT SAVED/READ BOOK BY USER-ID
-router.patch('/user/saved/add', authMiddleware, userCTRL.addSavedBook);
-router.patch('/user/rating/add', authMiddleware, userCTRL.updateRating);
+router.patch('/saved', userCTRL.addSavedBook);
+router.patch('/rating', userCTRL.updateRating);
 
 // DELETE SAVED/READ BOOKS BY USER-ID WITH BOOK-ID
-router.delete('/user/saved/:bookID', authMiddleware, userCTRL.deleteSavedBook);
-router.delete('/user/rating/:bookID', authMiddleware, userCTRL.deleteRating);
+router.delete('/saved', userCTRL.deleteSavedBook);
+router.delete('/rating', userCTRL.deleteRating);
 
 module.exports = router;

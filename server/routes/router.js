@@ -5,8 +5,8 @@ const authCTRL = require('../controllers/auth_ctrl');
 const authMiddleware = require('./auth/authMiddleware');
 
 // ROUTES
-router.use('/user/*', require('./user_routes'));
-router.use('/book/*', require('./book_routes'));
+router.use('/user', require('./user_routes'));
+router.use('/book', require('./book_routes'));
 
 // USER REGISTER, LOGIN, LOGOUT
 router.post('/register', authCTRL.register);
