@@ -2,18 +2,16 @@
 const { Router } = require('express');
 const router = Router();
 const bookCTRL = require('../controllers/book_ctrl');
+const authMiddleware = require('./auth/authMiddleware');
 
 // GET RECOMENDATION BY USER-ID
-// router.get('/book/:userID/recommend', bookCTRL);
+router.get('/recommend', bookCTRL.getRecommendedBooks);
 
-// // ADD RATING IN RECOMBEE
-// router.patch('/book/:userID/:bookID', bookCTRL);
+// GET BOOK BY COVER/SEARCH (info sent as body)
+router.post('/cover', bookCTRL.getBookByCover);
+router.post('/search', bookCTRL.getBookBySearch);
 
-// // GET BOOK BY COVER/SEARCH (info sent as body)
-// router.get('/book/cover', bookCTRL);
-// router.get('/book/search', bookCTRL);
-
-// // GET BOOK DETAILS
-// router.get('/book/details/:bookID', bookCTRL); ///***
+// GET BOOK DETAILS
+router.get('/details/:bookId', bookCTRL.getBookDetails);
 
 module.exports = router;

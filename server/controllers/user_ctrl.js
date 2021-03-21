@@ -1,5 +1,3 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const getRecomendations = require('../recombeeService/getRecommendations');
 const { models } = require('../models/index');
 const { user, book, interaction } = models;
@@ -10,10 +8,12 @@ const Interaction = interaction;
 // AUTH IS NEEDED. user comes from req.user not form req.body
 
 const loadDashboard = async (req, res) => {
-  const { id } = req.user;
+  // const { id } = req.user;
+  const user = { id: 5 };
+
   try {
     const userWithBooks = await User.findOne({ where: { id }, include: Book });
-    const recommendations = getRecomendations();
+    const recommendations = getRecomendations(user.id); // change user.id to id when auth used
     res.status(201).send({
       userWithBooks,
       recommendations,
@@ -25,53 +25,63 @@ const loadDashboard = async (req, res) => {
 };
 
 const getUserWithBooks = async (req, res) => {
-  const { id } = req.user;
+  // const { id } = req.user;
+  const user = { id: 5 };
   try {
-    const userWithBooks = await User.findOne({ where: { id }, include: Book });
+    const userWithBooks = await User.findOne({
+      where: { id: user.id },
+      include: Book,
+    }); // change user.id to id when auth used
     res.status(201).send({
       userWithBooks,
     });
   } catch (error) {
-    console.error(error), 'Could not get user with books, fn.getUserWithBooks';
+    console.error(error, 'Could not get user with books, fn.getUserWithBooks');
     res.status(400);
     res.send(error);
   }
 };
 
 const addSavedBook = async (req, res) => {
-  const user = req.user;
+  // const user = req.user;
+  const user = { id: 5 };
+
   try {
     const { book } = req.body;
-    let targetBook = await book.findOne({ where: { id: Book.id } });
+    let targetBook = await Book.findOne({ where: { id: book.id } });
+
     if (!targetBook) targetBook = await Book.create(book);
-    await User.addBook(targetBook, { through: { isSaved: true } });
+    await user.addBook(targetBook, { through: { isSaved: true } });
     const userWithBooks = await User.findOne({
       where: { id: User.id },
       include: Book,
     });
+    // call add bookmark function from recombee controller
     res.status(201).send(userWithBooks);
   } catch (error) {
-    console.error(error);
+    console.error(error, 'Could not add saved book, fn.addSavedBook');
     res.status(400).send(error);
   }
 };
 
 const updateRating = async (req, res) => {
   // const user = req.user;
-  try {
-    const { book, rating, user } = req.body;
-    let targetBook = await Book.findOne({ where: { id: book.id } });
-    if (!targetBook) targetBook = await Book.create(book);
+  const user = { id: 5 };
 
+  try {
+    const { book, rating } = req.body;
+    let targetBook = await Book.findOne({ where: { id: book.id } });
+
+    if (!targetBook) targetBook = await Book.create(book);
     //only bc we arent using middleware rn --- otherwise user.findOne
     const targetUser = await User.findOne({ where: { id: user.id } });
-
     const targetInteraction = await Interaction.findOne({
       where: { userId: user.id, bookId: book.id },
     });
 
     if (targetInteraction) {
       await targetInteraction.update({ rating: rating });
+      // call update rating from recombee api
       res.status(203).send(targetInteraction);
     }
 
@@ -80,20 +90,22 @@ const updateRating = async (req, res) => {
       where: { id: user.id },
       include: Book,
     });
+    // call add rating from recombee api
     res.status(201).send(userWithBooks);
   } catch (error) {
-    console.error(error);
+    console.error(error, 'Could not update rating, fn.updateRating');
     res.status(400).send(error);
   }
 };
 
 const deleteSavedBook = async (req, res) => {
   // get user info from req.user
-  try {
-    const { book, user } = req.body; //change later
+  const user = { id: 5 };
 
+  try {
+    const bookId = req.body; //change later
     const targetInteraction = await Interaction.findOne({
-      where: { userId: user.id, bookId: book.id },
+      where: { userId: user.id, bookId },
     });
 
     if (!targetInteraction)
@@ -105,9 +117,10 @@ const deleteSavedBook = async (req, res) => {
       await targetInteraction.update({ isSaved: false });
     else await targetInteraction.destroy();
 
+    // call delete bookmark from recombee api
     res.status(203).send('Book was unsaved');
   } catch (error) {
-    console.error(error);
+    console.error(error, 'Could not delete saved book, fn.deleteSavedBook');
     res.status(400);
     res.send(error);
   }
@@ -115,11 +128,12 @@ const deleteSavedBook = async (req, res) => {
 
 const deleteRating = async (req, res) => {
   // get user info from req.user
-  try {
-    const { book, user } = req.body;
+  const user = { id: 5 };
 
+  try {
+    const bookId = req.body; // change later\
     const targetInteraction = await Interaction.findOne({
-      where: { userId: user.id, bookId: book.id },
+      where: { userId: user.id, bookId },
     });
 
     if (!targetInteraction)
@@ -129,9 +143,10 @@ const deleteRating = async (req, res) => {
       await targetInteraction.update({ rating: null });
     else await targetInteraction.destroy();
 
+    // call delete rating from recombee
     res.status(203).send('Book rating was removed');
   } catch (error) {
-    console.error(error);
+    console.error(error, 'Could not delete rating, fn.deleteRating');
     res.status(400);
     res.send(error);
   }

@@ -11,6 +11,7 @@ const fileName =
 
 const extractText = async (image) => {
   const [result] = await client.textDetection(image);
+  if (!result) throw new Error('Could not extract text!');
   const detections = result.textAnnotations;
 
   const textArr = [];
@@ -38,7 +39,7 @@ const extractText = async (image) => {
 };
 
 //function call for setup, remove before launching client
-extractText(fileName);
+// extractText(fileName);
 
 //TODOS
 //check accuracy with Books Api
