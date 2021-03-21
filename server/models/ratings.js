@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
         type: INTEGER,
         validate: {
           // This is a custom validator that checks rating is given if user has read book
-          isRead() {
+          ifUserHasReadNeedRating() {
             if (this.hasRead && this.rating === undefined) {
               throw new Error('Please rate this book if you have read it.');
             }

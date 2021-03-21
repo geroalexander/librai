@@ -6,13 +6,13 @@ module.exports = (sequelize) => {
     'book',
     {
       id: {
-        type: DataTypes.STRING, // <-- Google books api id
+        type: DataTypes.STRING,
         primaryKey: true,
         autoIncrement: false,
         allowNull: false,
       },
       author: {
-        type: STRING,
+        type: ARRAY(STRING),
         allowNull: false,
       },
       title: {
@@ -21,11 +21,9 @@ module.exports = (sequelize) => {
       },
       subtitle: {
         type: STRING,
-        allowNull: false,
       },
       description: {
-        type: TEXT('long'), // Need to work out the difference between tiny, medium and long options
-        allowNull: false,
+        type: TEXT,
       },
       pageCount: {
         type: INTEGER,
@@ -37,27 +35,28 @@ module.exports = (sequelize) => {
         type: STRING,
       },
       publishedDate: {
-        type: DATEONLY, // OR STRING ?
+        type: DATEONLY,
       },
       averageRating: {
         type: INTEGER,
-        allowNull: false, // DO WE NEED ALLOW-NULL? Will a zero value be null in return from API
       },
       ratingsCount: {
         type: INTEGER,
       },
-      imageLink: {
+      thumbnail: {
+        type: STRING,
+      },
+      smallThumbnail: {
         type: STRING,
       },
       hasEpub: {
         type: BOOLEAN,
-        // default: true // DO WE NEED TO SET A DEFAULT VALUE
       },
       price: {
         type: FLOAT, // 11.99
       },
-      currencyCode: {
-        type: STRING, // NEED TO UPDATE BACK END GOOGLE DOC WITH THIS PROP
+      currency: {
+        type: STRING,
       },
     },
     { timestamps: false },
