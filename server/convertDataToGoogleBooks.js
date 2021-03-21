@@ -7,8 +7,10 @@ const rawBooks = require('../10kBooks.json');
 const booksArray = [];
 
 const fetchBooksFromApi = () => {
+  console.log(rawBooks[9001].original_title);
   for (let i = 0; i < 1001; i++) {
-    const oTitle = rawBooks[i + 7001].original_title;
+    if (!rawBooks[i + 9001]) return;
+    const oTitle = rawBooks[i + 9001].original_title;
 
     let wordArray;
     if (oTitle && oTitle.length) wordArray = oTitle.toLowerCase().split(' ');
@@ -73,7 +75,7 @@ const fetchBooksFromApi = () => {
             console.log(i);
             if (i > 997) {
               let stringified = JSON.stringify(booksArray, null, 2);
-              fs.writeFileSync('7001-8000.json', stringified);
+              fs.writeFileSync('9001-10000.json', stringified);
             }
           })
           .catch((e) => console.log(e));
