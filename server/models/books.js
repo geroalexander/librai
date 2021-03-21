@@ -34,10 +34,10 @@ module.exports = (sequelize) => {
         type: STRING,
       },
       publishedDate: {
-        type: DATEONLY,
+        type: STRING,
       },
       averageRating: {
-        type: INTEGER,
+        type: FLOAT,
       },
       ratingsCount: {
         type: INTEGER,
@@ -47,9 +47,6 @@ module.exports = (sequelize) => {
       },
       smallThumbnail: {
         type: STRING,
-      },
-      hasEpub: {
-        type: BOOLEAN,
       },
       price: {
         type: FLOAT, // 11.99
