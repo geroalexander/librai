@@ -1,21 +1,13 @@
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const { user } = require('../models/users.js');
 
-const createNewUser = async (req, res) => {
-  try {
-    const { firstName, lastName } = req.body;
-    const newUser = await user.create(firstName, lastName);
-
-    req.send(newUser).status(201);
-  } catch (err) {
-    console.err(err);
-    res.status(400).send(err);
-  }
-};
-
 const getSavedBooks = async (req, res) => {
+  // get user info from req.user
+
   try {
-    // deconstruct params|body
-    // some logic
+    // find user info by ID
+    //
   } catch (err) {
     console.err(err);
     res.status(400);
@@ -79,7 +71,6 @@ const deleteReadBook = async (req, res) => {
 };
 
 module.exports = {
-  createNewUser,
   getSavedBooks,
   getReadBooks,
   updateSavedBook,
