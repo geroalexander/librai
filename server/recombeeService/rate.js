@@ -1,1 +1,1 @@
-//add, update, delete
+//add rating interaction, update, delete
