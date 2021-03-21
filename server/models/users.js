@@ -36,5 +36,9 @@ module.exports = (sequelize) => {
       type: ARRAY(INTEGER),
       default: [],
     },
+    readBooks: {
+      type: ARRAY(INTEGER),
+      default: [],
+    },
   });
 };
