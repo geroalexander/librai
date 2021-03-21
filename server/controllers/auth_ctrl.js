@@ -7,28 +7,24 @@ const User = user;
 const Interaction = interaction;
 
 const register = async (req, res) => {
-  try {
-    const { firstName, lastName, email, password } = req.body;
-    console.log('req.body', req.body);
-    // check if email already exisits, throw error if true
-    const user = await 
+  const { firstName, lastName, email, password } = req.body;
+  console.log('req.body', req.body);
 
-    // else
-    // encrypt the password
-    // then create new user with info
-    // then sign the access token using userID
-    // send the access token
-    const existingUser = await user.findOne({ where: { email } });
-    if (existingUser) res.status(401).send('This user already exisits');
-    const createdUser = await user.create({
+  const existingUser = await User.findOne({ where: { email } });
+  if (existingUser) return res.status(409).send('This user already exisits');
+  try {
+    if (password === '') throw new Error('Password cannot be empty string!');
+    const hash = await bcrypt.hash(password, 10);
+
+    const { id } = await User.create({
       firstName,
       lastName,
       email,
-      password,
+      password: hash,
       favoriteGenres: [],
     });
-    console.log(createdUser);
-    res.send(createdUser).status(201);
+    const accessToken = jwt.sign({ _id: id }, SECRET_KEY);
+    res.status(201).send({ accessToken });
   } catch (error) {
     console.error(error, 'Could not register, fn.register');
     res.status(400).send(error);
@@ -36,16 +32,30 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  // grab login info from body
+  const { email, password } = req.body;
   try {
-    // check for user with email
-    // if user doesnt exist, throw error
-    // else validate password with bycript
-    // if false, throw error
-    // else sign the access token using user ID
-    // send the access token
-  } catch (error) {}
+    const user = await User.findOne({ where: { email } });
+    if (!user) res.status(404).send('No user found');
+    const validatePassword = await bcrypt.compare(password, user.password);
+    if (!validatePassword) throw new Error();
+    const accessToken = jwt.sign({ _id: user.id }, SECRET_KEY);
+    res.status(200).send({ accessToken });
+  } catch (error) {
+    console.error(error, 'Could not login, fn.login');
+    res.status(401).send(error);
+  }
 };
+
+// const form = async (req, res) => {
+//   const { info } = req.body;
+//   const { favoriteGenres, }
+//   try {
+
+//   } catch (error) {
+//     console.error(error, 'Could not complete form. fn.form');
+//     res.status(400).send(error);
+//   }
+// };
 
 const logout = async (req, res) => {
   try {
@@ -57,5 +67,6 @@ const logout = async (req, res) => {
 module.exports = {
   register,
   login,
+  form,
   logout,
 };
