@@ -1,89 +1,147 @@
-const { user } = require('../models/users.js');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const getRecomendations = require('../recombeeService/getRecommendations');
+const { models } = require('../models/index');
+const { user, book, interaction } = models;
+const Book = book;
+const User = user;
+const Interaction = interaction;
 
-const createNewUser = async (req, res) => {
+// AUTH IS NEEDED. user comes from req.user not form req.body
+
+const loadDashboard = async (req, res) => {
+  const { id } = req.user;
   try {
-    const { firstName, lastName } = req.body;
-    const newUser = await user.create(firstName, lastName);
-
-    req.send(newUser).status(201);
-  } catch (err) {
-    console.err(err);
-    res.status(400).send(err);
+    const userWithBooks = await User.findOne({ where: { id }, include: Book });
+    const recommendations = getRecomendations();
+    res.status(201).send({
+      userWithBooks,
+      recommendations,
+    });
+  } catch (error) {
+    console.error(error, 'Could not load dashboard, fn.loadDashboard');
+    res.status(400).send(error);
   }
 };
 
-const getSavedBooks = async (req, res) => {
+const getUserWithBooks = async (req, res) => {
+  const { id } = req.user;
   try {
-    // deconstruct params|body
-    // some logic
-  } catch (err) {
-    console.err(err);
+    const userWithBooks = await User.findOne({ where: { id }, include: Book });
+    res.status(201).send({
+      userWithBooks,
+    });
+  } catch (error) {
+    console.error(error), 'Could not get user with books, fn.getUserWithBooks';
     res.status(400);
-    res.send(err);
+    res.send(error);
   }
 };
 
-const getReadBooks = async (req, res) => {
+const addSavedBook = async (req, res) => {
+  const user = req.user;
   try {
-    // deconstruct params|body
-    // some logic
-  } catch (err) {
-    console.err(err);
-    res.status(400);
-    res.send(err);
+    const { book } = req.body;
+    let targetBook = await book.findOne({ where: { id: Book.id } });
+    if (!targetBook) targetBook = await Book.create(book);
+    await User.addBook(targetBook, { through: { isSaved: true } });
+    const userWithBooks = await User.findOne({
+      where: { id: User.id },
+      include: Book,
+    });
+    res.status(201).send(userWithBooks);
+  } catch (error) {
+    console.error(error);
+    res.status(400).send(error);
   }
 };
 
-const updateSavedBook = async (req, res) => {
+const updateRating = async (req, res) => {
+  // const user = req.user;
   try {
-    // deconstruct params|body
-    // some logic
-  } catch (err) {
-    console.err(err);
-    res.status(400);
-    res.send(err);
-  }
-};
+    const { book, rating, user } = req.body;
+    let targetBook = await Book.findOne({ where: { id: book.id } });
+    if (!targetBook) targetBook = await Book.create(book);
 
-const updateReadBook = async (req, res) => {
-  try {
-    // deconstruct params|body
-    // some logic
-  } catch (err) {
-    console.err(err);
-    res.status(400);
-    res.send(err);
+    //only bc we arent using middleware rn --- otherwise user.findOne
+    const targetUser = await User.findOne({ where: { id: user.id } });
+
+    const targetInteraction = await Interaction.findOne({
+      where: { userId: user.id, bookId: book.id },
+    });
+
+    if (targetInteraction) {
+      await targetInteraction.update({ rating: rating });
+      res.status(203).send(targetInteraction);
+    }
+
+    await targetUser.addBook(targetBook, { through: { rating: rating } });
+    const userWithBooks = await User.findOne({
+      where: { id: user.id },
+      include: Book,
+    });
+    res.status(201).send(userWithBooks);
+  } catch (error) {
+    console.error(error);
+    res.status(400).send(error);
   }
 };
 
 const deleteSavedBook = async (req, res) => {
+  // get user info from req.user
   try {
-    // deconstruct params|body
-    // some logic
-  } catch (err) {
-    console.err(err);
+    const { book, user } = req.body; //change later
+
+    const targetInteraction = await Interaction.findOne({
+      where: { userId: user.id, bookId: book.id },
+    });
+
+    if (!targetInteraction)
+      res
+        .status(404)
+        .send('This interaction does not exist, fn.deleteSavedBook');
+
+    if (targetInteraction.rating !== null)
+      await targetInteraction.update({ isSaved: false });
+    else await targetInteraction.destroy();
+
+    res.status(203).send('Book was unsaved');
+  } catch (error) {
+    console.error(error);
     res.status(400);
-    res.send(err);
+    res.send(error);
   }
 };
 
-const deleteReadBook = async (req, res) => {
+const deleteRating = async (req, res) => {
+  // get user info from req.user
   try {
-    // deconstruct params|body
-    // some logic
-  } catch (err) {
-    console.err(err);
+    const { book, user } = req.body;
+
+    const targetInteraction = await Interaction.findOne({
+      where: { userId: user.id, bookId: book.id },
+    });
+
+    if (!targetInteraction)
+      res.status(404).send('This interaction does not exist, fn.deleteRating');
+
+    if (targetInteraction.isSaved)
+      await targetInteraction.update({ rating: null });
+    else await targetInteraction.destroy();
+
+    res.status(203).send('Book rating was removed');
+  } catch (error) {
+    console.error(error);
     res.status(400);
-    res.send(err);
+    res.send(error);
   }
 };
 
 module.exports = {
-  createNewUser,
-  getSavedBooks,
-  getReadBooks,
-  updateSavedBook,
-  updateReadBook,
+  loadDashboard,
+  getUserWithBooks,
+  addSavedBook,
+  updateRating,
   deleteSavedBook,
-  deleteReadBook,
+  deleteRating,
 };

@@ -2,20 +2,20 @@
 const { Router } = require('express');
 const router = Router();
 const userCTRL = require('../controllers/user_ctrl');
+const authMiddleware = require('./auth/authMiddleware');
 
-// CREATE NEW USER
-router.post('/user/create', userCTRL.createNewUser);
+// GET DASHBOARD INFO
+router.get('/dashboard', userCTRL.loadDashboard);
 
 // GET SAVED/READ BOOKS BY USER-ID
-router.get('/user/:userID/saved', userCTRL.getSavedBooks);
-router.get('/user/:userID/read', userCTRL.getReadBooks);
+router.get('/profile', userCTRL.getUserWithBooks);
 
 // ADD/EDIT SAVED/READ BOOK BY USER-ID
-router.patch('/user/:userID/saved/:bookID', userCTRL.updateSavedBook);
-router.patch('/user/:userID/read/:bookID', userCTRL.updateReadBook);
+router.patch('/saved', userCTRL.addSavedBook);
+router.patch('/rating', userCTRL.updateRating);
 
 // DELETE SAVED/READ BOOKS BY USER-ID WITH BOOK-ID
-router.delete('/user/:userID/saved/:bookID', userCTRL.deleteSavedBook);
-router.delete('/user/:userID/read/:bookID', userCTRL.deleteReadBook);
+router.delete('/saved', userCTRL.deleteSavedBook);
+router.delete('/rating', userCTRL.deleteRating);
 
 module.exports = router;

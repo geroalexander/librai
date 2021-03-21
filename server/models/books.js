@@ -13,7 +13,6 @@ module.exports = (sequelize) => {
       },
       author: {
         type: ARRAY(STRING),
-        allowNull: false,
       },
       title: {
         type: STRING,

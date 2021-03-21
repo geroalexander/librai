@@ -21,7 +21,7 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
 const modelDefiners = [
   require('./users'),
   require('./books'),
-  require('./ratings'),
+  require('./interaction'),
 ];
 
 // Define all models according to their files.
