@@ -1,12 +1,16 @@
 //add rating interaction, update, delete
 const { client, rqs } = require('./recombeeConnection');
+const checkIfBookExist = require('./bookcheck');
+const { addFormattedBook } = require('./items');
 
 // if 'rating' is not provided, function will delete user rating
-const bookRating = async (userID, bookID, rating) => {
+const bookRating = async (userID, book, rating) => {
+  const bookID = book.id.toString();
   try {
     if (rating > 1 || rating < -1)
       throw new Error('Rating value has to be between -1 and 1');
-
+    let idCheck = await checkIfBookExist(bookID)
+    if (!idCheck) await addFormattedBook(book);
     if (rating !== undefined) {
       const ratingsList = await client.send(
         new rqs.ListUserRatings(userID + ''),
