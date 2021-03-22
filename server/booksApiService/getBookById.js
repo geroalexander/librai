@@ -17,4 +17,5 @@ const getBookById = (bookId) => {
     .catch((e) => console.log(e));
 };
 
+module.exports = { getBookById };
 // getBookById('Eo-uAwAAQBAJ');
