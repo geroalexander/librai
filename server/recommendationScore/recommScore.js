@@ -43,7 +43,7 @@ const getCompatScore = async (user, book) => {
   const recommBooks = await getRecommendations(user.id, 4);
   
   recommBooks.recomms.forEach((rec) => {
-    const retrievedBook = await getBookById(rec);
+    const retrievedBook = await getBookById(rec.id);
     if (retrievedBook) {
       let similarityScore = 0;
       const sameGenre = rec.categories.some(c => book.categories.include(c))
