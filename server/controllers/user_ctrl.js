@@ -1,4 +1,5 @@
 const getRecomendations = require('../recombeeService/getRecommendations');
+const bookmark = require('../recombeeService/bookmark');
 const { models } = require('../models/index');
 const { user, book, interaction } = models;
 const Book = book;
@@ -43,18 +44,20 @@ const getUserWithBooks = async (req, res) => {
 };
 
 const addSavedBook = async (req, res) => {
-  const user = req.user;
-
+  // const user = req.user;
+  const user = { id: 0 };
   try {
-    const { book } = req.body;
-    let targetBook = await Book.findOne({ where: { id: book.id } });
+    // const { book } = req.body;
+    const bookId = '4fTCAgAAQBAJ';
+    // let targetBook = await Book.findOne({ where: { id: book.id } });
 
-    if (!targetBook) targetBook = await Book.create(book);
-    await user.addBook(targetBook, { through: { isSaved: true } });
-    const userWithBooks = await User.findOne({
-      where: { id: user.id },
-      include: Book,
-    });
+    // if (!targetBook) targetBook = await Book.create(book);
+    // await user.addBook(targetBook, { through: { isSaved: true } });
+    // const userWithBooks = await User.findOne({
+    //   where: { id: user.id },
+    //   include: Book,
+    // });
+    bookmark(user.id, bookId);
     // call add bookmark function from recombee controller
     res.status(201).send(userWithBooks);
   } catch (error) {

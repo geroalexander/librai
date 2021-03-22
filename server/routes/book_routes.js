@@ -12,6 +12,6 @@ router.post('/cover', authMiddleware, bookCTRL.getBookByCover);
 router.post('/search', authMiddleware, bookCTRL.getBookBySearch);
 
 // GET BOOK DETAILS
-router.get('/details/:bookId', authMiddleware, bookCTRL.getBookDetails);
+router.get('/details/:bookId', bookCTRL.getBookDetails);
 
 module.exports = router;

@@ -3,6 +3,7 @@ const { extractText } = require('../computerVisionService/textExtraction');
 const { getBookById } = require('../booksApiService/getBookById');
 const getCompatScore = require('../recommendationScore/recommScore');
 const getRecommendations = require('../recombeeService/getRecommendations');
+const addBookView = require('../recombeeService/view');
 
 const getRecommendedBooks = async (req, res) => {
   const user = req.user;
@@ -51,14 +52,18 @@ const getBookBySearch = async (req, res) => {
   }
 };
 
+// change back to auth --- string()
 const getBookDetails = async (req, res) => {
-  const user = req.user;
+  const user = { id: 0 };
+  // req.user;
+
   try {
     const { bookId } = req.params;
+    console.log('-----', bookId);
     const retrievedBook = await getBookById(bookId);
     const compatScore = await getCompatScore(user.dataValues, retrievedBook);
     retrievedBook.compatabilityScore = compatScore;
-    // call view from recombee api
+    await addBookView(user.id, bookId.toString());
     res.status(201).send(retrievedDetails);
   } catch (error) {
     console.error(error);
