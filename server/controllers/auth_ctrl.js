@@ -24,6 +24,7 @@ const register = async (req, res) => {
       favoriteGenres: [],
     });
     const accessToken = jwt.sign({ _id: id }, SECRET_KEY);
+    // send user to recombee -
     res.status(201).send({ accessToken });
   } catch (error) {
     console.error(error, 'Could not register, fn.register');

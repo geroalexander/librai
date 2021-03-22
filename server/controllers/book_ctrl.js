@@ -2,13 +2,13 @@ const { fetchBooks } = require('../booksApiService/fetchBooks');
 const { extractText } = require('../computerVisionService/textExtraction');
 const { getBookById } = require('../booksApiService/getBookById');
 
-const getRecomendations = require('../recombeeService/getRecommendations');
+const getRecommendations = require('../recombeeService/getRecommendations');
 
 const getRecommendedBooks = async (req, res) => {
   // const { id } = req.user;
   const id = 5;
   try {
-    const recomendations = getRecommendedBooks(id);
+    const recomendations = await getRecommendations(id, count);
     res.status(201).send(recomendations);
   } catch (error) {
     console.error(error);

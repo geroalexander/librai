@@ -13,7 +13,8 @@ const loadDashboard = async (req, res) => {
 
   try {
     const userWithBooks = await User.findOne({ where: { id }, include: Book });
-    const recommendations = getRecomendations(user.id); // change user.id to id when auth used
+    // takes second param: count. default to 5
+    const recommendations = getRecomendations(user.id, _); // change user.id to id when auth used
     res.status(201).send({
       userWithBooks,
       recommendations,
@@ -53,6 +54,7 @@ const addSavedBook = async (req, res) => {
     if (!targetBook) targetBook = await Book.create(book);
     await user.addBook(targetBook, { through: { isSaved: true } });
     const userWithBooks = await User.findOne({
+      // find by PK
       where: { id: User.id },
       include: Book,
     });

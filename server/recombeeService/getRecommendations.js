@@ -1,14 +1,21 @@
 // get recommendations from engine
-const { client, rqs } = require('./recombeeConnection')
+const { client, rqs } = require('./recombeeConnection');
 
 const getRecommendations = async (userID, count) => {
   try {
-    await client.send(new rqs.RecommendItemsToUser(userID + '', count ? count : 5, { cascadeCreate: false }, (err) => {
-      if(err) throw Error;
-    }));
-    return 'Bookmard added'
+    await client.send(
+      new rqs.RecommendItemsToUser(
+        userID + '',
+        count ? count : 5,
+        { cascadeCreate: false },
+        (err) => {
+          if (err) throw Error;
+        },
+      ),
+    );
+    return 'Bookmark added';
   } catch (err) {
-    return err
+    return err;
   }
 };
 
