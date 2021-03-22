@@ -4,9 +4,8 @@
 // execute: npm run populate
 
 const { models } = require('../models/');
-const { user, book, interaction } = models;
+const { user, interaction } = models;
 const bcrypt = require('bcrypt');
-import { fetchBooks } from '../booksApiService/fetchBooks';
 const books = require('../recombeeData/0-1000.json');
 const mockUser = {
   firstName: 'Matt',
