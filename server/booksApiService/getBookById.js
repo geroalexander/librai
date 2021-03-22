@@ -1,5 +1,5 @@
 require('dotenv').config({
-  path: '/Users/pamelachen/Desktop/librai/librai/server/.env',
+  path: '../.env',
 });
 const fetch = require('node-fetch');
 const config = process.env;
