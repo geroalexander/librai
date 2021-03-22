@@ -58,7 +58,8 @@ const getBookDetails = async (req, res) => {
     const retrievedBook = await getBookById(bookId);
     const compatScore = await getCompatScore(user.dataValues, retrievedBook);
     retrievedBook.compatabilityScore = compatScore;
-    await addBookView(user.id, bookId);
+    // const bookObj = {title: }
+    await addBookView(user.id, retrievedBook);
     res.status(201).send(retrievedDetails);
   } catch (error) {
     console.error(error);

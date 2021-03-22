@@ -55,7 +55,7 @@ const addSavedBook = async (req, res) => {
       where: { id: user.id },
       include: Book,
     });
-    await bookmark(user.id, book.id);
+    await bookmark(user.id, book); // book object (book.id for id)
     res.status(201).send(userWithBooks);
   } catch (error) {
     console.error(error, 'Could not add saved book, fn.addSavedBook');
@@ -76,7 +76,7 @@ const updateRating = async (req, res) => {
     });
     if (targetInteraction) {
       await targetInteraction.update({ rating: rating });
-      await bookRating(user.id, book.id, rating);
+      await bookRating(user.id, book, rating); // book object (book.id for id)
       res.status(203).send(targetInteraction);
     }
     await targetUser.addBook(targetBook, { through: { rating: rating } });
@@ -84,7 +84,7 @@ const updateRating = async (req, res) => {
       where: { id: user.id },
       include: Book,
     });
-    await bookRating(user.id, book.id, rating);
+    await bookRating(user.id, book, rating); // book object (book.id for id)
     res.status(201).send(userWithBooks);
   } catch (error) {
     console.error(error, 'Could not update rating, fn.updateRating');
