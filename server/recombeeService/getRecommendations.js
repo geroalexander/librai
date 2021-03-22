@@ -7,7 +7,7 @@ const getRecommendations = async (userID, count) => {
       new rqs.RecommendItemsToUser(
         userID + '',
         count ? count : 5,
-        { cascadeCreate: false, logic: 'recombee: personal' },
+        { cascadeCreate: false, 'logic': 'recombee:personal' },
         (err) => {
           if (err) throw Error;
         },
