@@ -54,7 +54,6 @@ const addSavedBook = async (req, res) => {
     if (!targetBook) targetBook = await Book.create(book);
     await user.addBook(targetBook, { through: { isSaved: true } });
     const userWithBooks = await User.findOne({
-      // find by PK
       where: { id: user.id },
       include: Book,
     });

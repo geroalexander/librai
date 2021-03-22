@@ -1,15 +1,20 @@
 const { fetchBooks } = require('../booksApiService/fetchBooks');
 const { extractText } = require('../computerVisionService/textExtraction');
 const { getBookById } = require('../booksApiService/getBookById');
-
 const getRecommendations = require('../recombeeService/getRecommendations');
 
 const getRecommendedBooks = async (req, res) => {
-  // const { id } = req.user;
-  const id = 5;
+  const user = req.user;
+  // const id = 5;
   try {
-    const recomendations = await getRecommendations(id, count);
-    res.status(201).send(recomendations);
+    const recommendations = await getRecommendations(user.id, 10);
+    const bookRecArr = [];
+    for (const rec of recommendations) {
+      const retrievedBook = await getBookById(rec.id);
+      retrievedBook.compatabilityScore = 10;
+      bookRecArr.push(retrievedBook);
+    }
+    res.status(201).send(bookRecArr);
   } catch (error) {
     console.error(error);
     res.status(400).send(error);
@@ -21,6 +26,7 @@ const getBookByCover = async (req, res) => {
     const { image } = req.body;
     const searchQuery = await extractText(image);
     const retrievedBook = await fetchBooks(searchQuery);
+
     res.status(201).send(retrievedBook);
   } catch (error) {
     console.error(error);
@@ -44,6 +50,7 @@ const getBookDetails = async (req, res) => {
     const { bookId } = req.params;
     const retrievedDetails = await getBookById(bookId);
     // call view from recombee api
+    // append recommendation score
     res.status(201).send(retrievedDetails);
   } catch (error) {
     console.error(error);
