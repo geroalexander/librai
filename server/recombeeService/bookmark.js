@@ -15,7 +15,7 @@ const bookmark = async (userID, bookID) => {
 
 const addBookmark = async (userID, bookID) => {
   try {
-    await client.send(new rqs.AddBookmark(userID + '', bookID))
+    await client.send(new rqs.AddBookmark(userID + '', bookID + ''))
     return 'Bookmard added'
   } catch (err) {
     return err
@@ -23,7 +23,7 @@ const addBookmark = async (userID, bookID) => {
 };
 const deleteBookmark = async (userID, bookID) => {
   try {
-    await client.send(new rqs.DeleteBookmark(userID + '', bookID))
+    await client.send(new rqs.DeleteBookmark(userID + '', bookID + ''))
     return 'Bookmard deleted'
   } catch (err) {
     return err

@@ -18,6 +18,7 @@
     "morgan": "^1.10.0",
     "node-fetch": "^2.6.1",
     "pg": "^8.5.1",
+    "recombee-api-client": "^3.2.0",
     "sequelize": "^6.5.1"
   },
   "devDependencies": {

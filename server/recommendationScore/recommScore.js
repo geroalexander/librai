@@ -1,7 +1,5 @@
 //given a book and a user
 const { getBookById } = require('../booksApiService/getBookById');
-
-const books = require('../models/books');
 const getRecommendations = require('../recombeeService/getRecommendations');
 
 const getCompatScore = async (user, book) => {

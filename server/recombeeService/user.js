@@ -1,22 +1,25 @@
 //add user details
-const { client, rqs } = require('./recombeeConnection')
+const { client, rqs } = require('./recombeeConnection');
 
 const addUser = async (user) => {
   try {
-    const {userID, email, first_name, last_name } = user
-    const values = {email, first_name, last_name}
-
-    await client.send(new rqs.SetUserValues(
-      userID + '',
-      values,
-      {cascade: true},
-      (err) => {
-        if (err) throw Error;
-      }
-    ));
-    return 'User added'
+    const { userId, email, first_name, last_name } = user;
+    const values = { email, first_name, last_name };
+    console.log('before');
+    await client.send(
+      new rqs.SetUserValues(
+        userId + '',
+        values,
+        { cascadeCreate: true },
+        (err) => {
+          if (err) throw new Error();
+        },
+      ),
+    );
+    console.log('after');
+    return 'User added';
   } catch (err) {
-    return err
+    return err;
   }
 };
 

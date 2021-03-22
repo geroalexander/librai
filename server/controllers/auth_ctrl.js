@@ -1,14 +1,15 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const SECRET_KEY = process.env.SECRET_KEY;
 const { models } = require('../models/index');
 const { user, book, interaction } = models;
 const Book = book;
 const User = user;
 const Interaction = interaction;
+const addUser = require('../recombeeService/user');
 
 const register = async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
-  console.log('req.body', req.body);
 
   const existingUser = await User.findOne({ where: { email } });
   if (existingUser) return res.status(409).send('This user already exisits');
@@ -21,10 +22,16 @@ const register = async (req, res) => {
       lastName,
       email,
       password: hash,
-      favoriteGenres: [],
+      // favoriteGenres: [],
     });
     const accessToken = jwt.sign({ _id: id }, SECRET_KEY);
-    // send user to recombee -
+
+    await addUser({
+      first_name: firstName,
+      last_name: lastName,
+      userId: id,
+      email: email,
+    });
     res.status(201).send({ accessToken });
   } catch (error) {
     console.error(error, 'Could not register, fn.register');
@@ -47,16 +54,15 @@ const login = async (req, res) => {
   }
 };
 
-// const form = async (req, res) => {
-//   const { info } = req.body;
-//   const { favoriteGenres, }
-//   try {
-
-//   } catch (error) {
-//     console.error(error, 'Could not complete form. fn.form');
-//     res.status(400).send(error);
-//   }
-// };
+const form = async (req, res) => {
+  // const { info } = req.body;
+  // const { favoriteGenres, }
+  try {
+  } catch (error) {
+    console.error(error, 'Could not complete form. fn.form');
+    res.status(400).send(error);
+  }
+};
 
 const logout = async (req, res) => {
   try {
