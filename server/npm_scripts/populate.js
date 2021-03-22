@@ -5,6 +5,8 @@
 
 const { models } = require('../models/');
 const { user, interaction } = models;
+import bookRating from '../recombeeService/rate';
+import bookmark from '../recombeeService/bookmark';
 const bcrypt = require('bcrypt');
 const books = require('./populate_books.json');
 const mockUser = {
@@ -67,8 +69,9 @@ async function mockAddSavedBook(book) {
   try {
     let targetBook = await book.findByPk(book.id);
     if (!targetBook) targetBook = await book.create(book);
+
     await mockUserCreated.addBook(targetBook, { through: { isSaved: true } });
-    // TODO: call recombee bookmark function
+    await bookmark(mockUserCreated.id, book.id);
   } catch (error) {
     console.error(error);
   }
@@ -99,8 +102,9 @@ async function mockAddRatedBook(book) {
       await targetInteraction.update({ rating });
       return;
     }
+
     await mockUserCreated.addBook(book, { through: { rating } });
-    // TODO: call recombee add rating
+    await bookRating(mockUserCreated.id, book.id, rating);
   } catch (error) {
     console.error(error);
   }

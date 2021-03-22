@@ -5,12 +5,7 @@
   "main": ".prettierrc.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "populate": "node populate.js",
-    "say-hello": "echo 'Hello World!'",
-    "presay-hello": "echo 'I run before say-hello'",
-    "postsay-hello": "echo 'I run after say-hello'",
-    "awesome": "npm run say-hello && echo 'This is Awesome! 🤙'",
-    "js-add": "node npm_scripts/add.js"
+    "populate": "node populate.js"
   },
   "author": "",
   "license": "ISC",
