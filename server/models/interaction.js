@@ -13,6 +13,10 @@ module.exports = (sequelize) => {
         type: INTEGER,
         default: null,
       },
+      compatabilityScore: {
+        type: INTEGER,
+        default: null,
+      },
     },
     { timestamps: false }, // Do we need these?
   );
