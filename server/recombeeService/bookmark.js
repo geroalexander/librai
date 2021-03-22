@@ -1,8 +1,18 @@
 //add bookmark interaction, delete
-const { client, rqs } = require('./recombeeConnection')
+const { client, rqs } = require('./recombeeConnection');
+const checkIfBookExist = require('./bookcheck');
+const { addFormattedBook } = require('./items');
 
-const bookmark = async (userID, bookID) => {
+const bookmark = async (userID, book) => {
+
+  const bookID = book.id.toString();
   try {
+    let idCheck = await checkIfBookExist(bookID)
+    if (!idCheck) {
+      await addFormattedBook(book);
+      await addBookmark(userID,bookID);
+      return
+    }
     const bookmarkList = await client.send(new rqs.ListUserBookmarks(userID + ''))
     let find = bookmarkList.some(book => book.itemId === bookID ? true : false);
     if (find)  await deleteBookmark(userID, bookID)
