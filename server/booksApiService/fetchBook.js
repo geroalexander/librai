@@ -1,12 +1,10 @@
-require('dotenv').config({
-  path: '/Users/pamelachen/Desktop/librai/librai/server/.env',
-});
+require('dotenv').config();
 const fetch = require('node-fetch');
 const config = process.env;
 const { GOOGLE_BOOKS_API_KEY } = config;
 
 const fetchBook = (searchQuery) => {
-  console.log(searchQuery);
+  // searchQuery => 'no+country+for+old+mean'
   return fetch(
     `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=${GOOGLE_BOOKS_API_KEY}`,
   )

@@ -4,16 +4,15 @@ const checkIfBookExist = require('./bookcheck');
 const { addApiBook, addFormattedBook } = require('./items');
 
 const addBookView = async (userID, book, isFormatted) => {
-
-  const bookID = book.id.toString()
+  const bookID = book.id.toString();
   try {
-    let idCheck = await checkIfBookExist(bookID)
+    let idCheck = await checkIfBookExist(bookID);
     if (idCheck) {
-      await addDetailView(userID, bookID)
+      await addDetailView(userID, bookID);
     } else {
       if (isFormatted) await addFormattedBook(book);
       else await addApiBook(book);
-      await addDetailView(userID, bookID)
+      await addDetailView(userID, bookID);
     }
     return 'View added';
   } catch (err) {
@@ -33,9 +32,9 @@ const addDetailView = async (userID, bookID) => {
         },
       ),
     );
-    return res.length ? true : false
+    return res.length ? true : false;
   } catch (err) {
-    return err
+    return err;
   }
 };
 

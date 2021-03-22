@@ -4,7 +4,7 @@
   "description": "",
   "main": ".prettierrc.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/test.js"
   },
   "author": "",
   "license": "ISC",
@@ -20,5 +20,9 @@
     "pg": "^8.5.1",
     "recombee-api-client": "^3.2.0",
     "sequelize": "^6.5.1"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2"
   }
 }

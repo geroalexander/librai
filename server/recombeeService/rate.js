@@ -9,7 +9,7 @@ const bookRating = async (userID, book, rating) => {
   try {
     if (rating > 1 || rating < -1)
       throw new Error('Rating value has to be between -1 and 1');
-    let idCheck = await checkIfBookExist(bookID)
+    let idCheck = await checkIfBookExist(bookID);
     if (!idCheck) await addFormattedBook(book);
     if (rating !== undefined) {
       const ratingsList = await client.send(
