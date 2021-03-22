@@ -1,6 +1,7 @@
-const { fetchBooks } = require('../booksApiService/fetchBooks');
+const { fetchBook } = require('../booksApiService/fetchBooks');
 const { extractText } = require('../computerVisionService/textExtraction');
 const { getBookById } = require('../booksApiService/getBookById');
+const getCompatScore = require('../recommendationScore/recommScore');
 const getRecommendations = require('../recombeeService/getRecommendations');
 
 const getRecommendedBooks = async (req, res) => {
@@ -22,11 +23,13 @@ const getRecommendedBooks = async (req, res) => {
 };
 
 const getBookByCover = async (req, res) => {
+  const user = req.user;
   try {
     const { image } = req.body;
     const searchQuery = await extractText(image);
-    const retrievedBook = await fetchBooks(searchQuery);
-
+    const retrievedBook = await fetchBook(searchQuery);
+    const compatScore = await getCompatScore(user.dataValues, retrievedBook);
+    retrievedBook.compatabilityScore = compatScore;
     res.status(201).send(retrievedBook);
   } catch (error) {
     console.error(error);
@@ -35,9 +38,12 @@ const getBookByCover = async (req, res) => {
 };
 
 const getBookBySearch = async (req, res) => {
+  const user = req.user;
   try {
     const { searchQuery } = req.body;
-    const retrievedBook = await fetchBooks(searchQuery);
+    const retrievedBook = await fetchBook(searchQuery);
+    const compatScore = await getCompatScore(user.dataValues, retrievedBook);
+    retrievedBook.compatabilityScore = compatScore;
     res.status(201).send(retrievedBook);
   } catch (error) {
     console.error(error);
@@ -46,11 +52,13 @@ const getBookBySearch = async (req, res) => {
 };
 
 const getBookDetails = async (req, res) => {
+  const user = req.user;
   try {
     const { bookId } = req.params;
-    const retrievedDetails = await getBookById(bookId);
+    const retrievedBook = await getBookById(bookId);
+    const compatScore = await getCompatScore(user.dataValues, retrievedBook);
+    retrievedBook.compatabilityScore = compatScore;
     // call view from recombee api
-    // append recommendation score
     res.status(201).send(retrievedDetails);
   } catch (error) {
     console.error(error);

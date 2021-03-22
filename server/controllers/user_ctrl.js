@@ -5,14 +5,14 @@ const Book = book;
 const User = user;
 const Interaction = interaction;
 
-// AUTH IS NEEDED. user comes from req.user not form req.body
-
 const loadDashboard = async (req, res) => {
-  // const { id } = req.user;
-  const user = { id: 5 };
+  const user = req.user;
 
   try {
-    const userWithBooks = await User.findOne({ where: { id }, include: Book });
+    const userWithBooks = await User.findOne({
+      where: { id: user.id },
+      include: Book,
+    });
     // takes second param: count. default to 5
     const recommendations = getRecomendations(user.id, _); // change user.id to id when auth used
     res.status(201).send({
@@ -26,8 +26,7 @@ const loadDashboard = async (req, res) => {
 };
 
 const getUserWithBooks = async (req, res) => {
-  // const { id } = req.user;
-  const user = { id: 5 };
+  const user = req.user;
   try {
     const userWithBooks = await User.findOne({
       where: { id: user.id },
@@ -45,7 +44,6 @@ const getUserWithBooks = async (req, res) => {
 
 const addSavedBook = async (req, res) => {
   const user = req.user;
-  // const user = { id: 5 };
 
   try {
     const { book } = req.body;
@@ -66,8 +64,7 @@ const addSavedBook = async (req, res) => {
 };
 
 const updateRating = async (req, res) => {
-  // const user = req.user;
-  const user = { id: 5 };
+  const user = req.user;
 
   try {
     const { book, rating } = req.body;
@@ -100,8 +97,7 @@ const updateRating = async (req, res) => {
 };
 
 const deleteSavedBook = async (req, res) => {
-  // get user info from req.user
-  const user = { id: 5 };
+  const user = req.user;
 
   try {
     const bookId = req.body; //change later
@@ -128,8 +124,7 @@ const deleteSavedBook = async (req, res) => {
 };
 
 const deleteRating = async (req, res) => {
-  // get user info from req.user
-  const user = { id: 5 };
+  const user = req.user;
 
   try {
     const bookId = req.body; // change later\
