@@ -7,3 +7,5 @@ router.post('/register', authCTRL.register);
 router.post('/login', authCTRL.login);
 router.patch('/form', authCTRL.form);
 router.post('/logout', authMiddleware, authCTRL.logout);
+
+module.exports = router;

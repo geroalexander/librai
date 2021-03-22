@@ -11,8 +11,8 @@ router.get('/dashboard', userCTRL.loadDashboard);
 router.get('/profile', userCTRL.getUserWithBooks);
 
 // ADD/EDIT SAVED/READ BOOK BY USER-ID
-router.patch('/saved', userCTRL.addSavedBook);
-router.patch('/rating', userCTRL.updateRating);
+router.patch('/saved', authMiddleware, userCTRL.addSavedBook);
+router.patch('/rating', authMiddleware, userCTRL.updateRating);
 
 // DELETE SAVED/READ BOOKS BY USER-ID WITH BOOK-ID
 router.delete('/saved', userCTRL.deleteSavedBook);

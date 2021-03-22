@@ -44,8 +44,8 @@ const getUserWithBooks = async (req, res) => {
 };
 
 const addSavedBook = async (req, res) => {
-  // const user = req.user;
-  const user = { id: 5 };
+  const user = req.user;
+  // const user = { id: 5 };
 
   try {
     const { book } = req.body;
@@ -55,7 +55,7 @@ const addSavedBook = async (req, res) => {
     await user.addBook(targetBook, { through: { isSaved: true } });
     const userWithBooks = await User.findOne({
       // find by PK
-      where: { id: User.id },
+      where: { id: user.id },
       include: Book,
     });
     // call add bookmark function from recombee controller
