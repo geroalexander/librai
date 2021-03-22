@@ -1,4 +1,4 @@
-const { fetchBook } = require('../booksApiService/fetchBooks');
+const { fetchBook } = require('../booksApiService/fetchBook');
 const { extractText } = require('../computerVisionService/textExtraction');
 const { getBookById } = require('../booksApiService/getBookById');
 const getCompatScore = require('../recommendationScore/recommScore');
@@ -7,7 +7,6 @@ const addBookView = require('../recombeeService/view');
 
 const getRecommendedBooks = async (req, res) => {
   const user = req.user;
-  // const id = 5;
   try {
     const recommendations = await getRecommendations(user.id, 10);
     const bookRecArr = [];
@@ -52,18 +51,14 @@ const getBookBySearch = async (req, res) => {
   }
 };
 
-// change back to auth --- string()
 const getBookDetails = async (req, res) => {
-  const user = { id: 0 };
-  // req.user;
-
+  const user = req.user;
   try {
     const { bookId } = req.params;
-    console.log('-----', bookId);
     const retrievedBook = await getBookById(bookId);
     const compatScore = await getCompatScore(user.dataValues, retrievedBook);
     retrievedBook.compatabilityScore = compatScore;
-    await addBookView(user.id, bookId.toString());
+    await addBookView(user.id, bookId);
     res.status(201).send(retrievedDetails);
   } catch (error) {
     console.error(error);

@@ -1,25 +1,20 @@
 //add view interaction
 const { client, rqs } = require('./recombeeConnection');
 
-// console.log('client', client);
-// console.log('rqs', rqs);
-
 const addBookView = async (userID, bookID) => {
-  console.log('userID-----', userID);
-  console.log('bookID-----', bookID);
   try {
-    console.log('before adding');
+    console.log('before');
     await client.send(
       new rqs.AddDetailView(
         userID + '',
-        bookID,
+        bookID + '',
         { cascadeCreate: false },
         (err) => {
           if (err) throw Error;
         },
       ),
     );
-    console.log('after adding');
+    console.log('after');
     return 'View added';
   } catch (err) {
     return err;
