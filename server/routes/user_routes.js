@@ -6,14 +6,14 @@ const authMiddleware = require('./auth/authMiddleware');
 
 // GET DASHBOARD INFO
 // auth
-router.get('/dashboard', userCTRL.loadDashboard);
+router.get('/dashboard', authMiddleWare, userCTRL.loadDashboard);
 
 // GET SAVED/READ BOOKS BY USER-ID
 router.get('/profile', authMiddleware, userCTRL.getUserWithBooks);
 
 // ADD/EDIT SAVED/READ BOOK BY USER-ID
-router.patch('/saved', userCTRL.addSavedBook);
-router.patch('/rating', userCTRL.updateRating);
+router.patch('/saved', authMiddleWare, userCTRL.addSavedBook);
+router.patch('/rating', authMiddleWare, userCTRL.updateRating);
 
 // DELETE SAVED/READ BOOKS BY USER-ID WITH BOOK-ID
 router.delete('/saved', authMiddleware, userCTRL.deleteSavedBook);
