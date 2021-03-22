@@ -4,13 +4,26 @@
   "description": "",
   "main": ".prettierrc.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/test.js",
+    "populate": "node populate.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@google-cloud/vision": "^2.3.1",
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "node-fetch": "^2.6.1"
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "node-fetch": "^2.6.1",
+    "pg": "^8.5.1",
+    "recombee-api-client": "^3.2.0",
+    "sequelize": "^6.5.1"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2"
   }
 }
