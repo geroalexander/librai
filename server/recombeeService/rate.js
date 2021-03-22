@@ -2,7 +2,7 @@
 const { client, rqs } = require('./recombeeConnection')
 
 // if 'rating' is not provided, function will delete user rating
-const addBookRating = async (userID, bookID, rating) => {
+const bookRating = async (userID, bookID, rating) => {
   try {
     if (rating > 1 || rating < -1) throw Error('Rating value has to be between -1 and 1')
 
@@ -45,4 +45,4 @@ const deleteRating = async (userID, bookID) => {
 };
 
 
-module.exports = addBookRating;
+module.exports = bookRating;
