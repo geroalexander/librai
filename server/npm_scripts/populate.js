@@ -17,6 +17,13 @@ const mockUser = {
 };
 let mockUserCreated;
 
+/*
+-----------
+MAIN SCRIPT
+-----------
+*/
+
+
 // Register mock user
 console.log('Beginning to populate');
 registerMockUser();
@@ -30,6 +37,11 @@ console.log('Mocking user read books...');
 for (let j = 10; j < 20; j++) mockAddRatedBook(books[j]);
 console.log('🤙 Database populated: 1 user, 10 saved & 10 read interactions');
 
+/*
+----------------
+HELPER FUNCTIONS
+---------------- 
+*/
 
 function registerMockUser() {
   try {
