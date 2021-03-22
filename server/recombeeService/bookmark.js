@@ -1,1 +1,1 @@
-//add bookmark interaction, update, delete
+//add bookmark interaction, delete

@@ -3,20 +3,39 @@ const { client, rqs } = require('./recombeeConnection');
 
 const getRecommendations = async (userID, count) => {
   try {
-    await client.send(
+    let result = await client.send(
       new rqs.RecommendItemsToUser(
         userID + '',
         count ? count : 5,
-        { cascadeCreate: false },
+        { cascadeCreate: false, logic: 'recombee: personal' },
         (err) => {
           if (err) throw Error;
         },
       ),
     );
-    return 'Bookmark added';
+    return result; // returns a list of { id: 'bsspAgAAQBAJ' }
   } catch (err) {
     return err;
   }
 };
+
+/*
+example of response:
+
+{
+  recommId: 'db3a1ea8f8d1f1659e5b00cb76be2aad',
+  recomms: [
+    { id: 'bsspAgAAQBAJ' },
+    { id: '9brwAAAAQBAJ' },
+    { id: 'Y_uCtAEACAAJ' },
+    { id: 'tpDKDwAAQBAJ' },
+    { id: 'NMTbDwAAQBAJ' }
+  ],
+  numberNextRecommsCalls: 0
+}
+
+
+*/
+
 
 module.exports = getRecommendations;
