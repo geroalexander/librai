@@ -1,5 +1,5 @@
 //add items to catalog
-const { client, rqs } = require('./recombeeConnection')
+const { client, rqs } = require('./recombeeConnection');
 
 const addApiBook = async (book) => {
   try {
@@ -14,8 +14,7 @@ const addApiBook = async (book) => {
       publishedDate,
       averageRating,
       ratingsCount,
-      price,
-      currency} = book.volumeInfo;
+    } = book.volumeInfo;
     const { thumbnail, smallThumbnail } = book.imageLinks;
     const { id } = book;
     const { amount, currencyCode } = book.saleInfo.retailPrice;
@@ -35,17 +34,21 @@ const addApiBook = async (book) => {
       thumbnail,
       smallThumbnail,
       price,
-      currency
+      currency,
     };
-    await client.send(new rqs.AddItem(id, { cascadeCreate: true }, (err) => {
-      if(err) throw Error;
-    }));
-    await client.send(new rqs.SetItemValues(id, bookValues, { cascadeCreate: false }, (err) => {
-      if(err) throw Error;
-    }));
-    return 'Book added'
+    await client.send(
+      new rqs.AddItem(id, { cascadeCreate: true }, (err) => {
+        if (err) throw Error;
+      }),
+    );
+    await client.send(
+      new rqs.SetItemValues(id, bookValues, { cascadeCreate: false }, (err) => {
+        if (err) throw Error;
+      }),
+    );
+    return 'Book added';
   } catch (err) {
-    return err
+    return err;
   }
 };
 
@@ -53,7 +56,7 @@ const addFormattedBook = async (book) => {
   try {
     const {
       id,
-      author,
+      authors,
       title,
       subtitle,
       description,
@@ -66,9 +69,10 @@ const addFormattedBook = async (book) => {
       thumbnail,
       smallThumbnail,
       price,
-      currency} = book;
+      currency,
+    } = book;
     const bookValues = {
-      author,
+      authors,
       title,
       subtitle,
       description,
@@ -81,17 +85,21 @@ const addFormattedBook = async (book) => {
       thumbnail,
       smallThumbnail,
       price,
-      currency
-    }
-    await client.send(new rqs.AddItem(id, { cascadeCreate: true }, (err) => {
-      if(err) throw Error;
-    }));
-    await client.send(new rqs.SetItemValues(id, bookValues, { cascadeCreate: false }, (err) => {
-      if(err) throw Error;
-    }));
-    return 'Book added'
+      currency,
+    };
+    await client.send(
+      new rqs.AddItem(id, { cascadeCreate: true }, (err) => {
+        if (err) throw Error;
+      }),
+    );
+    await client.send(
+      new rqs.SetItemValues(id, bookValues, { cascadeCreate: false }, (err) => {
+        if (err) throw Error;
+      }),
+    );
+    return 'Book added';
   } catch (err) {
-    return err
+    return err;
   }
 };
 

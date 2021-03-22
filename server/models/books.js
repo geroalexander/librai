@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
         autoIncrement: false,
         allowNull: false,
       },
-      author: {
+      authors: {
         type: ARRAY(STRING),
       },
       title: {

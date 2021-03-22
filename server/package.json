@@ -5,7 +5,7 @@
   "main": ".prettierrc.js",
   "scripts": {
     "test": "mocha test/test.js",
-    "populate": "node populate.js"
+    "populate": "node npm_scripts/populate.js"
   },
   "author": "",
   "license": "ISC",
