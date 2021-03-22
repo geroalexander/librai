@@ -1,7 +1,6 @@
 //add bookmark interaction, delete
 const { client, rqs } = require('./recombeeConnection')
 
-
 const bookmark = async (userID, bookID) => {
   try {
     const bookmarkList = await client.send(new rqs.ListUserBookmarks(userID + ''))
