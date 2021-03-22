@@ -6,7 +6,7 @@
 const { models } = require('../models/');
 const { user, interaction } = models;
 const bcrypt = require('bcrypt');
-const books = require('../recombeeData/0-1000.json');
+const books = require('./populate_books.json');
 const mockUser = {
   firstName: 'Matt',
   lastName: 'Damon',
