@@ -4,7 +4,7 @@
   "description": "",
   "main": ".prettierrc.js",
   "scripts": {
-    "test": "mocha /test/test.js"
+    "test": "mocha test/test.js"
   },
   "author": "",
   "license": "ISC",

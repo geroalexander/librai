@@ -1,31 +1,67 @@
 'use strict';
 
-const should = require('chai').should();
+var should = require('chai').should();
 
 const { fetchBook } = require('../booksApiService/fetchBooks');
 const { extractText } = require('../computerVisionService/textExtraction');
 
-const heartSpringMountain = require('../bookAssets/heart_spring_mountain.jpg');
-const oppositeOfAlways = require('../bookAssets/opposite_of_always.jpeg');
-const queenBee = require('../bookAssets/queen_bee.jpeg');
-const theGravityOfUs = require('../bookAssets/the_gravity_of_us.jpeg');
-const theWaterCure = require('../bookAssets/the_water_cure.jpeg');
-const theWomanDestroyed = require('../bookAssets/the_woman_destroyed.jpeg');
-const theSubtleArt = require('../bookAssets/the_subtle_art.jpeg');
-  
+const heartSpringMountain =
+  '/Users/benpearce/Documents/Paths/path-to-code/Codeworks/librai/server/bookAssets/heart_spring_mountain.jpg';
+const queenBee =
+  '/Users/benpearce/Documents/Paths/path-to-code/Codeworks/librai/server/bookAssets/queen_bee.jpeg';
+const theGravityOfUs =
+  '/Users/benpearce/Documents/Paths/path-to-code/Codeworks/librai/server/bookAssets/the_gravity_of_us.jpeg';
+const theWaterCure =
+  '/Users/benpearce/Documents/Paths/path-to-code/Codeworks/librai/server/bookAssets/the_water_cure.jpeg';
+const theWomanDestroyed =
+  '/Users/benpearce/Documents/Paths/path-to-code/Codeworks/librai/server/bookAssets/the_woman_destroyed.jpeg';
+const theSubtleArt =
+  '/Users/benpearce/Documents/Paths/path-to-code/Codeworks/librai/server/bookAssets/the_subtle_art.jpeg';
 
 describe('Fetching books using computer vision text extraction', function () {
-
   it('should find the correct books with search terms', async function () {
+    let fetchedBook;
 
+    this.timeout(0); // Disable timeout for the multiple async calls
+
+    fetchedBook = await fetchBook('no+country+for+old+men');
+    fetchedBook.id.should.equal('3Ksa5vqnc8QC');
+
+    fetchedBook = await fetchBook('sapiens');
+    fetchedBook.id.should.equal('1EiJAwAAQBAJ');
+
+    fetchedBook = await fetchBook('silk+roads');
+    fetchedBook.id.should.equal('M1FFCQAAQBAJ');
   });
 
   it('should return the correct books with images', async function () {
-    
-    const searchQuery = await extractText(heartSpringMountain);
-    const retrievedBook = await fetchBooks(searchQuery);
-    (retrievedBook.id).
+    let fetchedBook;
+    let searchQuery;
 
-  })
+    this.timeout(0); // Disable timeout error for multiple async calls
 
+    searchQuery = await extractText(heartSpringMountain);
+    fetchedBook = await fetchBook(searchQuery);
+    fetchedBook.id.should.equal('c42vDgAAQBAJ');
+
+    searchQuery = await extractText(queenBee);
+    fetchedBook = await fetchBook(searchQuery);
+    fetchedBook.id.should.equal('VTz9zQEACAAJ');
+
+    searchQuery = await extractText(theGravityOfUs);
+    fetchedBook = await fetchBook(searchQuery);
+    fetchedBook.id.should.equal('0N7LDwAAQBAJ');
+
+    searchQuery = await extractText(theWaterCure);
+    fetchedBook = await fetchBook(searchQuery);
+    fetchedBook.id.should.equal('MPlKDwAAQBAJ');
+
+    searchQuery = await extractText(theWomanDestroyed);
+    fetchedBook = await fetchBook(searchQuery);
+    fetchedBook.id.should.equal('khEtyAEACAAJ');
+
+    searchQuery = await extractText(theSubtleArt);
+    fetchedBook = await fetchBook(searchQuery);
+    fetchedBook.id.should.equal('yng_CwAAQBAJ');
+  });
 });
