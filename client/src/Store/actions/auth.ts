@@ -1,11 +1,11 @@
 import { register, login, addFormInfo, logout } from '../../ApiClientService/Auth';
-import { User } from '../../Interfaces/userObject';
+import { Login } from '../../Interfaces/loginObject';
 import { Form } from '../../Interfaces/formObject';
 import { AppDispatch } from '../../App';
 import { SET_LOGIN, SET_LOGOUT, SET_REGISTER, SET_ADD_FORM_INFO } from './ActionTypes';
 
-export const setLogin = (user: User) => async (dispatch: AppDispatch) => {
-  const { email, password } = user;
+export const setLogin = (loginObject: Login) => async (dispatch: AppDispatch) => {
+  const { email, password } = loginObject;
   const {accessToken} = await login(email, password);
   localStorage.setItem('accessToken', accessToken);
   dispatch({
