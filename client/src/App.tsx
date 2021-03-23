@@ -3,7 +3,7 @@ import './App.css';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import reducers from './Store/index';
+import reducers from './Store/reducers';
 import ReduxThunk from 'redux-thunk';
 import logger from 'redux-logger';
 
@@ -11,6 +11,7 @@ const middleware = applyMiddleware(ReduxThunk, logger);
 const store = createStore(reducers, middleware);
 
 export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
 
 function App() {
   return (
