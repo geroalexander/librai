@@ -38,9 +38,7 @@ const addSavedBook = (accessToken: string, book: Book) => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
     },
-    body: JSON.stringify({
-      book,
-    }),
+    body: JSON.stringify({ book }),
   })
     .then((res) => res.json())
     .catch((err) => console.log('error with addSavedBook', err));
@@ -64,7 +62,7 @@ const updateRating = (accessToken: string, book: Book, rating: number) => {
     .catch((err) => console.log('error with updateRating', err));
 };
 
-const deleteSavedBook = (accessToken: string, bookId: string) => {
+const deleteSavedBook = (accessToken: string, book: Book) => {
   return fetch(`${BASE_URL}/user/saved`, {
     method: 'DELETE',
     credentials: 'include',
@@ -73,13 +71,11 @@ const deleteSavedBook = (accessToken: string, bookId: string) => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
     },
-    body: JSON.stringify({
-      bookId,
-    }),
+    body: JSON.stringify({ book }),
   }).catch((err) => console.log('error with deleteSavedBook', err));
 };
 
-const deleteRating = (accessToken: string, bookId: string) => {
+const deleteRating = (accessToken: string, book: Book) => {
   return fetch(`${BASE_URL}/user/saved`, {
     method: 'DELETE',
     credentials: 'include',
@@ -88,9 +84,7 @@ const deleteRating = (accessToken: string, bookId: string) => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
     },
-    body: JSON.stringify({
-      bookId,
-    }),
+    body: JSON.stringify({ book }),
   }).catch((err) => console.log('error with deleteRating', err));
 };
 

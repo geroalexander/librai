@@ -14,4 +14,5 @@ export interface Book {
   smallThumbnail: string;
   price: number;
   currency: string;
+  compatabilityScore: number;
 }
