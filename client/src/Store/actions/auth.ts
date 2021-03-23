@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { register, login, addFormInfo, logout } from '../../ApiClientService/Auth';
 import { User } from '../../Interfaces/user';
 import { AppDispatch } from '../../App';
@@ -34,3 +35,11 @@ const setRegister = () => async (dispatch: AppDispatch) => {
 const setAddFormInfo = () => async (dispatch: AppDispatch) => {
   
 }
+=======
+import {
+  register,
+  login,
+  addFormInfo,
+  logout,
+} from '../../ApiClientService/Auth';
+>>>>>>> f2d568ee9f6fb4983ed3c7cef85de9dd5eb60aed

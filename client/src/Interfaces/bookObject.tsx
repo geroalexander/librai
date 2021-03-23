@@ -1,18 +1,21 @@
+import { Interaction } from './interactionObject';
+
 export interface Book {
   id: string;
-  author: string[];
+  author: string[] | [];
   title: string;
-  subtitle: string;
-  description: string;
-  pageCount: number;
-  categories: string[];
-  publisher: string;
-  publishedDate: string;
-  averageRating: number;
-  ratingsCount: number;
-  thumbnail: string;
-  smallThumbnail: string;
-  price: number;
-  currency: string;
-  compatabilityScore: number;
+  subtitle: string | null;
+  description: string | null;
+  pageCount: number | null;
+  categories: string[] | [];
+  publisher: string | null;
+  publishedDate: string | null;
+  averageRating: number | null;
+  ratingsCount: number | null;
+  thumbnail: string | null;
+  smallThumbnail: string | null;
+  price: number | null;
+  currency: string | null;
+  compatabilityScore: number | null;
+  interaction?: Interaction[] | null;
 }
