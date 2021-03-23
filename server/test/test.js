@@ -2,28 +2,22 @@
 
 var should = require('chai').should();
 
-const { fetchBook } = require('../booksApiService/fetchBooks');
+const { fetchBook } = require('../booksApiService/fetchBook');
 const { extractText } = require('../computerVisionService/textExtraction');
 
 const heartSpringMountain =
-  '/Users/benpearce/Documents/Paths/path-to-code/Codeworks/librai/server/bookAssets/heart_spring_mountain.jpg';
-const queenBee =
-  '/Users/benpearce/Documents/Paths/path-to-code/Codeworks/librai/server/bookAssets/queen_bee.jpeg';
-const theGravityOfUs =
-  '/Users/benpearce/Documents/Paths/path-to-code/Codeworks/librai/server/bookAssets/the_gravity_of_us.jpeg';
-const theWaterCure =
-  '/Users/benpearce/Documents/Paths/path-to-code/Codeworks/librai/server/bookAssets/the_water_cure.jpeg';
-const theWomanDestroyed =
-  '/Users/benpearce/Documents/Paths/path-to-code/Codeworks/librai/server/bookAssets/the_woman_destroyed.jpeg';
-const theSubtleArt =
-  '/Users/benpearce/Documents/Paths/path-to-code/Codeworks/librai/server/bookAssets/the_subtle_art.jpeg';
+  __dirname + '/../bookAssets/heart_spring_mountain.jpg';
+const queenBee = __dirname + '/../bookAssets/queen_bee.jpeg';
+const theGravityOfUs = __dirname + '/../bookAssets/the_gravity_of_us.jpeg';
+const theWaterCure = __dirname + '/../bookAssets/the_water_cure.jpeg';
+const theWomanDestroyed = __dirname + '/../bookAssets/the_woman_destroyed.jpeg';
+const theSubtleArt = __dirname + '/../bookAssets/the_subtle_art.jpeg';
 
 describe('Fetching books using computer vision text extraction', function () {
   it('should find the correct books with search terms', async function () {
     let fetchedBook;
 
     this.timeout(0); // Disable timeout for the multiple async calls
-
     fetchedBook = await fetchBook('no+country+for+old+men');
     fetchedBook.id.should.equal('3Ksa5vqnc8QC');
 
