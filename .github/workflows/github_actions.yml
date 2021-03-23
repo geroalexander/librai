@@ -9,25 +9,21 @@ on:
 
 jobs:
   test:
-
     name: Running Unit Tests
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-        
-    - name: Install
-      run: npm install
-   
-    - name: Test
-      run: npm test
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    
+      - name: Install
+        run: |
+          npm install 
+          npm install --prefix client
+          npm install --prefix server
 
-    
-  
-    
+      - name: Test
+        run: npm test
