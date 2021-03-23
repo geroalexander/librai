@@ -18,7 +18,6 @@ describe('Fetching books using computer vision text extraction', function () {
     let fetchedBook;
 
     this.timeout(0); // Disable timeout for the multiple async calls
-
     fetchedBook = await fetchBook('no+country+for+old+men');
     fetchedBook.id.should.equal('3Ksa5vqnc8QC');
 
@@ -60,5 +59,3 @@ describe('Fetching books using computer vision text extraction', function () {
     fetchedBook.id.should.equal('yng_CwAAQBAJ');
   });
 });
-
-console.log('this is the dir--------', __dirname);
