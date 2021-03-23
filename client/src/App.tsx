@@ -8,7 +8,7 @@ import {
   RouteComponentProps,
 } from 'react-router-dom';
 
-import { Dashboard, Profile, Saved, BookDetails } from './Routes';
+import { Dashboard, Profile, Saved, BookDetails, Login } from './Routes';
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
           <Route path="/saved" exact component={Saved}></Route>
           {/* <Route path="/details/:id" exact component={BookDetails}></Route> */}
           <Route path="/register" exact component={Dashboard}></Route>
-          <Route path="/login" exact component={Dashboard}></Route>
+          <Route path="/login" exact component={Login}></Route>
           <Route path="/form" exact component={Dashboard}></Route>
           <Route path="/" render={() => <div>404</div>} />
         </Switch>

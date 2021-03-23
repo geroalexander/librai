@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,WAAW,CAAC;EACV,gBAAgB,EAAE,KAAK;CACxB",
+    "sources": [
+        "Login.scss",
+        "../../Theme/colorDefinitions.scss"
+    ],
+    "names": [],
+    "file": "Login.css"
+}
