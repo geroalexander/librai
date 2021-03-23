@@ -1,0 +1,19 @@
+@import '../../Theme/colorDefinitions.scss';
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap');
+$comfortaa: 'Comfortaa', cursive;
+$montserrat: 'Montserrat', sans-serif;
+$opensans: 'Open Sans', sans-serif;
+.dashboard {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #180060;
+  .title {
+    color: $WHITE;
+    font-family: $comfortaa;
+    font-size: 3rem;
+  }
+}

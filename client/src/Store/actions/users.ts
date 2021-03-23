@@ -1,4 +1,4 @@
-import { AppDispatch } from '../../App';
+import { AppDispatch } from '../../index';
 import {
   loadDashboard,
   getUserWithBooks,

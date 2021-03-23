@@ -1,2 +1,2 @@
 //BEN
-export {};
+export default {};

@@ -1,7 +1,7 @@
 import { getRecommendations } from '../../ApiClientService/Book';
 import { SET_RECOMMENDATIONS } from './ActionTypes';
 
-import { AppDispatch } from '../../App';
+import { AppDispatch } from '../../index';
 
 const accessToken: string | null = localStorage.getItem('accessToken');
 

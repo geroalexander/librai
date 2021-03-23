@@ -6,7 +6,8 @@ import {
 } from '../../ApiClientService/Auth';
 import { Login } from '../../Interfaces/loginObject';
 import { Form } from '../../Interfaces/formObject';
-import { AppDispatch } from '../../App';
+import { AppDispatch } from '../../index';
+
 import {
   SET_LOGIN,
   SET_LOGOUT,

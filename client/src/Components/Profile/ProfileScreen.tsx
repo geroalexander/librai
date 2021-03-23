@@ -25,6 +25,8 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
 
   const renderFavoriteGenres = () => {};
 
+  const renderBooks;
+
   return (
     <div>
       <button>Logout</button>
