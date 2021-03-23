@@ -1,8 +1,8 @@
-<<<<<<< HEAD
 import { register, login, addFormInfo, logout } from '../../ApiClientService/Auth';
-import { User } from '../../Interfaces/user';
+import { User } from '../../Interfaces/userObject';
+import { Form } from '../../Interfaces/formObject';
 import { AppDispatch } from '../../App';
-import { SET_LOGIN, SET_LOGOUT } from './ActionTypes';
+import { SET_LOGIN, SET_LOGOUT, SET_REGISTER, SET_ADD_FORM_INFO } from './ActionTypes';
 
 export const setLogin = (user: User) => async (dispatch: AppDispatch) => {
   const { email, password } = user;
@@ -28,18 +28,16 @@ export const setLogout = () => async (dispatch: AppDispatch) => {
   });
 };
 
-const setRegister = () => async (dispatch: AppDispatch) => {
-  
-}
+export const setRegister = (form: Form) => async (dispatch: AppDispatch) => {
+  const { firstName, lastName, email, password } = form;
+  const { accessToken } = await register(firstName, lastName, email, password);
+  localStorage.setItem('accessToken', accessToken);
+  dispatch({
+    type: SET_REGISTER,
+    payload: {
+      isLoggedIn: true,
+    },
+  });
+};
 
-const setAddFormInfo = () => async (dispatch: AppDispatch) => {
-  
-}
-=======
-import {
-  register,
-  login,
-  addFormInfo,
-  logout,
-} from '../../ApiClientService/Auth';
->>>>>>> f2d568ee9f6fb4983ed3c7cef85de9dd5eb60aed
+// const setAddFormInfo = () => async (dispatch: AppDispatch) => {}
