@@ -27,7 +27,8 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
 
   return (
     <div>
-      <image src={user.profilePic} />
+      <button>Logout</button>
+      <img src={String(user.profilePic)} alt="" />
     </div>
   );
 };
