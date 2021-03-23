@@ -1,3 +1,6 @@
-import { register, login, addFormInfo, logout } from '../../ApiClientService/Auth';
-
-
+import {
+  register,
+  login,
+  addFormInfo,
+  logout,
+} from '../../ApiClientService/Auth';
