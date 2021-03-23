@@ -1,24 +1,33 @@
 import React from 'react';
 import './App.css';
 
-import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
-import reducers from './Store/reducers/index';
-import ReduxThunk from 'redux-thunk';
-import logger from 'redux-logger';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  RouteComponentProps
+} from "react-router-dom";
 
-const middleware = applyMiddleware(ReduxThunk, logger);
-const store = createStore(reducers, middleware);
-
-export type AppDispatch = typeof store.dispatch;
+import { Dashboard, Profile, Saved, BookDetails } from './Routes';
 
 function App() {
   return (
-    <Provider store={store}>
       <div className="App">
-        <h1>Welcome to Librai team!</h1>
+        <Router>
+          <h1>Welcome to Librai team!</h1>
+
+          <Switch>
+            <Route path="/" exact component={Dashboard}></Route>
+            <Route path="/profile" exact component={Profile}></Route>
+            <Route path="/saved" exact component={Saved}></Route>
+            <Route path="/details/:id" exact component={BookDetails}></Route>
+            <Route path="/register" exact component={Dashboard}></Route>
+            <Route path="/login" exact component={Dashboard}></Route>
+            <Route path="/form" exact component={Dashboard}></Route>
+            <Route path="/" render={() => <div>404</div>} />
+          </Switch>
+        </Router>
       </div>
-    </Provider>
   );
 }
 

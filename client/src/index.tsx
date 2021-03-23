@@ -5,9 +5,22 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import reducers from './Store/reducers/index';
+import ReduxThunk from 'redux-thunk';
+import logger from 'redux-logger';
+
+const middleware = applyMiddleware(ReduxThunk, logger);
+const store = createStore(reducers, middleware);
+
+export type AppDispatch = typeof store.dispatch;
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
