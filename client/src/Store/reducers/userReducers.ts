@@ -93,12 +93,10 @@ function userReducer(state = initialState, action: AnyAction) {
       const oldRecommendations = state.recommendations;
       return {
         ...state,
-        recommendations: [
-          ...oldRecommendations,
-          ...action.payload.recommendations,
-        ],
+        recommendations: [...oldRecommendations, ...action.payload],
       };
   }
+  return state;
 }
 
 export default userReducer;

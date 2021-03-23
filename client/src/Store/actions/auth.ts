@@ -24,9 +24,9 @@ export const setLogin = (loginObject: Login) => async (
 };
 
 export const setLogout = () => async (dispatch: AppDispatch) => {
-  const accessToken: string = localStorage.getItem('accessToken');
+  const accessToken: string | null = localStorage.getItem('accessToken');
   localStorage.removeItem('accessToken');
-  await logout(accessToken);
+  if (accessToken) await logout(accessToken);
   dispatch({ type: SET_LOGOUT });
 };
 

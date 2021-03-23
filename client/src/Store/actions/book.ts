@@ -3,9 +3,11 @@ import { SET_RECOMMENDATIONS } from './ActionTypes';
 
 import { AppDispatch } from '../../App';
 
-const accessToken: string = localStorage.getItem('accessToken');
+const accessToken: string | null = localStorage.getItem('accessToken');
 
 export const _getRecommendations = () => async (dispatch: AppDispatch) => {
-  const { data } = await getRecommendations(accessToken);
-  dispatch({ type: SET_RECOMMENDATIONS, payload: data });
+  let data;
+  if (accessToken) data = await getRecommendations(accessToken);
+  if (data)
+    dispatch({ type: SET_RECOMMENDATIONS, payload: data.recommendations });
 };
