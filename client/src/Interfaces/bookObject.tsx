@@ -17,5 +17,5 @@ export interface Book {
   price: number | null;
   currency: string | null;
   compatabilityScore: number | null;
-  interaction?: Interaction[] | null;
+  interaction: Interaction;
 }
