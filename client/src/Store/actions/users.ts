@@ -49,6 +49,3 @@ export const _deleteRating = (book: Book) => async (dispatch: AppDispatch) => {
   await deleteRating(accessToken, book)
   dispatch({ type: DELETE_RATING, payload: book });
 };
-
-
-
