@@ -1,2 +1,2 @@
 //PAMELA
-export {};
+export default {};

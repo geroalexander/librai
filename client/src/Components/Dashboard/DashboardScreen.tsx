@@ -2,7 +2,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { _loadDashboard } from '../../Store/actions/users';
-import { RootState } from '../../App';
+import { RootState } from '../../index';
 
 const Dashboard = () => {
   const recommendations = useSelector(
