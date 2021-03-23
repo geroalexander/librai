@@ -13,6 +13,6 @@ router.post('/search', authMiddleware, bookCTRL.getBookBySearch);
 
 // GET BOOK DETAILS
 // change auth
-router.get('/details/:bookId', authMiddleware, bookCTRL.getBookDetails);
+router.post('/details', authMiddleware, bookCTRL.viewBookDetails);
 
 module.exports = router;

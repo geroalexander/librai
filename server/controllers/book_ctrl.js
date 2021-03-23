@@ -15,6 +15,7 @@ const getRecommendedBooks = async (req, res) => {
       retrievedBook.compatabilityScore = 10;
       bookRecArr.push(retrievedBook);
     }
+
     res.status(201).send(bookRecArr);
   } catch (error) {
     console.error(error);
@@ -30,6 +31,7 @@ const getBookByCover = async (req, res) => {
     const retrievedBook = await fetchBook(searchQuery);
     const compatScore = await getCompatScore(user.dataValues, retrievedBook);
     retrievedBook.compatabilityScore = compatScore;
+    await addBookView(user.id, retrievedBook, false);
     res.status(201).send(retrievedBook);
   } catch (error) {
     console.error(error);
@@ -44,6 +46,7 @@ const getBookBySearch = async (req, res) => {
     const retrievedBook = await fetchBook(searchQuery);
     const compatScore = await getCompatScore(user.dataValues, retrievedBook);
     retrievedBook.compatabilityScore = compatScore;
+    await addBookView(user.id, retrievedBook, false);
     res.status(201).send(retrievedBook);
   } catch (error) {
     console.error(error);
@@ -51,16 +54,26 @@ const getBookBySearch = async (req, res) => {
   }
 };
 
-const getBookDetails = async (req, res) => {
+// const getBookDetails = async (req, res) => {
+//   const user = req.user;
+//   try {
+//     const { bookId } = req.params;
+//     const retrievedBook = await getBookById(bookId);
+//     const compatScore = await getCompatScore(user.dataValues, retrievedBook);
+//     retrievedBook.compatabilityScore = compatScore;
+//     await addBookView(user.id, retrievedBook, false);
+//     res.status(201).send(retrievedDetails);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(400).send(error);
+// }
+
+const viewBookDetails = async (req, res) => {
   const user = req.user;
   try {
-    const { bookId } = req.params;
-    const retrievedBook = await getBookById(bookId);
-    const compatScore = await getCompatScore(user.dataValues, retrievedBook);
-    retrievedBook.compatabilityScore = compatScore;
-    // const bookObj = {title: }
-    await addBookView(user.id, retrievedBook);
-    res.status(201).send(retrievedDetails);
+    const { book } = req.body;
+    await addBookView(user.id, book, true);
+    res.status(201).send('Viewing is sent');
   } catch (error) {
     console.error(error);
     res.status(400).send(error);
@@ -71,5 +84,5 @@ module.exports = {
   getRecommendedBooks,
   getBookByCover,
   getBookBySearch,
-  getBookDetails,
+  viewBookDetails,
 };

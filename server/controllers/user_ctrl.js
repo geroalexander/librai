@@ -96,9 +96,9 @@ const deleteSavedBook = async (req, res) => {
   const user = req.user;
 
   try {
-    const bookId = req.body;
+    const { book } = req.body;
     const targetInteraction = await Interaction.findOne({
-      where: { userId: user.id, bookId },
+      where: { userId: user.id, bookId: book.id },
     });
 
     if (!targetInteraction)
@@ -110,7 +110,7 @@ const deleteSavedBook = async (req, res) => {
       await targetInteraction.update({ isSaved: false });
     else await targetInteraction.destroy();
 
-    await bookmark(user.id, bookId);
+    await bookmark(user.id, book);
     res.status(203).send('Book was unsaved');
   } catch (error) {
     console.error(error, 'Could not delete saved book, fn.deleteSavedBook');
@@ -123,9 +123,9 @@ const deleteRating = async (req, res) => {
   const user = req.user;
 
   try {
-    const bookId = req.body; //
+    const { book } = req.body; //
     const targetInteraction = await Interaction.findOne({
-      where: { userId: user.id, bookId },
+      where: { userId: user.id, bookId: book.id },
     });
 
     if (!targetInteraction)
@@ -135,7 +135,7 @@ const deleteRating = async (req, res) => {
       await targetInteraction.update({ rating: null });
     else await targetInteraction.destroy();
 
-    await bookRating(user.id, bookId, (rating = 0));
+    await bookRating(user.id, book, (rating = 0));
     res.status(203).send('Book rating was removed');
   } catch (error) {
     console.error(error, 'Could not delete rating, fn.deleteRating');
