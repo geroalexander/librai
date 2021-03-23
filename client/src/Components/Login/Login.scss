@@ -1,5 +1,12 @@
 @import '../../Theme/colorDefinitions.scss';
 
 .login-form {
-  background-color: $PRIMARY_LIGHT;
+  background-color: $SECONDARY;
+  padding: 1em;
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    padding: 0.1em;
+  }
 }
