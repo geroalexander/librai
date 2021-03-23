@@ -3,9 +3,12 @@ name: GitHub Actions
 on: push
 
 jobs:
-  test:
+  build:
     name: Running Unit Tests
     runs-on: ubuntu-latest
+    env:
+      GOOGLE_BOOKS_API_KEY: ${{secrets.GOOGLE_BOOKS_API_KEY}}
+      GOOGLE_APPLICATION_CREDENTIALS: ./libraiPrivateKey.json
 
     steps:
       - uses: actions/checkout@v2
@@ -13,6 +16,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Google Set Up
+        run: |
+          echo -e "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}" > ./libraiPrivateKey.json
 
       - name: Install
         run: |
