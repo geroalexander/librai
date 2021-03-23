@@ -1,9 +1,14 @@
 const { DataTypes } = require('sequelize');
-const { STRING, ARRAY } = DataTypes;
+const { STRING, ARRAY, UUID, UUIDV4 } = DataTypes;
 
 module.exports = (sequelize) => {
   return sequelize.define('user', {
-    // sequelize adds id prop
+    id: {
+      type: UUID,
+      defaultValue: UUIDV4,
+      allowNull: false,
+      primaryKey: true,
+    },
     firstName: {
       type: STRING,
       allowNull: false,
