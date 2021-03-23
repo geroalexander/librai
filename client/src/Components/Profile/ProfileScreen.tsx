@@ -1,11 +1,35 @@
 //BEN
 import React from 'react';
-import {useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import { User } from '../../Interfaces/userObject';
 import { RootState } from '../../App';
 
-const ProfileScreen = () => {
-  const user: User = useSelector((state: RootState) => state.userReducer?.userWithBooks);
-}
+// export interface User {
+//   id: string;
+//   firstName: string;
+//   lastName: string;
+//   email: string;
+//   profilePic: string | null;
+//   favoriteGenres: string[] | [];
+//   books?: Book[] | null;
+// }
 
-export default ProfileScreen;
+interface ProfileScreenProps extends RouteComponentProps {}
+
+const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
+  const user: User = useSelector(
+    (state: RootState) => state.userReducer?.userWithBooks
+  );
+  const dispatch = useDispatch();
+
+  const renderFavoriteGenres = () => {};
+
+  return (
+    <div>
+      <image src={user.profilePic} />
+    </div>
+  );
+};
+
+export default withRouter(ProfileScreen);
