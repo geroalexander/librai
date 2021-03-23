@@ -8,7 +8,6 @@ const { user, interaction, book } = models;
 const Book = book;
 const bookRating = require('../recombeeService/rate');
 const bookmark = require('../recombeeService/bookmark');
-const bcrypt = require('bcrypt');
 const books = require('./populate_books.json');
 const mockUser = {
   firstName: 'Vladimir',
@@ -48,7 +47,7 @@ const mainScript = async () => {
   console.log('🤙 Database populated: 1 user, 10 saved & 10 read interactions');
 };
 
-mainScript().then((res) => console.log('res---->', res));
+mainScript();
 
 /*
 ----------------
@@ -57,8 +56,6 @@ HELPER FUNCTIONS
 */
 
 async function registerMockUser() {
-  console.log('register HEREEE---->');
-
   try {
     const existingUser = await user.findOne({
       where: { email: mockUser.email },
