@@ -10,7 +10,7 @@ const getRecommendedBooks = async (req, res) => {
   try {
     const recommendations = await getRecommendations(user.id, 10);
     const bookRecArr = [];
-    for (const rec of recommendations) {
+    for (const rec of recommendations.recomms) {
       const retrievedBook = await getBookById(rec.id);
       retrievedBook.compatabilityScore = 10;
       bookRecArr.push(retrievedBook);
