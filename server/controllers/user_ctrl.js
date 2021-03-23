@@ -14,12 +14,17 @@ const loadDashboard = async (req, res) => {
       where: { id: user.id },
       include: Book,
     });
-    const recommendations = await getRecomendations(user.id); // second param default to 5
+    const recommendations = await getRecommendations(user.id, 10);
+    const bookRecArr = [];
+    for (const rec of recommendations.recomms) {
+      const retrievedBook = await getBookById(rec.id);
+      retrievedBook.compatabilityScore = 10;
+      bookRecArr.push(retrievedBook);
+    }
     res.status(201).send({
       userWithBooks,
-      recommendations,
+      recommendations: bookRecArr,
     });
-    res.send(recommendations);
   } catch (error) {
     console.error(error, 'Could not load dashboard, fn.loadDashboard');
     res.status(400).send(error);
@@ -51,12 +56,12 @@ const addSavedBook = async (req, res) => {
 
     if (!targetBook) targetBook = await Book.create(book);
     await user.addBook(targetBook, { through: { isSaved: true } });
-    const userWithBooks = await User.findOne({
-      where: { id: user.id },
-      include: Book,
-    });
-    await bookmark(user.id, book); // book object (book.id for id)
-    res.status(201).send(userWithBooks);
+    // const userWithBooks = await User.findOne({
+    //   where: { id: user.id },
+    //   include: Book,
+    // });
+    await bookmark(user.id, targetBook); // book object (book.id for id)
+    res.status(201).send(targetBook);
   } catch (error) {
     console.error(error, 'Could not add saved book, fn.addSavedBook');
     res.status(400).send(error);
@@ -80,12 +85,12 @@ const updateRating = async (req, res) => {
       res.status(203).send(targetInteraction);
     }
     await targetUser.addBook(targetBook, { through: { rating: rating } });
-    const userWithBooks = await User.findOne({
-      where: { id: user.id },
-      include: Book,
-    });
-    await bookRating(user.id, book, rating); // book object (book.id for id)
-    res.status(201).send(userWithBooks);
+    // const userWithBooks = await User.findOne({
+    //   where: { id: user.id },
+    //   include: Book,
+    // });
+    await bookRating(user.id, targetBook, rating); // book object (book.id for id)
+    res.status(201).send(targetBook);
   } catch (error) {
     console.error(error, 'Could not update rating, fn.updateRating');
     res.status(400).send(error);
