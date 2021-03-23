@@ -2,6 +2,12 @@
 // populates PSQL DB it with: 1 user who has 10 saved, 10 rated books
 // MAKE SURE EXPRESS SERVER AND DB ARE RUNNING
 // execute: npm run populate
+// const
+
+// to get access token
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+const SECRET_KEY = process.env.SECRET_KEY;
 
 const { models } = require('../models/');
 const { user, interaction, book } = models;
@@ -9,6 +15,7 @@ const Book = book;
 const bookRating = require('../recombeeService/rate');
 const bookmark = require('../recombeeService/bookmark');
 const books = require('./populate_books.json');
+
 const mockUser = {
   firstName: 'Vladimir',
   lastName: 'Putin',
@@ -36,7 +43,13 @@ const mainScript = async () => {
   console.log('Beginning to populate');
   await registerMockUser();
   console.log('mockUserCreated---->', mockUserCreated);
-
+  const { id } = mockUserCreated;
+  console.log('SECRET KEY ---------', SECRET_KEY);
+  console.log('id ---------', id);
+  const accessToken = jwt.sign({ _id: id }, SECRET_KEY);
+  console.log('------------------ACCESS TOKEN HERE---------------------');
+  console.log(accessToken);
+  console.log('------------------ACCESS TOKEN HERE---------------------');
   // Populate DB with 10 saved books for mock user
   console.log('Mocking user saved books...');
   for (let i = 0; i < 10; i++) await mockAddSavedBook(books[i]);
@@ -63,7 +76,6 @@ async function registerMockUser() {
     if (existingUser) throw new Error('Matt Damon already exists');
 
     mockUserCreated = await user.create(mockUser);
-    console.log('mockUserCreated SECOND---->', mockUserCreated);
 
     if (!mockUserCreated) throw new Error('Matt damon could not be created');
   } catch (error) {

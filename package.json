@@ -4,7 +4,7 @@
   "description": "Don't judge a book by its cover, we'll judge it for you.",
   "main": "index.js",
   "scripts": {
-    "test": "cd server && npm install && mocha test/test.js"
+    "test": "npm test --prefix server && npm test --prefix client"
   },
   "repository": {
     "type": "git",

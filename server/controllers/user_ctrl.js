@@ -1,4 +1,6 @@
-const getRecomendations = require('../recombeeService/getRecommendations');
+const getRecommendations = require('../recombeeService/getRecommendations');
+const { getBookById } = require('../booksApiService/getBookById');
+const { formatBook } = require('./helpers');
 const bookmark = require('../recombeeService/bookmark');
 const bookRating = require('../recombeeService/rate');
 const { models } = require('../models/index');
@@ -18,8 +20,9 @@ const loadDashboard = async (req, res) => {
     const bookRecArr = [];
     for (const rec of recommendations.recomms) {
       const retrievedBook = await getBookById(rec.id);
-      retrievedBook.compatabilityScore = 10;
-      bookRecArr.push(retrievedBook);
+      const formattedBook = formatBook(retrievedBook);
+      formattedBook.compatabilityScore = 10;
+      bookRecArr.push(formattedBook);
     }
     res.status(201).send({
       userWithBooks,
@@ -34,10 +37,31 @@ const loadDashboard = async (req, res) => {
 const getUserWithBooks = async (req, res) => {
   const user = req.user;
   try {
-    const userWithBooks = await User.findOne({
+    const userFromDB = await User.findOne({
       where: { id: user.id },
       include: Book,
     });
+
+    const {
+      id,
+      firstName,
+      lastName,
+      email,
+      profilePic,
+      favoriteGenres,
+      books,
+    } = userFromDB;
+
+    const userWithBooks = {
+      id,
+      firstName,
+      lastName,
+      email,
+      profilePic,
+      favoriteGenres,
+      books,
+    };
+
     res.status(201).send({
       userWithBooks,
     });
@@ -81,7 +105,7 @@ const updateRating = async (req, res) => {
     });
     if (targetInteraction) {
       await targetInteraction.update({ rating: rating });
-      await bookRating(user.id, book, rating); // book object (book.id for id)
+      // await bookRating(user.id, book, rating); // book object (book.id for id)
       res.status(203).send(targetInteraction);
     }
     await targetUser.addBook(targetBook, { through: { rating: rating } });
@@ -89,7 +113,7 @@ const updateRating = async (req, res) => {
     //   where: { id: user.id },
     //   include: Book,
     // });
-    await bookRating(user.id, targetBook, rating); // book object (book.id for id)
+    // await bookRating(user.id, targetBook, rating); // book object (book.id for id)
     res.status(201).send(targetBook);
   } catch (error) {
     console.error(error, 'Could not update rating, fn.updateRating');

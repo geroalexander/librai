@@ -13,6 +13,7 @@ module.exports = (sequelize) => {
       },
       authors: {
         type: ARRAY(STRING),
+        default: [],
       },
       title: {
         type: STRING,
@@ -29,6 +30,7 @@ module.exports = (sequelize) => {
       },
       categories: {
         type: ARRAY(STRING),
+        default: [],
       },
       publisher: {
         type: STRING,

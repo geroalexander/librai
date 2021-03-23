@@ -9,7 +9,7 @@ const Interaction = interaction;
 const addUser = require('../recombeeService/user');
 
 const register = async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { firstName, lastName, email, password, favoriteGenres } = req.body;
 
   const existingUser = await User.findOne({ where: { email } });
   if (existingUser) return res.status(409).send('This user already exisits');
@@ -22,7 +22,7 @@ const register = async (req, res) => {
       lastName,
       email,
       password: hash,
-      // favoriteGenres: [],
+      favoriteGenres,
     });
     const accessToken = jwt.sign({ _id: id }, SECRET_KEY);
 
@@ -32,6 +32,8 @@ const register = async (req, res) => {
       userId: id,
       email: email,
     });
+    console.log('SECRET_KEY---->', SECRET_KEY);
+
     res.status(201).send({ accessToken });
   } catch (error) {
     console.error(error, 'Could not register, fn.register');

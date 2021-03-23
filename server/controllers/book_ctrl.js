@@ -1,9 +1,14 @@
 const { fetchBook } = require('../booksApiService/fetchBook');
 const { extractText } = require('../computerVisionService/textExtraction');
 const { getBookById } = require('../booksApiService/getBookById');
+const { formatBook } = require('./helpers');
 const getCompatScore = require('../recommendationScore/recommScore');
 const getRecommendations = require('../recombeeService/getRecommendations');
 const addBookView = require('../recombeeService/view');
+const { models } = require('../models/index');
+const { user, book } = models;
+const Book = book;
+const User = user;
 
 const getRecommendedBooks = async (req, res) => {
   const user = req.user;
@@ -12,8 +17,9 @@ const getRecommendedBooks = async (req, res) => {
     const bookRecArr = [];
     for (const rec of recommendations.recomms) {
       const retrievedBook = await getBookById(rec.id);
-      retrievedBook.compatabilityScore = 10;
-      bookRecArr.push(retrievedBook);
+      const formattedBook = formatBook(retrievedBook);
+      formattedBook.compatabilityScore = 10;
+      bookRecArr.push(formattedBook);
     }
 
     res.status(201).send(bookRecArr);
@@ -29,10 +35,11 @@ const getBookByCover = async (req, res) => {
     const { image } = req.body;
     const searchQuery = await extractText(image);
     const retrievedBook = await fetchBook(searchQuery);
-    const compatScore = await getCompatScore(user.dataValues, retrievedBook);
-    retrievedBook.compatabilityScore = compatScore;
+    const compatScore = await getCompatScore(user, retrievedBook);
+    const formattedBook = formatBook(retrievedBook);
+    formattedBook.compatabilityScore = compatScore;
     await addBookView(user.id, retrievedBook, false);
-    res.status(201).send(retrievedBook);
+    res.status(201).send(formattedBook);
   } catch (error) {
     console.error(error);
     res.status(400).send(error);
@@ -41,13 +48,20 @@ const getBookByCover = async (req, res) => {
 
 const getBookBySearch = async (req, res) => {
   const user = req.user;
+
   try {
     const { searchQuery } = req.body;
     const retrievedBook = await fetchBook(searchQuery);
-    const compatScore = await getCompatScore(user.dataValues, retrievedBook);
-    retrievedBook.compatabilityScore = compatScore;
+    const userWithBooks = await User.findOne({
+      where: { id: user.id },
+      include: Book,
+    });
+    const compatScore = await getCompatScore(userWithBooks, retrievedBook);
+
+    const formattedBook = formatBook(retrievedBook);
+    formattedBook.compatabilityScore = compatScore;
     await addBookView(user.id, retrievedBook, false);
-    res.status(201).send(retrievedBook);
+    res.status(201).send(formattedBook);
   } catch (error) {
     console.error(error);
     res.status(400).send(error);
