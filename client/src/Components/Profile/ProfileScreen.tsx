@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import { User } from '../../Interfaces/userObject';
-import { RootState } from '../../App';
+import { RootState } from '../../index';
 
 // export interface User {
 //   id: string;
