@@ -42,7 +42,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
         )
       : null;
 
-  const renderBooks = user.books ? (
+  const renderRatedBooks = user.books ? (
     <div>
       {user.books
         .filter((book: Book) => book.interaction.rating !== null)
@@ -74,7 +74,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
         <h5 className="fav-genres-header">Favorite Genres</h5>
         <p className="fav-genres">{renderFavoriteGenres}</p>
       </div>
-      <div className="rated-books">{renderBooks}</div>
+      <div className="rated-books">{renderRatedBooks}</div>
     </div>
   );
 };
