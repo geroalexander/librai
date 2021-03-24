@@ -10,6 +10,7 @@ import './ProfileScreen.css';
 import BookItem from '../Shared/BookItem';
 import Avatar from '@material-ui/core/Avatar';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { setLogout } from '../../Store/actions/auth';
 
 interface ProfileScreenProps extends RouteComponentProps {}
 
@@ -53,11 +54,15 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
     <h1>No books yet</h1>
   );
 
+  const handleLogout = () => {
+    dispatch(setLogout());
+  };
+
   return (
     <div className="profile-screen">
       <div className="user-info">
         {/* This icon needs to be changed */}
-        <button className="logout-button">
+        <button className="logout-button" onClick={handleLogout}>
           <ExitToAppIcon />
         </button>
         <Avatar
