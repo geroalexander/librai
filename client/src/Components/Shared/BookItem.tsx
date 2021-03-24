@@ -25,7 +25,6 @@ const renderRating = () => {
 */
 
 const BookItem: React.FC<BookItemProps> = ({ book }) => {
-  console.log(book);
   return (
     <div className="book-item">
       <img src={String(book.smallThumbnail)} alt="" />

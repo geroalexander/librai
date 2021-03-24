@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap");
 .profile-screen {
   color: white;
-  min-height: 100vh;
+  height: 90vh;
   width: 90vw;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -17,6 +17,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   background-color: #140245;
+  padding-bottom: 1em;
 }
 
 .profile-screen .user-info {
@@ -34,7 +35,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 1em;
+  margin-bottom: 1em;
 }
 
 .profile-screen .logout-button {
@@ -46,31 +47,30 @@
 }
 
 .profile-screen .profile-picture {
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
   height: 20vh;
   width: 40vw;
-  margin-top: 1em;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  max-width: 150px;
 }
 
 .profile-screen h1 {
   margin: 0;
 }
 
-.profile-screen .email {
-  margin: 0;
-  padding-top: 0.5em;
-}
-
 .profile-screen .fav-genres-header {
   margin: 0;
-  margin-top: 0.3em;
-  -ms-flex-item-align: start;
-      align-self: flex-start;
+  margin-top: 0.5em;
 }
 
 .profile-screen .fav-genres {
   font-size: 0.7rem;
+  margin: 0;
+  margin-top: 0.5em;
+}
+
+.profile-screen .rated-books {
+  height: 100%;
+  overflow-y: scroll;
 }
 /*# sourceMappingURL=ProfileScreen.css.map */

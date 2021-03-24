@@ -9,6 +9,7 @@ import { _getUserWithBooks } from '../../Store/actions/users';
 import './ProfileScreen.css';
 import BookItem from '../Shared/BookItem';
 import Avatar from '@material-ui/core/Avatar';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 interface ProfileScreenProps extends RouteComponentProps {}
 
@@ -18,6 +19,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
   );
   const dispatch = useDispatch();
   const fullName = `${user.firstName} ${user.lastName}`;
+  const { favoriteGenres } = user;
 
   useEffect(() => {
     const getBooks = async () => {
@@ -28,16 +30,21 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
     getBooks();
   }, [dispatch]);
 
-  const renderFavoriteGenres = user.favoriteGenres.length
-    ? user.favoriteGenres.map((genre: string) => (
-        <span key={genre}>{genre}, </span>
-      ))
-    : null;
+  const renderFavoriteGenres =
+    favoriteGenres && favoriteGenres.length
+      ? favoriteGenres.map((genre: string, index: number) =>
+          index !== favoriteGenres.length - 1 ? (
+            <span key={genre}>{genre}, </span>
+          ) : (
+            <span key={genre}>{genre}</span>
+          )
+        )
+      : null;
 
   const renderBooks = user.books ? (
     <div>
       {user.books
-        .filter((book: Book) => book.interaction.rating)
+        .filter((book: Book) => book.interaction.rating !== null)
         .map((book: Book) => (
           <BookItem key={book.id} book={book} />
         ))}
@@ -49,18 +56,20 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
   return (
     <div className="profile-screen">
       <div className="user-info">
-        <button className="logout-button">Logout</button>
+        {/* This icon needs to be changed */}
+        <button className="logout-button">
+          <ExitToAppIcon />
+        </button>
         <Avatar
           className="profile-picture"
           alt={fullName}
           src={String(user.profilePic)}
         />
         <h1>{fullName}</h1>
-        <p className="email">{user.email}</p>
-        <h5 className="fav-genres-header">Favorite Genres: </h5>
+        <h5 className="fav-genres-header">Favorite Genres</h5>
         <p className="fav-genres">{renderFavoriteGenres}</p>
       </div>
-      <div>{renderBooks}</div>
+      <div className="rated-books">{renderBooks}</div>
     </div>
   );
 };

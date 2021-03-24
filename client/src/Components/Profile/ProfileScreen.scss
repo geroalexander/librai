@@ -6,44 +6,47 @@ $opensans: 'Open Sans', sans-serif;
 
 .profile-screen {
   color: white;
-  min-height: 100vh;
+  height: 90vh;
   width: 90vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: $PRIMARY_DARK;
+  padding-bottom: 1em;
   .user-info {
     display: flex;
     flex-direction: column;
     width: 100%;
     justify-content: center;
     align-items: center;
-    padding: 1em;
+    margin-bottom: 1em;
   }
   .logout-button {
     flex: 1;
     align-self: flex-end;
   }
   .profile-picture {
-    align-self: center;
     height: 20vh;
     width: 40vw;
-    margin-top: 1em;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    max-width: 150px;
   }
   h1 {
     margin: 0;
   }
-  .email {
-    margin: 0;
-    padding-top: 0.5em;
-  }
   .fav-genres-header {
     margin: 0;
-    margin-top: 0.3em;
-    align-self: flex-start;
+    margin-top: 0.5em;
   }
   .fav-genres {
     font-size: 0.7rem;
+    margin: 0;
+    margin-top: 0.5em;
+  }
+  .rated-books {
+    height: 100%;
+    overflow-y: scroll;
   }
 }
