@@ -41,8 +41,8 @@ const BottomTabNavigation = () => {
       className={classes.root}
     >
       <BottomNavigationAction
-        label="Dashboard"
-        value="dashboard"
+        label="Home"
+        value="home"
         icon={<HomeRoundedIcon style={{ fontSize: 30, color: '#dfd5fc' }} />}
         classes={{ selected: classes.selected, label: classes.label }}
       />

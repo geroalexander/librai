@@ -17,10 +17,10 @@ import {
 } from './ActionTypes';
 import { Book } from '../../Interfaces/bookObject';
 import { User } from '../../Interfaces/userObject';
+const { REACT_APP_ACCESS_TOKEN } = process.env;
 
 // const accessToken: string | null = localStorage.getItem('accessToken');
-const accessToken =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIwMGI5MzYzMS0wYmJkLTQxYmMtYjgwZC1iMTU3ZGY4NWQ4ZDEiLCJpYXQiOjE2MTY1ODIzMTN9.nZYn79xV9Shc8YnB_2mgOPucm2pNhezZwPpTvPpGnCY';
+const accessToken = REACT_APP_ACCESS_TOKEN;
 
 export const _loadDashboard = () => async (dispatch: AppDispatch) => {
   if (accessToken) {

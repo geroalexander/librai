@@ -40,12 +40,25 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
     if (recommendations) setRecommended(recommendations);
   }, [recommendations]);
 
+  const handleImageChange = () => {};
+
   if (books.length) {
     return (
       <div className="dashboard">
         <header>
           <div className="search-placeholder"></div>
-          <PhotoCameraOutlinedIcon style={{ fontSize: 30, color: '#fffef9' }} />
+          <label>
+            <input
+              style={{ display: 'none' }}
+              type="file"
+              accept="image/*"
+              capture="environment"
+              onChange={handleImageChange}
+            />
+            <PhotoCameraOutlinedIcon
+              style={{ fontSize: 30, color: '#fffef9' }}
+            />
+          </label>
         </header>
         <div className="bookwrapper">
           <p className="title">Recommended</p>

@@ -17,7 +17,7 @@
           justify-content: flex-start;
   margin-top: 6%;
   padding-left: 10%;
-  background-color: "black";
+  background-color: #140245;
 }
 
 .dashboard header {
@@ -39,7 +39,7 @@
 
 .dashboard .title {
   color: #fffef9;
-  font-family: "Comfortaa", cursive;
+  font-family: "Montserrat", sans-serif;
   font-size: 1.5rem;
   font-weight: bold;
 }
