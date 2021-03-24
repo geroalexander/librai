@@ -71,6 +71,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
           src={String(user.profilePic)}
         />
         <h1>{fullName}</h1>
+        <p className="email">{user.email}</p>
         <h5 className="fav-genres-header">Favorite Genres</h5>
         <p className="fav-genres">{renderFavoriteGenres}</p>
       </div>

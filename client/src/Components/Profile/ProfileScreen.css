@@ -55,6 +55,11 @@
   margin: 0;
 }
 
+.profile-screen .email {
+  margin: 0;
+  padding-bottom: 0.5em;
+}
+
 .profile-screen .fav-genres-header {
   margin: 0;
   margin-top: 0.5em;
