@@ -4,26 +4,22 @@ import { Book } from '../../Interfaces/bookObject';
 import './BookItem.css';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import BookmarkOutlinedIcon from '@material-ui/icons/BookmarkOutlined';
-// import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
-// import SentimentDissatisfiedOutlinedIcon from '@material-ui/icons/SentimentDissatisfiedOutlined';
-// import { CgSmileNeutral } from 'react-icons';
-{/* <PhotoCameraOutlinedIcon style={{ fontSize: 30, color: '#fffef9' }} /> */}
+import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
+import SentimentDissatisfiedOutlinedIcon from '@material-ui/icons/SentimentDissatisfiedOutlined';
+import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
 
 interface BookItemProps extends RouteComponentProps {
   book: Book;
 }
-// function to render rating face
-/*
-const renderRating = () => {
-  const rating = book.interaction.rating;
-  if (rating === 1 ) return <SentimentSatisfiedOutlinedIcon />;
-  else if (rating === 0) return TODO
-  else return <SentimentDissatisfiedOutlinedIcon />;
-}
-*/
 
 const BookItem: React.FC<BookItemProps> = ({ book }) => {
-  console.log(book);
+  const renderRatingIcon = () => {
+    const rating = book.interaction.rating;
+    if (rating === 1) return <SentimentSatisfiedOutlinedIcon />;
+    else if (rating === 0) return <SentimentSatisfiedIcon />;
+    else return <SentimentDissatisfiedOutlinedIcon />;
+  };
+
   return (
     <div className="book-item">
       <img src={String(book.smallThumbnail)} alt="" />
@@ -36,12 +32,11 @@ const BookItem: React.FC<BookItemProps> = ({ book }) => {
             // dropdown to change rating
             <CheckCircleOutlineIcon className="rating-button" />
           ) : (
-            <div>
-             <h1>Rating face goes here</h1>
-             {/* <h1>{renderRating()}</h1> */}
-            </div>
+            <div>{renderRatingIcon()}</div>
           )}
-          <button className="bookmark"><BookmarkOutlinedIcon className="bookmark-button" /></button>
+          <button className="bookmark">
+            <BookmarkOutlinedIcon className="bookmark-button" />
+          </button>
         </div>
       </div>
     </div>
