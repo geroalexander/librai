@@ -178,8 +178,13 @@ const updateProfile = async (res, req) => {
   const user = req.user;
   try {
     const { profilePic = null, favoriteGenres = null, email = null } = req.body;
-
-    // if (email)
+    const userInformation = await User.findOne({
+      where: { id: user.id },
+      attributes: { exclude: ['password'] },
+    });
+    if (email) userInformation.update({ email });
+    if (favoriteGenres) userInformation.update({ favoriteGenres });
+    if (profilePic) userInformation.update({ profilePic });
   } catch (error) {
     console.error(error, 'Could not update profile information');
   }
