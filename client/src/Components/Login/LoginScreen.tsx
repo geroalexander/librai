@@ -15,7 +15,10 @@ const Login: React.FC = () => {
   const onClickSubmitLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(setLogin({ email, password }));
+    setEmail('');
+    setPassword('');
   };
+
   return (
     <form onSubmit={onClickSubmitLogin} className="login-form">
       <div className="form-inner">
