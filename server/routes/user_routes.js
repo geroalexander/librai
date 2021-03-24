@@ -7,8 +7,9 @@ const authMiddleware = require('./auth/authMiddleware');
 // GET DASHBOARD INFO
 router.get('/dashboard', authMiddleware, userCTRL.loadDashboard);
 
-// COMPLETE FORM
+// COMPLETE FORM OR UPDATE USER
 router.post('/form', authMiddleware, userCTRL.registrationForm);
+router.psot('/update', authMiddleware, userCTRL.updateProfile);
 
 // GET SAVED/READ BOOKS BY USER-ID
 router.get('/profile', authMiddleware, userCTRL.getUserWithBooks);

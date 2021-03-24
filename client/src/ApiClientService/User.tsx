@@ -88,6 +88,41 @@ const deleteRating = (accessToken: string, book: Book) => {
   }).catch((err) => console.log('error with deleteRating', err));
 };
 
+const registrationForm = (
+  accessToken: string,
+  books: Book[],
+  rating: number
+) => {
+  return fetch(`${REACT_APP_BASE_URL}/user/form`, {
+    method: 'POST',
+    credentials: 'include',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({ books, rating }),
+  }).catch((err) => console.log('error with registrationForm', err));
+};
+
+const updateProfile = (
+  accessToken: string,
+  profilePic: string,
+  favoriteGenres: string[],
+  email: string
+) => {
+  return fetch(`${REACT_APP_BASE_URL}/user/update`, {
+    method: 'POST',
+    credentials: 'include',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({ profilePic, favoriteGenres, email }),
+  }).catch((err) => console.log('error with registrationForm', err));
+};
+
 export {
   loadDashboard,
   getUserWithBooks,
@@ -95,4 +130,6 @@ export {
   updateRating,
   deleteSavedBook,
   deleteRating,
+  registrationForm,
+  updateProfile,
 };
