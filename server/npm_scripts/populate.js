@@ -7,6 +7,7 @@
 // to get access token
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const addUser = require('../recombeeService/user');
 const SECRET_KEY = process.env.SECRET_KEY;
 
 const { models } = require('../models/');
@@ -17,13 +18,13 @@ const bookmark = require('../recombeeService/bookmark');
 const books = require('./populate_books.json');
 
 const mockUser = {
-  firstName: 'Vladimir',
-  lastName: 'Putin',
-  email: 'vlad_putin@hollywood.com',
+  firstName: 'Pamela',
+  lastName: 'Chen',
+  email: 'pams@hollywood.com',
   password: 'password',
   favoriteGenres: [
-    'Music',
-    'Performing Arts',
+    'Science Fiction',
+    'Fantasy',
     'Health & Fitness',
     'Drama',
     'Gardening',
@@ -76,6 +77,15 @@ async function registerMockUser() {
     if (existingUser) throw new Error('Matt Damon already exists');
 
     mockUserCreated = await user.create(mockUser);
+
+    const { firstName, lastName, id, email } = mockUserCreated;
+
+    await addUser({
+      first_name: firstName,
+      last_name: lastName,
+      userId: id,
+      email: email,
+    });
 
     if (!mockUserCreated) throw new Error('Matt damon could not be created');
   } catch (error) {

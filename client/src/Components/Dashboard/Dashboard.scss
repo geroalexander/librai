@@ -6,10 +6,7 @@ $montserrat: 'Montserrat', sans-serif;
 $opensans: 'Open Sans', sans-serif;
 
 .dashboard {
-  // text-align: center;
-  position: relative;
-  overflow: hidden;
-  height: 100vh;
+  // text-align: center
   min-height: 100vh;
   min-width: 100vw;
   display: flex;
@@ -26,12 +23,54 @@ $opensans: 'Open Sans', sans-serif;
     font-size: 2rem;
   }
 
-  .booklist {
-    border: solid;
-    border-color: $WHITE;
-    border-width: 2px;
-    min-height: 2rem;
-    min-width: 2rem;
+  .bookwrapper {
+    height: 30vh;
+    margin-bottom: 1.5rem;
+
+    .booklist {
+      border-color: $WHITE;
+      border-width: 1px;
+      height: 70%;
+      width: 90vw;
+      display: flex;
+      overflow-x: scroll;
+
+      .book-preview {
+        margin-right: 1rem;
+        img {
+          height: 10rem;
+          border-radius: 5px;
+          box-shadow: 0 0 20px -1px rgb(7, 6, 22);
+        }
+      }
+
+    }
+  }
+
+  .bookwrapper-small {
+    height: 22vh;
+    margin-bottom: 3rem;
+
+
+    .booklist-small {
+      // border: solid;
+      border-color: $WHITE;
+      border-width: 1px;
+      height: 5rem;
+      width: 90vw;
+      display: flex;
+
+      .book-preview-small {
+        margin-right: 1.5rem;
+        img {
+          height: 8rem;
+          border-radius: 5px;
+          box-shadow: 0 0 20px -1px rgb(7, 6, 22);
+
+        }
+      }
+  
+    }
   }
   
 }

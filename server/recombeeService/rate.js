@@ -33,9 +33,15 @@ const bookRating = async (userID, book, rating) => {
 const addRating = async (userID, bookID, rating) => {
   try {
     await client.send(
-      new rqs.AddRating(userID + '', bookID + '', rating, (err) => {
-        if (err) throw Error;
-      }),
+      new rqs.AddRating(
+        userID + '',
+        bookID + '',
+        rating,
+        { cascadeCreate: true },
+        (err) => {
+          if (err) throw Error;
+        },
+      ),
     );
     return;
   } catch (err) {
