@@ -4,3 +4,44 @@
 $comfortaa: 'Comfortaa', cursive;
 $montserrat: 'Montserrat', sans-serif;
 $opensans: 'Open Sans', sans-serif;
+
+.book-item {
+  display: flex;
+  width: 100%;
+  height: 15vh;
+  margin-bottom: 10px;
+  img {
+    flex: 1;
+    align-self: center;
+    height: 7rem;
+    border-radius: 5px;
+  }
+  h2,
+  p {
+    color: $WHITE;
+    font-size: 1rem;
+    margin-top: 0;
+  }
+  .book-info {
+    display: flex;
+    flex: 3;
+    padding: 0.5em;
+    flex-direction: column;
+    max-height: 15vh;
+    align-items: flex-start;
+  }
+  .book-buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    width: 40%;
+  }
+  .bookmark-button {
+    // background-color: $PRIMARY_LIGHT;
+    color: white;
+    padding: 0;
+  }
+  .rating-button {
+    color: white;
+  }
+}
