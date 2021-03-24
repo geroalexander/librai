@@ -6,11 +6,11 @@ import './Login.css';
 
 const Login: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
-  const onSubmitLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
+  const onSubmitLogin = (e: React.FormEventHandler<HTMLFormElement>) => {
+    // e.preventDefault();
   };
   return (
-    <form className="login-form">
+    <form onSubmit={() => onSubmitLogin} className="login-form">
       <div className="form-inner">
         <h2 className="title">Login</h2>
         {/*ERROR*/}
