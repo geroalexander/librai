@@ -1,7 +1,14 @@
+import { Key } from 'node:readline';
 import * as React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { AppDispatch } from '../..';
 import './Login.css';
 
 const Login: React.FC = () => {
+  const dispatch: AppDispatch = useDispatch();
+  const onSubmitLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+  };
   return (
     <form className="login-form">
       <div className="form-inner">
