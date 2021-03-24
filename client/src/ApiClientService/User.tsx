@@ -1,5 +1,5 @@
 import { Book } from '../Interfaces/bookObject';
-const BASE_URL = 'http://localhost:8000';
+const BASE_URL = 'http://192.168.1.115:8000';
 
 const loadDashboard = (accessToken: string) => {
   return fetch(`${BASE_URL}/user/dashboard`, {
