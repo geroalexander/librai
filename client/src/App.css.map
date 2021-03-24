@@ -1,8 +1,9 @@
 {
     "version": 3,
-    "mappings": "AAAA,AAAA,IAAI,CAAC;EACH,UAAU,EAAE,MAAM;EAClB,UAAU,EAAE,KAAK;EACjB,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,WAAW,EAAE,MAAM;EACnB,eAAe,EAAE,MAAM;EACvB,gBAAgB,EAAE,OAAO;CAC1B;;AACD,AAAA,EAAE,CAAC;EACD,KAAK,EAAE,OAAO;EACd,WAAW,EAAC,wFACd;CAAC",
+    "mappings": "AAEA,AAAA,IAAI,CAAC;EACH,UAAU,EAAE,KAAK;EACjB,SAAS,EAAE,KAAK;EAChB,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,WAAW,EAAE,MAAM;EACnB,eAAe,EAAE,MAAM;EACvB,gBAAgB,ECTF,OAAO;CDUtB",
     "sources": [
-        "App.scss"
+        "App.scss",
+        "Theme/colorDefinitions.scss"
     ],
     "names": [],
     "file": "App.css"

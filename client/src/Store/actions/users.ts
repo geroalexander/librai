@@ -18,12 +18,15 @@ import {
 import { Book } from '../../Interfaces/bookObject';
 import { User } from '../../Interfaces/userObject';
 
-const accessToken: string | null = localStorage.getItem('accessToken');
+// const accessToken: string | null = localStorage.getItem('accessToken');
+const accessToken =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4YWIxZTA2MC0yZmY5LTQzNzctOTcyNC04ZTU1NWFlNzk3M2EiLCJpYXQiOjE2MTY1Mzc3MzZ9.epipahkcTmdIS71WOgtdL1LSNZHmN-kBCdqS2V2VFOk';
 
 export const _loadDashboard = () => async (dispatch: AppDispatch) => {
   if (accessToken) {
     const userDashboard = await loadDashboard(accessToken);
-    dispatch({ type: LOAD_DASHBOARD, payload: userDashboard });
+    if (userDashboard)
+      dispatch({ type: LOAD_DASHBOARD, payload: userDashboard });
   }
 };
 

@@ -32,7 +32,6 @@ const register = async (req, res) => {
       userId: id,
       email: email,
     });
-    console.log('SECRET_KEY---->', SECRET_KEY);
 
     res.status(201).send({ accessToken });
   } catch (error) {

@@ -10,7 +10,12 @@ const router = require('./routes/router.js');
 const app = express();
 const PORT = 8000;
 
-app.use(cors());
+const corsConfig = {
+  origin: 'http://localhost:3000',
+  credentials: true,
+};
+
+app.use(cors(corsConfig));
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(router);

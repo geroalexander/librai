@@ -9,13 +9,12 @@ import {
 } from 'react-router-dom';
 
 import { Dashboard, Profile, Saved, BookDetails } from './Routes';
+import BottomTabNavigation from './Components/BottomTab/BottomTab';
 
 function App() {
   return (
     <div className="App">
       <Router>
-        {/* <h1>Welcome to Librai team!</h1> */}
-
         <Switch>
           <Route path="/" exact component={Dashboard}></Route>
           {/* <Route path="/profile" exact component={Profile}></Route> */}
@@ -26,6 +25,7 @@ function App() {
           <Route path="/form" exact component={Dashboard}></Route>
           <Route path="/" render={() => <div>404</div>} />
         </Switch>
+        <BottomTabNavigation />
       </Router>
     </div>
   );
