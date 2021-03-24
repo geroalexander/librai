@@ -2,7 +2,7 @@ import { Interaction } from './interactionObject';
 
 export interface Book {
   id: string;
-  author: string[] | [];
+  authors: string[] | [];
   title: string;
   subtitle: string | null;
   description: string | null;

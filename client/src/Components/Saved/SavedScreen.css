@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap");
+.saved-screen {
+  height: 100vh;
+  width: 90vw;
+}
+
+.saved-screen h1 {
+  color: #fffef9;
+}
+/*# sourceMappingURL=SavedScreen.css.map */

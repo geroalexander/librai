@@ -6,6 +6,7 @@ import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import BarChartRoundedIcon from '@material-ui/icons/BarChartRounded';
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import './BottomTab.css';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -40,12 +41,15 @@ const BottomTabNavigation = () => {
       onChange={handleChange}
       className={classes.root}
     >
-      <BottomNavigationAction
-        label="Dashboard"
-        value="dashboard"
-        icon={<HomeRoundedIcon style={{ fontSize: 30, color: '#dfd5fc' }} />}
-        classes={{ selected: classes.selected, label: classes.label }}
-      />
+      <Link to="/">
+        <BottomNavigationAction
+          label="Home"
+          value="home"
+          icon={<HomeRoundedIcon style={{ fontSize: 30, color: '#dfd5fc' }} />}
+          classes={{ selected: classes.selected, label: classes.label }}
+        />
+      </Link>
+      <Link to="/saved">
       <BottomNavigationAction
         label="Saved"
         value="saved"
@@ -54,12 +58,15 @@ const BottomTabNavigation = () => {
         }
         classes={{ selected: classes.selected, label: classes.label }}
       />
+      </Link>
+      <Link to="/profile">
       <BottomNavigationAction
         label="Profile"
         value="profile"
         icon={<PersonRoundedIcon style={{ fontSize: 30, color: '#dfd5fc' }} />}
         classes={{ selected: classes.selected, label: classes.label }}
       />
+      </Link>
     </BottomNavigation>
   );
 };
