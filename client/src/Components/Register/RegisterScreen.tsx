@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../..';
 import './Register.css';
 import { setRegister } from '../../Store/actions/auth';
 
 const Register: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  // const dispatch: AppDispatch = useDispatch();
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');

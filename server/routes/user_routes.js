@@ -5,8 +5,10 @@ const userCTRL = require('../controllers/user_ctrl');
 const authMiddleware = require('./auth/authMiddleware');
 
 // GET DASHBOARD INFO
-// auth
 router.get('/dashboard', authMiddleware, userCTRL.loadDashboard);
+
+// COMPLETE FORM
+router.post('/form', authMiddleware, userCTRL.registrationForm);
 
 // GET SAVED/READ BOOKS BY USER-ID
 router.get('/profile', authMiddleware, userCTRL.getUserWithBooks);
@@ -18,7 +20,5 @@ router.patch('/rating', authMiddleware, userCTRL.updateRating);
 // DELETE SAVED/READ BOOKS BY USER-ID WITH BOOK-ID
 router.delete('/saved', authMiddleware, userCTRL.deleteSavedBook);
 router.delete('/rating', authMiddleware, userCTRL.deleteRating);
-
-router.post('/form', authMiddleware, userCTRL.registrationForm);
 
 module.exports = router;

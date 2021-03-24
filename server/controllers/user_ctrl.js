@@ -62,10 +62,7 @@ const addSavedBook = async (req, res) => {
 
     if (!targetBook) targetBook = await Book.create(book);
     await user.addBook(targetBook, { through: { isSaved: true } });
-    // const userWithBooks = await User.findOne({
-    //   where: { id: user.id },
-    //   include: Book,
-    // });
+
     await bookmark(user.id, targetBook); // book object (book.id for id)
     res.status(201).send(targetBook);
   } catch (error) {
