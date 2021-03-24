@@ -46,21 +46,21 @@ const getBookByCover = async (req, res) => {
   }
 };
 
-const getBookBySearch = async (req, res) => {
+//getBookWithScore
+// const getBookBySearch = async (req, res) => {
+const getBookWithScore = async (req, res) => {
   const user = req.user;
-
   try {
-    const { searchQuery } = req.body;
-    const retrievedBook = await fetchBook(searchQuery);
+    const { googleBook } = req.body;
     const userWithBooks = await User.findOne({
       where: { id: user.id },
       include: Book,
     });
-    const compatScore = await getCompatScore(userWithBooks, retrievedBook);
+    const compatScore = await getCompatScore(userWithBooks, googleBook);
 
-    const formattedBook = formatBook(retrievedBook);
+    const formattedBook = formatBook(googleBook);
     formattedBook.compatabilityScore = compatScore;
-    await addBookView(user.id, retrievedBook, false);
+    await addBookView(user.id, googleBook, false);
     res.status(201).send(formattedBook);
   } catch (error) {
     console.error(error);
@@ -97,6 +97,6 @@ const viewBookDetails = async (req, res) => {
 module.exports = {
   getRecommendedBooks,
   getBookByCover,
-  getBookBySearch,
+  getBookWithScore,
   viewBookDetails,
 };
