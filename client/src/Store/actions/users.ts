@@ -16,11 +16,10 @@ import {
   DELETE_RATING,
 } from './ActionTypes';
 import { Book } from '../../Interfaces/bookObject';
-import { User } from '../../Interfaces/userObject';
 
 // const accessToken: string | null = localStorage.getItem('accessToken');
 const accessToken =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIwMGI5MzYzMS0wYmJkLTQxYmMtYjgwZC1iMTU3ZGY4NWQ4ZDEiLCJpYXQiOjE2MTY1ODIzMTN9.nZYn79xV9Shc8YnB_2mgOPucm2pNhezZwPpTvPpGnCY';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIwMmE0NDA1ZC04MGE5LTRjMzctYmZhNy0zMzljYTAyNjNmOTciLCJpYXQiOjE2MTY1ODE4MTJ9.F3DoRYXE8CoygBfhIhQPN73BgIgZTRBTxbYcxJYj4Ek';
 
 export const _loadDashboard = () => async (dispatch: AppDispatch) => {
   if (accessToken) {
