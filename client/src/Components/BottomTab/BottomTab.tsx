@@ -9,7 +9,7 @@ import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 const useStyles = makeStyles({
   root: {
     width: '100vw',
-    position: 'sticky',
+    position: 'fixed',
     bottom: 0,
     backgroundColor: '#23076e',
   },
