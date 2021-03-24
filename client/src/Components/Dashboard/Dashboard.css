@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap');
 .dashboard {
-  min-height: 100vh;
-  min-width: 100vw;
+  height: 100vh;
+  width: 100vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -15,6 +15,7 @@
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
+  margin-top: 15%;
   padding-left: 10%;
   background-color: #140245;
 }
@@ -22,12 +23,11 @@
 .dashboard .title {
   color: #fffef9;
   font-family: 'Comfortaa', cursive;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .dashboard .bookwrapper {
   height: 30vh;
-  margin-bottom: 1.5rem;
 }
 
 .dashboard .bookwrapper .booklist {
@@ -49,18 +49,18 @@
   height: 10rem;
   border-radius: 5px;
   -webkit-box-shadow: 0 0 20px -1px #070616;
-          box-shadow: 0 0 20px -1px #070616;
+  box-shadow: 0 0 20px -1px #070616;
 }
 
 .dashboard .bookwrapper-small {
   height: 22vh;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .dashboard .bookwrapper-small .booklist-small {
   border-color: #fffef9;
   border-width: 1px;
-  height: 5rem;
+  height: 4rem;
   width: 90vw;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -75,6 +75,6 @@
   height: 8rem;
   border-radius: 5px;
   -webkit-box-shadow: 0 0 20px -1px #070616;
-          box-shadow: 0 0 20px -1px #070616;
+  box-shadow: 0 0 20px -1px #070616;
 }
 /*# sourceMappingURL=Dashboard.css.map */
