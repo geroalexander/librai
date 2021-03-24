@@ -1,8 +1,8 @@
 import { Book } from '../Interfaces/bookObject';
-const BASE_URL = 'http://192.168.1.115:8000';
+const { REACT_APP_BASE_URL } = process.env;
 
 const loadDashboard = (accessToken: string) => {
-  return fetch(`${BASE_URL}/user/dashboard`, {
+  return fetch(`${REACT_APP_BASE_URL}/user/dashboard`, {
     method: 'GET',
     credentials: 'include',
     mode: 'cors',
@@ -16,7 +16,7 @@ const loadDashboard = (accessToken: string) => {
 };
 
 const getUserWithBooks = (accessToken: string) => {
-  return fetch(`${BASE_URL}/user/profile`, {
+  return fetch(`${REACT_APP_BASE_URL}/user/profile`, {
     method: 'GET',
     credentials: 'include',
     mode: 'cors',
@@ -30,7 +30,7 @@ const getUserWithBooks = (accessToken: string) => {
 };
 
 const addSavedBook = (accessToken: string, book: Book) => {
-  return fetch(`${BASE_URL}/user/saved`, {
+  return fetch(`${REACT_APP_BASE_URL}/user/saved`, {
     method: 'PATCH',
     credentials: 'include',
     mode: 'cors',
@@ -45,7 +45,7 @@ const addSavedBook = (accessToken: string, book: Book) => {
 };
 
 const updateRating = (accessToken: string, book: Book, rating: number) => {
-  return fetch(`${BASE_URL}/user/rating`, {
+  return fetch(`${REACT_APP_BASE_URL}/user/rating`, {
     method: 'PATCH',
     credentials: 'include',
     mode: 'cors',
@@ -63,7 +63,7 @@ const updateRating = (accessToken: string, book: Book, rating: number) => {
 };
 
 const deleteSavedBook = (accessToken: string, book: Book) => {
-  return fetch(`${BASE_URL}/user/saved`, {
+  return fetch(`${REACT_APP_BASE_URL}/user/saved`, {
     method: 'DELETE',
     credentials: 'include',
     mode: 'cors',
@@ -76,7 +76,7 @@ const deleteSavedBook = (accessToken: string, book: Book) => {
 };
 
 const deleteRating = (accessToken: string, book: Book) => {
-  return fetch(`${BASE_URL}/user/saved`, {
+  return fetch(`${REACT_APP_BASE_URL}/user/saved`, {
     method: 'DELETE',
     credentials: 'include',
     mode: 'cors',
