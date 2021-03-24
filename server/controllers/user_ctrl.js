@@ -16,14 +16,7 @@ const loadDashboard = async (req, res) => {
       where: { id: user.id },
       include: Book,
     });
-    const recommendations = await getRecommendations(user.id, 10);
-    const bookRecArr = [];
-    for (const rec of recommendations.recomms) {
-      const retrievedBook = await getBookById(rec.id);
-      const formattedBook = formatBook(retrievedBook);
-      formattedBook.compatabilityScore = 10;
-      bookRecArr.push(formattedBook);
-    }
+
     const {
       id,
       firstName,
@@ -43,6 +36,15 @@ const loadDashboard = async (req, res) => {
       favoriteGenres,
       books,
     };
+
+    const recommendations = await getRecommendations(user.id, 10);
+    const bookRecArr = [];
+    for (const rec of recommendations.recomms) {
+      const retrievedBook = await getBookById(rec.id);
+      const formattedBook = formatBook(retrievedBook);
+      formattedBook.compatabilityScore = 10;
+      bookRecArr.push(formattedBook);
+    }
 
     res.status(201).send({
       userWithBooks,

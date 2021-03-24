@@ -9,6 +9,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const addUser = require('../recombeeService/user');
 const SECRET_KEY = process.env.SECRET_KEY;
+const bcrypt = require('bcrypt');
 
 const { models } = require('../models/');
 const { user, interaction, book } = models;
@@ -76,6 +77,9 @@ async function registerMockUser() {
     });
     if (existingUser) throw new Error('Matt Damon already exists');
 
+    const password = 'password';
+    const hash = await bcrypt.hash(password, 10);
+    mockUser.password = hash;
     mockUserCreated = await user.create(mockUser);
 
     const { firstName, lastName, id, email } = mockUserCreated;

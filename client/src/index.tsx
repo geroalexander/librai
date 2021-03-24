@@ -5,17 +5,18 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, AnyAction } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './Store/reducers/index';
-import ReduxThunk from 'redux-thunk';
+import ReduxThunk, { ThunkDispatch } from 'redux-thunk';
 import logger from 'redux-logger';
 
 const middleware = applyMiddleware(ReduxThunk, logger);
 const store = createStore(reducers, middleware);
 
 export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+// export type AppDispatch = typeof store.dispatch;
+export type AppDispatch = ThunkDispatch<RootState, null, AnyAction>;
 
 ReactDOM.render(
   <React.StrictMode>
