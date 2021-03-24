@@ -19,7 +19,7 @@ export const setLogin = (loginObject: Login) => async (
   dispatch: AppDispatch
 ) => {
   const { email, password } = loginObject;
-  const { accessToken } = await login(email, password);
+  const accessToken = await login(email, password);
   localStorage.setItem('accessToken', accessToken);
   dispatch({ type: SET_LOGIN });
 };
