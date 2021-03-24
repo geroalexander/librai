@@ -2,7 +2,8 @@
     "version": 3,
     "mappings": "AAAA,OAAO,CAAC,gJAAI",
     "sources": [
-        "BottomTab.scss"
+        "BottomTab.scss",
+        "../../Theme/colorDefinitions.scss"
     ],
     "names": [],
     "file": "BottomTab.css"

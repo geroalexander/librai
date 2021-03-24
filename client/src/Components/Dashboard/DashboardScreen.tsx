@@ -46,6 +46,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
   if (books.length) {
     return (
       <div className="dashboard">
+        <header></header>
         <div className="bookwrapper">
           <p className="title">Recommended</p>
           <div className="booklist">

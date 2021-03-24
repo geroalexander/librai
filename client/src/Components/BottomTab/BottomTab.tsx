@@ -43,19 +43,21 @@ const BottomTabNavigation = () => {
       <BottomNavigationAction
         label="Dashboard"
         value="dashboard"
-        icon={<HomeRoundedIcon style={{ fontSize: 30, color: 'white' }} />}
+        icon={<HomeRoundedIcon style={{ fontSize: 30, color: '#dfd5fc' }} />}
         classes={{ selected: classes.selected, label: classes.label }}
       />
       <BottomNavigationAction
         label="Saved"
         value="saved"
-        icon={<BarChartRoundedIcon style={{ fontSize: 30, color: 'white' }} />}
+        icon={
+          <BarChartRoundedIcon style={{ fontSize: 30, color: '#dfd5fc' }} />
+        }
         classes={{ selected: classes.selected, label: classes.label }}
       />
       <BottomNavigationAction
         label="Profile"
         value="profile"
-        icon={<PersonRoundedIcon style={{ fontSize: 30, color: 'white' }} />}
+        icon={<PersonRoundedIcon style={{ fontSize: 30, color: '#dfd5fc' }} />}
         classes={{ selected: classes.selected, label: classes.label }}
       />
     </BottomNavigation>
