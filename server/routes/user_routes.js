@@ -19,4 +19,6 @@ router.patch('/rating', authMiddleware, userCTRL.updateRating);
 router.delete('/saved', authMiddleware, userCTRL.deleteSavedBook);
 router.delete('/rating', authMiddleware, userCTRL.deleteRating);
 
+router.post('/form', authMiddleware, userCTRL.registrationForm);
+
 module.exports = router;

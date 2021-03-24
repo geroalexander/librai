@@ -46,12 +46,11 @@ const mainScript = async () => {
   await registerMockUser();
   console.log('mockUserCreated---->', mockUserCreated);
   const { id } = mockUserCreated;
-  console.log('SECRET KEY ---------', SECRET_KEY);
-  console.log('id ---------', id);
   const accessToken = jwt.sign({ _id: id }, SECRET_KEY);
   console.log('------------------ACCESS TOKEN HERE---------------------');
   console.log(accessToken);
   console.log('------------------ACCESS TOKEN HERE---------------------');
+
   // Populate DB with 10 saved books for mock user
   console.log('Mocking user saved books...');
   for (let i = 0; i < 10; i++) await mockAddSavedBook(books[i]);

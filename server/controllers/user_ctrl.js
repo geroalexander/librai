@@ -14,6 +14,7 @@ const loadDashboard = async (req, res) => {
   try {
     const userWithBooks = await User.findOne({
       where: { id: user.id },
+      attributes: { exclude: ['password'] },
       include: Book,
     });
     const recommendations = await getRecommendations(user.id, 10);
@@ -37,30 +38,11 @@ const loadDashboard = async (req, res) => {
 const getUserWithBooks = async (req, res) => {
   const user = req.user;
   try {
-    const userFromDB = await User.findOne({
+    const userWithBooks = await User.findOne({
       where: { id: user.id },
+      attributes: { exclude: ['password'] },
       include: Book,
     });
-
-    const {
-      id,
-      firstName,
-      lastName,
-      email,
-      profilePic,
-      favoriteGenres,
-      books,
-    } = userFromDB;
-
-    const userWithBooks = {
-      id,
-      firstName,
-      lastName,
-      email,
-      profilePic,
-      favoriteGenres,
-      books,
-    };
 
     res.status(201).send({
       userWithBooks,
@@ -98,8 +80,6 @@ const updateRating = async (req, res) => {
     const { book, rating } = req.body;
     let targetBook = await Book.findOne({ where: { id: book.id } });
     if (!targetBook) targetBook = await Book.create(book);
-    //only bc we arent using middleware rn --- otherwise user.findOne
-    const targetUser = await User.findOne({ where: { id: user.id } });
     const targetInteraction = await Interaction.findOne({
       where: { userId: user.id, bookId: book.id },
     });
@@ -108,11 +88,8 @@ const updateRating = async (req, res) => {
       // await bookRating(user.id, book, rating); // book object (book.id for id)
       res.status(203).send(targetInteraction);
     }
-    await targetUser.addBook(targetBook, { through: { rating: rating } });
-    // const userWithBooks = await User.findOne({
-    //   where: { id: user.id },
-    //   include: Book,
-    // });
+    await user.addBook(targetBook, { through: { rating: rating } });
+
     // await bookRating(user.id, targetBook, rating); // book object (book.id for id)
     res.status(201).send(targetBook);
   } catch (error) {
@@ -173,6 +150,41 @@ const deleteRating = async (req, res) => {
   }
 };
 
+const registrationForm = async (req, res) => {
+  const user = req.user;
+  try {
+    const { books, rating } = req.body;
+    const userWithBooks = await User.findOne({
+      where: { id: user.id },
+      attributes: { exclude: ['password'] },
+    });
+    await userWithBooks.update({ favoriteGenres });
+
+    for (let i = 0; i < books.length; i++) {
+      const targetBook = await Book.create(books[i]);
+      await user.addBook(targetBook, { through: { rating: rating[i] } });
+    }
+
+    res.send(userWithBooks);
+  } catch (error) {
+    console.error(
+      error,
+      'Could not complete registration, fn.registrationForm',
+    );
+  }
+};
+
+const updateProfile = async (res, req) => {
+  const user = req.user;
+  try {
+    const { profilePic = null, favoriteGenres = null, email = null } = req.body;
+
+    // if (email)
+  } catch (error) {
+    console.error(error, 'Could not update profile information');
+  }
+};
+
 module.exports = {
   loadDashboard,
   getUserWithBooks,
@@ -180,4 +192,6 @@ module.exports = {
   updateRating,
   deleteSavedBook,
   deleteRating,
+  registrationForm,
+  updateProfile,
 };
