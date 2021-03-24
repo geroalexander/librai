@@ -1,5 +1,6 @@
 'use strict';
-
+require('dotenv').config();
+const LOCAL_HOST = process.env.LOCAL_HOST;
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -11,7 +12,7 @@ const app = express();
 const PORT = 8000;
 
 const corsConfig = {
-  origin: 'http://localhost:3000',
+  origin: LOCAL_HOST,
   credentials: true,
 };
 

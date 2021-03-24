@@ -1,9 +1,9 @@
 import { Book } from '../Interfaces/bookObject';
-const BASE_URL = 'http://localhost:8000';
+const { REACT_APP_BASE_URL } = process.env;
 
 //call to get recommendations, needed in Dashboard
 const getRecommendations = (accessToken: string) => {
-  return fetch(`${BASE_URL}/book/recommend`, {
+  return fetch(`${REACT_APP_BASE_URL}/book/recommend`, {
     method: 'GET',
     credentials: 'include',
     mode: 'cors',
@@ -18,7 +18,7 @@ const getRecommendations = (accessToken: string) => {
 
 //call to get book from image, needed in Camera/Upload
 const getBookByCover = (accessToken: string, image: string) => {
-  return fetch(`${BASE_URL}/book/cover`, {
+  return fetch(`${REACT_APP_BASE_URL}/book/cover`, {
     method: 'POST',
     credentials: 'include',
     mode: 'cors',
@@ -34,7 +34,7 @@ const getBookByCover = (accessToken: string, image: string) => {
 
 //call to get book from search, needed in SearchBar
 const getBookBySearch = (accessToken: string, searchQuery: string) => {
-  return fetch(`${BASE_URL}/book/search`, {
+  return fetch(`${REACT_APP_BASE_URL}/book/search`, {
     method: 'POST',
     credentials: 'include',
     mode: 'cors',
@@ -50,7 +50,7 @@ const getBookBySearch = (accessToken: string, searchQuery: string) => {
 
 //call to send a bookView, needed every time a user clicks on a bookItem
 const viewBookDetails = (accessToken: string, book: Book) => {
-  return fetch(`${BASE_URL}/book/details`, {
+  return fetch(`${REACT_APP_BASE_URL}/book/details`, {
     method: 'POST',
     credentials: 'include',
     mode: 'cors',

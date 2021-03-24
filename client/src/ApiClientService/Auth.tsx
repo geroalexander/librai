@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8000';
+const { REACT_APP_BASE_URL } = process.env;
 
 const register = (
   firstName: string,
@@ -6,7 +6,7 @@ const register = (
   email: string,
   password: string
 ) => {
-  return fetch(`${BASE_URL}/auth/register`, {
+  return fetch(`${REACT_APP_BASE_URL}/auth/register`, {
     method: 'POST',
     credentials: 'include',
     mode: 'cors',
@@ -20,7 +20,7 @@ const register = (
 };
 
 const login = (email: string, password: string) => {
-  return fetch(`${BASE_URL}/auth/login`, {
+  return fetch(`${REACT_APP_BASE_URL}/auth/login`, {
     method: 'POST',
     credentials: 'include',
     mode: 'cors',
@@ -34,7 +34,7 @@ const login = (email: string, password: string) => {
 };
 
 const addFormInfo = (accessToken: string, info: object) => {
-  return fetch(`${BASE_URL}/auth/form`, {
+  return fetch(`${REACT_APP_BASE_URL}/auth/form`, {
     method: 'PATCH',
     credentials: 'include',
     mode: 'cors',
@@ -47,7 +47,7 @@ const addFormInfo = (accessToken: string, info: object) => {
 };
 
 const logout = (accessToken: string) => {
-  return fetch(`${BASE_URL}/auth/logout`, {
+  return fetch(`${REACT_APP_BASE_URL}/auth/logout`, {
     method: 'POST',
     credentials: 'include',
     mode: 'cors',
