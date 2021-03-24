@@ -1,5 +1,5 @@
 @import '../../Theme/colorDefinitions.scss';
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap');
 
 $comfortaa: 'Comfortaa', cursive;
 $montserrat: 'Montserrat', sans-serif;
@@ -13,14 +13,29 @@ $opensans: 'Open Sans', sans-serif;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  margin-top: 15%;
+  margin-top:6%;
   padding-left: 10%;
   background-color: $PRIMARY_DARK;
+
+  header {
+    width: 90vw;
+    display: flex;
+    justify-content: space-between;
+
+    .search-placeholder {
+      height: 2.1rem;
+      background-color: $PRIMARY_LIGHT;
+      width: 78vw;
+      border-radius: 7px;
+    }
+  }
+
 
   .title {
     color: $WHITE;
     font-family: $comfortaa;
     font-size: 1.5rem;
+    font-weight: bold;
   }
 
   .bookwrapper {

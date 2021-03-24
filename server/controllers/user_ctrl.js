@@ -11,7 +11,6 @@ const Interaction = interaction;
 
 const loadDashboard = async (req, res) => {
   const user = req.user;
-  console.log(user, 'this is user');
   try {
     const userFromDB = await User.findOne({
       where: { id: user.id },

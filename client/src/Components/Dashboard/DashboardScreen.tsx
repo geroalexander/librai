@@ -6,6 +6,8 @@ import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import { RootState } from '../../index';
 import './Dashboard.css';
 import { Book } from '../../Interfaces/bookObject';
+import PhotoCameraRoundedIcon from '@material-ui/icons/PhotoCameraRounded';
+import PhotoCameraOutlinedIcon from '@material-ui/icons/PhotoCameraOutlined';
 
 interface DashboardScreenProps extends RouteComponentProps {}
 
@@ -21,9 +23,6 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
     (state: RootState) => state.userReducer?.userWithBooks
   );
 
-  console.log(recommendations, '<--------- this is RECS');
-  console.log(userWithBooks, '<--------- this is userWithBooks');
-
   useEffect(() => {
     const renderDashboard = async () => {
       const action = await _loadDashboard();
@@ -34,19 +33,20 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
   }, []);
 
   useEffect(() => {
-    if (userWithBooks.books) setBooks(userWithBooks.books);
+    if (userWithBooks && userWithBooks.books) setBooks(userWithBooks.books);
   }, [userWithBooks]);
 
   useEffect(() => {
     if (recommendations) setRecommended(recommendations);
   }, [recommendations]);
 
-  console.log(userWithBooks.books, '<----- BOOK');
-
   if (books.length) {
     return (
       <div className="dashboard">
-        <header></header>
+        <header>
+          <div className="search-placeholder"></div>
+          <PhotoCameraOutlinedIcon style={{ fontSize: 30, color: '#fffef9' }} />
+        </header>
         <div className="bookwrapper">
           <p className="title">Recommended</p>
           <div className="booklist">
