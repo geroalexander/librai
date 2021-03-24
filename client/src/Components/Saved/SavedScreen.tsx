@@ -26,14 +26,13 @@ const SavedScreen: React.FC<SavedScreenProps> = (props) => {
 
     getBooks();
   }, []);
-  //  <BookItem book={books[0]}/>
-  console.log(books);
+
   return (
     <div className="saved-screen">
       <h1>Saved</h1>
       {
         books ? (
-          <div>
+          <div className="saved-list">
           { books
             .filter((book: Book) => book.interaction.rating === null)
             .map((book: Book) =>
@@ -42,9 +41,8 @@ const SavedScreen: React.FC<SavedScreenProps> = (props) => {
           }
           </div>
         ) : (
-          <h1>No books yet</h1>
+          <h1>No saved books yet</h1>
         )
-
       }
     </div>
   );

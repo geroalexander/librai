@@ -1,5 +1,5 @@
 import { Book } from '../Interfaces/bookObject';
-const { REACT_APP_BASE_URL } = process.env;
+const { REACT_APP_BASE_URL, REACT_APP_GOOGLE_BOOKS_API_KEY } = process.env;
 
 //call to get recommendations, needed in Dashboard
 const getRecommendations = (accessToken: string) => {
@@ -63,5 +63,19 @@ const viewBookDetails = (accessToken: string, book: Book) => {
     .then((res) => res.json())
     .catch((err) => console.log('error with getBookDetails', err));
 };
+const getGoogleBook = (searchQuery: string) => {
+  // searchQuery => 'the+giver'
+  return fetch(
+    `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=${REACT_APP_GOOGLE_BOOKS_API_KEY}`
+  )
+    .then((res) => res.json())
+    .then((json) => {
+      if (json.items && json.items.length) {
+        return json.items.slice(0, 6);
+      }
+      console.log('Books not retrieved! getGoogleBook');
+    })
+    .catch((e) => console.log(e));
+};
 
-export { getRecommendations, getBookByCover, getBookBySearch, viewBookDetails };
+export { getRecommendations, getBookByCover, getBookBySearch, viewBookDetails, getGoogleBook };

@@ -61,6 +61,8 @@ const BottomTabNavigation = () => {
         classes={{ selected: classes.selected, label: classes.label }}
       />
       <BottomNavigationAction
+        component={Link}
+        to="/profile"
         label="Profile"
         value="profile"
         icon={<PersonRoundedIcon style={{ fontSize: 30, color: '#dfd5fc' }} />}

@@ -8,6 +8,7 @@ import './Dashboard.css';
 import { Book } from '../../Interfaces/bookObject';
 import PhotoCameraRoundedIcon from '@material-ui/icons/PhotoCameraRounded';
 import PhotoCameraOutlinedIcon from '@material-ui/icons/PhotoCameraOutlined';
+import SearchBar from '../Shared/SearchBar';
 
 interface DashboardScreenProps extends RouteComponentProps {}
 
@@ -46,7 +47,8 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
     return (
       <div className="dashboard">
         <header>
-          <div className="search-placeholder"></div>
+          {/* <div className="search-placeholder"> */}
+            <SearchBar />
           <label>
             <input
               style={{ display: 'none' }}

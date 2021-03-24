@@ -11,4 +11,8 @@ $opensans: 'Open Sans', sans-serif;
   h1 {
     color: $WHITE;
   }
+  .saved-list {
+    height: 100%;
+    overflow: scroll;
+  }
 }
