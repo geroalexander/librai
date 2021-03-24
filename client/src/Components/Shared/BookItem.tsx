@@ -6,7 +6,7 @@ import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import BookmarkOutlinedIcon from '@material-ui/icons/BookmarkOutlined';
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 import SentimentDissatisfiedOutlinedIcon from '@material-ui/icons/SentimentDissatisfiedOutlined';
-import FaceIcon from '@material-ui/icons/Face';
+import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
 
 interface BookItemProps extends RouteComponentProps {
   book: Book;
@@ -16,7 +16,7 @@ const BookItem: React.FC<BookItemProps> = ({ book }) => {
   const renderRatingIcon = () => {
     const rating = book.interaction.rating;
     if (rating === 1) return <SentimentSatisfiedOutlinedIcon />;
-    else if (rating === 0) return <FaceIcon />;
+    else if (rating === 0) return <SentimentSatisfiedIcon />;
     else return <SentimentDissatisfiedOutlinedIcon />;
   };
 
