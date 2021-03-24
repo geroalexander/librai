@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AACA,OAAO,CAAC,gJAAI;AAMZ,AAAA,aAAa,CAAC;EACZ,MAAM,EAAE,KAAK;EACb,KAAK,EAAE,IAAI;CAIZ;;AAND,AAGE,aAHW,CAGX,EAAE,CAAC;EACD,KAAK,ECRA,OAAO;CDSb",
+    "sources": [
+        "SavedScreen.scss",
+        "../../Theme/colorDefinitions.scss"
+    ],
+    "names": [],
+    "file": "SavedScreen.css"
+}

@@ -16,7 +16,6 @@ import {
   DELETE_RATING,
 } from './ActionTypes';
 import { Book } from '../../Interfaces/bookObject';
-import { User } from '../../Interfaces/userObject';
 
 // const accessToken: string | null = localStorage.getItem('accessToken');
 const accessToken =
