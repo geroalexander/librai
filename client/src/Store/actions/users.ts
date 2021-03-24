@@ -16,10 +16,11 @@ import {
   DELETE_RATING,
 } from './ActionTypes';
 import { Book } from '../../Interfaces/bookObject';
+import { User } from '../../Interfaces/userObject';
+const { REACT_APP_ACCESS_TOKEN } = process.env;
 
 // const accessToken: string | null = localStorage.getItem('accessToken');
-const accessToken =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIwMmE0NDA1ZC04MGE5LTRjMzctYmZhNy0zMzljYTAyNjNmOTciLCJpYXQiOjE2MTY1ODE4MTJ9.F3DoRYXE8CoygBfhIhQPN73BgIgZTRBTxbYcxJYj4Ek';
+const accessToken = REACT_APP_ACCESS_TOKEN;
 
 export const _loadDashboard = () => async (dispatch: AppDispatch) => {
   if (accessToken) {

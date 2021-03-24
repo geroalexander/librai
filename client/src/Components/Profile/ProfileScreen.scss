@@ -1,0 +1,56 @@
+@import '../../Theme/colorDefinitions.scss';
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap');
+$comfortaa: 'Comfortaa', cursive;
+$montserrat: 'Montserrat', sans-serif;
+$opensans: 'Open Sans', sans-serif;
+
+.profile-screen {
+  color: white;
+  height: 87vh;
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $PRIMARY_DARK;
+  margin-top: -2em;
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2em;
+  }
+  .logout-button {
+    align-self: flex-end;
+  }
+  .profile-picture {
+    // Aspect ratio needs to be sorted
+    height: 20vh;
+    width: 40vw;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    max-width: 150px;
+  }
+  h1 {
+    margin: 0;
+  }
+  .email {
+    margin: 0;
+    padding-bottom: 0.5em;
+  }
+  .fav-genres-header {
+    margin: 0;
+    margin-top: 0.5em;
+  }
+  .fav-genres {
+    font-size: 0.7rem;
+    margin: 0;
+    margin-top: 0.5em;
+  }
+  .rated-books {
+    height: 100%;
+    overflow-y: scroll;
+  }
+}

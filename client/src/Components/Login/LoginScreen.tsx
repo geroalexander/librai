@@ -7,7 +7,6 @@ import { setLogin } from '../../Store/actions/auth';
 
 const Login: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  // const dispatch: AppDispatch = useDispatch();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

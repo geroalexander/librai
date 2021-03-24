@@ -4,9 +4,7 @@ const { client, rqs } = require('./recombeeConnection');
 // if 'count' is not provided, response will include
 // 5 recommendations by default.
 const getRecommendations = async (userID, count) => {
-  console.log('getRecommendations being called!!');
   try {
-    console.log('in the try!');
     let result = await client.send(
       new rqs.RecommendItemsToUser(
         userID + '',
@@ -17,7 +15,6 @@ const getRecommendations = async (userID, count) => {
         },
       ),
     );
-    console.log('hello!! return result below');
     return result; // returns a list of { id: 'bsspAgAAQBAJ' }
   } catch (err) {
     return err;

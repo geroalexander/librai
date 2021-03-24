@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 
 const BottomTabNavigation = () => {
   const classes = useStyles();
-  const [value, setValue] = React.useState('dashboard');
+  const [value, setValue] = React.useState('home');
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: any) => {
     setValue(newValue);
@@ -42,14 +42,14 @@ const BottomTabNavigation = () => {
       onChange={handleChange}
       className={classes.root}
     >
-        <BottomNavigationAction
-          component={Link}
-          to="/"
-          label="Home"
-          value="home"
-          icon={<HomeRoundedIcon style={{ fontSize: 30, color: '#dfd5fc' }} />}
-          classes={{ selected: classes.selected, label: classes.label }}
-        />
+      <BottomNavigationAction
+        component={Link}
+        to="/"
+        label="Home"
+        value="home"
+        icon={<HomeRoundedIcon style={{ fontSize: 30, color: '#dfd5fc' }} />}
+        classes={{ selected: classes.selected, label: classes.label }}
+      />
       <BottomNavigationAction
         component={Link}
         to="/saved"

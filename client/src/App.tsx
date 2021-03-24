@@ -24,7 +24,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact component={Dashboard}></Route>
-          {/* <Route path="/profile" exact component={Profile}></Route> */}
+          <Route path="/profile" exact component={Profile}></Route>
           <Route path="/saved" exact component={Saved}></Route>
           {/* <Route path="/details/:id" exact component={BookDetails}></Route> */}
           <Route path="/register" exact component={Register}></Route>
