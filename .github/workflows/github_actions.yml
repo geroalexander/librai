@@ -27,4 +27,3 @@ jobs:
           npm install --prefix server
 
       - name: Test
-        run: npm test
