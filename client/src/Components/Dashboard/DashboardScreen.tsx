@@ -46,19 +46,18 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
   if (books.length) {
     return (
       <div className="dashboard">
+        <header></header>
         <div className="bookwrapper">
-          <p className="title">Recently saved</p>
+          <p className="title">Recommended</p>
           <div className="booklist">
-            {books
-              .filter((b: Book) => b.interaction.isSaved)
-              .map((book: Book) => (
-                <div className="book-preview">
-                  <img
-                    src={book.thumbnail ? book.thumbnail : undefined}
-                    alt={book.title}
-                  />
-                </div>
-              ))}
+            {recommended.map((book: Book) => (
+              <div className="book-preview">
+                <img
+                  src={book.thumbnail ? book.thumbnail : undefined}
+                  alt={book.title}
+                />
+              </div>
+            ))}
           </div>
         </div>
         <div className="bookwrapper-small">
@@ -77,16 +76,18 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
           </div>
         </div>
         <div className="bookwrapper">
-          <p className="title">Recommended</p>
+          <p className="title">Recently saved</p>
           <div className="booklist">
-            {recommended.map((book: Book) => (
-              <div className="book-preview">
-                <img
-                  src={book.thumbnail ? book.thumbnail : undefined}
-                  alt={book.title}
-                />
-              </div>
-            ))}
+            {books
+              .filter((b: Book) => b.interaction.isSaved)
+              .map((book: Book) => (
+                <div className="book-preview">
+                  <img
+                    src={book.thumbnail ? book.thumbnail : undefined}
+                    alt={book.title}
+                  />
+                </div>
+              ))}
           </div>
         </div>
       </div>
