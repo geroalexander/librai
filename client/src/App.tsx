@@ -8,12 +8,8 @@ import {
   RouteComponentProps,
 } from 'react-router-dom';
 
-<<<<<<< HEAD
-import { Dashboard, Profile, Saved, BookDetails, Login } from './Routes';
-=======
 import { Dashboard, Profile, Saved, BookDetails } from './Routes';
 import BottomTabNavigation from './Components/BottomTab/BottomTab';
->>>>>>> ea3684f4fa93199d6ee9b18074fe333c2f4bc025
 
 function App() {
   return (
