@@ -36,7 +36,7 @@ function userReducer(state = initialState, action: AnyAction) {
     case GET_USER_WITH_BOOKS:
       return {
         ...state,
-        userWithBooks: action.payload.userWithBooks,
+        userWithBooks: action.payload,
       };
 
     case ADD_SAVED_BOOK:

@@ -25,11 +25,27 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
     };
 
     getBooks();
-  }, []);
+  }, [dispatch]);
 
-  console.log('USERUSERUSER', user.books);
+  console.log('USERUSERUSER', user);
 
   // const renderBooks = user.books.map(book => <BookDetail key={book.id} book={book} />);
+
+  // {
+  //   books ? (
+  //     <div>
+  //     { books
+  //       .filter((book: Book) => book.interaction.rating === null)
+  //       .map((book: Book) =>
+  //         <BookItem key={book.id} book={book}/>
+  //       )
+  //     }
+  //     </div>
+  //   ) : (
+  //     <h1>No books yet</h1>
+  //   )
+
+  // }
 
   return (
     <div>
