@@ -7,17 +7,17 @@
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: start;
-  -ms-flex-align: start;
-  align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
   margin-top: 6%;
   padding-left: 10%;
-  background-color: #140245;
+  background-color: "black";
 }
 
 .dashboard header {
@@ -39,7 +39,7 @@
 
 .dashboard .title {
   color: #fffef9;
-  font-family: 'Comfortaa', cursive;
+  font-family: "Comfortaa", cursive;
   font-size: 1.5rem;
   font-weight: bold;
 }
@@ -67,7 +67,7 @@
   height: 10rem;
   border-radius: 5px;
   -webkit-box-shadow: 0 0 20px -1px #070616;
-  box-shadow: 0 0 20px -1px #070616;
+          box-shadow: 0 0 20px -1px #070616;
 }
 
 .dashboard .bookwrapper-small {
@@ -93,6 +93,6 @@
   height: 8rem;
   border-radius: 5px;
   -webkit-box-shadow: 0 0 20px -1px #070616;
-  box-shadow: 0 0 20px -1px #070616;
+          box-shadow: 0 0 20px -1px #070616;
 }
 /*# sourceMappingURL=Dashboard.css.map */
