@@ -2,9 +2,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
-import { User } from '../../Interfaces/userObject';
 import { RootState } from '../../index';
+import { User } from '../../Interfaces/userObject';
+import { Book } from '../../Interfaces/bookObject';
 import { _getUserWithBooks } from '../../Store/actions/users';
+import './ProfileScreen.css';
+import BookItem from '../Shared/BookItem';
+import Avatar from '@material-ui/core/Avatar';
 
 interface ProfileScreenProps extends RouteComponentProps {}
 
@@ -13,10 +17,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
     (state: RootState) => state.userReducer?.userWithBooks
   );
   const dispatch = useDispatch();
-
-  // const renderFavoriteGenres = user.favoriteGenres.map(
-  //   (genre: string, i: number) => <p key={i}>{genre}</p>
-  // );
+  const fullName = `${user.firstName} ${user.lastName}`;
 
   useEffect(() => {
     const getBooks = async () => {
@@ -27,34 +28,39 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
     getBooks();
   }, [dispatch]);
 
-  console.log('USERUSERUSER', user);
+  const renderFavoriteGenres = user.favoriteGenres.length
+    ? user.favoriteGenres.map((genre: string) => (
+        <span key={genre}>{genre}, </span>
+      ))
+    : null;
 
-  // const renderBooks = user.books.map(book => <BookDetail key={book.id} book={book} />);
-
-  // {
-  //   books ? (
-  //     <div>
-  //     { books
-  //       .filter((book: Book) => book.interaction.rating === null)
-  //       .map((book: Book) =>
-  //         <BookItem key={book.id} book={book}/>
-  //       )
-  //     }
-  //     </div>
-  //   ) : (
-  //     <h1>No books yet</h1>
-  //   )
-
-  // }
+  const renderBooks = user.books ? (
+    <div>
+      {user.books
+        .filter((book: Book) => book.interaction.rating)
+        .map((book: Book) => (
+          <BookItem key={book.id} book={book} />
+        ))}
+    </div>
+  ) : (
+    <h1>No books yet</h1>
+  );
 
   return (
-    <div>
-      <button>Logout</button>
-      {/* <img src={String(user.profilePic)} alt="" /> */}
-      <h1>{/* {user.firstName} {user.lastName} */}</h1>
-      {/* <p>{user.email}</p> */}
-      {/* <p>{renderFavoriteGenres}</p> */}
-      {/* renderBooks */}
+    <div className="profile-screen">
+      <div className="user-info">
+        <button className="logout-button">Logout</button>
+        <Avatar
+          className="profile-picture"
+          alt={fullName}
+          src={String(user.profilePic)}
+        />
+        <h1>{fullName}</h1>
+        <p className="email">{user.email}</p>
+        <h5 className="fav-genres-header">Favorite Genres: </h5>
+        <p className="fav-genres">{renderFavoriteGenres}</p>
+      </div>
+      <div>{renderBooks}</div>
     </div>
   );
 };
