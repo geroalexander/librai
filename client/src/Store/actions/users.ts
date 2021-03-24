@@ -6,6 +6,8 @@ import {
   deleteSavedBook,
   updateRating,
   deleteRating,
+  registrationForm,
+  updateProfile,
 } from '../../ApiClientService/User';
 import {
   LOAD_DASHBOARD,
@@ -14,6 +16,8 @@ import {
   DELETE_SAVED_BOOK,
   UPDATE_RATING,
   DELETE_RATING,
+  REGISTRATION_FORM,
+  UPDATE_PROFILE,
 } from './ActionTypes';
 import { Book } from '../../Interfaces/bookObject';
 import { User } from '../../Interfaces/userObject';
@@ -66,5 +70,28 @@ export const _deleteRating = (book: Book) => async (dispatch: AppDispatch) => {
   if (accessToken) {
     await deleteRating(accessToken, book);
     dispatch({ type: DELETE_RATING, payload: book });
+  }
+};
+
+export const _registrationForm = (books: Book[], rating: number) => async (
+  dispatch: AppDispatch
+) => {
+  if (accessToken) {
+    await registrationForm(accessToken, books, rating);
+    dispatch({ type: REGISTRATION_FORM, payload: { books, rating } });
+  }
+};
+
+export const _updateProfile = (
+  profilePic: string,
+  favoriteGenres: string[],
+  email: string
+) => async (dispatch: AppDispatch) => {
+  if (accessToken) {
+    await updateProfile(accessToken, profilePic, favoriteGenres, email);
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: { profilePic, favoriteGenres, email },
+    });
   }
 };
