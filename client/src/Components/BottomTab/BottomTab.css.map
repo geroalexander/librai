@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAAA,OAAO,CAAC,gJAAI",
+    "sources": [
+        "BottomTab.scss",
+        "../../Theme/colorDefinitions.scss"
+    ],
+    "names": [],
+    "file": "BottomTab.css"
+}

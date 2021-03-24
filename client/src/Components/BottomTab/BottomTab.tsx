@@ -5,6 +5,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import BarChartRoundedIcon from '@material-ui/icons/BarChartRounded';
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
+import './BottomTab.css';
 
 const useStyles = makeStyles({
   root: {
@@ -14,7 +15,14 @@ const useStyles = makeStyles({
     backgroundColor: '#23076e',
   },
   selected: {
-    color: 'white',
+    fontSize: '0.6rem',
+    color: '#dfd5fc',
+    fontFamily: '"Open Sans", sans-serif',
+  },
+  label: {
+    '&$selected': {
+      fontSize: '0.7rem',
+    },
   },
 });
 
@@ -35,20 +43,22 @@ const BottomTabNavigation = () => {
       <BottomNavigationAction
         label="Dashboard"
         value="dashboard"
-        icon={<HomeRoundedIcon style={{ fontSize: 30, color: 'white' }} />}
-        classes={{ selected: classes.selected }}
+        icon={<HomeRoundedIcon style={{ fontSize: 30, color: '#dfd5fc' }} />}
+        classes={{ selected: classes.selected, label: classes.label }}
       />
       <BottomNavigationAction
         label="Saved"
         value="saved"
-        icon={<BarChartRoundedIcon style={{ fontSize: 30, color: 'white' }} />}
-        classes={{ selected: classes.selected }}
+        icon={
+          <BarChartRoundedIcon style={{ fontSize: 30, color: '#dfd5fc' }} />
+        }
+        classes={{ selected: classes.selected, label: classes.label }}
       />
       <BottomNavigationAction
         label="Profile"
         value="profile"
-        icon={<PersonRoundedIcon style={{ fontSize: 30, color: 'white' }} />}
-        classes={{ selected: classes.selected }}
+        icon={<PersonRoundedIcon style={{ fontSize: 30, color: '#dfd5fc' }} />}
+        classes={{ selected: classes.selected, label: classes.label }}
       />
     </BottomNavigation>
   );

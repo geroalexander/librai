@@ -7,25 +7,24 @@ $opensans: 'Open Sans', sans-serif;
 
 .dashboard {
   // text-align: center
-  min-height: 100vh;
-  min-width: 100vw;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-
+  margin-top: 15%;
   padding-left: 10%;
   background-color: $PRIMARY_DARK;
 
   .title {
     color: $WHITE;
     font-family: $comfortaa;
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .bookwrapper {
     height: 30vh;
-    margin-bottom: 1.5rem;
 
     .booklist {
       border-color: $WHITE;
@@ -42,6 +41,8 @@ $opensans: 'Open Sans', sans-serif;
           border-radius: 5px;
           box-shadow: 0 0 20px -1px rgb(7, 6, 22);
         }
+
+    
       }
 
     }
@@ -49,14 +50,14 @@ $opensans: 'Open Sans', sans-serif;
 
   .bookwrapper-small {
     height: 22vh;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 
 
     .booklist-small {
       // border: solid;
       border-color: $WHITE;
       border-width: 1px;
-      height: 5rem;
+      height: 4rem;
       width: 90vw;
       display: flex;
 
