@@ -25,6 +25,8 @@ function userReducer(state = initialState, action: AnyAction) {
   const oldUserWithBooks = { ...state.userWithBooks };
   switch (action.type) {
     case LOAD_DASHBOARD:
+      console.log(action.payload);
+
       return {
         ...state,
         userWithBooks: action.payload.userWithBooks,

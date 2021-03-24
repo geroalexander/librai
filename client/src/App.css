@@ -1,6 +1,6 @@
 .App {
-  text-align: center;
   min-height: 100vh;
+  min-width: 100vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -15,10 +15,5 @@
       -ms-flex-pack: center;
           justify-content: center;
   background-color: #140245;
-}
-
-h1 {
-  color: #fffef9;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 /*# sourceMappingURL=App.css.map */

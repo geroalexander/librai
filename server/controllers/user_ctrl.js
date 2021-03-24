@@ -11,6 +11,7 @@ const Interaction = interaction;
 
 const loadDashboard = async (req, res) => {
   const user = req.user;
+  console.log(user, 'this is user');
   try {
     const userFromDB = await User.findOne({
       where: { id: user.id },
@@ -45,6 +46,26 @@ const loadDashboard = async (req, res) => {
       formattedBook.compatabilityScore = 10;
       bookRecArr.push(formattedBook);
     }
+    const {
+      id,
+      firstName,
+      lastName,
+      email,
+      profilePic,
+      favoriteGenres,
+      books,
+    } = userFromDB;
+
+    const userWithBooks = {
+      id,
+      firstName,
+      lastName,
+      email,
+      profilePic,
+      favoriteGenres,
+      books,
+    };
+
     res.status(201).send({
       userWithBooks,
       recommendations: bookRecArr,

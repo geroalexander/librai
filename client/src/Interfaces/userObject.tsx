@@ -7,5 +7,5 @@ export interface User {
   email: string;
   profilePic: string | null;
   favoriteGenres: string[] | [];
-  books?: Book[] | null;
+  books: Book[] | null;
 }

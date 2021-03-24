@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap');
 .dashboard {
-  position: relative;
-  overflow: hidden;
-  height: 100vh;
   min-height: 100vh;
   min-width: 100vw;
   display: -webkit-box;
@@ -28,11 +25,56 @@
   font-size: 2rem;
 }
 
-.dashboard .booklist {
-  border: solid;
+.dashboard .bookwrapper {
+  height: 30vh;
+  margin-bottom: 1.5rem;
+}
+
+.dashboard .bookwrapper .booklist {
   border-color: #fffef9;
-  border-width: 2px;
-  min-height: 2rem;
-  min-width: 2rem;
+  border-width: 1px;
+  height: 70%;
+  width: 90vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow-x: scroll;
+}
+
+.dashboard .bookwrapper .booklist .book-preview {
+  margin-right: 1rem;
+}
+
+.dashboard .bookwrapper .booklist .book-preview img {
+  height: 10rem;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 20px -1px #070616;
+          box-shadow: 0 0 20px -1px #070616;
+}
+
+.dashboard .bookwrapper-small {
+  height: 22vh;
+  margin-bottom: 3rem;
+}
+
+.dashboard .bookwrapper-small .booklist-small {
+  border-color: #fffef9;
+  border-width: 1px;
+  height: 5rem;
+  width: 90vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.dashboard .bookwrapper-small .booklist-small .book-preview-small {
+  margin-right: 1.5rem;
+}
+
+.dashboard .bookwrapper-small .booklist-small .book-preview-small img {
+  height: 8rem;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 20px -1px #070616;
+          box-shadow: 0 0 20px -1px #070616;
 }
 /*# sourceMappingURL=Dashboard.css.map */

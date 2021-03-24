@@ -8,14 +8,17 @@ import {
   RouteComponentProps,
 } from 'react-router-dom';
 
+<<<<<<< HEAD
 import { Dashboard, Profile, Saved, BookDetails, Login } from './Routes';
+=======
+import { Dashboard, Profile, Saved, BookDetails } from './Routes';
+import BottomTabNavigation from './Components/BottomTab/BottomTab';
+>>>>>>> ea3684f4fa93199d6ee9b18074fe333c2f4bc025
 
 function App() {
   return (
     <div className="App">
       <Router>
-        {/* <h1>Welcome to Librai team!</h1> */}
-
         <Switch>
           <Route path="/" exact component={Dashboard}></Route>
           {/* <Route path="/profile" exact component={Profile}></Route> */}
@@ -26,6 +29,7 @@ function App() {
           <Route path="/form" exact component={Dashboard}></Route>
           <Route path="/" render={() => <div>404</div>} />
         </Switch>
+        <BottomTabNavigation />
       </Router>
     </div>
   );
