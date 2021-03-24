@@ -1,11 +1,11 @@
 import {
   register,
   login,
-  addFormInfo,
+  // addFormInfo,
   logout,
 } from '../../ApiClientService/Auth';
 import { Login } from '../../Interfaces/loginObject';
-import { Form } from '../../Interfaces/formObject';
+import { RegistrationInfo } from '../../Interfaces/registrationObject';
 import { AppDispatch } from '../../index';
 
 import {
@@ -19,7 +19,7 @@ export const setLogin = (loginObject: Login) => async (
   dispatch: AppDispatch
 ) => {
   const { email, password } = loginObject;
-  const accessToken = await login(email, password);
+  const { accessToken } = await login(email, password);
   localStorage.setItem('accessToken', accessToken);
   dispatch({ type: SET_LOGIN });
 };
@@ -31,7 +31,9 @@ export const setLogout = () => async (dispatch: AppDispatch) => {
   dispatch({ type: SET_LOGOUT });
 };
 
-export const setRegister = (form: Form) => async (dispatch: AppDispatch) => {
+export const setRegister = (form: RegistrationInfo) => async (
+  dispatch: AppDispatch
+) => {
   const { firstName, lastName, email, password } = form;
   const { accessToken } = await register(firstName, lastName, email, password);
   localStorage.setItem('accessToken', accessToken);

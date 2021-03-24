@@ -9,12 +9,17 @@ const Interaction = interaction;
 const addUser = require('../recombeeService/user');
 
 const register = async (req, res) => {
-  const { firstName, lastName, email, password, favoriteGenres } = req.body;
-
+  const {
+    firstName,
+    lastName,
+    email,
+    password,
+    favoriteGenres = null,
+  } = req.body;
   const existingUser = await User.findOne({ where: { email } });
   if (existingUser) return res.status(409).send('This user already exisits');
+  if (password === '') return res.status(409).send('Password cannot be empty');
   try {
-    if (password === '') throw new Error('Password cannot be empty string!');
     const hash = await bcrypt.hash(password, 10);
 
     const { id } = await User.create({
