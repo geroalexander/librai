@@ -1,5 +1,5 @@
 import { Book } from '../Interfaces/bookObject';
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'http://localhost:8000';
 
 //call to get recommendations, needed in Dashboard
 const getRecommendations = (accessToken: string) => {

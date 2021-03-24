@@ -1,16 +1,27 @@
-import { Key } from 'node:readline';
 import * as React from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch } from '../..';
 import './Login.css';
+import { setLogin } from '../../Store/actions/auth';
 
 const Login: React.FC = () => {
-  const dispatch: AppDispatch = useDispatch();
-  const onSubmitLogin = (e: React.FormEventHandler<HTMLFormElement>) => {
-    // e.preventDefault();
+  const dispatch = useDispatch<AppDispatch>();
+  // const dispatch: AppDispatch = useDispatch();
+
+  const [email, setEmail] = useState('pams@hollywood.com');
+  const [password, setPassword] = useState('password');
+
+  const onClickSubmitLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    // const action = setLogin()
+    e.preventDefault();
+    // console.log('e', e.target);
+    dispatch(setLogin({ email, password }));
+
+    // dispatch(action);
   };
   return (
-    <form onSubmit={() => onSubmitLogin} className="login-form">
+    <form onSubmit={onClickSubmitLogin} className="login-form">
       <div className="form-inner">
         <h2 className="title">Login</h2>
         {/*ERROR*/}

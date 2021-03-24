@@ -44,8 +44,13 @@ const login = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ where: { email } });
+    console.log('user---->', user);
+
     if (!user) res.status(404).send('No user found');
-    const validatePassword = await bcrypt.compare(password, user.password);
+    const validatePassword = await bcrypt.compare(
+      password,
+      user.dataValues.password,
+    );
     if (!validatePassword) throw new Error();
     const accessToken = jwt.sign({ _id: user.id }, SECRET_KEY);
     res.status(200).send({ accessToken });

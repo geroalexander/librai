@@ -20,7 +20,7 @@ import { User } from '../../Interfaces/userObject';
 
 // const accessToken: string | null = localStorage.getItem('accessToken');
 const accessToken =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4YWIxZTA2MC0yZmY5LTQzNzctOTcyNC04ZTU1NWFlNzk3M2EiLCJpYXQiOjE2MTY1Mzc3MzZ9.epipahkcTmdIS71WOgtdL1LSNZHmN-kBCdqS2V2VFOk';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIwMGI5MzYzMS0wYmJkLTQxYmMtYjgwZC1iMTU3ZGY4NWQ4ZDEiLCJpYXQiOjE2MTY1ODIzMTN9.nZYn79xV9Shc8YnB_2mgOPucm2pNhezZwPpTvPpGnCY';
 
 export const _loadDashboard = () => async (dispatch: AppDispatch) => {
   if (accessToken) {

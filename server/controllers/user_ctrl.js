@@ -46,25 +46,6 @@ const loadDashboard = async (req, res) => {
       formattedBook.compatabilityScore = 10;
       bookRecArr.push(formattedBook);
     }
-    const {
-      id,
-      firstName,
-      lastName,
-      email,
-      profilePic,
-      favoriteGenres,
-      books,
-    } = userFromDB;
-
-    const userWithBooks = {
-      id,
-      firstName,
-      lastName,
-      email,
-      profilePic,
-      favoriteGenres,
-      books,
-    };
 
     res.status(201).send({
       userWithBooks,
