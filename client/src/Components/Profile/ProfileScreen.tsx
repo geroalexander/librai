@@ -6,7 +6,6 @@ import { User } from '../../Interfaces/userObject';
 import { RootState } from '../../index';
 
 interface ProfileScreenProps extends RouteComponentProps {}
-// const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2UyZTQ2MC0zMDU1LTQwMGItOGQ4OC0zMTE2ODA4NzU3NzQiLCJpYXQiOjE2MTY1Mjc5NjJ9.yID2_occRk36cc1VyyIGlBeauu_DGtKxNr7Aoxxvm98';
 
 const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
   const user: User = useSelector(
@@ -14,9 +13,11 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
   );
   // const dispatch = useDispatch();
 
-  // const renderFavoriteGenres = user.favoriteGenres.map((genre: string) => {});
+  const renderFavoriteGenres = user.favoriteGenres.map(
+    (genre: string, i: number) => <p key={i}>{genre}</p>
+  );
 
-  // const renderBooks = user.books.map(book => <BookDetail book={book} />);
+  // const renderBooks = user.books.map(book => <BookDetail key={book.id} book={book} />);
 
   return (
     <div>
@@ -26,7 +27,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
         {user.firstName} {user.lastName}
       </h1>
       <p>{user.email}</p>
-      {/* <p>{renderFavoriteGenres}</p> */}
+      <p>{renderFavoriteGenres}</p>
       {/* renderBooks */}
     </div>
   );
