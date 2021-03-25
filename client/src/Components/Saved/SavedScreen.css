@@ -7,4 +7,9 @@
 .saved-screen h1 {
   color: #fffef9;
 }
+
+.saved-screen .saved-list {
+  height: 100%;
+  overflow: scroll;
+}
 /*# sourceMappingURL=SavedScreen.css.map */
