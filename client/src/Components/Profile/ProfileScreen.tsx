@@ -1,5 +1,5 @@
 //BEN
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { RootState } from '../../index';
@@ -14,14 +14,22 @@ import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import { setLogout } from '../../Store/actions/auth';
 import { uploadToCloud } from '../../ApiClientService/ImageUpload';
 import imageToBase64 from '../Shared/imageToBase64';
+import LottieAnimation from '../../Animations/Lottie';
+import loading from '../../Animations/paperplane-animation.json';
 
 interface ProfileScreenProps extends RouteComponentProps {}
 
-const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
+const ProfileScreen: React.FC<ProfileScreenProps> = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
+
   const user: User = useSelector(
     (state: RootState) => state.userReducer.userWithBooks
   );
-  const dispatch = useDispatch();
+
+  useEffect(() => {
+    user && user.books && setIsLoading(false);
+  }, [user]);
 
   const fullName = `${user.firstName} ${user.lastName}`;
   const { favoriteGenres } = user;
@@ -41,67 +49,68 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
     dispatch(_updateProfile(profilePictureUrl, null, null));
   };
 
-  return (
-    <div className="profile-screen">
-      <div className="logout-button">
-        <ExitToAppRoundedIcon
-          style={{ fontSize: 38, color: '#dfd5fc' }}
-          onClick={handleLogout}
-        />
-      </div>
-      <div className="user-info">
-        <label>
-          <input
-            style={{ display: 'none' }}
-            type="file"
-            accept="image/*"
-            // capture="environment"
-            onChange={handleUpdateProfilePic}
+  if (!isLoading) {
+    return (
+      <div className="profile-screen">
+        <div className="logout-button">
+          <ExitToAppRoundedIcon
+            style={{ fontSize: 38, color: '#dfd5fc' }}
+            onClick={handleLogout}
           />
-          {user.profilePic ? (
-            <Avatar
-              className="profile-picture"
-              alt={fullName}
-              src={user.profilePic ? user.profilePic : undefined}
+        </div>
+        <div className="user-info">
+          <label>
+            <input
+              style={{ display: 'none' }}
+              type="file"
+              accept="image/*"
+              // capture="environment"
+              onChange={handleUpdateProfilePic}
             />
-          ) : (
-            <Avatar className="profile-picture">
-              <AddPhotoAlternateIcon />
-            </Avatar>
-          )}
-        </label>
-        <h1>{fullName}</h1>
-        <p className="email">{user.email}</p>
-        <div className="genre-wrapper">
-          <h5 className="fav-genres-header">Favorite Genres:</h5>
-          <p className="fav-genres">
-            {favoriteGenres && favoriteGenres.length
-              ? favoriteGenres.map((genre: string, index: number) =>
-                  index !== favoriteGenres.length - 1 ? (
-                    <span key={genre}>{genre}, </span>
-                  ) : (
-                    <span key={genre}>{genre}</span>
+            {user.profilePic ? (
+              <Avatar
+                className="profile-picture"
+                alt={fullName}
+                src={user.profilePic ? user.profilePic : undefined}
+              />
+            ) : (
+              <Avatar className="profile-picture">
+                <AddPhotoAlternateIcon />
+              </Avatar>
+            )}
+          </label>
+          <h1>{fullName}</h1>
+          <p className="email">{user.email}</p>
+          <div className="genre-wrapper">
+            <h5 className="fav-genres-header">Favorite Genres:</h5>
+            <p className="fav-genres">
+              {favoriteGenres && favoriteGenres.length
+                ? favoriteGenres.map((genre: string, index: number) =>
+                    index !== favoriteGenres.length - 1 ? (
+                      <span key={genre}>{genre}, </span>
+                    ) : (
+                      <span key={genre}>{genre}</span>
+                    )
                   )
-                )
-              : null}
-          </p>
+                : null}
+            </p>
+          </div>
+        </div>
+        <div className="rated-books">
+          {user.books && (
+            <div>
+              {user.books
+                .filter((book: Book) => book.interaction.rating !== null)
+                .map((book: Book) => (
+                  <BookItem key={book.id} book={book} />
+                ))}
+            </div>
+          )}
         </div>
       </div>
-      <div className="rated-books">
-        {user.books ? (
-          <div>
-            {user.books
-              .filter((book: Book) => book.interaction.rating !== null)
-              .map((book: Book) => (
-                <BookItem key={book.id} book={book} />
-              ))}
-          </div>
-        ) : (
-          <h1>No books yet</h1>
-        )}
-      </div>
-    </div>
-  );
+    );
+  }
+  return <LottieAnimation animation={loading} width={300} height={300} />;
 };
 
 export default withRouter(ProfileScreen);

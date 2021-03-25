@@ -15,7 +15,7 @@ const SearchBar = () => {
       if (nextValue)
         getGoogleBook(nextValue).then((res) => setSearchResult(res));
       return;
-    }, 1000),
+    }, 500),
     []
   );
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,18 +63,9 @@ const SearchBar = () => {
               style={{ textDecoration: 'none', width: '100%' }}
             >
               <div className="book-preview-small" key={book.id}>
-                <img
-                  className="book-image"
-                  src={
-                    book.volumeInfo.imageLinks === undefined
-                      ? ''
-                      : `${book.volumeInfo.imageLinks.thumbnail}`
-                  }
-                  alt={book.volumeInfo.title}
-                />
                 <h1 className="book-title">
-                  {book.volumeInfo.title.length > 30
-                    ? `${book.volumeInfo.title.slice(0, 30)}...`
+                  {book.volumeInfo.title.length > 50
+                    ? `${book.volumeInfo.title.slice(0, 50)}...`
                     : book.volumeInfo.title}
                 </h1>
               </div>
