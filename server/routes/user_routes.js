@@ -9,7 +9,7 @@ router.get('/dashboard', authMiddleware, userCTRL.loadDashboard);
 
 // COMPLETE FORM OR UPDATE USER
 router.post('/form', authMiddleware, userCTRL.registrationForm);
-router.psot('/update', authMiddleware, userCTRL.updateProfile);
+router.post('/update', authMiddleware, userCTRL.updateProfile);
 
 // GET SAVED/READ BOOKS BY USER-ID
 router.get('/profile', authMiddleware, userCTRL.getUserWithBooks);

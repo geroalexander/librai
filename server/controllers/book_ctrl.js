@@ -48,25 +48,25 @@ const getBookByCover = async (req, res) => {
 
 //getBookWithScore
 // const getBookBySearch = async (req, res) => {
-const getBookWithScore = async (req, res) => {
-  const user = req.user;
-  try {
-    const { googleBook } = req.body;
-    const userWithBooks = await User.findOne({
-      where: { id: user.id },
-      include: Book,
-    });
-    const compatScore = await getCompatScore(userWithBooks, googleBook);
+// const getBookWithScore = async (req, res) => {
+//   const user = req.user;
+//   try {
+//     const { googleBook } = req.body;
+//     const userWithBooks = await User.findOne({
+//       where: { id: user.id },
+//       include: Book,
+//     });
+//     const compatScore = await getCompatScore(userWithBooks, googleBook);
 
-    const formattedBook = formatBook(googleBook);
-    formattedBook.compatabilityScore = compatScore;
-    await addBookView(user.id, googleBook, false);
-    res.status(201).send(formattedBook);
-  } catch (error) {
-    console.error(error);
-    res.status(400).send(error);
-  }
-};
+//     const formattedBook = formatBook(googleBook);
+//     formattedBook.compatabilityScore = compatScore;
+//     await addBookView(user.id, googleBook, false);
+//     res.status(201).send(formattedBook);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(400).send(error);
+//   }
+// };
 
 // const getBookDetails = async (req, res) => {
 //   const user = req.user;
