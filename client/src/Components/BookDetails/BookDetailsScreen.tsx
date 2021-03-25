@@ -23,19 +23,20 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
   }, []);
 
   const retrieveBookWithScore = async () => {
-    console.log(book, ' BOOKK');
-
     if (
       isNew === true ||
-      (!book.compatabilityScore && book.interaction.isSaved)
+      (book.interaction &&
+        !book.interaction.compatabilityScore &&
+        book.interaction.isSaved)
     ) {
       // const accessToken = localStorage.getItem('accessToken');
       if (accessToken) {
         const formattedBook = await getBookWithScore(accessToken, book);
         setBook(formattedBook);
       }
-      console.log(book, '<------ BOOK');
     }
+    console.log(book, '<<<<<<<<---------');
+
     setIsLoading(false);
     accessToken && (await viewBookDetails(accessToken, book));
   };
@@ -44,10 +45,7 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
     <div className="details">
       <div className="main-details">
         <hr className="line"></hr>
-        <img
-          src={book.thumbnail ? book.thumbnail : undefined}
-          alt={book.title}
-        />
+        <img src={book.thumbnail && book.thumbnail} alt={book.title} />
         <div className="text-wrapper">
           <h1
             className={

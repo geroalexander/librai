@@ -38,7 +38,8 @@ function App() {
           <Route path="/form" exact component={Dashboard}></Route>
           <Route path="/" render={() => <div>404</div>} />
         </Switch>
-        {signedIn && <BottomTabNavigation />}
+        {/* {signedIn && <BottomTabNavigation />} */}
+        <BottomTabNavigation />
       </Router>
     </div>
   );

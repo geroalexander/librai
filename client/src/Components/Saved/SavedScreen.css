@@ -1,15 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap");
 .saved-screen {
   height: 100vh;
-  width: 90vw;
+  width: 100vw;
+  background: linear-gradient(125deg, #2c0791 5%, #140245 100%);
 }
 
-.saved-screen h1 {
+.saved-screen .title {
   color: #fffef9;
+  font-family: "Montserrat", sans-serif;
+  padding-left: 1.5rem;
 }
 
 .saved-screen .saved-list {
-  height: 100%;
+  height: 80vh;
   overflow: scroll;
+  padding: 1.5rem;
+}
+
+.saved-screen .footer {
+  height: 10rem;
 }
 /*# sourceMappingURL=SavedScreen.css.map */

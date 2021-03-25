@@ -97,7 +97,7 @@ const BookStatusBar: React.FC<BookStatusBarProps> = ({ book }) => {
   };
 
   return (
-    <div className="book-status">
+    <div className="book-status ">
       <div className="rating-wrapper">
         <FloatingMenu
           slideSpeed={500}

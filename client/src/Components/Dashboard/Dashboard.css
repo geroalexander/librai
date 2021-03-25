@@ -15,9 +15,9 @@
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  margin-top: 6%;
+  padding-top: 6%;
   padding-left: 10%;
-  background-color: #140245;
+  background: linear-gradient(125deg, #2c0791, #140245);
 }
 
 .dashboard header {

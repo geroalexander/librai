@@ -13,9 +13,9 @@ $opensans: 'Open Sans', sans-serif;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  margin-top:6%;
+  padding-top: 6%;
   padding-left: 10%;
-  background-color: $PRIMARY_DARK;
+  background: linear-gradient(125deg, #2c0791, $PRIMARY_DARK);
 
   header {
     width: 90vw;
@@ -29,7 +29,6 @@ $opensans: 'Open Sans', sans-serif;
       border-radius: 7px;
     }
   }
-
 
   .title {
     color: $WHITE;
@@ -56,17 +55,13 @@ $opensans: 'Open Sans', sans-serif;
           border-radius: 5px;
           box-shadow: 0 0 20px -1px rgb(7, 6, 22);
         }
-
-    
       }
-
     }
   }
 
   .bookwrapper-small {
     height: 22vh;
     margin-bottom: 2rem;
-
 
     .booklist-small {
       // border: solid;
@@ -77,18 +72,14 @@ $opensans: 'Open Sans', sans-serif;
       display: flex;
       overflow-x: scroll;
 
-
       .book-preview-small {
         margin-right: 1.5rem;
         img {
           height: 8rem;
           border-radius: 5px;
           box-shadow: 0 0 20px -1px rgb(7, 6, 22);
-
         }
       }
-  
     }
   }
-  
 }

@@ -15,15 +15,16 @@ $opensans: 'Open Sans', sans-serif;
   width: 85vw;
   height: 8.5rem;
 
-
   .rating-wrapper {
     position: absolute;
     top: 3rem;
     left: 1.8rem;
   }
 
+  // .rating-wrapper
+
   .bookmark-wrapper {
-    position:absolute;
+    position: absolute;
     top: 3rem;
     right: 1.8rem;
   }
@@ -43,9 +44,7 @@ $opensans: 'Open Sans', sans-serif;
     justify-content: center;
     align-items: center;
     box-shadow: 0 0 22px -1px rgb(11, 7, 56);
-    
   }
-
 
   .title {
     color: #c8baf3;
@@ -53,6 +52,4 @@ $opensans: 'Open Sans', sans-serif;
     font-family: $montserrat;
     font-weight: bold;
   }
-
-
 }

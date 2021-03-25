@@ -7,12 +7,21 @@ $opensans: 'Open Sans', sans-serif;
 
 .saved-screen {
   height: 100vh;
-  width: 90vw;
-  h1 {
+  width: 100vw;
+  background: linear-gradient(125deg, #2c0791 5%, $PRIMARY_DARK 100%);
+
+  .title {
     color: $WHITE;
+    font-family: $montserrat;
+    padding-left: 1.5rem;
   }
   .saved-list {
-    height: 100%;
+    height: 80vh;
     overflow: scroll;
+    padding: 1.5rem;
+  }
+
+  .footer {
+    height: 10rem;
   }
 }
