@@ -63,6 +63,9 @@ const Login: React.FC = () => {
           />
         </div>
         <input className="submitButton" type="submit" value="LOGIN" />
+        <Link to="/register" className="to-login">
+          Need an account? Register here!
+        </Link>
       </div>
     </form>
   );

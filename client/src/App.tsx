@@ -33,12 +33,12 @@ function App() {
           <Route path="/profile" exact component={Profile}></Route>
           <Route path="/saved" exact component={Saved}></Route>
           <Route path="/details/:id" exact component={BookDetails}></Route>
-          <Route path="/register" exact component={Register}></Route>
           <Route path="/login" exact component={Login}></Route>
+          <Route path="/register" exact component={Register}></Route>
           <Route path="/form" exact component={Dashboard}></Route>
           <Route path="/" render={() => <div>404</div>} />
         </Switch>
-        {/* {signedIn && <BottomTabNavigation />} */}
+        {signedIn && <BottomTabNavigation />}
         <BottomTabNavigation />
       </Router>
     </div>
