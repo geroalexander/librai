@@ -4,6 +4,7 @@ const LOCAL_HOST = process.env.LOCAL_HOST;
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
 
 const sequelize = require('./models/index');
 const router = require('./routes/router.js');
@@ -15,10 +16,9 @@ const corsConfig = {
   origin: LOCAL_HOST,
   credentials: true,
 };
-
 app.use(cors(corsConfig));
 app.use(morgan('dev'));
-app.use(express.json());
+app.use(express.json({ limit: '50mb', extended: true }));
 app.use(router);
 
 (async function () {

@@ -104,10 +104,12 @@ const getBookWithScore = async (req, res) => {
     });
     let isFormatted = true;
     let formattedBook = googleBook;
-    if (book.volumeInfo) {
+
+    if (googleBook.volumeInfo) {
       formattedBook = formatBook(googleBook);
       isFormatted = false;
     }
+    s;
     const compatScore = await getCompatScore(userWithBooks, formattedBook);
     formattedBook.compatabilityScore = compatScore;
     await addBookView(user.id, formattedBook, isFormatted);
