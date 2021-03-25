@@ -24,8 +24,7 @@ import { User } from '../../Interfaces/userObject';
 const { REACT_APP_ACCESS_TOKEN } = process.env;
 
 // const accessToken: string | null = localStorage.getItem('accessToken');
-const accessToken =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4ZWI0MmM5Yy0yYzkyLTRmYmItYmVhOC05MTJiN2ZlZjdkMGEiLCJpYXQiOjE2MTY2ODA1NjZ9.RWv8f1QYRbqlxMzp1R5_wOAghR-RsDIVlL2VZCQQqOs';
+const accessToken = REACT_APP_ACCESS_TOKEN;
 
 export const _loadDashboard = () => async (dispatch: AppDispatch) => {
   console.log(accessToken, 'accessToken');

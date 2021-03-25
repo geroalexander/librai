@@ -13,6 +13,7 @@ import {
   SET_LOGOUT,
   SET_REGISTER,
   SET_ADD_FORM_INFO,
+  LOG_USER_OUT,
 } from './ActionTypes';
 
 export const setLogin = (loginObject: Login) => async (
@@ -30,6 +31,7 @@ export const setLogout = () => async (dispatch: AppDispatch) => {
   localStorage.removeItem('accessToken');
   if (accessToken) await logout(accessToken);
   dispatch({ type: SET_LOGOUT });
+  dispatch({ type: LOG_USER_OUT });
 };
 
 export const setRegister = (form: RegistrationInfo) => async (
