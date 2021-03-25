@@ -10,6 +10,7 @@ import {
   UPDATE_RATING,
   UPDATE_PROFILE,
   DELETE_RATING,
+  LOG_USER_OUT,
 } from '../actions/ActionTypes';
 
 interface userState {
@@ -104,6 +105,11 @@ function userReducer(state = initialState, action: AnyAction) {
       return {
         ...state,
         recommendations: [...oldRecommendations, ...action.payload],
+      };
+
+    case LOG_USER_OUT:
+      return {
+        ...initialState,
       };
   }
   return state;

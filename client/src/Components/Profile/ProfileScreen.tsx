@@ -46,7 +46,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
       <div className="logout-button">
         <ExitToAppRoundedIcon
           style={{ fontSize: 38, color: '#dfd5fc' }}
-          onClick={() => {}}
+          onClick={handleLogout}
         />
       </div>
       <div className="user-info">
