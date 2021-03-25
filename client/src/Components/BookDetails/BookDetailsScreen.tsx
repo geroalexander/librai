@@ -19,8 +19,6 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    console.log(props.location.state.book, 'BOOKFROMSTATE');
-
     book && retrieveBookWithScore();
   }, []);
 
@@ -37,7 +35,6 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
         setBook(formattedBook);
       }
     }
-    console.log(book, '<<<<<<<<---------');
 
     setIsLoading(false);
     accessToken && (await viewBookDetails(accessToken, book));

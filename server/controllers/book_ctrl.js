@@ -35,7 +35,6 @@ const getBookByCover = async (req, res) => {
     const { image } = req.body;
     const searchQuery = await extractText(image);
     const retrievedBook = await fetchBook(searchQuery);
-    console.log('retrievedBook---->', retrievedBook);
 
     const formattedBook = formatBook(retrievedBook);
     const userWithBooks = await User.findOne({

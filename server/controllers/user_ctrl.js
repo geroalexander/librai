@@ -11,6 +11,7 @@ const Interaction = interaction;
 
 const loadDashboard = async (req, res) => {
   const user = req.user;
+
   try {
     const userWithBooks = await User.findOne({
       where: { id: user.id },
@@ -18,10 +19,12 @@ const loadDashboard = async (req, res) => {
       include: Book,
     });
     const recommendations = await getRecommendations(user.id, 10);
+
     const bookRecArr = [];
 
     for (const rec of recommendations.recomms) {
       const retrievedBook = await getBookById(rec.id);
+
       const formattedBook = formatBook(retrievedBook);
       formattedBook.compatabilityScore = 10;
       bookRecArr.push(formattedBook);

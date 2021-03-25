@@ -26,8 +26,6 @@ function userReducer(state = initialState, action: AnyAction) {
   const oldUserWithBooks = { ...state.userWithBooks };
   switch (action.type) {
     case LOAD_DASHBOARD:
-      console.log(action.payload);
-
       return {
         ...state,
         userWithBooks: action.payload.userWithBooks,
@@ -88,13 +86,10 @@ function userReducer(state = initialState, action: AnyAction) {
       return { ...state, userWithBooks: newUser };
 
     case DELETE_RATING:
-      console.log(oldUserWithBooks, '<-----OLD USER WITH BOOKS');
-
       const oldBooksBeforeDelete = oldUserWithBooks.books;
 
       oldBooksBeforeDelete?.forEach((b: Book) => {
         if (b.id === action.payload.id) {
-          console.log(b, '<------BOOOOOK@!');
           b.interaction.rating = null;
         }
       });

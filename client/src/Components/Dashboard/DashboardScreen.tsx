@@ -10,11 +10,14 @@ import PhotoCameraRoundedIcon from '@material-ui/icons/PhotoCameraRounded';
 import PhotoCameraOutlinedIcon from '@material-ui/icons/PhotoCameraOutlined';
 import SearchBar from '../Shared/SearchBar';
 import Camera from '../Shared/Camera';
+import LottieAnimation from '../../Animations/Lottie';
+import loading from '../../Animations/paperplane-animation.json';
+import bookAnimation from '../../Animations/book-animation-2.json';
+import secondBookAnim from '../../Animations/book-animation.json';
 
 interface DashboardScreenProps extends RouteComponentProps {}
 
 const Dashboard: React.FC<DashboardScreenProps> = () => {
-  console.log('dashboard loaded');
   const [books, setBooks] = useState([]);
   const [recommended, setRecommended] = useState([]);
 
@@ -29,12 +32,10 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
   useEffect(() => {
     const renderDashboard = async () => {
       const action = await _loadDashboard();
-      console.log('action', action);
       dispatch(action);
     };
 
     renderDashboard();
-    console.log('somethign');
   }, []);
 
   useEffect(() => {
@@ -45,7 +46,6 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
     if (recommendations) setRecommended(recommendations);
   }, [recommendations]);
 
-  console.log('books', books);
   if (books.length) {
     return (
       <div className="dashboard">
@@ -120,7 +120,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
       </div>
     );
   }
-  return <div>Hello</div>;
+  return <LottieAnimation animation={loading} width="100%" height="100%" />;
 };
 
 export default withRouter(Dashboard);

@@ -23,7 +23,6 @@ const Camera = () => {
 
     let book;
     if (accessToken) book = await getBookByCover(accessToken, cloudURL);
-    console.log('THIS IS THE BOOK-------->', book);
     if (book) {
       history.push({
         pathname: `/details/${book.id}`,

@@ -27,10 +27,8 @@ const { REACT_APP_ACCESS_TOKEN } = process.env;
 const accessToken = REACT_APP_ACCESS_TOKEN;
 
 export const _loadDashboard = () => async (dispatch: AppDispatch) => {
-  console.log(accessToken, 'accessToken');
   if (accessToken) {
     const userDashboard = await loadDashboard(accessToken);
-    console.log('-----------------', userDashboard);
 
     if (userDashboard)
       dispatch({ type: LOAD_DASHBOARD, payload: userDashboard });

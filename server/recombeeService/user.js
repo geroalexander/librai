@@ -5,7 +5,6 @@ const addUser = async (user) => {
   try {
     const { userId, email, first_name, last_name } = user;
     const values = { email, first_name, last_name };
-    console.log('before');
     await client.send(
       new rqs.SetUserValues(
         userId + '',
@@ -16,7 +15,6 @@ const addUser = async (user) => {
         },
       ),
     );
-    console.log('after');
     return 'User added';
   } catch (err) {
     return err;
