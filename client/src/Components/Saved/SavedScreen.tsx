@@ -28,7 +28,9 @@ const SavedScreen: React.FC<SavedScreenProps> = (props) => {
 
   return (
     <div className="saved-screen">
-      <h1 className="title">Saved</h1>
+      <div className="title-wrapper">
+        <h1 className="title">Saved</h1>
+      </div>
       {books ? (
         <div className="saved-list">
           {books

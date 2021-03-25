@@ -30,7 +30,7 @@ const BookItem: React.FC<BookItemProps> = ({ book }) => {
       <div className="book-info">
         <h2 className="midtitle">{book.title}</h2>
         <p className="subtitle italic">by {book.authors[0]}</p>
-        <p className="subtitle">{book.subtitle && book.subtitle}</p>
+        <p className="subtitle">{book.categories[0]}</p>
         {/* <BookStatusBar book={book} /> */}
       </div>
     </div>

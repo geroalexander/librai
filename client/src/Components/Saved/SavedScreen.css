@@ -2,13 +2,24 @@
 .saved-screen {
   height: 100vh;
   width: 100vw;
-  background: linear-gradient(125deg, #2c0791 5%, #140245 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #2c0791), to(#140245));
+  background: linear-gradient(#2c0791 1%, #140245 100%);
 }
 
-.saved-screen .title {
+.saved-screen .title-wrapper {
+  border: solid;
+  border-color: #dfd5fc;
+  border-width: 0;
+  border-bottom-width: 2px;
+  width: 80%;
+  margin-top: 2rem;
+  margin-left: 1.5rem;
+  z-index: 1;
+}
+
+.saved-screen .title-wrapper .title {
   color: #fffef9;
   font-family: "Montserrat", sans-serif;
-  padding-left: 1.5rem;
 }
 
 .saved-screen .saved-list {

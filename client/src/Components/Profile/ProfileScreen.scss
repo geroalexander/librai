@@ -6,51 +6,80 @@ $opensans: 'Open Sans', sans-serif;
 
 .profile-screen {
   color: white;
-  height: 90vh;
-  width: 90vw;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: $PRIMARY_DARK;
+
+  .logout-button {
+    position: fixed;
+    top: 1.2rem;
+    right: 1.2rem;
+  }
+
   .user-info {
+    background: linear-gradient(#2c0791 20%, $PRIMARY_DARK 100%);
     display: flex;
     flex-direction: column;
     width: 100%;
     justify-content: center;
     align-items: center;
-    margin-bottom: 2em;
-    margin-top: 1em;
+    padding-top: 2em;
+
+    .genre-wrapper {
+      text-align: center;
+      padding-bottom: 2em;
+      border: solid;
+      border-color: $PRIMARY_WHITE;
+      border-width: 0;
+      border-bottom-width: 1.5px;
+    }
+
+    .profile-picture {
+      // Aspect ratio needs to be sorted
+      height: 20vh;
+      width: 40vw;
+      margin-top: 0.5em;
+      margin-bottom: 1em;
+      border: solid;
+      border-color: $PRIMARY_WHITE;
+      border-width: 2px;
+      box-shadow: 0 0 10px -1px rgb(19, 16, 61);
+    }
+
+    h1 {
+      margin: 0;
+      font-family: $comfortaa;
+      font-size: 1.7rem;
+      padding-bottom: 0.2em;
+    }
+
+    .email {
+      margin: 0;
+      padding-bottom: 0.5em;
+      font-family: $montserrat;
+      font-size: 0.8rem;
+    }
+
+    .fav-genres-header {
+      margin: 0;
+      margin-top: 0.5em;
+      font-family: $opensans;
+    }
+
+    .fav-genres {
+      font-size: 0.7rem;
+      margin: 0;
+      margin-top: 0.5em;
+      font-family: $opensans;
+    }
   }
-  .logout-button {
-    align-self: flex-end;
-  }
-  .profile-picture {
-    // Aspect ratio needs to be sorted
-    height: 20vh;
-    width: 40vw;
-    margin-top: 0.5em;
-    margin-bottom: 1em;
-    max-width: 150px;
-  }
-  h1 {
-    margin: 0;
-  }
-  .email {
-    margin: 0;
-    padding-bottom: 0.5em;
-  }
-  .fav-genres-header {
-    margin: 0;
-    margin-top: 0.5em;
-  }
-  .fav-genres {
-    font-size: 0.7rem;
-    margin: 0;
-    margin-top: 0.5em;
-  }
+
   .rated-books {
     height: 100%;
     overflow-y: scroll;
+    padding: 2rem;
   }
 }

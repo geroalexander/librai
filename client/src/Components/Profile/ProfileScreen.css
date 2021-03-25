@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap");
 .profile-screen {
   color: white;
-  height: 90vh;
-  width: 90vw;
+  height: 100vh;
+  width: 100vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -16,10 +16,17 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: #140245;
+}
+
+.profile-screen .logout-button {
+  position: fixed;
+  top: 1.2rem;
+  right: 1.2rem;
 }
 
 .profile-screen .user-info {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(20%, #2c0791), to(#140245));
+  background: linear-gradient(#2c0791 20%, #140245 100%);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -34,45 +41,60 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-bottom: 2em;
-  margin-top: 1em;
+  padding-top: 2em;
 }
 
-.profile-screen .logout-button {
-  -ms-flex-item-align: end;
-      align-self: flex-end;
+.profile-screen .user-info .genre-wrapper {
+  text-align: center;
+  padding-bottom: 2em;
+  border: solid;
+  border-color: #dfd5fc;
+  border-width: 0;
+  border-bottom-width: 1.5px;
 }
 
-.profile-screen .profile-picture {
+.profile-screen .user-info .profile-picture {
   height: 20vh;
   width: 40vw;
   margin-top: 0.5em;
   margin-bottom: 1em;
-  max-width: 150px;
+  border: solid;
+  border-color: #dfd5fc;
+  border-width: 2px;
+  -webkit-box-shadow: 0 0 10px -1px #13103d;
+          box-shadow: 0 0 10px -1px #13103d;
 }
 
-.profile-screen h1 {
+.profile-screen .user-info h1 {
   margin: 0;
+  font-family: "Comfortaa", cursive;
+  font-size: 1.7rem;
+  padding-bottom: 0.2em;
 }
 
-.profile-screen .email {
+.profile-screen .user-info .email {
   margin: 0;
   padding-bottom: 0.5em;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8rem;
 }
 
-.profile-screen .fav-genres-header {
+.profile-screen .user-info .fav-genres-header {
   margin: 0;
   margin-top: 0.5em;
+  font-family: "Open Sans", sans-serif;
 }
 
-.profile-screen .fav-genres {
+.profile-screen .user-info .fav-genres {
   font-size: 0.7rem;
   margin: 0;
   margin-top: 0.5em;
+  font-family: "Open Sans", sans-serif;
 }
 
 .profile-screen .rated-books {
   height: 100%;
   overflow-y: scroll;
+  padding: 2rem;
 }
 /*# sourceMappingURL=ProfileScreen.css.map */

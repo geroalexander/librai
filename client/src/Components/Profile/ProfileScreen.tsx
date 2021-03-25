@@ -10,7 +10,7 @@ import './ProfileScreen.css';
 import BookItem from '../Shared/BookItem';
 import Avatar from '@material-ui/core/Avatar';
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import { setLogout } from '../../Store/actions/auth';
 import { uploadProfilepic } from '../../ApiClientService/ImageUpload';
 import imageToBase64 from './imageToBase64';
@@ -60,11 +60,13 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
 
   return (
     <div className="profile-screen">
+      <div className="logout-button">
+        <ExitToAppRoundedIcon
+          style={{ fontSize: 38, color: '#dfd5fc' }}
+          onClick={() => {}}
+        />
+      </div>
       <div className="user-info">
-        {/* This icon needs to be changed */}
-        <button className="logout-button" onClick={handleUpdateProfilePic}>
-          <ExitToAppIcon />
-        </button>
         <label>
           <input
             style={{ display: 'none' }}
@@ -87,18 +89,20 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
         </label>
         <h1>{fullName}</h1>
         <p className="email">{user.email}</p>
-        <h5 className="fav-genres-header">Favorite Genres</h5>
-        <p className="fav-genres">
-          {favoriteGenres && favoriteGenres.length
-            ? favoriteGenres.map((genre: string, index: number) =>
-                index !== favoriteGenres.length - 1 ? (
-                  <span key={genre}>{genre}, </span>
-                ) : (
-                  <span key={genre}>{genre}</span>
+        <div className="genre-wrapper">
+          <h5 className="fav-genres-header">Favorite Genres:</h5>
+          <p className="fav-genres">
+            {favoriteGenres && favoriteGenres.length
+              ? favoriteGenres.map((genre: string, index: number) =>
+                  index !== favoriteGenres.length - 1 ? (
+                    <span key={genre}>{genre}, </span>
+                  ) : (
+                    <span key={genre}>{genre}</span>
+                  )
                 )
-              )
-            : null}
-        </p>
+              : null}
+          </p>
+        </div>
       </div>
       <div className="rated-books">
         {user.books ? (

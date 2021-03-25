@@ -8,12 +8,23 @@ $opensans: 'Open Sans', sans-serif;
 .saved-screen {
   height: 100vh;
   width: 100vw;
-  background: linear-gradient(125deg, #2c0791 5%, $PRIMARY_DARK 100%);
+  background: linear-gradient(#2c0791 1%, $PRIMARY_DARK 100%);
 
-  .title {
-    color: $WHITE;
-    font-family: $montserrat;
-    padding-left: 1.5rem;
+  .title-wrapper {
+    border: solid;
+    border-color: $PRIMARY_WHITE;
+    border-width: 0;
+    border-bottom-width: 2px;
+    width: 80%;
+    margin-top: 2rem;
+    margin-left: 1.5rem;
+    z-index: 1;
+
+    .title {
+      color: $WHITE;
+      font-family: $montserrat;
+      // padding-left: 1.5rem;
+    }
   }
   .saved-list {
     height: 80vh;

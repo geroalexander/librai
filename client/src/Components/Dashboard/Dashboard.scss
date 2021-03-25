@@ -15,7 +15,7 @@ $opensans: 'Open Sans', sans-serif;
   justify-content: flex-start;
   padding-top: 6%;
   padding-left: 10%;
-  background: linear-gradient(125deg, #2c0791, $PRIMARY_DARK);
+  background: linear-gradient(#2c0791 1%, $PRIMARY_DARK 100%);
 
   header {
     width: 90vw;
