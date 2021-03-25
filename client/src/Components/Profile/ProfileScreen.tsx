@@ -44,6 +44,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
   ) => {
     if (!e.target.files) return;
     const profilePictureUrl = await uploadProfilepic(e.target.files[0]);
+    console.log('PROFILEPICTURE!!!!! ', profilePictureUrl);
     dispatch(_updateProfile(profilePictureUrl, null, null));
   };
 
