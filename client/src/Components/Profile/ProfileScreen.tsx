@@ -13,6 +13,7 @@ import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { setLogout } from '../../Store/actions/auth';
 import { uploadProfilepic } from '../../ApiClientService/ImageUpload';
+import imageToBase64 from './imageToBase64';
 
 interface ProfileScreenProps extends RouteComponentProps {}
 
@@ -39,20 +40,29 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
     dispatch(setLogout());
   };
 
-  const handleUpdateProfilePic = async (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    if (!e.target.files) return;
-    const profilePictureUrl = await uploadProfilepic(e.target.files[0]);
-    console.log('PROFILEPICTURE!!!!! ', profilePictureUrl);
-    dispatch(_updateProfile(profilePictureUrl, null, null));
+  // const handleUpdateProfilePic = async (
+  //   e: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   if (!e.target.files) return;
+  //   const base64Image = await imageToBase64(e.target.files[0]).then(
+  //     (data) => data
+  //   );
+  //   const profilePictureUrl = await uploadProfilepic(base64Image);
+  //   console.log('PROFILEPICTURE!!!!! ', profilePictureUrl);
+  //   dispatch(_updateProfile(profilePictureUrl, null, null));
+  // };
+
+  const testUrl =
+    'https://res.cloudinary.com/benpearce9/image/upload/v1616679101/Librai/zewxt5esrjckcnaoghgx.jpg';
+  const handleUpdateProfilePic = () => {
+    dispatch(_updateProfile(testUrl, null, null));
   };
 
   return (
     <div className="profile-screen">
       <div className="user-info">
         {/* This icon needs to be changed */}
-        <button className="logout-button" onClick={handleLogout}>
+        <button className="logout-button" onClick={handleUpdateProfilePic}>
           <ExitToAppIcon />
         </button>
         <label>

@@ -36,9 +36,9 @@ const SearchBar = () => {
 
   const handleClickOutside = (event: MouseEvent) => {
     if (node.current) {
-      if (node.current.contains(event.target)) {
-        return;
-      }
+      // if (node.current.contains(event.target)) {
+      //   return;
+      // }
     }
     setSearchBoxVisible(false);
     setSearchTerm('');

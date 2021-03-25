@@ -259,7 +259,7 @@ const registrationForm = async (req, res) => {
   }
 };
 
-const updateProfile = async (res, req) => {
+const updateProfile = async (req, res) => {
   const user = req.user;
   try {
     const { profilePic = null, favoriteGenres = null, email = null } = req.body;
