@@ -12,7 +12,7 @@ import Avatar from '@material-ui/core/Avatar';
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import { setLogout } from '../../Store/actions/auth';
-import { uploadProfilepic } from '../../ApiClientService/ImageUpload';
+import { uploadToCloud } from '../../ApiClientService/ImageUpload';
 import imageToBase64 from '../Shared/imageToBase64';
 
 interface ProfileScreenProps extends RouteComponentProps {}
@@ -37,7 +37,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
     const base64Image = await imageToBase64(e.target.files[0]).then(
       (base64EncodedImageString) => base64EncodedImageString
     );
-    const profilePictureUrl = await uploadProfilepic(base64Image);
+    const profilePictureUrl = await uploadToCloud(base64Image);
     dispatch(_updateProfile(profilePictureUrl, null, null));
   };
 
