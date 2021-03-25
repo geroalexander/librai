@@ -18,15 +18,13 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
   const [isNew, setIsNew] = useState(props.location.state.isNew);
   const [isLoading, setIsLoading] = useState(true);
 
-  // console.log(book.description);
-
-  // console.log(book.description.replace(/(<([^>]+)>)/gi, '\n'), 'HELLO');
-
   useEffect(() => {
     book && retrieveBookWithScore();
   }, []);
 
   const retrieveBookWithScore = async () => {
+    console.log(book, ' BOOKK');
+
     if (
       isNew === true ||
       (!book.compatabilityScore && book.interaction.isSaved)
@@ -36,12 +34,11 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
         const formattedBook = await getBookWithScore(accessToken, book);
         setBook(formattedBook);
       }
+      console.log(book, '<------ BOOK');
     }
     setIsLoading(false);
     accessToken && (await viewBookDetails(accessToken, book));
   };
-
-  console.log(book.title.length);
 
   return !isLoading ? (
     <div className="details">
@@ -70,28 +67,38 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
       <div className="sub-details">
         <div className="flexRow">
           <p className="title">Description</p>
-          <p className="title flexRow">
-            {book.averageRating}/5
-            <StarRoundedIcon style={{ color: '#f5d541' }} />
-          </p>
+          {book.averageRating && (
+            <p className="title flexRow">
+              {book.averageRating}/5
+              <StarRoundedIcon style={{ color: '#f5d541' }} />
+            </p>
+          )}
         </div>
         <p className="subtitle">
-          {book.description &&
-            book.description
-              .split(' ')
-              .slice(0, 120)
-              .join(' ')
-              .replace(/(<([^>]+)>)/gi, '\n')}
-          ...
+          {book.description
+            ? book.description
+                .split(' ')
+                .slice(0, 120)
+                .join(' ')
+                .replace(/(<([^>]+)>)/gi, '\n') + '...'
+            : 'N/A'}
         </p>
         <div className="add-info">
           <div>
             <p className="midtitle">Pages</p>
-            <p className="subtitle">{book.pageCount} </p>
+            {book.pageCount ? (
+              <p className="subtitle">{book.pageCount} </p>
+            ) : (
+              <p className="subtitle">N/A</p>
+            )}
           </div>
           <div>
             <p className="midtitle">Publisher</p>
-            <p className="subtitle">{book.publisher} </p>
+            {book.publisher ? (
+              <p className="subtitle">{book.publisher} </p>
+            ) : (
+              <p className="subtitle">N/A</p>
+            )}
           </div>
         </div>
       </div>

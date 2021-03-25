@@ -6,7 +6,14 @@ import {
   ChildButton,
   Directions,
 } from 'react-floating-button-menu';
+import { useSelector, useDispatch } from 'react-redux';
 import { Book } from '../../../Interfaces/bookObject';
+import {
+  _updateRating,
+  _deleteRating,
+  _addSavedBook,
+  _deleteSavedBook,
+} from '../../../Store/actions/users';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import BookmarkBorderRoundedIcon from '@material-ui/icons/BookmarkBorderRounded';
 import BookmarkRoundedIcon from '@material-ui/icons/BookmarkRounded';
@@ -15,6 +22,7 @@ import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import SentimentSatisfiedAltIcon from '@material-ui/icons/SentimentSatisfiedAlt';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
+import DoneAllRoundedIcon from '@material-ui/icons/DoneAllRounded';
 
 interface BookStatusBarProps extends RouteComponentProps {
   book: Book;
@@ -23,6 +31,70 @@ interface BookStatusBarProps extends RouteComponentProps {
 const BookStatusBar: React.FC<BookStatusBarProps> = ({ book }) => {
   const [isSaved, setIsSaved] = useState(false);
   const [rated, setRated] = useState(false);
+  const [rating, setRating] = useState<any>(null);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (book.interaction) {
+      book.interaction.isSaved && setIsSaved(true);
+      book.interaction.rating && setRating(book.interaction.rating);
+    }
+  }, []);
+
+  const handleRatingIcon = () => {
+    if (rating === 1)
+      return (
+        <SentimentSatisfiedAltIcon style={{ fontSize: 35, color: '#140245' }} />
+      );
+    else if (rating === 0)
+      return (
+        <SentimentSatisfiedIcon style={{ fontSize: 35, color: '#140245' }} />
+      );
+    else if (rating === -1)
+      return (
+        <SentimentVeryDissatisfiedIcon
+          style={{ fontSize: 35, color: '#140245' }}
+        />
+      );
+    else return <CheckRoundedIcon style={{ fontSize: 35, color: '#140245' }} />;
+  };
+
+  const handleCompatScore = () => {
+    if (rating !== null)
+      return <DoneAllRoundedIcon style={{ fontSize: 45, color: '#c8baf3' }} />;
+
+    return book.interaction && book.interaction.compatabilityScore ? (
+      <p className="title">{book.interaction.compatabilityScore}</p>
+    ) : (
+      <p className="title">{book.compatabilityScore}</p>
+    );
+  };
+
+  const handleRatingChange = async (newRating: number | null) => {
+    if (newRating !== null) {
+      const action = await _updateRating(book, newRating);
+      dispatch(action);
+      setRating(newRating);
+      setIsSaved(false);
+    } else {
+      const action = await _deleteRating(book);
+      dispatch(action);
+      setRating(newRating);
+    }
+    setRated(!rated);
+  };
+
+  const handleSaveChange = async () => {
+    if (isSaved) {
+      const action = await _deleteSavedBook(book);
+      dispatch(action);
+    } else {
+      const action = await _addSavedBook(book);
+      dispatch(action);
+    }
+    setIsSaved(!isSaved);
+  };
 
   return (
     <div className="book-status">
@@ -34,14 +106,13 @@ const BookStatusBar: React.FC<BookStatusBarProps> = ({ book }) => {
           isOpen={rated}
         >
           <MainButton
-            iconResting={
-              <CheckRoundedIcon style={{ fontSize: 35, color: '#140245' }} />
-            }
+            iconResting={handleRatingIcon()}
             iconActive={
               <CloseRoundedIcon style={{ fontSize: 35, color: '#140245' }} />
             }
             background="#c8baf3"
             onClick={() => {
+              if (rated) handleRatingChange(null);
               setRated(!rated);
             }}
             size={60}
@@ -54,7 +125,7 @@ const BookStatusBar: React.FC<BookStatusBarProps> = ({ book }) => {
             }
             background="linear-gradient(45deg, #5018ea 1%, #dfd5fc 100%)"
             size={60}
-            onClick={() => console.log('First button clicked')}
+            onClick={() => handleRatingChange(1)}
           />
           <ChildButton
             icon={
@@ -64,6 +135,7 @@ const BookStatusBar: React.FC<BookStatusBarProps> = ({ book }) => {
             }
             background="linear-gradient(45deg, #5018ea 1%, #dfd5fc 100%)"
             size={60}
+            onClick={() => handleRatingChange(0)}
           />
           <ChildButton
             icon={
@@ -73,14 +145,13 @@ const BookStatusBar: React.FC<BookStatusBarProps> = ({ book }) => {
             }
             background="linear-gradient(45deg, #5018ea 1%, #dfd5fc 100%)"
             size={60}
+            onClick={() => handleRatingChange(-1)}
           />
         </FloatingMenu>
       </div>
       {!rated && (
         <>
-          <div className="compat-score">
-            <p className="title">{book.compatabilityScore}</p>
-          </div>
+          <div className="compat-score">{handleCompatScore()}</div>
           <div className="bookmark-wrapper">
             <FloatingMenu
               slideSpeed={500}
@@ -104,9 +175,7 @@ const BookStatusBar: React.FC<BookStatusBarProps> = ({ book }) => {
                   />
                 }
                 background="#c8baf3"
-                onClick={() => {
-                  setIsSaved(!isSaved);
-                }}
+                onClick={handleSaveChange}
                 size={60}
               />
             </FloatingMenu>

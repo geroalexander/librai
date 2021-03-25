@@ -72,9 +72,11 @@ $opensans: 'Open Sans', sans-serif;
       // border: solid;
       border-color: $WHITE;
       border-width: 1px;
-      height: 4rem;
+      height: 80%;
       width: 90vw;
       display: flex;
+      overflow-x: scroll;
+
 
       .book-preview-small {
         margin-right: 1.5rem;

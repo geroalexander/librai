@@ -41,12 +41,12 @@ function userReducer(state = initialState, action: AnyAction) {
       };
 
     case ADD_SAVED_BOOK:
-      const newBooksAfterSave = oldUserWithBooks?.books?.push(
-        action.payload.savedBook
+      const newBooksAfterSave = oldUserWithBooks?.books?.filter(
+        (b: Book) => b.id !== action.payload.id
       );
       const newUserAfterSavedBooks = {
         ...state.userWithBooks,
-        books: newBooksAfterSave,
+        books: newBooksAfterSave?.concat([action.payload]),
       };
       return {
         ...state,
@@ -55,7 +55,7 @@ function userReducer(state = initialState, action: AnyAction) {
 
     case DELETE_SAVED_BOOK:
       const newBooksAfterDelete = oldUserWithBooks?.books?.filter(
-        (b: Book) => b.id !== action.payload.book.id
+        (b: Book) => b.id !== action.payload.id
       );
       const newUserAfterDeletedBooks = {
         ...state.userWithBooks,
@@ -68,11 +68,11 @@ function userReducer(state = initialState, action: AnyAction) {
 
     case UPDATE_RATING:
       const newBooksAfterRating = oldUserWithBooks?.books?.filter(
-        (b: Book) => b.id !== action.payload.savedBook.id
+        (b: Book) => b.id !== action.payload.id
       );
       const newUserAfterBooksRating = {
         ...state.userWithBooks,
-        books: [newBooksAfterRating, action.payload.savedBook],
+        books: newBooksAfterRating?.concat([action.payload]),
       };
       return {
         ...state,
@@ -88,9 +88,13 @@ function userReducer(state = initialState, action: AnyAction) {
       return { ...state, userWithBooks: newUser };
 
     case DELETE_RATING:
+      console.log(oldUserWithBooks, '<-----OLD USER WITH BOOKS');
+
       const oldBooksBeforeDelete = oldUserWithBooks.books;
+
       oldBooksBeforeDelete?.forEach((b: Book) => {
-        if (b.id === action.payload.book.id) {
+        if (b.id === action.payload.id) {
+          console.log(b, '<------BOOOOOK@!');
           b.interaction.rating = null;
         }
       });

@@ -45,10 +45,10 @@ module.exports = (sequelize) => {
         type: INTEGER,
       },
       thumbnail: {
-        type: STRING,
+        type: TEXT,
       },
       smallThumbnail: {
-        type: STRING,
+        type: TEXT,
       },
       price: {
         type: FLOAT, // 11.99

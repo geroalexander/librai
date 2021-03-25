@@ -78,11 +78,12 @@
 .dashboard .bookwrapper-small .booklist-small {
   border-color: #fffef9;
   border-width: 1px;
-  height: 4rem;
+  height: 80%;
   width: 90vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  overflow-x: scroll;
 }
 
 .dashboard .bookwrapper-small .booklist-small .book-preview-small {
