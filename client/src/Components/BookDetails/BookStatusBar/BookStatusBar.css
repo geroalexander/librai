@@ -9,7 +9,7 @@
       justify-content: space-around;
   padding-top: 2rem;
   width: 85vw;
-  height: 10rem;
+  height: 8.5rem;
 }
 
 .book-status .rating-wrapper {
@@ -30,8 +30,9 @@
   height: 4rem;
   width: 4rem;
   border: solid;
-  border-color: #c8baf3;
+  border-color: #f5d541;
   border-radius: 100%;
+  border-width: 2px;
   padding: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -48,7 +49,7 @@
 
 .book-status .title {
   color: #c8baf3;
-  font-size: 1.3rem;
+  font-size: 2.5rem;
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
 }

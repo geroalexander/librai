@@ -9,6 +9,16 @@ $opensans: 'Open Sans', sans-serif;
   height: 100vh;
   width: 100vw;
   background-color: $PRIMARY_DARK;
+  overflow: scroll;
+  padding-bottom: 10rem;
+
+  .italic {
+    font-style: italic;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
 
   
   
@@ -72,17 +82,61 @@ $opensans: 'Open Sans', sans-serif;
     
       }
 
-      .italic {
-        font-style: italic;
-      }
+    }
+  }
 
-      .bold {
-        font-weight: bold;
-      }
+  .sub-details {
+    // padding-top: 4rem;
+    padding-left: 1.3rem;
+    padding-right: 1.3rem;
 
+    .flexRow { 
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-right: 0.2rem;
+    }
+    
+    .subtitle {
+      color: #c8baf3;
+      font-size: 0.75rem;
+      font-family: $montserrat;
+      margin: 0;
+      margin-bottom: 3em;
+  
+    }
+
+    .title {
+      color: $WHITE;
+      font-size: 1.5rem;
+      font-family: $montserrat;
+      margin: 0;
+      margin-bottom: 1em;
+      // text-decoration: underline;
+      // text-decoration-color: $SECONDARY;
+    }
+
+    .add-info {
+      display: flex;
+      justify-content: space-between;
+      padding-right: 3rem;
+
+      .midtitle {
+        color: $WHITE;
+        font-size: 1.2rem;
+        font-family: $montserrat;
+        margin: 0;
+        margin-bottom: 1em;
+  
+      }
+  
+      
     }
   }
 
 
+  .footer {
+    height: 3rem;
+  }
 
 }

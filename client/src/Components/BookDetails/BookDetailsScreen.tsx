@@ -4,7 +4,7 @@ import BookStatusBar from './BookStatusBar/BookStatusBar';
 import { Book } from '../../Interfaces/bookObject';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import { getBookWithScore, viewBookDetails } from '../../ApiClientService/Book';
-
+import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import moment from 'moment';
 
 const { REACT_APP_ACCESS_TOKEN } = process.env;
@@ -17,6 +17,10 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
   const [book, setBook] = useState(props.location.state.book);
   const [isNew, setIsNew] = useState(props.location.state.isNew);
   const [isLoading, setIsLoading] = useState(true);
+
+  // console.log(book.description);
+
+  // console.log(book.description.replace(/(<([^>]+)>)/gi, '\n'), 'HELLO');
 
   useEffect(() => {
     book && retrieveBookWithScore();
@@ -41,8 +45,6 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
 
   return !isLoading ? (
     <div className="details">
-      {/* <hr className="line"></hr> */}
-
       <div className="main-details">
         <hr className="line"></hr>
         <img
@@ -65,7 +67,35 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
         </div>
       </div>
       <BookStatusBar book={book} />
-      <div className="sub-details"></div>
+      <div className="sub-details">
+        <div className="flexRow">
+          <p className="title">Description</p>
+          <p className="title flexRow">
+            {book.averageRating}/5
+            <StarRoundedIcon style={{ color: '#f5d541' }} />
+          </p>
+        </div>
+        <p className="subtitle">
+          {book.description &&
+            book.description
+              .split(' ')
+              .slice(0, 120)
+              .join(' ')
+              .replace(/(<([^>]+)>)/gi, '\n')}
+          ...
+        </p>
+        <div className="add-info">
+          <div>
+            <p className="midtitle">Pages</p>
+            <p className="subtitle">{book.pageCount} </p>
+          </div>
+          <div>
+            <p className="midtitle">Publisher</p>
+            <p className="subtitle">{book.publisher} </p>
+          </div>
+        </div>
+      </div>
+      <div className="footer"></div>
     </div>
   ) : null;
 };

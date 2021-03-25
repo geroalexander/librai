@@ -79,7 +79,7 @@ const BookStatusBar: React.FC<BookStatusBarProps> = ({ book }) => {
       {!rated && (
         <>
           <div className="compat-score">
-            <p className="title">{book.compatabilityScore}/10</p>
+            <p className="title">{book.compatabilityScore}</p>
           </div>
           <div className="bookmark-wrapper">
             <FloatingMenu

@@ -13,7 +13,7 @@ $opensans: 'Open Sans', sans-serif;
   // align-items: center;
   padding-top: 2rem;
   width: 85vw;
-  height: 10rem;
+  height: 8.5rem;
 
 
   .rating-wrapper {
@@ -35,8 +35,9 @@ $opensans: 'Open Sans', sans-serif;
     width: 4rem;
     // background-color: #c8baf3;
     border: solid;
-    border-color: #c8baf3;
+    border-color: $SECONDARY;
     border-radius: 100%;
+    border-width: 2px;
     padding: 1rem;
     display: flex;
     justify-content: center;
@@ -48,7 +49,7 @@ $opensans: 'Open Sans', sans-serif;
 
   .title {
     color: #c8baf3;
-    font-size: 1.3rem;
+    font-size: 2.5rem;
     font-family: $montserrat;
     font-weight: bold;
   }
