@@ -22,6 +22,7 @@ export const setLogin = (loginObject: Login) => async (
   const { accessToken } = await login(email, password);
   localStorage.setItem('accessToken', accessToken);
   dispatch({ type: SET_LOGIN });
+  return accessToken;
 };
 
 export const setLogout = () => async (dispatch: AppDispatch) => {
@@ -38,6 +39,7 @@ export const setRegister = (form: RegistrationInfo) => async (
   const { accessToken } = await register(firstName, lastName, email, password);
   localStorage.setItem('accessToken', accessToken);
   dispatch({ type: SET_REGISTER });
+  return accessToken;
 };
 
 // const setAddFormInfo = () => async (dispatch: AppDispatch) => {}

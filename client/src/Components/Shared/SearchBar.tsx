@@ -36,9 +36,9 @@ const SearchBar = () => {
 
   const handleClickOutside = (event: MouseEvent) => {
     if (node.current) {
-        if (node.current.contains(event.target)) {
-        return;
-        }
+      // if (node.current.contains(event.target)) {
+      //   return;
+      // }
     }
     setSearchBoxVisible(false);
     setSearchTerm('');
@@ -66,19 +66,17 @@ const SearchBar = () => {
               <div className="book-preview-small" key={book.id}>
                 <img
                   className="book-image"
-                  src = {
+                  src={
                     book.volumeInfo.imageLinks.thumbnail
-                  ? book.volumeInfo.imageLinks.thumbnail
-                  : undefined
+                      ? book.volumeInfo.imageLinks.thumbnail
+                      : undefined
                   }
                   alt={book.volumeInfo.title}
                 />
                 <h1 className="book-title">
-                  {
-                    book.volumeInfo.title.length > 30
-                  ? `${book.volumeInfo.title.slice(0, 30)}...`
-                  : book.volumeInfo.title
-                  }
+                  {book.volumeInfo.title.length > 30
+                    ? `${book.volumeInfo.title.slice(0, 30)}...`
+                    : book.volumeInfo.title}
                 </h1>
               </div>
             </Link>

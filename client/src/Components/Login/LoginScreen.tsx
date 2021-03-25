@@ -6,8 +6,10 @@ import './Login.css';
 import { setLogin } from '../../Store/actions/auth';
 import LockIcon from '@material-ui/icons/Lock';
 import EmailIcon from '@material-ui/icons/Email';
+import { useHistory } from 'react-router-dom';
 
-const Login: React.FC = () => {
+const Login: React.FC = (props) => {
+  const history = useHistory();
   const dispatch = useDispatch<AppDispatch>();
 
   const [email, setEmail] = useState('');
@@ -15,9 +17,13 @@ const Login: React.FC = () => {
 
   const onClickSubmitLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(setLogin({ email, password }));
-    setEmail('');
-    setPassword('');
+    dispatch(setLogin({ email, password }))
+      .then(() => {
+        setEmail('');
+        setPassword('');
+        history.push('/');
+      })
+      .catch((err) => console.log('catch', err));
   };
 
   return (
@@ -32,6 +38,7 @@ const Login: React.FC = () => {
           <input
             className="input"
             onChange={(e) => setEmail(e.target.value)}
+            value={email}
             type="text"
             name="email"
             placeholder="EMAIL"
@@ -45,6 +52,7 @@ const Login: React.FC = () => {
           <input
             className="input"
             onChange={(e) => setPassword(e.target.value)}
+            value={password}
             type="password"
             name="password"
             placeholder="PASSWORD"

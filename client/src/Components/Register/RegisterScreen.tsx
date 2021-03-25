@@ -4,12 +4,14 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../..';
 import './Register.css';
 import { setRegister } from '../../Store/actions/auth';
+import { Link, useHistory } from 'react-router-dom';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import PersonIcon from '@material-ui/icons/Person';
 import LockIcon from '@material-ui/icons/Lock';
 import EmailIcon from '@material-ui/icons/Email';
 
-const Register: React.FC = () => {
+const Register: React.FC = (props) => {
+  const history = useHistory();
   const dispatch = useDispatch<AppDispatch>();
 
   const [firstName, setFirstName] = useState('');
@@ -19,11 +21,15 @@ const Register: React.FC = () => {
 
   const onClickSubmitLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(setRegister({ firstName, lastName, email, password }));
-    setFirstName('');
-    setLastName('');
-    setEmail('');
-    setPassword('');
+    dispatch(setRegister({ firstName, lastName, email, password }))
+      .then(() => {
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setPassword('');
+        history.push('/form');
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -84,9 +90,9 @@ const Register: React.FC = () => {
           />
         </div>
         <input className="submitButton" type="submit" value="SIGN UP" />
-        <a href="" className="to-login">
+        <Link to="/login" className="to-login">
           Already have an account? Click here!
-        </a>
+        </Link>
       </div>
     </form>
   );
