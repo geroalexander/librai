@@ -27,7 +27,7 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
 
     if (
       isNew === true ||
-      (!book.compatabilityScore && book.interaction.isSaved)
+      (!book.interaction.compatabilityScore && book.interaction.isSaved)
     ) {
       // const accessToken = localStorage.getItem('accessToken');
       if (accessToken) {
