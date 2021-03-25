@@ -19,6 +19,8 @@ const loadDashboard = async (req, res) => {
     });
     const recommendations = await getRecommendations(user.id, 10);
     const bookRecArr = [];
+    console.log('recommendations---->', recommendations);
+
     for (const rec of recommendations.recomms) {
       const retrievedBook = await getBookById(rec.id);
       const formattedBook = formatBook(retrievedBook);

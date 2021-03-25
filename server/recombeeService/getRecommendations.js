@@ -15,7 +15,7 @@ const getRecommendations = async (userID, count) => {
         },
       ),
     );
-    return result; // returns a list of { id: 'bsspAgAAQBAJ' }
+    return result;
   } catch (err) {
     return err;
   }
