@@ -59,9 +59,28 @@ const viewBookDetails = (accessToken: string, book: Book) => {
       Authorization: `Bearer ${accessToken}`,
     },
     body: JSON.stringify({ book }),
-  })
-    .then((res) => res.json())
-    .catch((err) => console.log('error with getBookDetails', err));
+  }).catch((err) => console.log('error with getBookDetails', err));
 };
 
-export { getRecommendations, getBookByCover, getBookBySearch, viewBookDetails };
+const getBookWithScore = (accessToken: string, googleBook: any) => {
+  return fetch(`${REACT_APP_BASE_URL}/book/score`, {
+    method: 'POST',
+    credentials: 'include',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({ googleBook }),
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log('error with getBookWithScore', err));
+};
+
+export {
+  getRecommendations,
+  getBookByCover,
+  getBookBySearch,
+  viewBookDetails,
+  getBookWithScore,
+};

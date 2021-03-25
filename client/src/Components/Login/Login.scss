@@ -13,10 +13,11 @@ $opensans: 'Open Sans', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 9rem;
   }
 
   .title {
-    margin: 1.5em;
+    margin-bottom: 2rem;
     color: $WHITE;
     font-family: $comfortaa;
     font-size: 2.5rem;
@@ -24,30 +25,39 @@ $opensans: 'Open Sans', sans-serif;
   }
 
   .form-group {
+    position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding: 0.1em;
     justify-content: center;
     align-items: center;
-  }
 
-  .input {
-    background-color: $PRIMARY_LIGHT;
-    border-radius: 25px;
-    height: 4em;
-    width: 26em;
-    color: $PRIMARY_WHITE;
-    border-style: hidden;
-    margin: 1em;
-    padding-left: 10px;
-  }
-  ::placeholder {
-    color: $WHITE;
-    font-family: $montserrat;
+    .input {
+      background-color: $PRIMARY_LIGHT;
+      border-radius: 25px;
+      height: 4em;
+      width: 20em;
+      color: $PRIMARY_WHITE;
+      border-style: hidden;
+      margin: 1em;
+      padding-left: 3.6em;
+    }
+    ::placeholder {
+      color: $WHITE;
+      font-family: $montserrat;
+      font-size: 14px;
+    }
+
+    .icon {
+      position: absolute;
+      left: 22px;
+      align-self: center;
+      padding-top: 3px;
+    }
   }
 
   .submitButton {
-    margin: 3em;
+    margin: 2rem;
     border-radius: 25px;
     height: 3em;
     width: 12em;

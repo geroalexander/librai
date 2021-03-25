@@ -17,10 +17,11 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-top: 9rem;
 }
 
 .login-form .title {
-  margin: 1.5em;
+  margin-bottom: 2rem;
   color: #fffef9;
   font-family: "Comfortaa", cursive;
   font-size: 2.5rem;
@@ -28,13 +29,14 @@
 }
 
 .login-form .form-group {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: row;
+          flex-direction: row;
   padding: 0.1em;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -44,39 +46,52 @@
           align-items: center;
 }
 
-.login-form .input {
+.login-form .form-group .input {
   background-color: #23076e;
   border-radius: 25px;
   height: 4em;
-  width: 26em;
+  width: 20em;
   color: #dfd5fc;
   border-style: hidden;
   margin: 1em;
-  padding-left: 10px;
+  padding-left: 3.6em;
 }
 
-.login-form ::-webkit-input-placeholder {
+.login-form .form-group ::-webkit-input-placeholder {
   color: #fffef9;
   font-family: "Montserrat", sans-serif;
+  font-size: 14px;
 }
 
-.login-form :-ms-input-placeholder {
+.login-form .form-group :-ms-input-placeholder {
   color: #fffef9;
   font-family: "Montserrat", sans-serif;
+  font-size: 14px;
 }
 
-.login-form ::-ms-input-placeholder {
+.login-form .form-group ::-ms-input-placeholder {
   color: #fffef9;
   font-family: "Montserrat", sans-serif;
+  font-size: 14px;
 }
 
-.login-form ::placeholder {
+.login-form .form-group ::placeholder {
   color: #fffef9;
   font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+}
+
+.login-form .form-group .icon {
+  position: absolute;
+  left: 22px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  padding-top: 3px;
 }
 
 .login-form .submitButton {
-  margin: 3em;
+  margin: 2rem;
   border-radius: 25px;
   height: 3em;
   width: 12em;
