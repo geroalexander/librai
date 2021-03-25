@@ -7,7 +7,9 @@ import BookmarkOutlinedIcon from '@material-ui/icons/BookmarkOutlined';
 // import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 // import SentimentDissatisfiedOutlinedIcon from '@material-ui/icons/SentimentDissatisfiedOutlined';
 // import { CgSmileNeutral } from 'react-icons';
-{/* <PhotoCameraOutlinedIcon style={{ fontSize: 30, color: '#fffef9' }} /> */}
+{
+  /* <PhotoCameraOutlinedIcon style={{ fontSize: 30, color: '#fffef9' }} /> */
+}
 
 interface BookItemProps extends RouteComponentProps {
   book: Book;
@@ -37,11 +39,13 @@ const BookItem: React.FC<BookItemProps> = ({ book }) => {
             <CheckCircleOutlineIcon className="rating-button" />
           ) : (
             <div>
-             <h1>Rating face goes here</h1>
-             {/* <h1>{renderRating()}</h1> */}
+              <h1>Rating face goes here</h1>
+              {/* <h1>{renderRating()}</h1> */}
             </div>
           )}
-          <button className="bookmark"><BookmarkOutlinedIcon className="bookmark-button" /></button>
+          <button className="bookmark">
+            <BookmarkOutlinedIcon className="bookmark-button" />
+          </button>
         </div>
       </div>
     </div>

@@ -35,8 +35,8 @@ const getBookByCover = async (req, res) => {
     const { image } = req.body;
     const searchQuery = await extractText(image);
     const retrievedBook = await fetchBook(searchQuery);
-    const compatScore = await getCompatScore(user, retrievedBook);
     const formattedBook = formatBook(retrievedBook);
+    const compatScore = await getCompatScore(user, formattedBook);
     formattedBook.compatabilityScore = compatScore;
     await addBookView(user.id, retrievedBook, false);
     res.status(201).send(formattedBook);
@@ -46,27 +46,27 @@ const getBookByCover = async (req, res) => {
   }
 };
 
-const getBookBySearch = async (req, res) => {
-  const user = req.user;
+// const getBookBySearch = async (req, res) => {
+//   const user = req.user;
 
-  try {
-    const { searchQuery } = req.body;
-    const retrievedBook = await fetchBook(searchQuery);
-    const userWithBooks = await User.findOne({
-      where: { id: user.id },
-      include: Book,
-    });
-    const compatScore = await getCompatScore(userWithBooks, retrievedBook);
+//   try {
+//     const { searchQuery } = req.body;
+//     const retrievedBook = await fetchBook(searchQuery);
+//     const userWithBooks = await User.findOne({
+//       where: { id: user.id },
+//       include: Book,
+//     });
+//     const compatScore = await getCompatScore(userWithBooks, retrievedBook);
 
-    const formattedBook = formatBook(retrievedBook);
-    formattedBook.compatabilityScore = compatScore;
-    await addBookView(user.id, retrievedBook, false);
-    res.status(201).send(formattedBook);
-  } catch (error) {
-    console.error(error);
-    res.status(400).send(error);
-  }
-};
+//     const formattedBook = formatBook(retrievedBook);
+//     formattedBook.compatabilityScore = compatScore;
+//     await addBookView(user.id, retrievedBook, false);
+//     res.status(201).send(formattedBook);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(400).send(error);
+//   }
+// };
 
 // const getBookDetails = async (req, res) => {
 //   const user = req.user;
@@ -94,9 +94,33 @@ const viewBookDetails = async (req, res) => {
   }
 };
 
+const getBookWithScore = async (req, res) => {
+  const user = req.user;
+  try {
+    const { googleBook } = req.body;
+    const userWithBooks = await User.findOne({
+      where: { id: user.id },
+      include: Book,
+    });
+    let isFormatted = true;
+    let formattedBook = googleBook;
+    if (book.volumeInfo) {
+      formattedBook = formatBook(googleBook);
+      isFormatted = false;
+    }
+    const compatScore = await getCompatScore(userWithBooks, formattedBook);
+    formattedBook.compatabilityScore = compatScore;
+    await addBookView(user.id, formattedBook, isFormatted);
+    res.status(201).send(formattedBook);
+  } catch (error) {
+    console.error(error);
+    res.status(400).send(error);
+  }
+};
+
 module.exports = {
   getRecommendedBooks,
   getBookByCover,
-  getBookBySearch,
   viewBookDetails,
+  getBookWithScore,
 };

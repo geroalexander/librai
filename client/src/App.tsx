@@ -19,7 +19,7 @@ function App() {
           <Route path="/" exact component={Dashboard}></Route>
           {/* <Route path="/profile" exact component={Profile}></Route> */}
           <Route path="/saved" exact component={Saved}></Route>
-          {/* <Route path="/details/:id" exact component={BookDetails}></Route> */}
+          <Route path="/details/:id" exact component={BookDetails}></Route>
           <Route path="/register" exact component={Dashboard}></Route>
           <Route path="/login" exact component={Login}></Route>
           <Route path="/form" exact component={Dashboard}></Route>
