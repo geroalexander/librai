@@ -85,7 +85,7 @@ export const _registrationForm = (books: Book[], rating: number) => async (
 export const _updateProfile = (
   profilePic: string | null,
   favoriteGenres: string[] | null,
-  email: string | ' null'
+  email: string | null
 ) => async (dispatch: AppDispatch) => {
   if (accessToken) {
     await updateProfile(accessToken, profilePic, favoriteGenres, email);

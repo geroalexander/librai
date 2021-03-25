@@ -12,6 +12,7 @@ import Avatar from '@material-ui/core/Avatar';
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { setLogout } from '../../Store/actions/auth';
+import { uploadProfilepic } from '../../ApiClientService/ImageUpload';
 
 interface ProfileScreenProps extends RouteComponentProps {}
 
@@ -20,10 +21,11 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
     (state: RootState) => state.userReducer?.userWithBooks
   );
   const dispatch = useDispatch();
+
   const fullName = `${user.firstName} ${user.lastName}`;
   const { favoriteGenres } = user;
-  user.profilePic = '';
 
+  // This needs to be taken out when linked up
   useEffect(() => {
     const getBooks = async () => {
       const action = await _getUserWithBooks();
@@ -33,36 +35,16 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
     getBooks();
   }, [dispatch]);
 
-  const renderFavoriteGenres =
-    favoriteGenres && favoriteGenres.length
-      ? favoriteGenres.map((genre: string, index: number) =>
-          index !== favoriteGenres.length - 1 ? (
-            <span key={genre}>{genre}, </span>
-          ) : (
-            <span key={genre}>{genre}</span>
-          )
-        )
-      : null;
-
-  const renderRatedBooks = user.books ? (
-    <div>
-      {user.books
-        .filter((book: Book) => book.interaction.rating !== null)
-        .map((book: Book) => (
-          <BookItem key={book.id} book={book} />
-        ))}
-    </div>
-  ) : (
-    <h1>No books yet</h1>
-  );
-
   const handleLogout = () => {
     dispatch(setLogout());
   };
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.files);
-    // dispatch(_updateProfile());
+  const handleUpdateProfilePic = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    if (!e.target.files) return;
+    const profilePictureUrl = await uploadProfilepic(e.target.files[0]);
+    dispatch(_updateProfile(profilePictureUrl, null, null));
   };
 
   return (
@@ -78,7 +60,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
             type="file"
             accept="image/*"
             capture="environment"
-            onChange={handleImageChange}
+            onChange={handleUpdateProfilePic}
           />
           {user.profilePic ? (
             <Avatar
@@ -95,9 +77,31 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
         <h1>{fullName}</h1>
         <p className="email">{user.email}</p>
         <h5 className="fav-genres-header">Favorite Genres</h5>
-        <p className="fav-genres">{renderFavoriteGenres}</p>
+        <p className="fav-genres">
+          {favoriteGenres && favoriteGenres.length
+            ? favoriteGenres.map((genre: string, index: number) =>
+                index !== favoriteGenres.length - 1 ? (
+                  <span key={genre}>{genre}, </span>
+                ) : (
+                  <span key={genre}>{genre}</span>
+                )
+              )
+            : null}
+        </p>
       </div>
-      <div className="rated-books">{renderRatedBooks}</div>
+      <div className="rated-books">
+        {user.books ? (
+          <div>
+            {user.books
+              .filter((book: Book) => book.interaction.rating !== null)
+              .map((book: Book) => (
+                <BookItem key={book.id} book={book} />
+              ))}
+          </div>
+        ) : (
+          <h1>No books yet</h1>
+        )}
+      </div>
     </div>
   );
 };
