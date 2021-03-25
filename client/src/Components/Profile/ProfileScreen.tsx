@@ -1,11 +1,11 @@
 //BEN
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { RootState } from '../../index';
 import { User } from '../../Interfaces/userObject';
 import { Book } from '../../Interfaces/bookObject';
-import { _getUserWithBooks, _updateProfile } from '../../Store/actions/users';
+import { _updateProfile } from '../../Store/actions/users';
 import './ProfileScreen.css';
 import BookItem from '../Shared/BookItem';
 import Avatar from '@material-ui/core/Avatar';
@@ -19,43 +19,26 @@ interface ProfileScreenProps extends RouteComponentProps {}
 
 const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
   const user: User = useSelector(
-    (state: RootState) => state.userReducer?.userWithBooks
+    (state: RootState) => state.userReducer.userWithBooks
   );
   const dispatch = useDispatch();
 
   const fullName = `${user.firstName} ${user.lastName}`;
   const { favoriteGenres } = user;
 
-  // This needs to be taken out when linked up
-  useEffect(() => {
-    const getBooks = async () => {
-      const action = await _getUserWithBooks();
-      dispatch(action);
-    };
-
-    getBooks();
-  }, [dispatch]);
-
   const handleLogout = () => {
     dispatch(setLogout());
   };
 
-  // const handleUpdateProfilePic = async (
-  //   e: React.ChangeEvent<HTMLInputElement>
-  // ) => {
-  //   if (!e.target.files) return;
-  //   const base64Image = await imageToBase64(e.target.files[0]).then(
-  //     (data) => data
-  //   );
-  //   const profilePictureUrl = await uploadProfilepic(base64Image);
-  //   console.log('PROFILEPICTURE!!!!! ', profilePictureUrl);
-  //   dispatch(_updateProfile(profilePictureUrl, null, null));
-  // };
-
-  const testUrl =
-    'https://res.cloudinary.com/benpearce9/image/upload/v1616679101/Librai/zewxt5esrjckcnaoghgx.jpg';
-  const handleUpdateProfilePic = () => {
-    dispatch(_updateProfile(testUrl, null, null));
+  const handleUpdateProfilePic = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    if (!e.target.files) return;
+    const base64Image = await imageToBase64(e.target.files[0]).then(
+      (base64EncodedImageString) => base64EncodedImageString
+    );
+    const profilePictureUrl = await uploadProfilepic(base64Image);
+    dispatch(_updateProfile(profilePictureUrl, null, null));
   };
 
   return (
@@ -72,14 +55,14 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
             style={{ display: 'none' }}
             type="file"
             accept="image/*"
-            capture="environment"
+            // capture="environment"
             onChange={handleUpdateProfilePic}
           />
           {user.profilePic ? (
             <Avatar
               className="profile-picture"
               alt={fullName}
-              src={String(user.profilePic)}
+              src={user.profilePic ? user.profilePic : undefined}
             />
           ) : (
             <Avatar className="profile-picture">

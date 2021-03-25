@@ -11,34 +11,33 @@ const SearchBar = () => {
   const [searchBoxVisible, setSearchBoxVisible] = useState<boolean>(false);
 
   const debouncedSave = useCallback(
-    debounce(
-      (nextValue) =>
-        getGoogleBook(nextValue).then((res) => setSearchResult(res)),
-      1000
-    ),
+    debounce((nextValue) => {
+      if (nextValue)
+        getGoogleBook(nextValue).then((res) => setSearchResult(res));
+      return;
+    }, 1000),
     []
   );
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value: nextValue } = event.target;
     setSearchTerm(nextValue);
+    setSearchBoxVisible(!!nextValue);
     debouncedSave(nextValue);
-    setSearchBoxVisible(true);
   };
-
   const node = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('click', handleClick);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('click', handleClick);
     };
   }, []);
 
-  const handleClickOutside = (event: MouseEvent) => {
-    if (node.current) {
-      // if (node.current.contains(event.target)) {
-      //   return;
-      // }
+  const handleClick = (event: MouseEvent) => {
+    if (node.current && event.currentTarget) {
+      if (node.current.contains(event.currentTarget as Node)) {
+        return;
+      }
     }
     setSearchBoxVisible(false);
     setSearchTerm('');
@@ -54,7 +53,7 @@ const SearchBar = () => {
         className="search-input"
       />
       {searchBoxVisible && searchResult && searchResult.length ? (
-        <div id="mapContainer" className="overlay" ref={node}>
+        <div id="search-box" className="overlay" ref={node}>
           {searchResult.map((book: any) => (
             <Link
               to={{
@@ -67,9 +66,9 @@ const SearchBar = () => {
                 <img
                   className="book-image"
                   src={
-                    book.volumeInfo.imageLinks.thumbnail
-                      ? book.volumeInfo.imageLinks.thumbnail
-                      : undefined
+                    book.volumeInfo.imageLinks === undefined
+                      ? ''
+                      : `${book.volumeInfo.imageLinks.thumbnail}`
                   }
                   alt={book.volumeInfo.title}
                 />
