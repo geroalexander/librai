@@ -1,16 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap");
 .login-form {
-  background-color: #f5d541;
   padding: 1em;
 }
 
-.login-form .form-group {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.login-form .form-inner {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 9rem;
+}
+
+.login-form .title {
+  margin-bottom: 2rem;
+  color: #fffef9;
+  font-family: "Comfortaa", cursive;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.login-form .form-group {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   padding: 0.1em;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.login-form .form-group .input {
+  background-color: #23076e;
+  border-radius: 25px;
+  height: 4em;
+  width: 20em;
+  color: #dfd5fc;
+  border-style: hidden;
+  margin: 1em;
+  padding-left: 3.6em;
+}
+
+.login-form .form-group ::-webkit-input-placeholder {
+  color: #fffef9;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+}
+
+.login-form .form-group :-ms-input-placeholder {
+  color: #fffef9;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+}
+
+.login-form .form-group ::-ms-input-placeholder {
+  color: #fffef9;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+}
+
+.login-form .form-group ::placeholder {
+  color: #fffef9;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+}
+
+.login-form .form-group .icon {
+  position: absolute;
+  left: 22px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  padding-top: 3px;
+}
+
+.login-form .submitButton {
+  font-weight: bold;
+  margin: 2rem;
+  border-radius: 25px;
+  height: 3em;
+  width: 12em;
+  background-color: #dfd5fc;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8rem;
+  color: #23076e;
+  border-style: hidden;
+  -webkit-box-shadow: 1px 2px 2px 2px;
+          box-shadow: 1px 2px 2px 2px;
 }
 /*# sourceMappingURL=Login.css.map */

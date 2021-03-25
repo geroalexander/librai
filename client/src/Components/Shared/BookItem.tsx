@@ -22,7 +22,17 @@ const BookItem: React.FC<BookItemProps> = ({ book }) => {
 
   return (
     <div className="book-item">
-      <img src={String(book.smallThumbnail)} alt="" />
+      <Link
+        to={{
+          pathname: `/details/${book.id}`,
+          state: { book, isNew: false },
+        }}
+      >
+        <img
+          src={book.smallThumbnail ? book.smallThumbnail : undefined}
+          alt={book.title}
+        />
+      </Link>
       <div className="book-info">
         <h2 className="book-title">{book.title}</h2>
         <p className="book-authors">{book.authors[0]}</p>
