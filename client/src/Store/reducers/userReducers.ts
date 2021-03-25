@@ -8,6 +8,7 @@ import {
   ADD_SAVED_BOOK,
   DELETE_SAVED_BOOK,
   UPDATE_RATING,
+  UPDATE_PROFILE,
   DELETE_RATING,
 } from '../actions/ActionTypes';
 
@@ -77,6 +78,14 @@ function userReducer(state = initialState, action: AnyAction) {
         ...state,
         userWithBooks: newUserAfterBooksRating,
       };
+
+    case UPDATE_PROFILE:
+      const { profilePic, favoriteGenres, email } = action.payload;
+      let newUser = { ...state.userWithBooks };
+      if (profilePic) newUser.profilePic = profilePic;
+      if (favoriteGenres) newUser.favoriteGenres = favoriteGenres;
+      if (email) newUser.email = email;
+      return { ...state, userWithBooks: newUser };
 
     case DELETE_RATING:
       console.log(oldUserWithBooks, '<-----OLD USER WITH BOOKS');

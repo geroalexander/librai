@@ -5,12 +5,15 @@ import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import { RootState } from '../../index';
 import { User } from '../../Interfaces/userObject';
 import { Book } from '../../Interfaces/bookObject';
-import { _getUserWithBooks } from '../../Store/actions/users';
+import { _getUserWithBooks, _updateProfile } from '../../Store/actions/users';
 import './ProfileScreen.css';
 import BookItem from '../Shared/BookItem';
 import Avatar from '@material-ui/core/Avatar';
+import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { setLogout } from '../../Store/actions/auth';
+import { uploadProfilepic } from '../../ApiClientService/ImageUpload';
+import imageToBase64 from './imageToBase64';
 
 interface ProfileScreenProps extends RouteComponentProps {}
 
@@ -19,9 +22,11 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
     (state: RootState) => state.userReducer?.userWithBooks
   );
   const dispatch = useDispatch();
+
   const fullName = `${user.firstName} ${user.lastName}`;
   const { favoriteGenres } = user;
 
+  // This needs to be taken out when linked up
   useEffect(() => {
     const getBooks = async () => {
       const action = await _getUserWithBooks();
@@ -31,51 +36,83 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
     getBooks();
   }, [dispatch]);
 
-  const renderFavoriteGenres =
-    favoriteGenres && favoriteGenres.length
-      ? favoriteGenres.map((genre: string, index: number) =>
-          index !== favoriteGenres.length - 1 ? (
-            <span key={genre}>{genre}, </span>
-          ) : (
-            <span key={genre}>{genre}</span>
-          )
-        )
-      : null;
-
-  const renderRatedBooks = user.books ? (
-    <div>
-      {user.books
-        .filter((book: Book) => book.interaction.rating !== null)
-        .map((book: Book) => (
-          <BookItem key={book.id} book={book} />
-        ))}
-    </div>
-  ) : (
-    <h1>No books yet</h1>
-  );
-
   const handleLogout = () => {
     dispatch(setLogout());
+  };
+
+  // const handleUpdateProfilePic = async (
+  //   e: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   if (!e.target.files) return;
+  //   const base64Image = await imageToBase64(e.target.files[0]).then(
+  //     (data) => data
+  //   );
+  //   const profilePictureUrl = await uploadProfilepic(base64Image);
+  //   console.log('PROFILEPICTURE!!!!! ', profilePictureUrl);
+  //   dispatch(_updateProfile(profilePictureUrl, null, null));
+  // };
+
+  const testUrl =
+    'https://res.cloudinary.com/benpearce9/image/upload/v1616679101/Librai/zewxt5esrjckcnaoghgx.jpg';
+  const handleUpdateProfilePic = () => {
+    dispatch(_updateProfile(testUrl, null, null));
   };
 
   return (
     <div className="profile-screen">
       <div className="user-info">
         {/* This icon needs to be changed */}
-        <button className="logout-button" onClick={handleLogout}>
+        <button className="logout-button" onClick={handleUpdateProfilePic}>
           <ExitToAppIcon />
         </button>
-        <Avatar
-          className="profile-picture"
-          alt={fullName}
-          src={String(user.profilePic)}
-        />
+        <label>
+          <input
+            style={{ display: 'none' }}
+            type="file"
+            accept="image/*"
+            capture="environment"
+            onChange={handleUpdateProfilePic}
+          />
+          {user.profilePic ? (
+            <Avatar
+              className="profile-picture"
+              alt={fullName}
+              src={String(user.profilePic)}
+            />
+          ) : (
+            <Avatar className="profile-picture">
+              <AddPhotoAlternateIcon />
+            </Avatar>
+          )}
+        </label>
         <h1>{fullName}</h1>
         <p className="email">{user.email}</p>
         <h5 className="fav-genres-header">Favorite Genres</h5>
-        <p className="fav-genres">{renderFavoriteGenres}</p>
+        <p className="fav-genres">
+          {favoriteGenres && favoriteGenres.length
+            ? favoriteGenres.map((genre: string, index: number) =>
+                index !== favoriteGenres.length - 1 ? (
+                  <span key={genre}>{genre}, </span>
+                ) : (
+                  <span key={genre}>{genre}</span>
+                )
+              )
+            : null}
+        </p>
       </div>
-      <div className="rated-books">{renderRatedBooks}</div>
+      <div className="rated-books">
+        {user.books ? (
+          <div>
+            {user.books
+              .filter((book: Book) => book.interaction.rating !== null)
+              .map((book: Book) => (
+                <BookItem key={book.id} book={book} />
+              ))}
+          </div>
+        ) : (
+          <h1>No books yet</h1>
+        )}
+      </div>
     </div>
   );
 };
