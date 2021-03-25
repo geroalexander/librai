@@ -31,9 +31,16 @@ interface BookStatusBarProps extends RouteComponentProps {
 const BookStatusBar: React.FC<BookStatusBarProps> = ({ book }) => {
   const [isSaved, setIsSaved] = useState(false);
   const [rated, setRated] = useState(false);
-  const [rating, setRating] = useState(book.interaction.rating);
+  const [rating, setRating] = useState<any>(null);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (book.interaction) {
+      book.interaction.isSaved && setIsSaved(true);
+      book.interaction.rating && setRating(book.interaction.rating);
+    }
+  }, []);
 
   const handleRatingIcon = () => {
     if (rating === 1)
@@ -77,7 +84,7 @@ const BookStatusBar: React.FC<BookStatusBarProps> = ({ book }) => {
     setRated(!rated);
   };
 
-  // const handleSaveChange = () => {};
+  const handleSaveChange = () => {};
 
   return (
     <div className="book-status">
