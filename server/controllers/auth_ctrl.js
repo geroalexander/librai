@@ -73,6 +73,7 @@ const logout = async (req, res) => {
   try {
     // delete the token client side upon logout
     // invalidate the token (check how)
+    res.sendStatus(200);
   } catch (error) {}
 };
 
