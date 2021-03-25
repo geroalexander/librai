@@ -42,6 +42,10 @@ $opensans: 'Open Sans', sans-serif;
     height: 4rem;
     border-radius: 5px;
     width:3rem;
+    // to hide alt text
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
   }
   .book-title {
     flex: 4;

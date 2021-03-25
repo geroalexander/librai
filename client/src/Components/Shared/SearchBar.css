@@ -55,6 +55,9 @@
   height: 4rem;
   border-radius: 5px;
   width: 3rem;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .search-bar .book-title {

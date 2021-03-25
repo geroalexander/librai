@@ -36,7 +36,7 @@ const SavedScreen: React.FC<SavedScreenProps> = (props) => {
           { books
             .filter((book: Book) => book.interaction.rating === null)
             .map((book: Book) =>
-              <Link to={{ pathname: `/details/${book.id}`, state: book}} style={{ textDecoration: 'none' }}>
+              <Link to={{ pathname: `/details/${book.id}`, state: {book}}} style={{ textDecoration: 'none' }}>
               <BookItem key={book.id} book={book}/>
               </Link>
             )
