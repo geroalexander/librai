@@ -76,6 +76,7 @@ const BookStatusBar: React.FC<BookStatusBarProps> = ({ book }) => {
       const action = await _updateRating(book, newRating);
       dispatch(action);
       setRating(newRating);
+      setIsSaved(false);
     } else {
       const action = await _deleteRating(book);
       dispatch(action);
@@ -84,7 +85,16 @@ const BookStatusBar: React.FC<BookStatusBarProps> = ({ book }) => {
     setRated(!rated);
   };
 
-  const handleSaveChange = () => {};
+  const handleSaveChange = async () => {
+    if (isSaved) {
+      const action = await _deleteSavedBook(book);
+      dispatch(action);
+    } else {
+      const action = await _addSavedBook(book);
+      dispatch(action);
+    }
+    setIsSaved(!isSaved);
+  };
 
   return (
     <div className="book-status">
@@ -102,6 +112,7 @@ const BookStatusBar: React.FC<BookStatusBarProps> = ({ book }) => {
             }
             background="#c8baf3"
             onClick={() => {
+              if (rated) handleRatingChange(null);
               setRated(!rated);
             }}
             size={60}
@@ -164,9 +175,7 @@ const BookStatusBar: React.FC<BookStatusBarProps> = ({ book }) => {
                   />
                 }
                 background="#c8baf3"
-                onClick={() => {
-                  setIsSaved(!isSaved);
-                }}
+                onClick={handleSaveChange}
                 size={60}
               />
             </FloatingMenu>

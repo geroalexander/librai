@@ -29,6 +29,8 @@ const accessToken = REACT_APP_ACCESS_TOKEN;
 export const _loadDashboard = () => async (dispatch: AppDispatch) => {
   if (accessToken) {
     const userDashboard = await loadDashboard(accessToken);
+    console.log(userDashboard);
+
     if (userDashboard)
       dispatch({ type: LOAD_DASHBOARD, payload: userDashboard });
   }
@@ -43,7 +45,7 @@ export const _getUserWithBooks = () => async (dispatch: AppDispatch) => {
 
 export const _addSavedBook = (book: Book) => async (dispatch: AppDispatch) => {
   if (accessToken) {
-    const { savedBook } = await addSavedBook(accessToken, book);
+    const savedBook = await addSavedBook(accessToken, book);
     dispatch({ type: ADD_SAVED_BOOK, payload: savedBook });
   }
 };

@@ -76,7 +76,7 @@ const deleteSavedBook = (accessToken: string, book: Book) => {
 };
 
 const deleteRating = (accessToken: string, book: Book) => {
-  return fetch(`${REACT_APP_BASE_URL}/user/saved`, {
+  return fetch(`${REACT_APP_BASE_URL}/user/rating`, {
     method: 'DELETE',
     credentials: 'include',
     mode: 'cors',

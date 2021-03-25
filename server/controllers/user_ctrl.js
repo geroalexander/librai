@@ -102,8 +102,13 @@ const addSavedBook = async (req, res) => {
       through: { isSaved: true, compatabilityScore },
     });
 
-    await bookmark(user.id, targetBook); // book object (book.id for id)
-    res.status(201).send(targetBook);
+    await bookmark(user.id, targetBook);
+    const userWithBooks = await User.findOne({
+      where: { id: user.id },
+      attributes: { exclude: ['password'] },
+      include: [{ model: Book, where: { id } }],
+    });
+    res.status(201).send(userWithBooks.books[0]);
   } catch (error) {
     console.error(error, 'Could not add saved book, fn.addSavedBook');
     res.status(400).send(error);

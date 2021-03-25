@@ -12,8 +12,10 @@ const authMiddleware = async (req, res, next) => {
   try {
     // verify & decode token payload,
     const { _id } = jwt.verify(token, SECRET_KEY);
+    console.log(_id, 'ID');
     // attempt to find user object and set to req
     const user = await User.findOne({ where: { id: _id } });
+    console.log(user, 'USER');
     if (!user) return res.sendStatus(401);
     req.user = user;
     next();
