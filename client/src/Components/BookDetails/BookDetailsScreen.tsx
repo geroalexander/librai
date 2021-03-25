@@ -89,7 +89,7 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
               <p className="subtitle">N/A</p>
             )}
           </div>
-          <div>
+          <div className="publisher-wrapper">
             <p className="midtitle">Publisher</p>
             {book.publisher ? (
               <p className="subtitle">{book.publisher} </p>

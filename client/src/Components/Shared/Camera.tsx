@@ -10,20 +10,27 @@ const { REACT_APP_ACCESS_TOKEN } = process.env;
 // const accessToken: string | null = localStorage.getItem('accessToken');
 const accessToken = REACT_APP_ACCESS_TOKEN;
 
-const Camera = () => {
+interface CameraProps {
+  setIsLoading: (value: React.SetStateAction<boolean>) => void;
+}
+
+const Camera: React.FC<CameraProps> = ({ setIsLoading }) => {
   const history = useHistory();
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsLoading(true);
     if (!e.target.files) return;
     const base64Image = await imageToBase64(e.target.files[0]).then(
       (base64EncodedImageString) => base64EncodedImageString
     );
-
     const cloudURL = await uploadToCloud(base64Image);
 
     let book;
     if (accessToken) book = await getBookByCover(accessToken, cloudURL);
     if (book) {
+      console.log(book, 'RETRIEVED BOOK');
+
+      setIsLoading(false);
       history.push({
         pathname: `/details/${book.id}`,
         state: { book, isNew: false },

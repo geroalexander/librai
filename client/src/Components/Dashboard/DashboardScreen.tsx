@@ -18,8 +18,7 @@ import secondBookAnim from '../../Animations/book-animation.json';
 interface DashboardScreenProps extends RouteComponentProps {}
 
 const Dashboard: React.FC<DashboardScreenProps> = () => {
-  const [books, setBooks] = useState([]);
-  const [recommended, setRecommended] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const dispatch = useDispatch();
   const recommendations = useSelector(
@@ -39,24 +38,21 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
   }, []);
 
   useEffect(() => {
-    if (userWithBooks && userWithBooks.books) setBooks(userWithBooks.books);
-  }, [userWithBooks]);
+    if (userWithBooks && userWithBooks.books && recommendations)
+      setIsLoading(false);
+  }, [userWithBooks, recommendations]);
 
-  useEffect(() => {
-    if (recommendations) setRecommended(recommendations);
-  }, [recommendations]);
-
-  if (books.length) {
+  if (!isLoading) {
     return (
       <div className="dashboard">
         <header>
           <SearchBar />
-          <Camera />
+          <Camera setIsLoading={setIsLoading} />
         </header>
         <div className="bookwrapper">
           <p className="title">Recommended</p>
           <div className="booklist">
-            {recommended.map((book: Book) => (
+            {recommendations.map((book: Book) => (
               <div className="book-preview" key={`rec-${book.id}`}>
                 <Link
                   to={{
@@ -76,7 +72,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
         <div className="bookwrapper-small">
           <p className="title">Your favorites</p>
           <div className="booklist-small">
-            {books
+            {userWithBooks.books
               .filter((b: Book) => b.interaction.rating === 1)
               .map((book: Book) => (
                 <div className="book-preview-small" key={`fav-${book.id}`}>
@@ -98,7 +94,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
         <div className="bookwrapper">
           <p className="title">Recently saved</p>
           <div className="booklist">
-            {books
+            {userWithBooks.books
               .filter((b: Book) => b.interaction.isSaved)
               .map((book: Book) => (
                 <div className="book-preview" key={`sav-${book.id}`}>

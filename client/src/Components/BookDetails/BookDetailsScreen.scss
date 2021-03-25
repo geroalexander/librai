@@ -20,8 +20,6 @@ $opensans: 'Open Sans', sans-serif;
     font-weight: bold;
   }
 
-  
-  
   .main-details {
     position: relative;
     background: linear-gradient(#2c0791, $PRIMARY_DARK);
@@ -55,7 +53,6 @@ $opensans: 'Open Sans', sans-serif;
       margin-left: 1.5rem;
       margin-top: 1rem;
 
-
       .title {
         color: $WHITE;
         font-size: 1.5rem;
@@ -64,7 +61,6 @@ $opensans: 'Open Sans', sans-serif;
         margin-bottom: 1em;
       }
 
-
       .small-title {
         color: $WHITE;
         font-size: 1rem;
@@ -72,16 +68,14 @@ $opensans: 'Open Sans', sans-serif;
         margin: 0;
         margin-bottom: 1em;
       }
-    
+
       .subtitle {
         color: $PRIMARY_WHITE;
         font-size: 0.75rem;
         font-family: $montserrat;
         margin: 0;
         margin-bottom: 0.5em;
-    
       }
-
     }
   }
 
@@ -90,20 +84,19 @@ $opensans: 'Open Sans', sans-serif;
     padding-left: 1.3rem;
     padding-right: 1.3rem;
 
-    .flexRow { 
+    .flexRow {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding-right: 0.2rem;
     }
-    
+
     .subtitle {
       color: #c8baf3;
       font-size: 0.75rem;
       font-family: $montserrat;
       margin: 0;
       margin-bottom: 3em;
-  
     }
 
     .title {
@@ -119,7 +112,12 @@ $opensans: 'Open Sans', sans-serif;
     .add-info {
       display: flex;
       justify-content: space-between;
-      padding-right: 3rem;
+      width: 100vw;
+
+      .publisher-wrapper {
+        max-width: 50vw;
+        padding-right: 2rem;
+      }
 
       .midtitle {
         color: $WHITE;
@@ -127,16 +125,11 @@ $opensans: 'Open Sans', sans-serif;
         font-family: $montserrat;
         margin: 0;
         margin-bottom: 1em;
-  
       }
-  
-      
     }
   }
-
 
   .footer {
     height: 5rem;
   }
-
 }

@@ -120,7 +120,12 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding-right: 3rem;
+  width: 100vw;
+}
+
+.details .sub-details .add-info .publisher-wrapper {
+  max-width: 50vw;
+  padding-right: 2rem;
 }
 
 .details .sub-details .add-info .midtitle {
