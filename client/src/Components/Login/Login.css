@@ -91,6 +91,7 @@
 }
 
 .login-form .submitButton {
+  font-weight: bold;
   margin: 2rem;
   border-radius: 25px;
   height: 3em;
