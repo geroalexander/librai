@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap");
+.reg-form-page {
+  height: 100vh;
+  width: 100vw;
+  display: 'flex';
+  -webkit-box-pack: 'center';
+      -ms-flex-pack: 'center';
+          justify-content: 'center';
+  -ms-flex-wrap: 'wrap';
+      flex-wrap: 'wrap';
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding-top: 6%;
+  padding-left: 10%;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #2c0791), to(#140245));
+  background: linear-gradient(#2c0791 1%, #140245 100%);
+}
+
+.reg-form-page header {
+  width: 90vw;
+}
+/*# sourceMappingURL=RegistrationForm.css.map */

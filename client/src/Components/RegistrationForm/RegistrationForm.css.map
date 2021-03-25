@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AACA,OAAO,CAAC,oJAAI;AAMZ,AAAA,cAAc,CAAC;EACb,MAAM,EAAE,KAAK;EACb,KAAK,EAAE,KAAK;EACZ,OAAO,EAAE,MAAM;EACf,eAAe,EAAE,QAAQ;EACzB,SAAS,EAAE,MAAM;EACjB,eAAe,EAAE,UAAU;EAC3B,WAAW,EAAE,EAAE;EACf,YAAY,EAAE,GAAG;EACjB,UAAU,EAAE,yCAA+C;CAK5D;;AAdD,AAWE,cAXY,CAWZ,MAAM,CAAC;EACL,KAAK,EAAE,IAAI;CACZ",
+    "sources": [
+        "RegistrationForm.scss",
+        "../../Theme/colorDefinitions.scss"
+    ],
+    "names": [],
+    "file": "RegistrationForm.css"
+}
