@@ -18,15 +18,13 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
   const [isNew, setIsNew] = useState(props.location.state.isNew);
   const [isLoading, setIsLoading] = useState(true);
 
-  // console.log(book.description);
-
-  // console.log(book.description.replace(/(<([^>]+)>)/gi, '\n'), 'HELLO');
-
   useEffect(() => {
     book && retrieveBookWithScore();
   }, []);
 
   const retrieveBookWithScore = async () => {
+    console.log(book, ' BOOKK');
+
     if (
       isNew === true ||
       (!book.compatabilityScore && book.interaction.isSaved)
@@ -36,12 +34,11 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
         const formattedBook = await getBookWithScore(accessToken, book);
         setBook(formattedBook);
       }
+      console.log(book, '<------ BOOK');
     }
     setIsLoading(false);
     accessToken && (await viewBookDetails(accessToken, book));
   };
-
-  console.log(book.title.length);
 
   return !isLoading ? (
     <div className="details">

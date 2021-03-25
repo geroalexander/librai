@@ -1,10 +1,10 @@
 {
-  "version": 3,
-  "mappings": "AAEA,AAAA,WAAW,CAAC;EACV,gBAAgB,ECCL,OAAO;EDAlB,OAAO,EAAE,GAAG;CAOb;;AATD,AAIE,WAJS,CAIT,WAAW,CAAC;EACV,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,OAAO,EAAE,KAAK;CACf",
-  "sources": [
-    "Login.scss",
-    "../../Theme/colorDefinitions.scss"
-  ],
-  "names": [],
-  "file": "Login.css"
+    "version": 3,
+    "mappings": "AAEA,AAAA,WAAW,CAAC;EACV,gBAAgB,ECCL,OAAO;EDAlB,OAAO,EAAE,GAAG;CAOb;;AATD,AAIE,WAJS,CAIT,WAAW,CAAC;EACV,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,OAAO,EAAE,KAAK;CACf",
+    "sources": [
+        "Login.scss",
+        "../../Theme/colorDefinitions.scss"
+    ],
+    "names": [],
+    "file": "Login.css"
 }

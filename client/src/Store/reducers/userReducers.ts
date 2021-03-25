@@ -66,12 +66,18 @@ function userReducer(state = initialState, action: AnyAction) {
       };
 
     case UPDATE_RATING:
+      console.log(state, 'state');
+      console.log(action.payload, 'PAYLOAD');
+
       const newBooksAfterRating = oldUserWithBooks?.books?.filter(
-        (b: Book) => b.id !== action.payload.savedBook.id
+        (b: Book) => b.id !== action.payload.id
       );
+
+      console.log(newBooksAfterRating, 'newBooksA');
+
       const newUserAfterBooksRating = {
         ...state.userWithBooks,
-        books: [newBooksAfterRating, action.payload.savedBook],
+        books: [newBooksAfterRating, action.payload],
       };
       return {
         ...state,

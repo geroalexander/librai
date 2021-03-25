@@ -61,7 +61,7 @@ export const _updateRating = (book: Book, rating: number) => async (
   dispatch: AppDispatch
 ) => {
   if (accessToken) {
-    const { savedBook } = await updateRating(accessToken, book, rating);
+    const savedBook = await updateRating(accessToken, book, rating);
     dispatch({ type: UPDATE_RATING, payload: savedBook });
   }
 };

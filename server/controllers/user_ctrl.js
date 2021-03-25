@@ -58,10 +58,49 @@ const addSavedBook = async (req, res) => {
   const user = req.user;
   try {
     const { book } = req.body;
-    let targetBook = await Book.findOne({ where: { id: book.id } });
+    const { compatabilityScore } = book;
+    const {
+      id,
+      authors,
+      title,
+      subtitle,
+      description,
+      pageCount,
+      categories,
+      publisher,
+      publishedDate,
+      averageRating,
+      ratingsCount,
+      thumbnail,
+      smallThumbnail,
+      price,
+      currency,
+    } = book;
 
-    if (!targetBook) targetBook = await Book.create(book);
-    await user.addBook(targetBook, { through: { isSaved: true } });
+    let targetBook = await Book.findOne({ where: { id } });
+
+    if (!targetBook)
+      targetBook = await Book.create({
+        id,
+        authors,
+        title,
+        subtitle,
+        description,
+        pageCount,
+        categories,
+        publisher,
+        publishedDate,
+        averageRating,
+        ratingsCount,
+        thumbnail,
+        smallThumbnail,
+        price,
+        currency,
+      });
+
+    await user.addBook(targetBook, {
+      through: { isSaved: true, compatabilityScore },
+    });
 
     await bookmark(user.id, targetBook); // book object (book.id for id)
     res.status(201).send(targetBook);
@@ -75,20 +114,64 @@ const updateRating = async (req, res) => {
   const user = req.user;
   try {
     const { book, rating } = req.body;
-    let targetBook = await Book.findOne({ where: { id: book.id } });
-    if (!targetBook) targetBook = await Book.create(book);
+    const { compatabilityScore } = book;
+    const {
+      id,
+      authors,
+      title,
+      subtitle,
+      description,
+      pageCount,
+      categories,
+      publisher,
+      publishedDate,
+      averageRating,
+      ratingsCount,
+      thumbnail,
+      smallThumbnail,
+      price,
+      currency,
+    } = book;
+
+    let targetBook = await Book.findOne({ where: { id } });
+    if (!targetBook)
+      targetBook = await Book.create({
+        id,
+        authors,
+        title,
+        subtitle,
+        description,
+        pageCount,
+        categories,
+        publisher,
+        publishedDate,
+        averageRating,
+        ratingsCount,
+        thumbnail,
+        smallThumbnail,
+        price,
+        currency,
+      });
+
     const targetInteraction = await Interaction.findOne({
       where: { userId: user.id, bookId: book.id },
     });
-    if (targetInteraction) {
-      await targetInteraction.update({ rating: rating });
-      // await bookRating(user.id, book, rating); // book object (book.id for id)
-      res.status(203).send(targetInteraction);
-    }
-    await user.addBook(targetBook, { through: { rating: rating } });
 
-    // await bookRating(user.id, targetBook, rating); // book object (book.id for id)
-    res.status(201).send(targetBook);
+    if (targetInteraction) {
+      await targetInteraction.update({ rating, isSaved: false });
+      await bookRating(user.id, targetBook, rating); // book object (book.id for id)
+    } else {
+      await user.addBook(targetBook, {
+        through: { rating, compatabilityScore, isSaved: false },
+      });
+      await bookRating(user.id, targetBook, rating); // book object (book.id for id)
+    }
+    const userWithBooks = await User.findOne({
+      where: { id: user.id },
+      attributes: { exclude: ['password'] },
+      include: [{ model: Book, where: { id } }],
+    });
+    res.status(201).send(userWithBooks.books[0]);
   } catch (error) {
     console.error(error, 'Could not update rating, fn.updateRating');
     res.status(400).send(error);
