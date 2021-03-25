@@ -7,6 +7,7 @@ import BookItem from '../Shared/BookItem';
 import { _getUserWithBooks } from '../../Store/actions/users';
 import './SavedScreen.css';
 import { Book } from '../../Interfaces/bookObject';
+import BookmarksOutlinedIcon from '@material-ui/icons/BookmarksOutlined';
 
 interface SavedScreenProps extends RouteComponentProps {}
 
@@ -19,6 +20,7 @@ const SavedScreen: React.FC<SavedScreenProps> = (props) => {
     <div className="saved-screen">
       <div className="title-wrapper">
         <h1 className="title">Saved</h1>
+        <BookmarksOutlinedIcon style={{ fontSize: 35, color: '#fffef9' }} />
       </div>
       {books ? (
         <div className="saved-list">

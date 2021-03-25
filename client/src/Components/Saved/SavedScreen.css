@@ -7,6 +7,12 @@
 }
 
 .saved-screen .title-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border: solid;
   border-color: #dfd5fc;
   border-width: 0;
@@ -20,6 +26,7 @@
 .saved-screen .title-wrapper .title {
   color: #fffef9;
   font-family: "Montserrat", sans-serif;
+  margin-right: 0.5rem;
 }
 
 .saved-screen .saved-list {

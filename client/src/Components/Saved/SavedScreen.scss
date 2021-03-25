@@ -11,6 +11,8 @@ $opensans: 'Open Sans', sans-serif;
   background: linear-gradient(#2c0791 1%, $PRIMARY_DARK 100%);
 
   .title-wrapper {
+    display: flex;
+    align-items: center;
     border: solid;
     border-color: $PRIMARY_WHITE;
     border-width: 0;
@@ -23,7 +25,7 @@ $opensans: 'Open Sans', sans-serif;
     .title {
       color: $WHITE;
       font-family: $montserrat;
-      // padding-left: 1.5rem;
+      margin-right: 0.5rem;
     }
   }
   .saved-list {
