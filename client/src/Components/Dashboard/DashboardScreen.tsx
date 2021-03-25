@@ -9,6 +9,7 @@ import { Book } from '../../Interfaces/bookObject';
 import PhotoCameraRoundedIcon from '@material-ui/icons/PhotoCameraRounded';
 import PhotoCameraOutlinedIcon from '@material-ui/icons/PhotoCameraOutlined';
 import SearchBar from '../Shared/SearchBar';
+import Camera from '../Shared/Camera';
 
 interface DashboardScreenProps extends RouteComponentProps {}
 
@@ -44,31 +45,19 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
     if (recommendations) setRecommended(recommendations);
   }, [recommendations]);
 
-  const handleImageChange = () => {};
   console.log('books', books);
   if (books.length) {
     return (
       <div className="dashboard">
         <header>
           <SearchBar />
-          <label>
-            <input
-              style={{ display: 'none' }}
-              type="file"
-              accept="image/*"
-              capture="environment"
-              onChange={handleImageChange}
-            />
-            <PhotoCameraOutlinedIcon
-              style={{ fontSize: 30, color: '#fffef9' }}
-            />
-          </label>
+          <Camera />
         </header>
         <div className="bookwrapper">
           <p className="title">Recommended</p>
           <div className="booklist">
             {recommended.map((book: Book) => (
-              <div className="book-preview">
+              <div className="book-preview" key={`rec-${book.id}`}>
                 <Link
                   to={{
                     pathname: `/details/${book.id}`,
@@ -90,7 +79,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
             {books
               .filter((b: Book) => b.interaction.rating === 1)
               .map((book: Book) => (
-                <div className="book-preview-small" key={book.id}>
+                <div className="book-preview-small" key={`fav-${book.id}`}>
                   <Link
                     to={{
                       pathname: `/details/${book.id}`,
@@ -112,7 +101,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
             {books
               .filter((b: Book) => b.interaction.isSaved)
               .map((book: Book) => (
-                <div className="book-preview" key={book.id}>
+                <div className="book-preview" key={`sav-${book.id}`}>
                   <Link
                     to={{
                       pathname: `/details/${book.id}`,

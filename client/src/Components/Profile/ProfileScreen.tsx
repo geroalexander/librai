@@ -13,7 +13,7 @@ import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import { setLogout } from '../../Store/actions/auth';
 import { uploadProfilepic } from '../../ApiClientService/ImageUpload';
-import imageToBase64 from './imageToBase64';
+import imageToBase64 from '../Shared/imageToBase64';
 
 interface ProfileScreenProps extends RouteComponentProps {}
 

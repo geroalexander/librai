@@ -14,6 +14,7 @@ const getCompatScore = async (user, book) => {
       if (retrievedBook.id === book.id) return 10;
       let similarityScore = 0;
       if (retrievedBook.volumeInfo.categories) {
+        console.log('book---->', book);
         const sameGenre = retrievedBook.volumeInfo.categories.some((c) =>
           book.categories.includes(c),
         );
