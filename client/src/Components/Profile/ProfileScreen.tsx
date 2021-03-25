@@ -19,7 +19,7 @@ interface ProfileScreenProps extends RouteComponentProps {}
 
 const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
   const user: User = useSelector(
-    (state: RootState) => state.userReducer?.userWithBooks
+    (state: RootState) => state.userReducer.userWithBooks
   );
   const dispatch = useDispatch();
 
@@ -40,29 +40,22 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
     dispatch(setLogout());
   };
 
-  // const handleUpdateProfilePic = async (
-  //   e: React.ChangeEvent<HTMLInputElement>
-  // ) => {
-  //   if (!e.target.files) return;
-  //   const base64Image = await imageToBase64(e.target.files[0]).then(
-  //     (data) => data
-  //   );
-  //   const profilePictureUrl = await uploadProfilepic(base64Image);
-  //   console.log('PROFILEPICTURE!!!!! ', profilePictureUrl);
-  //   dispatch(_updateProfile(profilePictureUrl, null, null));
-  // };
-
-  const testUrl =
-    'https://res.cloudinary.com/benpearce9/image/upload/v1616679101/Librai/zewxt5esrjckcnaoghgx.jpg';
-  const handleUpdateProfilePic = () => {
-    dispatch(_updateProfile(testUrl, null, null));
+  const handleUpdateProfilePic = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    if (!e.target.files) return;
+    const base64Image = await imageToBase64(e.target.files[0]).then(
+      (base64EncodedImageString) => base64EncodedImageString
+    );
+    const profilePictureUrl = await uploadProfilepic(base64Image);
+    dispatch(_updateProfile(profilePictureUrl, null, null));
   };
 
   return (
     <div className="profile-screen">
       <div className="user-info">
         {/* This icon needs to be changed */}
-        <button className="logout-button" onClick={handleUpdateProfilePic}>
+        <button className="logout-button" onClick={handleLogout}>
           <ExitToAppIcon />
         </button>
         <label>
@@ -77,7 +70,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
             <Avatar
               className="profile-picture"
               alt={fullName}
-              src={String(user.profilePic)}
+              src={user.profilePic ? user.profilePic : undefined}
             />
           ) : (
             <Avatar className="profile-picture">
