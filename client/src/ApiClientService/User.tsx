@@ -107,9 +107,9 @@ const registrationForm = (
 
 const updateProfile = (
   accessToken: string,
-  profilePic: string,
-  favoriteGenres: string[],
-  email: string
+  profilePic: string | null,
+  favoriteGenres: string[] | null,
+  email: string | null
 ) => {
   return fetch(`${REACT_APP_BASE_URL}/user/update`, {
     method: 'POST',
@@ -120,7 +120,7 @@ const updateProfile = (
       Authorization: `Bearer ${accessToken}`,
     },
     body: JSON.stringify({ profilePic, favoriteGenres, email }),
-  }).catch((err) => console.log('error with registrationForm', err));
+  }).catch((err) => console.log('error with updateProfile', err));
 };
 
 export {

@@ -5,10 +5,11 @@ import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import { RootState } from '../../index';
 import { User } from '../../Interfaces/userObject';
 import { Book } from '../../Interfaces/bookObject';
-import { _getUserWithBooks } from '../../Store/actions/users';
+import { _getUserWithBooks, _updateProfile } from '../../Store/actions/users';
 import './ProfileScreen.css';
 import BookItem from '../Shared/BookItem';
 import Avatar from '@material-ui/core/Avatar';
+import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { setLogout } from '../../Store/actions/auth';
 
@@ -21,6 +22,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
   const dispatch = useDispatch();
   const fullName = `${user.firstName} ${user.lastName}`;
   const { favoriteGenres } = user;
+  user.profilePic = '';
 
   useEffect(() => {
     const getBooks = async () => {
@@ -58,6 +60,11 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
     dispatch(setLogout());
   };
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.files);
+    // dispatch(_updateProfile());
+  };
+
   return (
     <div className="profile-screen">
       <div className="user-info">
@@ -65,11 +72,26 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
         <button className="logout-button" onClick={handleLogout}>
           <ExitToAppIcon />
         </button>
-        <Avatar
-          className="profile-picture"
-          alt={fullName}
-          src={String(user.profilePic)}
-        />
+        <label>
+          <input
+            style={{ display: 'none' }}
+            type="file"
+            accept="image/*"
+            capture="environment"
+            onChange={handleImageChange}
+          />
+          {user.profilePic ? (
+            <Avatar
+              className="profile-picture"
+              alt={fullName}
+              src={String(user.profilePic)}
+            />
+          ) : (
+            <Avatar className="profile-picture">
+              <AddPhotoAlternateIcon />
+            </Avatar>
+          )}
+        </label>
         <h1>{fullName}</h1>
         <p className="email">{user.email}</p>
         <h5 className="fav-genres-header">Favorite Genres</h5>
