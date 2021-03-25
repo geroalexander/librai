@@ -17,11 +17,11 @@ const uploadProfilepic = async (file: string) => {
     body: JSON.stringify(formData),
   };
 
-  const res = await fetch(cloudUrl, options)
+  const cloudinaryImage = await fetch(cloudUrl, options)
     .then((res) => res.json())
     .catch((error) => console.error(error));
 
-  return res.url;
+  return cloudinaryImage.url;
 };
 
 export { uploadProfilepic };
