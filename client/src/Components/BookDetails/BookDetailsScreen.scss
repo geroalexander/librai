@@ -1,0 +1,142 @@
+@import '../../Theme/colorDefinitions.scss';
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap');
+
+$comfortaa: 'Comfortaa', cursive;
+$montserrat: 'Montserrat', sans-serif;
+$opensans: 'Open Sans', sans-serif;
+
+.details {
+  height: 100vh;
+  width: 100vw;
+  background-color: $PRIMARY_DARK;
+  overflow: scroll;
+  padding-bottom: 10rem;
+
+  .italic {
+    font-style: italic;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+
+  
+  
+  .main-details {
+    position: relative;
+    background: linear-gradient(#2c0791, $PRIMARY_DARK);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    // align-items: center;
+    padding-top: 4rem;
+    padding-left: 1.3rem;
+    padding-right: 1.3rem;
+    // padding-bottom: 2rem;
+
+    .line {
+      position: absolute;
+      width: 93%;
+      bottom: 1rem;
+      border: none;
+      height: 0.6px;
+      background-color: $PRIMARY_WHITE;
+    }
+
+    img {
+      height: 13rem;
+      z-index: 1;
+      box-shadow: 0 0 12px -1px rgb(7, 6, 22);
+
+      // border-radius: 3px;
+    }
+
+    .text-wrapper {
+      margin-left: 1.5rem;
+      margin-top: 1rem;
+
+
+      .title {
+        color: $WHITE;
+        font-size: 1.5rem;
+        font-family: $montserrat;
+        margin: 0;
+        margin-bottom: 1em;
+      }
+
+
+      .small-title {
+        color: $WHITE;
+        font-size: 1rem;
+        font-family: $montserrat;
+        margin: 0;
+        margin-bottom: 1em;
+      }
+    
+      .subtitle {
+        color: $PRIMARY_WHITE;
+        font-size: 0.75rem;
+        font-family: $montserrat;
+        margin: 0;
+        margin-bottom: 0.5em;
+    
+      }
+
+    }
+  }
+
+  .sub-details {
+    // padding-top: 4rem;
+    padding-left: 1.3rem;
+    padding-right: 1.3rem;
+
+    .flexRow { 
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-right: 0.2rem;
+    }
+    
+    .subtitle {
+      color: #c8baf3;
+      font-size: 0.75rem;
+      font-family: $montserrat;
+      margin: 0;
+      margin-bottom: 3em;
+  
+    }
+
+    .title {
+      color: $WHITE;
+      font-size: 1.5rem;
+      font-family: $montserrat;
+      margin: 0;
+      margin-bottom: 1em;
+      // text-decoration: underline;
+      // text-decoration-color: $SECONDARY;
+    }
+
+    .add-info {
+      display: flex;
+      justify-content: space-between;
+      padding-right: 3rem;
+
+      .midtitle {
+        color: $WHITE;
+        font-size: 1.2rem;
+        font-family: $montserrat;
+        margin: 0;
+        margin-bottom: 1em;
+  
+      }
+  
+      
+    }
+  }
+
+
+  .footer {
+    height: 3rem;
+  }
+
+}
