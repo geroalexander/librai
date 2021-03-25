@@ -32,7 +32,6 @@ const register = async (req, res) => {
       userId: id,
       email: email,
     });
-
     res.status(201).send({ accessToken });
   } catch (error) {
     console.error(error, 'Could not register, fn.register');
@@ -42,18 +41,10 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   const { email, password } = req.body;
-  const hash = await bcrypt.hash(password, 10);
-  console.log('hash---->', hash);
   try {
     const user = await User.findOne({ where: { email } });
-    console.log('user---->', user);
-
     if (!user) res.status(404).send('No user found');
     const validatePassword = await bcrypt.compare(password, user.password);
-    console.log('validatePassword---->', typeof validatePassword);
-    console.log('password---->', password);
-    console.log('user.password---->', typeof user.password);
-
     if (!validatePassword) throw new Error();
     const accessToken = jwt.sign({ _id: user.id }, SECRET_KEY);
     res.status(200).send({ accessToken });
@@ -64,9 +55,14 @@ const login = async (req, res) => {
 };
 
 const form = async (req, res) => {
+  const user = req.user;
   // const { info } = req.body;
   // const { favoriteGenres, }
   try {
+    const { favoriteGenres, pastBooks } = req.body;
+    const userFromDB = await User.findOne({
+      where: { id: user.id },
+    });
   } catch (error) {
     console.error(error, 'Could not complete form. fn.form');
     res.status(400).send(error);

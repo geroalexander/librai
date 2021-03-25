@@ -2,18 +2,22 @@ import * as React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../..';
-import './Login.css';
-import { setLogin } from '../../Store/actions/auth';
+import './Register.css';
+import { setRegister } from '../../Store/actions/auth';
 
-const Login: React.FC = () => {
+const Register: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const onClickSubmitLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(setLogin({ email, password }));
+    dispatch(setRegister({ firstName, lastName, email, password }));
+    setFirstName('');
+    setLastName('');
     setEmail('');
     setPassword('');
   };
@@ -21,8 +25,26 @@ const Login: React.FC = () => {
   return (
     <form onSubmit={onClickSubmitLogin} className="login-form">
       <div className="form-inner">
-        <h2 className="title">Login</h2>
+        <h2 className="title">Register</h2>
         {/*ERROR*/}
+        <div className="form-group">
+          <label className="firstName">First Name</label>
+          <input
+            onChange={(e) => setFirstName(e.target.value)}
+            type="text"
+            name="firstName"
+            id="firstName"
+          />
+        </div>
+        <div className="form-group">
+          <label className="lastName">Last Name</label>
+          <input
+            onChange={(e) => setLastName(e.target.value)}
+            type="text"
+            name="lastName"
+            id="lastName"
+          />
+        </div>
         <div className="form-group">
           <label className="email">Email</label>
           <input
@@ -47,4 +69,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default Register;

@@ -5,8 +5,11 @@ const userCTRL = require('../controllers/user_ctrl');
 const authMiddleware = require('./auth/authMiddleware');
 
 // GET DASHBOARD INFO
-// auth
 router.get('/dashboard', authMiddleware, userCTRL.loadDashboard);
+
+// COMPLETE FORM OR UPDATE USER
+router.post('/form', authMiddleware, userCTRL.registrationForm);
+router.psot('/update', authMiddleware, userCTRL.updateProfile);
 
 // GET SAVED/READ BOOKS BY USER-ID
 router.get('/profile', authMiddleware, userCTRL.getUserWithBooks);

@@ -9,7 +9,7 @@ router.get('/recommend', authMiddleware, bookCTRL.getRecommendedBooks);
 
 // GET BOOK BY COVER/SEARCH (info sent as body)
 router.post('/cover', authMiddleware, bookCTRL.getBookByCover);
-router.post('/search', authMiddleware, bookCTRL.getBookBySearch);
+router.post('/score', authMiddleware, bookCTRL.getBookWithScore);
 
 // GET BOOK DETAILS
 // change auth

@@ -15,8 +15,7 @@ const middleware = applyMiddleware(ReduxThunk, logger);
 const store = createStore(reducers, middleware);
 
 export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
-// export type AppDispatch = ThunkDispatch<RootState, null, AnyAction>;
+export type AppDispatch = ThunkDispatch<RootState, null, AnyAction>;
 
 ReactDOM.render(
   <React.StrictMode>
