@@ -1,10 +1,10 @@
 {
-  "version": 3,
-  "mappings": "AAEA,AAAA,IAAI,CAAC;EACH,UAAU,EAAE,KAAK;EACjB,SAAS,EAAE,KAAK;EAChB,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,WAAW,EAAE,MAAM;EACnB,eAAe,EAAE,MAAM;EACvB,gBAAgB,ECTF,OAAO;CDUtB",
-  "sources": [
-    "App.scss",
-    "Theme/colorDefinitions.scss"
-  ],
-  "names": [],
-  "file": "App.css"
+    "version": 3,
+    "mappings": "AAEA,AAAA,IAAI,CAAC;EACH,UAAU,EAAE,KAAK;EACjB,SAAS,EAAE,KAAK;EAChB,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,WAAW,EAAE,MAAM;EACnB,gBAAgB,ECRF,OAAO;CDStB",
+    "sources": [
+        "App.scss",
+        "Theme/colorDefinitions.scss"
+    ],
+    "names": [],
+    "file": "App.css"
 }

@@ -35,11 +35,10 @@ const SearchBar = () => {
   }, []);
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (node && node.current) {
-      // if (node.current.contains(event.target)) {
-      //   // inside click
-      //   return;
-      // }
+    if (node.current) {
+        if (node.current.contains(event.target)) {
+        return;
+        }
     }
     setSearchBoxVisible(false);
     setSearchTerm('');
@@ -57,23 +56,35 @@ const SearchBar = () => {
       {searchBoxVisible && searchResult && searchResult.length ? (
         <div id="mapContainer" className="overlay" ref={node}>
           {searchResult.map((book: any) => (
-            <div className="book-preview-small" key={book.id}>
-              <img
-                className="book-image"
-                src={
-                  book.volumeInfo.imageLinks.thumbnail
-                    ? book.volumeInfo.imageLinks.thumbnail
-                    : undefined
-                }
-                alt={book.volumeInfo.title}
-              />
-              <h1 className="book-title">{book.volumeInfo.title}</h1>
-            </div>
+            <Link
+              to={{
+                pathname: `/details/${book.id}`,
+                state: { book, isNew: true },
+              }}
+              style={{ textDecoration: 'none', width: '100%' }}
+            >
+              <div className="book-preview-small" key={book.id}>
+                <img
+                  className="book-image"
+                  src = {
+                    book.volumeInfo.imageLinks.thumbnail
+                  ? book.volumeInfo.imageLinks.thumbnail
+                  : undefined
+                  }
+                  alt={book.volumeInfo.title}
+                />
+                <h1 className="book-title">
+                  {
+                    book.volumeInfo.title.length > 30
+                  ? `${book.volumeInfo.title.slice(0, 30)}...`
+                  : book.volumeInfo.title
+                  }
+                </h1>
+              </div>
+            </Link>
           ))}
         </div>
-      ) : (
-        null
-      )}
+      ) : null}
     </div>
   );
 };
