@@ -23,8 +23,8 @@ import { Book } from '../../Interfaces/bookObject';
 import { User } from '../../Interfaces/userObject';
 const { REACT_APP_ACCESS_TOKEN } = process.env;
 
-// const accessToken: string | null = localStorage.getItem('accessToken');
-const accessToken = REACT_APP_ACCESS_TOKEN;
+const accessToken: string | null = localStorage.getItem('accessToken');
+// const accessToken = REACT_APP_ACCESS_TOKEN;
 
 export const _loadDashboard = () => async (dispatch: AppDispatch) => {
   console.log(accessToken, 'accessToken');

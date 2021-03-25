@@ -5,11 +5,11 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  RouteComponentProps,
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from './index';
-
+import PrivateRoute from './Components/Routes/Private';
+import AuthRoute from './Components/Routes/Auth';
 import {
   Dashboard,
   Profile,
@@ -39,7 +39,6 @@ function App() {
           <Route path="/" render={() => <div>404</div>} />
         </Switch>
         {signedIn && <BottomTabNavigation />}
-        <BottomTabNavigation />
       </Router>
     </div>
   );

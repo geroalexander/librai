@@ -23,10 +23,11 @@ const Login: React.FC = () => {
   const onClickSubmitLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const action = await setLogin({ email, password });
+
     dispatch(action);
+    history.push('/');
     setEmail('');
     setPassword('');
-    history.push('/');
   };
 
   return (

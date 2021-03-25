@@ -17,7 +17,7 @@ import imageToBase64 from './imageToBase64';
 
 interface ProfileScreenProps extends RouteComponentProps {}
 
-const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
+const ProfileScreen: React.FC<ProfileScreenProps> = () => {
   const user: User = useSelector(
     (state: RootState) => state.userReducer.userWithBooks
   );
@@ -28,6 +28,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
 
   const handleLogout = () => {
     dispatch(setLogout());
+    // props.history.push('/login')
   };
 
   const handleUpdateProfilePic = async (
