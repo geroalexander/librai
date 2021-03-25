@@ -1,11 +1,11 @@
 //BEN
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { RootState } from '../../index';
 import { User } from '../../Interfaces/userObject';
 import { Book } from '../../Interfaces/bookObject';
-import { _getUserWithBooks, _updateProfile } from '../../Store/actions/users';
+import { _updateProfile } from '../../Store/actions/users';
 import './ProfileScreen.css';
 import BookItem from '../Shared/BookItem';
 import Avatar from '@material-ui/core/Avatar';
@@ -25,16 +25,6 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
 
   const fullName = `${user.firstName} ${user.lastName}`;
   const { favoriteGenres } = user;
-
-  // This needs to be taken out when linked up
-  useEffect(() => {
-    const getBooks = async () => {
-      const action = await _getUserWithBooks();
-      dispatch(action);
-    };
-
-    getBooks();
-  }, [dispatch]);
 
   const handleLogout = () => {
     dispatch(setLogout());
@@ -63,7 +53,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
             style={{ display: 'none' }}
             type="file"
             accept="image/*"
-            capture="environment"
+            // capture="environment"
             onChange={handleUpdateProfilePic}
           />
           {user.profilePic ? (
