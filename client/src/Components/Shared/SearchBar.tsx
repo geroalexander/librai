@@ -3,6 +3,7 @@ import React, { useState, useCallback } from 'react';
 import './SearchBar.css'
 import { getGoogleBook } from '../../ApiClientService/Book';
 import debounce from 'lodash/debounce';
+import { Link } from 'react-router-dom';
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -19,7 +20,7 @@ const SearchBar = () => {
 		// it references the same debouncedSave that was created initially
 		debouncedSave(nextValue);
 	};
-
+  console.log(searchResult)
   return (
     <div className="search-bar">
       <input type="text" value={searchTerm} onChange={handleChange}  className="search-input" />
@@ -34,7 +35,7 @@ const SearchBar = () => {
                   src={book.volumeInfo.imageLinks.thumbnail}
                   alt={book.title}
                 />
-              <h1 className="book-title">{book.volumeInfo.title}</h1>
+                <h1 className="book-title">{book.volumeInfo.title}</h1>
               </div>
             ))}
         </div>

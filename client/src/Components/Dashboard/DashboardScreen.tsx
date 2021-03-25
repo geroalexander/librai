@@ -47,8 +47,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
     return (
       <div className="dashboard">
         <header>
-          {/* <div className="search-placeholder"> */}
-            <SearchBar />
+          <SearchBar />
           <label>
             <input
               style={{ display: 'none' }}
@@ -81,7 +80,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
             {books
               .filter((b: Book) => b.interaction.rating === 1)
               .map((book: Book) => (
-                <div className="book-preview-small">
+                <div className="book-preview-small" key={book.id}>
                   <img
                     src={book.thumbnail ? book.thumbnail : undefined}
                     alt={book.title}
