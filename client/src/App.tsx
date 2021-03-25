@@ -7,6 +7,8 @@ import {
   Route,
   RouteComponentProps,
 } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from './index';
 
 import {
   Dashboard,
@@ -19,6 +21,10 @@ import {
 import BottomTabNavigation from './Components/BottomTab/BottomTab';
 
 function App() {
+  const signedIn = useSelector(
+    (state: RootState) => state.authReducer.signedIn
+  );
+
   return (
     <div className="App">
       <Router>
@@ -32,7 +38,7 @@ function App() {
           <Route path="/form" exact component={Dashboard}></Route>
           <Route path="/" render={() => <div>404</div>} />
         </Switch>
-        <BottomTabNavigation />
+        {signedIn && <BottomTabNavigation />}
       </Router>
     </div>
   );

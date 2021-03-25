@@ -6,24 +6,27 @@ import './Login.css';
 import { setLogin } from '../../Store/actions/auth';
 import LockIcon from '@material-ui/icons/Lock';
 import EmailIcon from '@material-ui/icons/Email';
-import { useHistory } from 'react-router-dom';
+import {
+  Link,
+  RouteComponentProps,
+  withRouter,
+  useHistory,
+} from 'react-router-dom';
 
-const Login: React.FC = (props) => {
+const Login: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch<AppDispatch>();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const onClickSubmitLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  const onClickSubmitLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(setLogin({ email, password }))
-      .then(() => {
-        setEmail('');
-        setPassword('');
-        history.push('/');
-      })
-      .catch((err) => console.log('catch', err));
+    const action = await setLogin({ email, password });
+    dispatch(action);
+    setEmail('');
+    setPassword('');
+    history.push('/');
   };
 
   return (
@@ -65,4 +68,4 @@ const Login: React.FC = (props) => {
   );
 };
 
-export default Login;
+export default withRouter(Login);

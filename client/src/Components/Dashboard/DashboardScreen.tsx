@@ -13,6 +13,7 @@ import SearchBar from '../Shared/SearchBar';
 interface DashboardScreenProps extends RouteComponentProps {}
 
 const Dashboard: React.FC<DashboardScreenProps> = () => {
+  console.log('dashboard loaded');
   const [books, setBooks] = useState([]);
   const [recommended, setRecommended] = useState([]);
 
@@ -27,10 +28,12 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
   useEffect(() => {
     const renderDashboard = async () => {
       const action = await _loadDashboard();
+      console.log('action', action);
       dispatch(action);
     };
 
     renderDashboard();
+    console.log('somethign');
   }, []);
 
   useEffect(() => {
@@ -42,7 +45,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
   }, [recommendations]);
 
   const handleImageChange = () => {};
-
+  console.log('books', books);
   if (books.length) {
     return (
       <div className="dashboard">
@@ -109,7 +112,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
             {books
               .filter((b: Book) => b.interaction.isSaved)
               .map((book: Book) => (
-                <div className="book-preview" key={book.id} >
+                <div className="book-preview" key={book.id}>
                   <Link
                     to={{
                       pathname: `/details/${book.id}`,

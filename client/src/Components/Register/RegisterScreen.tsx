@@ -4,7 +4,12 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../..';
 import './Register.css';
 import { setRegister } from '../../Store/actions/auth';
-import { Link, useHistory } from 'react-router-dom';
+import {
+  Link,
+  RouteComponentProps,
+  withRouter,
+  useHistory,
+} from 'react-router-dom';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import PersonIcon from '@material-ui/icons/Person';
 import LockIcon from '@material-ui/icons/Lock';
@@ -98,4 +103,4 @@ const Register: React.FC = (props) => {
   );
 };
 
-export default Register;
+export default withRouter(Register);
