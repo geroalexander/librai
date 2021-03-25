@@ -1,6 +1,6 @@
 const { REACT_APP_CLOUD_NAME, REACT_APP_UPLOAD_PRESET } = process.env;
 
-const uploadProfilepic = async (file: string) => {
+const uploadToCloud = async (file: string) => {
   const cloudUrl = `https://api.cloudinary.com/v1_1/${REACT_APP_CLOUD_NAME}/upload`;
   const formData = {
     file,
@@ -22,4 +22,4 @@ const uploadProfilepic = async (file: string) => {
   return cloudinaryImage.url;
 };
 
-export { uploadProfilepic };
+export { uploadToCloud };

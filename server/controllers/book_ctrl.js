@@ -35,8 +35,14 @@ const getBookByCover = async (req, res) => {
     const { image } = req.body;
     const searchQuery = await extractText(image);
     const retrievedBook = await fetchBook(searchQuery);
+    console.log('retrievedBook---->', retrievedBook);
+
     const formattedBook = formatBook(retrievedBook);
-    const compatScore = await getCompatScore(user, formattedBook);
+    const userWithBooks = await User.findOne({
+      where: { id: user.id },
+      include: Book,
+    });
+    const compatScore = await getCompatScore(userWithBooks, formattedBook);
     formattedBook.compatabilityScore = compatScore;
     await addBookView(user.id, retrievedBook, false);
     res.status(201).send(formattedBook);
