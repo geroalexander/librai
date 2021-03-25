@@ -68,7 +68,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
           <p className="title">Recommended</p>
           <div className="booklist">
             {recommended.map((book: Book) => (
-              <div className="book-preview">
+              <div className="book-preview" key={`rec-${book.id}`}>
                 <Link
                   to={{
                     pathname: `/details/${book.id}`,
@@ -90,7 +90,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
             {books
               .filter((b: Book) => b.interaction.rating === 1)
               .map((book: Book) => (
-                <div className="book-preview-small" key={book.id}>
+                <div className="book-preview-small" key={`fav-${book.id}`}>
                   <Link
                     to={{
                       pathname: `/details/${book.id}`,
@@ -112,7 +112,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
             {books
               .filter((b: Book) => b.interaction.isSaved)
               .map((book: Book) => (
-                <div className="book-preview" key={book.id}>
+                <div className="book-preview" key={`sav-${book.id}`}>
                   <Link
                     to={{
                       pathname: `/details/${book.id}`,
