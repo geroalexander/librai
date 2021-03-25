@@ -109,7 +109,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
             {books
               .filter((b: Book) => b.interaction.isSaved)
               .map((book: Book) => (
-                <div className="book-preview">
+                <div className="book-preview" key={book.id} >
                   <Link
                     to={{
                       pathname: `/details/${book.id}`,
