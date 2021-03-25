@@ -29,10 +29,10 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/" exact component={Dashboard}></Route>
-          <Route path="/profile" exact component={Profile}></Route>
-          <Route path="/saved" exact component={Saved}></Route>
-          <Route path="/details/:id" exact component={BookDetails}></Route>
+          <PrivateRoute path="/" exact component={Dashboard}></PrivateRoute>
+          <PrivateRoute path="/profile" exact component={Profile}></PrivateRoute>
+          <PrivateRoute path="/saved" exact component={Saved}></PrivateRoute>
+          <PrivateRoute path="/details/:id" exact component={BookDetails}></PrivateRoute>
           <Route path="/login" exact component={Login}></Route>
           <Route path="/register" exact component={Register}></Route>
           <Route path="/form" exact component={Dashboard}></Route>

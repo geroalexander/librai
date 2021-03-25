@@ -9,13 +9,16 @@ import { Book } from '../../Interfaces/bookObject';
 import PhotoCameraRoundedIcon from '@material-ui/icons/PhotoCameraRounded';
 import PhotoCameraOutlinedIcon from '@material-ui/icons/PhotoCameraOutlined';
 import SearchBar from '../Shared/SearchBar';
+import Camera from '../Shared/Camera';
+import LottieAnimation from '../../Animations/Lottie';
+import loading from '../../Animations/paperplane-animation.json';
+import bookAnimation from '../../Animations/book-animation-2.json';
+import secondBookAnim from '../../Animations/book-animation.json';
 
 interface DashboardScreenProps extends RouteComponentProps {}
 
 const Dashboard: React.FC<DashboardScreenProps> = () => {
-  console.log('dashboard loaded');
-  const [books, setBooks] = useState([]);
-  const [recommended, setRecommended] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const dispatch = useDispatch();
   const recommendations = useSelector(
@@ -26,48 +29,31 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
   );
 
   useEffect(() => {
+    console.log('render')
     const renderDashboard = async () => {
       const action = await _loadDashboard();
-      console.log('action', action);
       dispatch(action);
     };
 
     renderDashboard();
-    console.log('somethign');
   }, []);
 
   useEffect(() => {
-    if (userWithBooks && userWithBooks.books) setBooks(userWithBooks.books);
-  }, [userWithBooks]);
+    if (userWithBooks && userWithBooks.books && recommendations)
+      setIsLoading(false);
+  }, [userWithBooks, recommendations]);
 
-  useEffect(() => {
-    if (recommendations) setRecommended(recommendations);
-  }, [recommendations]);
-
-  const handleImageChange = () => {};
-  console.log('books', books);
-  if (books.length) {
+  if (!isLoading) {
     return (
       <div className="dashboard">
         <header>
           <SearchBar />
-          <label>
-            <input
-              style={{ display: 'none' }}
-              type="file"
-              accept="image/*"
-              capture="environment"
-              onChange={handleImageChange}
-            />
-            <PhotoCameraOutlinedIcon
-              style={{ fontSize: 30, color: '#fffef9' }}
-            />
-          </label>
+          <Camera setIsLoading={setIsLoading} />
         </header>
         <div className="bookwrapper">
           <p className="title">Recommended</p>
           <div className="booklist">
-            {recommended.map((book: Book) => (
+            {recommendations.map((book: Book) => (
               <div className="book-preview" key={`rec-${book.id}`}>
                 <Link
                   to={{
@@ -87,7 +73,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
         <div className="bookwrapper-small">
           <p className="title">Your favorites</p>
           <div className="booklist-small">
-            {books
+            {userWithBooks.books
               .filter((b: Book) => b.interaction.rating === 1)
               .map((book: Book) => (
                 <div className="book-preview-small" key={`fav-${book.id}`}>
@@ -109,7 +95,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
         <div className="bookwrapper">
           <p className="title">Recently saved</p>
           <div className="booklist">
-            {books
+            {userWithBooks.books
               .filter((b: Book) => b.interaction.isSaved)
               .map((book: Book) => (
                 <div className="book-preview" key={`sav-${book.id}`}>
@@ -131,7 +117,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
       </div>
     );
   }
-  return <div>Hello</div>;
+  return <LottieAnimation animation={loading} width="100%" height="100%" />;
 };
 
 export default withRouter(Dashboard);

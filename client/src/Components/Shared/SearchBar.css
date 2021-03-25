@@ -6,13 +6,14 @@
 }
 
 .search-bar .search-input {
-  background-color: #23076e;
+  background-color: #1d065c;
+  border: none;
   border-radius: 7px;
   width: 95%;
-  outline: none;
   height: 85%;
   color: #fffef9;
-  text-indent: 10px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
 }
 
 .search-bar .overlay {
@@ -23,49 +24,44 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-color: #23076e;
-  height: 60vh;
-  width: 100%;
-  border-radius: 7px;
+  background-color: #140245;
+  width: 75vw;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  -webkit-box-shadow: 0 0 12px -1px #070616;
+          box-shadow: 0 0 12px -1px #070616;
+  padding: 0.5rem;
 }
 
-.search-bar .book-preview-small {
+.search-bar .overlay .book-preview-small {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   width: 90%;
-  padding: 0.5rem;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  border-bottom: solid;
+  border-color: #23076e;
+  border-width: 0.7px;
 }
 
-.search-bar .book-image {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  height: 4rem;
+.search-bar .overlay .book-preview-small .book-image {
+  height: 5.5rem;
   border-radius: 5px;
-  width: 3rem;
-  text-indent: 100%;
-  white-space: nowrap;
+  width: 4.5rem;
   overflow: hidden;
+  -webkit-box-shadow: 0 0 7px -1px #070616;
+          box-shadow: 0 0 7px -1px #070616;
 }
 
-.search-bar .book-title {
+.search-bar .overlay .book-preview-small .book-title {
   -webkit-box-flex: 4;
       -ms-flex: 4;
           flex: 4;
-  color: white;
+  color: #fffef9;
   font-size: 1rem;
-  margin-left: 10%;
+  margin-left: 1rem;
+  font-family: "Montserrat", sans-serif;
 }
 /*# sourceMappingURL=SearchBar.css.map */

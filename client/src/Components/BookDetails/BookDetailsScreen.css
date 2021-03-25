@@ -3,8 +3,8 @@
   height: 100vh;
   width: 100vw;
   background-color: #140245;
-  overflow: scroll;
   padding-bottom: 10rem;
+  overflow: scroll;
 }
 
 .details .italic {
@@ -80,8 +80,8 @@
 }
 
 .details .sub-details {
-  padding-left: 1.3rem;
-  padding-right: 1.3rem;
+  width: 88vw;
+  margin: auto;
 }
 
 .details .sub-details .flexRow {
@@ -120,7 +120,12 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding-right: 3rem;
+  width: 90vw;
+}
+
+.details .sub-details .add-info .publisher-wrapper {
+  max-width: 50vw;
+  padding-right: 2rem;
 }
 
 .details .sub-details .add-info .midtitle {

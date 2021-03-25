@@ -30,7 +30,7 @@ $opensans: 'Open Sans', sans-serif;
 
     .genre-wrapper {
       text-align: center;
-      padding-bottom: 2em;
+      padding-bottom: 1.7em;
       border: solid;
       border-color: $PRIMARY_WHITE;
       border-width: 0;
@@ -39,8 +39,8 @@ $opensans: 'Open Sans', sans-serif;
 
     .profile-picture {
       // Aspect ratio needs to be sorted
-      height: 20vh;
-      width: 40vw;
+      height: 8rem;
+      width: 8rem;
       margin-top: 0.5em;
       margin-bottom: 1em;
       border: solid;

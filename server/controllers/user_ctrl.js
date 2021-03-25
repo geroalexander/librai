@@ -11,6 +11,7 @@ const Interaction = interaction;
 
 const loadDashboard = async (req, res) => {
   const user = req.user;
+
   try {
     const userWithBooks = await User.findOne({
       where: { id: user.id },
@@ -18,11 +19,12 @@ const loadDashboard = async (req, res) => {
       include: Book,
     });
     const recommendations = await getRecommendations(user.id, 10);
+
     const bookRecArr = [];
-    console.log('recommendations---->', recommendations);
 
     for (const rec of recommendations.recomms) {
       const retrievedBook = await getBookById(rec.id);
+
       const formattedBook = formatBook(retrievedBook);
       formattedBook.compatabilityScore = 10;
       bookRecArr.push(formattedBook);
@@ -51,8 +53,7 @@ const getUserWithBooks = async (req, res) => {
     });
   } catch (error) {
     console.error(error, 'Could not get user with books, fn.getUserWithBooks');
-    res.status(400);
-    res.send(error);
+    res.status(400).send(error);
   }
 };
 
@@ -207,8 +208,7 @@ const deleteSavedBook = async (req, res) => {
     res.status(203).send('Book was unsaved');
   } catch (error) {
     console.error(error, 'Could not delete saved book, fn.deleteSavedBook');
-    res.status(400);
-    res.send(error);
+    res.status(400).send(error);
   }
 };
 
@@ -232,8 +232,7 @@ const deleteRating = async (req, res) => {
     res.status(203).send('Book rating was removed');
   } catch (error) {
     console.error(error, 'Could not delete rating, fn.deleteRating');
-    res.status(400);
-    res.send(error);
+    res.status(400).send(error);
   }
 };
 
@@ -258,6 +257,7 @@ const registrationForm = async (req, res) => {
       error,
       'Could not complete registration, fn.registrationForm',
     );
+    res.status(400).send(error);
   }
 };
 
@@ -275,6 +275,7 @@ const updateProfile = async (req, res) => {
     res.sendStatus(201);
   } catch (error) {
     console.error(error, 'Could not update profile information');
+    res.status(400).send(error);
   }
 };
 

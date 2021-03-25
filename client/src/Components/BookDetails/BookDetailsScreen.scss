@@ -9,8 +9,8 @@ $opensans: 'Open Sans', sans-serif;
   height: 100vh;
   width: 100vw;
   background-color: $PRIMARY_DARK;
-  overflow: scroll;
   padding-bottom: 10rem;
+  overflow: scroll;
 
   .italic {
     font-style: italic;
@@ -20,19 +20,15 @@ $opensans: 'Open Sans', sans-serif;
     font-weight: bold;
   }
 
-  
-  
   .main-details {
     position: relative;
     background: linear-gradient(#2c0791, $PRIMARY_DARK);
     display: flex;
     flex-direction: row;
     justify-content: center;
-    // align-items: center;
     padding-top: 4rem;
     padding-left: 1.3rem;
     padding-right: 1.3rem;
-    // padding-bottom: 2rem;
 
     .line {
       position: absolute;
@@ -47,14 +43,11 @@ $opensans: 'Open Sans', sans-serif;
       height: 13rem;
       z-index: 1;
       box-shadow: 0 0 12px -1px rgb(7, 6, 22);
-
-      // border-radius: 3px;
     }
 
     .text-wrapper {
       margin-left: 1.5rem;
       margin-top: 1rem;
-
 
       .title {
         color: $WHITE;
@@ -64,7 +57,6 @@ $opensans: 'Open Sans', sans-serif;
         margin-bottom: 1em;
       }
 
-
       .small-title {
         color: $WHITE;
         font-size: 1rem;
@@ -72,38 +64,34 @@ $opensans: 'Open Sans', sans-serif;
         margin: 0;
         margin-bottom: 1em;
       }
-    
+
       .subtitle {
         color: $PRIMARY_WHITE;
         font-size: 0.75rem;
         font-family: $montserrat;
         margin: 0;
         margin-bottom: 0.5em;
-    
       }
-
     }
   }
 
   .sub-details {
-    // padding-top: 4rem;
-    padding-left: 1.3rem;
-    padding-right: 1.3rem;
+    width: 88vw;
+    margin: auto;
 
-    .flexRow { 
+    .flexRow {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding-right: 0.2rem;
     }
-    
+
     .subtitle {
       color: #c8baf3;
       font-size: 0.75rem;
       font-family: $montserrat;
       margin: 0;
       margin-bottom: 3em;
-  
     }
 
     .title {
@@ -119,7 +107,13 @@ $opensans: 'Open Sans', sans-serif;
     .add-info {
       display: flex;
       justify-content: space-between;
-      padding-right: 3rem;
+      width: 90vw;
+      // margin-left: 1rem;
+
+      .publisher-wrapper {
+        max-width: 50vw;
+        padding-right: 2rem;
+      }
 
       .midtitle {
         color: $WHITE;
@@ -127,16 +121,11 @@ $opensans: 'Open Sans', sans-serif;
         font-family: $montserrat;
         margin: 0;
         margin-bottom: 1em;
-  
       }
-  
-      
     }
   }
-
 
   .footer {
     height: 5rem;
   }
-
 }

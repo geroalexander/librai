@@ -11,46 +11,47 @@ $opensans: 'Open Sans', sans-serif;
   position: relative;
 
   .search-input {
-    background-color: $PRIMARY_LIGHT;
+    background-color: #1d065c;
+    border: none;
     border-radius: 7px;
     width: 95%;
-    outline: none;
     height: 85%;
     color: $WHITE;
-    text-indent: 10px;
+    font-family: $montserrat;
+    font-size: 1.2rem;
   }
   .overlay {
     display: flex;
     flex-direction: column;
-    background-color: $PRIMARY_LIGHT;
-    height: 60vh;
-    width: 100%;
-    border-radius: 7px;
+    background-color: $PRIMARY_DARK;
+    width: 75vw;
     justify-content: space-around;
-    align-items: flex-start;
-  }
-  .book-preview-small {
-    // height: 10%;
-    display: flex;
-    width: 90%;
+    box-shadow: 0 0 12px -1px rgb(7, 6, 22);
     padding: 0.5rem;
-    justify-content: center;
-    align-items: center;
-  }
-  .book-image {
-    flex: 1;
-    height: 4rem;
-    border-radius: 5px;
-    width:3rem;
-    // to hide alt text
-    text-indent: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-  .book-title {
-    flex: 4;
-    color: white;
-    font-size: 1rem;
-    margin-left: 10%;
+
+    .book-preview-small {
+      display: flex;
+      width: 90%;
+      justify-content: flex-start;
+      border-bottom: solid;
+      border-color: $PRIMARY_LIGHT;
+      border-width: 0.7px;
+
+      .book-image {
+        height: 5.5rem;
+        border-radius: 5px;
+        width: 4.5rem;
+        overflow: hidden;
+        box-shadow: 0 0 7px -1px rgb(7, 6, 22);
+      }
+
+      .book-title {
+        flex: 4;
+        color: $WHITE;
+        font-size: 1rem;
+        margin-left: 1rem;
+        font-family: $montserrat;
+      }
+    }
   }
 }

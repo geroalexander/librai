@@ -72,7 +72,6 @@ const fetchBooksFromApi = () => {
             };
 
             booksArray.push(bookObj);
-            console.log(i);
             if (i > 997) {
               let stringified = JSON.stringify(booksArray, null, 2);
               fs.writeFileSync('9001-10000.json', stringified);
