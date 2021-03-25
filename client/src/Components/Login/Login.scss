@@ -1,12 +1,61 @@
 @import '../../Theme/colorDefinitions.scss';
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap');
+
+$comfortaa: 'Comfortaa', cursive;
+$montserrat: 'Montserrat', sans-serif;
+$opensans: 'Open Sans', sans-serif;
 
 .login-form {
-  background-color: $SECONDARY;
   padding: 1em;
+
+  .form-inner {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .title {
+    margin: 1.5em;
+    color: $WHITE;
+    font-family: $comfortaa;
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
 
   .form-group {
     display: flex;
     flex-direction: column;
     padding: 0.1em;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .input {
+    background-color: $PRIMARY_LIGHT;
+    border-radius: 25px;
+    height: 4em;
+    width: 26em;
+    color: $PRIMARY_WHITE;
+    border-style: hidden;
+    margin: 1em;
+    padding-left: 10px;
+  }
+  ::placeholder {
+    color: $WHITE;
+    font-family: $montserrat;
+  }
+
+  .submitButton {
+    margin: 3em;
+    border-radius: 25px;
+    height: 3em;
+    width: 12em;
+    background-color: $PRIMARY_WHITE;
+    font-family: $montserrat;
+    font-size: 0.8rem;
+    color: $PRIMARY_LIGHT;
+    border-style: hidden;
+    box-shadow: 1px 2px 2px 2px;
   }
 }

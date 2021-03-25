@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../..';
 import './Login.css';
 import { setLogin } from '../../Store/actions/auth';
+import LockIcon from '@material-ui/icons/Lock';
 
 const Login: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -24,24 +25,27 @@ const Login: React.FC = () => {
         <h2 className="title">Login</h2>
         {/*ERROR*/}
         <div className="form-group">
-          <label className="email">Email</label>
           <input
+            className="input"
             onChange={(e) => setEmail(e.target.value)}
             type="text"
             name="email"
+            placeholder="EMAIL"
             id="email"
           />
         </div>
         <div className="form-group">
-          <label className="password">Password</label>
+          <LockIcon style={{ color: '#fffef9' }}></LockIcon>
           <input
+            className="input"
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             name="password"
+            placeholder="PASSWORD"
             id="password"
           />
         </div>
-        <input type="submit" value="LOGIN" />
+        <input className="submitButton" type="submit" value="LOGIN" />
       </div>
     </form>
   );
