@@ -1,0 +1,58 @@
+@import '../../../Theme/colorDefinitions.scss';
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap');
+
+$comfortaa: 'Comfortaa', cursive;
+$montserrat: 'Montserrat', sans-serif;
+$opensans: 'Open Sans', sans-serif;
+
+.book-status {
+  position: relative;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  // align-items: center;
+  padding-top: 2rem;
+  width: 85vw;
+  height: 8.5rem;
+
+
+  .rating-wrapper {
+    position: absolute;
+    top: 3rem;
+    left: 1.8rem;
+  }
+
+  .bookmark-wrapper {
+    position:absolute;
+    top: 3rem;
+    right: 1.8rem;
+  }
+
+  .compat-score {
+    position: absolute;
+    top: 1.5rem;
+    height: 4rem;
+    width: 4rem;
+    // background-color: #c8baf3;
+    border: solid;
+    border-color: $SECONDARY;
+    border-radius: 100%;
+    border-width: 2px;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 22px -1px rgb(11, 7, 56);
+    
+  }
+
+
+  .title {
+    color: #c8baf3;
+    font-size: 2.5rem;
+    font-family: $montserrat;
+    font-weight: bold;
+  }
+
+
+}

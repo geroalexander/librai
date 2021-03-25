@@ -1,0 +1,137 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap");
+.details {
+  height: 100vh;
+  width: 100vw;
+  background-color: #140245;
+  overflow: scroll;
+  padding-bottom: 10rem;
+}
+
+.details .italic {
+  font-style: italic;
+}
+
+.details .bold {
+  font-weight: bold;
+}
+
+.details .main-details {
+  position: relative;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2c0791), to(#140245));
+  background: linear-gradient(#2c0791, #140245);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-top: 4rem;
+  padding-left: 1.3rem;
+  padding-right: 1.3rem;
+}
+
+.details .main-details .line {
+  position: absolute;
+  width: 93%;
+  bottom: 1rem;
+  border: none;
+  height: 0.6px;
+  background-color: #dfd5fc;
+}
+
+.details .main-details img {
+  height: 13rem;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 12px -1px #070616;
+          box-shadow: 0 0 12px -1px #070616;
+}
+
+.details .main-details .text-wrapper {
+  margin-left: 1.5rem;
+  margin-top: 1rem;
+}
+
+.details .main-details .text-wrapper .title {
+  color: #fffef9;
+  font-size: 1.5rem;
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  margin-bottom: 1em;
+}
+
+.details .main-details .text-wrapper .small-title {
+  color: #fffef9;
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  margin-bottom: 1em;
+}
+
+.details .main-details .text-wrapper .subtitle {
+  color: #dfd5fc;
+  font-size: 0.75rem;
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  margin-bottom: 0.5em;
+}
+
+.details .sub-details {
+  padding-left: 1.3rem;
+  padding-right: 1.3rem;
+}
+
+.details .sub-details .flexRow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-right: 0.2rem;
+}
+
+.details .sub-details .subtitle {
+  color: #c8baf3;
+  font-size: 0.75rem;
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  margin-bottom: 3em;
+}
+
+.details .sub-details .title {
+  color: #fffef9;
+  font-size: 1.5rem;
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  margin-bottom: 1em;
+}
+
+.details .sub-details .add-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-right: 3rem;
+}
+
+.details .sub-details .add-info .midtitle {
+  color: #fffef9;
+  font-size: 1.2rem;
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  margin-bottom: 1em;
+}
+
+.details .footer {
+  height: 3rem;
+}
+/*# sourceMappingURL=BookDetailsScreen.css.map */

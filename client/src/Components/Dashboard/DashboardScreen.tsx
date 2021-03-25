@@ -65,10 +65,17 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
           <div className="booklist">
             {recommended.map((book: Book) => (
               <div className="book-preview">
-                <img
-                  src={book.thumbnail ? book.thumbnail : undefined}
-                  alt={book.title}
-                />
+                <Link
+                  to={{
+                    pathname: `/details/${book.id}`,
+                    state: { book, isNew: false },
+                  }}
+                >
+                  <img
+                    src={book.thumbnail ? book.thumbnail : undefined}
+                    alt={book.title}
+                  />
+                </Link>
               </div>
             ))}
           </div>
@@ -80,10 +87,17 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
               .filter((b: Book) => b.interaction.rating === 1)
               .map((book: Book) => (
                 <div className="book-preview-small">
-                  <img
-                    src={book.thumbnail ? book.thumbnail : undefined}
-                    alt={book.title}
-                  />
+                  <Link
+                    to={{
+                      pathname: `/details/${book.id}`,
+                      state: { book, isNew: false },
+                    }}
+                  >
+                    <img
+                      src={book.thumbnail ? book.thumbnail : undefined}
+                      alt={book.title}
+                    />
+                  </Link>
                 </div>
               ))}
           </div>
@@ -95,10 +109,17 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
               .filter((b: Book) => b.interaction.isSaved)
               .map((book: Book) => (
                 <div className="book-preview">
-                  <img
-                    src={book.thumbnail ? book.thumbnail : undefined}
-                    alt={book.title}
-                  />
+                  <Link
+                    to={{
+                      pathname: `/details/${book.id}`,
+                      state: { book, isNew: false },
+                    }}
+                  >
+                    <img
+                      src={book.thumbnail ? book.thumbnail : undefined}
+                      alt={book.title}
+                    />
+                  </Link>
                 </div>
               ))}
           </div>

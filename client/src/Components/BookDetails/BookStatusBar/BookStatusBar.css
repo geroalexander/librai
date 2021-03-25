@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap");
+.book-status {
+  position: relative;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding-top: 2rem;
+  width: 85vw;
+  height: 8.5rem;
+}
+
+.book-status .rating-wrapper {
+  position: absolute;
+  top: 3rem;
+  left: 1.8rem;
+}
+
+.book-status .bookmark-wrapper {
+  position: absolute;
+  top: 3rem;
+  right: 1.8rem;
+}
+
+.book-status .compat-score {
+  position: absolute;
+  top: 1.5rem;
+  height: 4rem;
+  width: 4rem;
+  border: solid;
+  border-color: #f5d541;
+  border-radius: 100%;
+  border-width: 2px;
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 0 0 22px -1px #0b0738;
+          box-shadow: 0 0 22px -1px #0b0738;
+}
+
+.book-status .title {
+  color: #c8baf3;
+  font-size: 2.5rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+}
+/*# sourceMappingURL=BookStatusBar.css.map */
