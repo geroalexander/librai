@@ -7,10 +7,10 @@ import {
 } from '../actions/ActionTypes';
 
 const authCheck = () => {
-  const token = localStorage.getItem('accessToken')
+  const token = localStorage.getItem('accessToken');
   if (token) return true;
   else return false;
-}
+};
 
 const initialState = {
   signedIn: authCheck(),
@@ -28,8 +28,8 @@ function reducer(state = initialState, action: AnyAction) {
     case SET_REGISTER:
       return { ...state, signedIn: true, fillForm: true };
 
-    case SET_ADD_FORM_INFO:
-      return { ...state };
+    // case SET_ADD_FORM_INFO:
+    //   return { ...state };
   }
   return state;
 }

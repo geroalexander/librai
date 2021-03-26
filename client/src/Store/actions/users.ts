@@ -20,6 +20,7 @@ import {
   UPDATE_PROFILE,
 } from './ActionTypes';
 import { Book } from '../../Interfaces/bookObject';
+import { PopularBook } from '../../Interfaces/popularBookObject';
 import { User } from '../../Interfaces/userObject';
 const { REACT_APP_ACCESS_TOKEN } = process.env;
 
@@ -80,13 +81,20 @@ export const _deleteRating = (book: Book) => async (dispatch: AppDispatch) => {
   }
 };
 
-export const _registrationForm = (books: Book[], rating: number) => async (
-  dispatch: AppDispatch
-) => {
+export const _registrationForm = (
+  books: PopularBook[],
+  favoriteGenres: string[]
+) => async (dispatch: AppDispatch) => {
   const accessToken: string | null = localStorage.getItem('accessToken');
   if (accessToken) {
-    await registrationForm(accessToken, books, rating);
-    dispatch({ type: REGISTRATION_FORM, payload: { books, rating } });
+    const userWithBooks = await registrationForm(
+      accessToken,
+      books,
+      favoriteGenres
+    );
+    console.log(userWithBooks, '<-----userWithBooks');
+
+    dispatch({ type: REGISTRATION_FORM, payload: userWithBooks });
   }
 };
 

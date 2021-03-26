@@ -17,22 +17,22 @@ const SavedScreen: React.FC<SavedScreenProps> = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const books: Book[] = useSelector(
-    (state: RootState) => state.userReducer.userWithBooks.books
+    (state: RootState) => state?.userReducer?.userWithBooks?.books
   );
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!books) {
-      const getBooks = async () => {
-        const action = await _getUserWithBooks();
-        dispatch(action);
-      };
-
-      getBooks();
-    }
-    books && setIsLoading(false);
+    checkStateForBooks();
   }, [books]);
+
+  const checkStateForBooks = async () => {
+    if (!books) {
+      const action = await _getUserWithBooks();
+      await dispatch(action);
+    }
+    books && books.length && setIsLoading(false);
+  };
 
   if (!isLoading) {
     return (
@@ -42,21 +42,21 @@ const SavedScreen: React.FC<SavedScreenProps> = () => {
           <BookmarksOutlinedIcon style={{ fontSize: 35, color: '#fffef9' }} />
         </div>
         {books && (
-            <div className="saved-list">
-              {books
-                .filter((book: Book) => book.interaction.rating === null)
-                .map((book: Book) => (
-                  <Link
-                    to={{
-                      pathname: `/details/${book.id}`,
-                      state: { book, isNew: false },
-                    }}
-                    style={{ textDecoration: 'none' }}
-                  >
-                    <BookItem key={book.id} book={book} />
-                  </Link>
-                ))}
-            </div>
+          <div className="saved-list">
+            {books
+              .filter((book: Book) => book.interaction.isSaved)
+              .map((book: Book) => (
+                // <Link
+                //   to={{
+                //     pathname: `/details/${book.id}`,
+                //     state: { book, isNew: false },
+                //   }}
+                //   style={{ textDecoration: 'none' }}
+                // >
+                <BookItem key={book.id} book={book} />
+                // </Link>
+              ))}
+          </div>
         )}
         <div className="footer"></div>
       </div>

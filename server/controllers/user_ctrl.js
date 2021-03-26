@@ -24,7 +24,6 @@ const loadDashboard = async (req, res) => {
 
     for (const rec of recommendations.recomms) {
       const retrievedBook = await getBookById(rec.id);
-      console.log('retrievedBook---->', retrievedBook);
 
       const formattedBook = formatBook(retrievedBook);
       formattedBook.compatabilityScore = 10;
@@ -240,19 +239,28 @@ const deleteRating = async (req, res) => {
 const registrationForm = async (req, res) => {
   const user = req.user;
   try {
-    const { books, rating } = req.body;
-    const userWithBooks = await User.findOne({
+    const { books, favoriteGenres } = req.body;
+    const oldUser = await User.findOne({
       where: { id: user.id },
       attributes: { exclude: ['password'] },
     });
-    await userWithBooks.update({ favoriteGenres });
+    await oldUser.update({ favoriteGenres });
 
     for (let i = 0; i < books.length; i++) {
-      const targetBook = await Book.create(books[i]);
-      await user.addBook(targetBook, { through: { rating: rating[i] } });
+      let targetBook = await Book.findOne({ where: { id: books[i].id } });
+      if (!targetBook) targetBook = await Book.create(books[i]);
+      await oldUser.addBook(targetBook, { through: { rating: 1 } });
     }
 
-    res.send(userWithBooks);
+    const userWithBooks = await User.findOne({
+      where: { id: user.id },
+      attributes: { exclude: ['password'] },
+      include: Book,
+    });
+
+    console.log('userWithBooks---->', userWithBooks);
+
+    res.status(201).send(userWithBooks);
   } catch (error) {
     console.error(
       error,

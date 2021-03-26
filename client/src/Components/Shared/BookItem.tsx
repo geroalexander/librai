@@ -1,13 +1,8 @@
 import React from 'react';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import { Book } from '../../Interfaces/bookObject';
-import BookStatusBar from '../BookDetails/BookStatusBar/BookStatusBar';
+import SmallStatusBar from '../Shared/SmallStatusBar';
 import './BookItem.css';
-import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
-import BookmarkOutlinedIcon from '@material-ui/icons/BookmarkOutlined';
-import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
-import SentimentDissatisfiedOutlinedIcon from '@material-ui/icons/SentimentDissatisfiedOutlined';
-import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
 
 interface BookItemProps extends RouteComponentProps {
   book: Book;
@@ -28,10 +23,12 @@ const BookItem: React.FC<BookItemProps> = ({ book }) => {
         />
       </Link>
       <div className="book-info">
-        <h2 className="midtitle">{book.title}</h2>
-        <p className="subtitle italic">by {book.authors[0]}</p>
-        <p className="subtitle">{book.categories[0]}</p>
-        {/* <BookStatusBar book={book} /> */}
+        <div>
+          <h2 className="midtitle">{book.title}</h2>
+          <p className="subtitle italic">by {book.authors[0]}</p>
+          <p className="subtitle">{book.categories[0]}</p>
+        </div>
+        <SmallStatusBar book={book} />
       </div>
     </div>
   );

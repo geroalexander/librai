@@ -11,6 +11,7 @@ import {
   UPDATE_PROFILE,
   DELETE_RATING,
   LOG_USER_OUT,
+  REGISTRATION_FORM,
 } from '../actions/ActionTypes';
 
 interface userState {
@@ -26,6 +27,9 @@ const initialState: userState = {
 function userReducer(state = initialState, action: AnyAction) {
   const oldUserWithBooks = { ...state.userWithBooks };
   switch (action.type) {
+    case REGISTRATION_FORM:
+      return { ...state, userWithBooks: action.payload };
+
     case LOAD_DASHBOARD:
       return {
         ...state,

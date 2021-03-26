@@ -1,4 +1,5 @@
 import { Book } from '../Interfaces/bookObject';
+import { PopularBook } from '../Interfaces/popularBookObject';
 const { REACT_APP_BASE_URL } = process.env;
 
 const loadDashboard = (accessToken: string) => {
@@ -90,8 +91,8 @@ const deleteRating = (accessToken: string, book: Book) => {
 
 const registrationForm = (
   accessToken: string,
-  books: Book[],
-  rating: number
+  books: PopularBook[],
+  favoriteGenres: string[]
 ) => {
   return fetch(`${REACT_APP_BASE_URL}/user/form`, {
     method: 'POST',
@@ -101,7 +102,7 @@ const registrationForm = (
       'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
     },
-    body: JSON.stringify({ books, rating }),
+    body: JSON.stringify({ books, favoriteGenres }),
   }).catch((err) => console.log('error with registrationForm', err));
 };
 

@@ -27,6 +27,20 @@
   margin-top: 0;
 }
 
+.book-item .book-info {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 100%;
+}
+
 .book-item .book-info .midtitle {
   font-family: "Montserrat", sans-serif;
 }

@@ -2,7 +2,7 @@
 // NEED TO SORT OUT ACTION< REDUCER AND USER_CTRL LOGIC TO ADD FAVORITE GENRES
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { RouteComponentProps, withRouter, useHistory } from 'react-router-dom';
 import { RootState } from '../../index';
 import { User } from '../../Interfaces/userObject';
 import './RegistrationForm.css';
@@ -21,10 +21,11 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
     (state: RootState) => state.userReducer.userWithBooks
   );
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [isUserPickingGenres, setIsUserPickingGenres] = useState(true);
   const [favoriteGenres, setFavoriteGenres] = useState<string[]>([]);
-  const [favoriteBooks, setFavoriteBooks] = useState<string[]>([]);
+  const [favoriteBooks, setFavoriteBooks] = useState<PopularBook[]>([]);
 
   const addFavoriteGenre = (e: any) => {
     e.target.style.backgroundColor = '#f5d541';
@@ -41,25 +42,27 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
     );
   };
 
-  const handleAddOrRemoveBook = (e: any) => {
-    console.log(e.target.name);
-    // const newBook = e.target;
-    // favoriteBooks.includes(e.target.innerText) &&
-    //   setFavoriteBooks((prevBooks) =>
-    //     prevBooks.filter((book) => book !== bookToDelete)
-    //   );
+  const handleAddOrRemoveBook = (book: PopularBook) => {
+    if (favoriteBooks && favoriteBooks.some(({ id }) => id === book.id)) {
+      setFavoriteBooks((prevBooks) =>
+        prevBooks.filter(({ id }) => id !== book.id)
+      );
+    } else {
+      setFavoriteBooks((prevBooks) => [...prevBooks, book]);
+    }
 
-    // const bookToAdd = e.target.innerText;
-    // setFavoriteBooks((prevBooks) => [...prevBooks, bookToAdd]);
+    console.log(favoriteBooks);
   };
 
   const handleSubmitGenres = () => {
     setIsUserPickingGenres(false);
   };
 
-  // const handleSubmitForm = () => {
-  //   dispatch(_registrationForm());
-  // };
+  const handleSubmitForm = async () => {
+    const action = await _registrationForm(favoriteBooks, favoriteGenres);
+    await dispatch(action);
+    history.push('/');
+  };
 
   const renderGenreChips = genres.map((genre: string, index: number) => (
     <Chip
@@ -76,7 +79,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
     <map
       name={book.id}
       className="pop-book-button"
-      onClick={handleAddOrRemoveBook}
+      onClick={() => handleAddOrRemoveBook(book)}
     >
       <img
         key={book.id}
@@ -113,7 +116,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
           <div className="books-wrapper">{renderPopularBooks}</div>
           <Button
             variant="contained"
-            // onClick={handleSubmitForm}
+            onClick={handleSubmitForm}
             className="submit"
           >
             Submit

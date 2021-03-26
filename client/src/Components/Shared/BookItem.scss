@@ -30,10 +30,15 @@ $opensans: 'Open Sans', sans-serif;
     margin-top: 0;
   }
   .book-info {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     // display: flex;
     // padding: 0.5em;
     // flex-direction: column;
     // max-height: 15vh;
+    width: 100%;
 
     .midtitle {
       font-family: $montserrat;

@@ -1,0 +1,16 @@
+.small-status {
+  // margin-top: au/to;
+  position: relative;
+  padding-top: 0;
+  width: 60%;
+  margin-left: 0.5em;
+
+  .rating-wrapper {
+    position: absolute;
+    left: 0;
+  }
+  .bookmark-wrapper {
+    position: absolute;
+    right: 0;
+  }
+}
