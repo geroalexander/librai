@@ -29,6 +29,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
   );
 
   useEffect(() => {
+    console.log('render')
     const renderDashboard = async () => {
       const action = await _loadDashboard();
       dispatch(action);

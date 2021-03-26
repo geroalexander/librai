@@ -271,7 +271,7 @@ const updateProfile = async (req, res) => {
     if (email) userInformation.update({ email });
     if (favoriteGenres) userInformation.update({ favoriteGenres });
     if (profilePic) userInformation.update({ profilePic });
-    res.status(201).send();
+    res.sendStatus(201);
   } catch (error) {
     console.error(error, 'Could not update profile information');
     res.status(400).send(error);

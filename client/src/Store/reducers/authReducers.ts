@@ -6,8 +6,14 @@ import {
   SET_ADD_FORM_INFO,
 } from '../actions/ActionTypes';
 
+const authCheck = () => {
+  const token = localStorage.getItem('accessToken')
+  if (token) return true;
+  else return false;
+}
+
 const initialState = {
-  signedIn: false,
+  signedIn: authCheck(),
   fillForm: false,
 };
 

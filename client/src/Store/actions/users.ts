@@ -24,9 +24,10 @@ import { User } from '../../Interfaces/userObject';
 const { REACT_APP_ACCESS_TOKEN } = process.env;
 
 // const accessToken: string | null = localStorage.getItem('accessToken');
-const accessToken = REACT_APP_ACCESS_TOKEN;
+// const accessToken = REACT_APP_ACCESS_TOKEN;
 
 export const _loadDashboard = () => async (dispatch: AppDispatch) => {
+  const accessToken: string | null = localStorage.getItem('accessToken');
   if (accessToken) {
     const userDashboard = await loadDashboard(accessToken);
 
@@ -36,6 +37,7 @@ export const _loadDashboard = () => async (dispatch: AppDispatch) => {
 };
 
 export const _getUserWithBooks = () => async (dispatch: AppDispatch) => {
+  const accessToken: string | null = localStorage.getItem('accessToken');
   if (accessToken) {
     const { userWithBooks } = await getUserWithBooks(accessToken);
     dispatch({ type: GET_USER_WITH_BOOKS, payload: userWithBooks });
@@ -43,6 +45,7 @@ export const _getUserWithBooks = () => async (dispatch: AppDispatch) => {
 };
 
 export const _addSavedBook = (book: Book) => async (dispatch: AppDispatch) => {
+  const accessToken: string | null = localStorage.getItem('accessToken');
   if (accessToken) {
     const savedBook = await addSavedBook(accessToken, book);
     dispatch({ type: ADD_SAVED_BOOK, payload: savedBook });
@@ -52,6 +55,7 @@ export const _addSavedBook = (book: Book) => async (dispatch: AppDispatch) => {
 export const _deleteSavedBook = (book: Book) => async (
   dispatch: AppDispatch
 ) => {
+  const accessToken: string | null = localStorage.getItem('accessToken');
   if (accessToken) {
     await deleteSavedBook(accessToken, book);
     dispatch({ type: DELETE_SAVED_BOOK, payload: book });
@@ -61,6 +65,7 @@ export const _deleteSavedBook = (book: Book) => async (
 export const _updateRating = (book: Book, rating: number) => async (
   dispatch: AppDispatch
 ) => {
+  const accessToken: string | null = localStorage.getItem('accessToken');
   if (accessToken) {
     const savedBook = await updateRating(accessToken, book, rating);
     dispatch({ type: UPDATE_RATING, payload: savedBook });
@@ -68,6 +73,7 @@ export const _updateRating = (book: Book, rating: number) => async (
 };
 
 export const _deleteRating = (book: Book) => async (dispatch: AppDispatch) => {
+  const accessToken: string | null = localStorage.getItem('accessToken');
   if (accessToken) {
     await deleteRating(accessToken, book);
     dispatch({ type: DELETE_RATING, payload: book });
@@ -77,6 +83,7 @@ export const _deleteRating = (book: Book) => async (dispatch: AppDispatch) => {
 export const _registrationForm = (books: Book[], rating: number) => async (
   dispatch: AppDispatch
 ) => {
+  const accessToken: string | null = localStorage.getItem('accessToken');
   if (accessToken) {
     await registrationForm(accessToken, books, rating);
     dispatch({ type: REGISTRATION_FORM, payload: { books, rating } });
@@ -88,6 +95,7 @@ export const _updateProfile = (
   favoriteGenres: string[] | null,
   email: string | null
 ) => async (dispatch: AppDispatch) => {
+  const accessToken: string | null = localStorage.getItem('accessToken');
   if (accessToken) {
     await updateProfile(accessToken, profilePic, favoriteGenres, email);
     dispatch({
