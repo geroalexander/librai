@@ -8,6 +8,7 @@ import { User } from '../../Interfaces/userObject';
 import './RegistrationForm.css';
 import { genres } from './genres';
 import Chip from '@material-ui/core/Chip';
+import Button from '@material-ui/core/Button';
 import SearchBar from '../Shared/SearchBar';
 import { _registrationForm } from '../../Store/actions/users';
 import { popularBooks } from './popular_books.js';
@@ -26,6 +27,9 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
   const [favoriteBooks, setFavoriteBooks] = useState<string[]>([]);
 
   const addFavoriteGenre = (e: any) => {
+    e.target.style.backgroundColor = '#f5d541';
+    console.log(e.target.innerText);
+    console.log(favoriteGenres);
     const genreToAdd = e.target.innerText;
     setFavoriteGenres((prevGenres) => [...prevGenres, genreToAdd]);
   };
@@ -37,23 +41,23 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
     );
   };
 
-  const addFavoriteBook = (e: any) => {
-    const bookToAdd = e.target.innerText;
-    setFavoriteBooks((prevBooks) => [...prevBooks, bookToAdd]);
-  };
-
-  const deleteFavoriteBook = (e: any) => {
-    const bookToDelete = e.target.innerText;
-    setFavoriteBooks((prevBooks) =>
-      prevBooks.filter((book) => book !== bookToDelete)
-    );
+  const handleAddOrRemoveBook = (e: any) => {
+    console.log(e.target.name);
+    // const newBook = e.target
+    // favoriteBooks.includes(e.target.innerText)
+    //   ? setFavoriteBooks((prevBooks) =>
+    //   prevBooks.filter((book) => book !== bookToDelete)
+    // );
+    //   :
+    // const bookToAdd = e.target.innerText;
+    // setFavoriteBooks((prevBooks) => [...prevBooks, bookToAdd]);
   };
 
   const handleSubmitGenres = () => {
     setIsUserPickingGenres(false);
   };
 
-  // const handleRegistrationFormSubmit = () => {
+  // const handleSubmitForm = () => {
   //   dispatch(_registrationForm());
   // };
 
@@ -64,14 +68,22 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
       label={genre}
       onClick={addFavoriteGenre}
       onDelete={deleteFavoriteGenre}
+      className="genre-chip"
     />
   ));
 
   const renderPopularBooks = popularBooks.map((book: PopularBook) => (
-    <img
-      src={book.smallThumbnail ? book.smallThumbnail : undefined}
-      alt={book.title}
-    />
+    <map
+      name={book.id}
+      className="pop-book-button"
+      onClick={handleAddOrRemoveBook}
+    >
+      <img
+        key={book.id}
+        src={book.thumbnail ? book.thumbnail : undefined}
+        alt={book.title}
+      />
+    </map>
   ));
 
   // Get here from form = true
@@ -83,7 +95,31 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
       {/* <header>
         <SearchBar />
       </header> */}
-      {isUserPickingGenres ? renderGenreChips : renderPopularBooks}
+      {isUserPickingGenres ? (
+        <div className="genre-form-wrapper">
+          <h1>Choose your favorite genres!</h1>
+          <div className="genre-chips">{renderGenreChips}</div>
+          <Button
+            variant="contained"
+            onClick={handleSubmitGenres}
+            className="submit"
+          >
+            Submit
+          </Button>
+        </div>
+      ) : (
+        <div className="book-picker-wrapper">
+          <h1>Choose your favorite books!</h1>
+          <div className="books-wrapper">{renderPopularBooks}</div>
+          <Button
+            variant="contained"
+            // onClick={handleSubmitForm}
+            className="submit"
+          >
+            Submit
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

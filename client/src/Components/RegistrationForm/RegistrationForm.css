@@ -1,23 +1,105 @@
-@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap");
 .reg-form-page {
   height: 100vh;
   width: 100vw;
-  display: 'flex';
-  -webkit-box-pack: 'center';
-      -ms-flex-pack: 'center';
-          justify-content: 'center';
-  -ms-flex-wrap: 'wrap';
-      flex-wrap: 'wrap';
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  padding-top: 6%;
-  padding-left: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #2c0791), to(#140245));
   background: linear-gradient(#2c0791 1%, #140245 100%);
 }
 
-.reg-form-page header {
+.reg-form-page .genre-form-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.reg-form-page .genre-form-wrapper .genre-chips {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  margin-top: 5%;
+}
+
+.reg-form-page .genre-form-wrapper .genre-chip {
+  margin-bottom: 0.5em;
+  font-family: "Montserrat", sans-serif;
+}
+
+.reg-form-page .book-picker-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  margin-bottom: 20%;
+}
+
+.reg-form-page .book-picker-wrapper .books-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  overflow-y: scroll;
+}
+
+.reg-form-page .book-picker-wrapper .pop-book-button {
+  background: transparent;
+  border: none;
+  padding: 2%;
+}
+
+.reg-form-page h1 {
   width: 90vw;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  text-align: center;
+  font-family: "Comfortaa", cursive;
+  margin-bottom: 5%;
+  color: #dfd5fc;
+}
+
+.reg-form-page .submit {
+  color: #140245;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin-top: 5%;
+  font-family: "Montserrat", sans-serif;
+  background-color: #dfd5fc;
 }
 /*# sourceMappingURL=RegistrationForm.css.map */
