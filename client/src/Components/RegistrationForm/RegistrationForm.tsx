@@ -43,12 +43,12 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
 
   const handleAddOrRemoveBook = (e: any) => {
     console.log(e.target.name);
-    // const newBook = e.target
-    // favoriteBooks.includes(e.target.innerText)
-    //   ? setFavoriteBooks((prevBooks) =>
-    //   prevBooks.filter((book) => book !== bookToDelete)
-    // );
-    //   :
+    // const newBook = e.target;
+    // favoriteBooks.includes(e.target.innerText) &&
+    //   setFavoriteBooks((prevBooks) =>
+    //     prevBooks.filter((book) => book !== bookToDelete)
+    //   );
+
     // const bookToAdd = e.target.innerText;
     // setFavoriteBooks((prevBooks) => [...prevBooks, bookToAdd]);
   };

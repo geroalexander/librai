@@ -18,7 +18,6 @@ export const popularBooks = [
       'http://books.google.com/books/content?id=Yz8Fnw0PlEQC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
     price: null,
     currency: null,
-    compatabilityScore: 8,
   },
   {
     id: 'dmouxgEACAAJ',
@@ -39,7 +38,6 @@ export const popularBooks = [
       'http://books.google.com/books/content?id=dmouxgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
     price: null,
     currency: null,
-    compatabilityScore: 7,
   },
   {
     id: 'fZQ0AQAAQBAJ',
@@ -60,7 +58,6 @@ export const popularBooks = [
       'http://books.google.com/books/content?id=fZQ0AQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
     price: null,
     currency: null,
-    compatabilityScore: 9,
   },
   {
     id: 'PGR2AwAAQBAJ',
@@ -81,7 +78,6 @@ export const popularBooks = [
       'http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
     price: null,
     currency: null,
-    compatabilityScore: 9,
   },
   {
     id: 'zWvuDwAAQBAJ',
@@ -102,7 +98,6 @@ export const popularBooks = [
       'http://books.google.com/books/content?id=zWvuDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
     price: 1.25,
     currency: 'GBP',
-    compatabilityScore: 8,
   },
   {
     id: 'Qk8n0olOX5MC',
@@ -123,7 +118,6 @@ export const popularBooks = [
       'http://books.google.com/books/content?id=Qk8n0olOX5MC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
     price: 4.99,
     currency: 'GBP',
-    compatabilityScore: 5,
   },
   {
     id: 'fMn8ugAACAAJ',
@@ -144,7 +138,6 @@ export const popularBooks = [
       'http://books.google.com/books/content?id=fMn8ugAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
     price: null,
     currency: null,
-    compatabilityScore: 10,
   },
   {
     id: 'Pv5zZ9R4DskC',
@@ -164,7 +157,6 @@ export const popularBooks = [
       'http://books.google.com/books/content?id=Pv5zZ9R4DskC&printsec=frontcover&img=1&zoom=1&source=gbs_api',
     price: null,
     currency: null,
-    compatabilityScore: 7,
   },
   {
     id: 'nXrxGCVd9UoC',
@@ -184,7 +176,6 @@ export const popularBooks = [
       'http://books.google.com/books/content?id=nXrxGCVd9UoC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
     price: null,
     currency: null,
-    compatabilityScore: 6,
   },
   {
     id: 's1gVAAAAYAAJ',
@@ -205,7 +196,6 @@ export const popularBooks = [
       'http://books.google.com/books/content?id=s1gVAAAAYAAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
     price: null,
     currency: null,
-    compatabilityScore: 9,
   },
   {
     id: 'IdfWDQAAQBAJ',
@@ -226,7 +216,6 @@ export const popularBooks = [
       'http://books.google.com/books/content?id=IdfWDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
     price: 6.92,
     currency: 'GBP',
-    compatabilityScore: 7,
   },
   {
     id: 'OX8lAAAAQBAJ',
@@ -247,7 +236,6 @@ export const popularBooks = [
       'http://books.google.com/books/content?id=OX8lAAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
     price: null,
     currency: null,
-    compatabilityScore: 9,
   },
   {
     id: 'kotPYEqx7kMC',
@@ -268,7 +256,6 @@ export const popularBooks = [
       'http://books.google.com/books/content?id=kotPYEqx7kMC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
     price: 6.99,
     currency: 'GBP',
-    compatabilityScore: 10,
   },
   {
     id: 'SGAZdjNfruYC',
@@ -289,7 +276,6 @@ export const popularBooks = [
       'http://books.google.com/books/content?id=SGAZdjNfruYC&printsec=frontcover&img=1&zoom=1&source=gbs_api',
     price: null,
     currency: null,
-    compatabilityScore: 9,
   },
   {
     id: 'WTxAjwEACAAJ',
@@ -310,7 +296,6 @@ export const popularBooks = [
       'http://books.google.com/books/content?id=WTxAjwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
     price: null,
     currency: null,
-    compatabilityScore: 6,
   },
   {
     id: 'Dj5cAAAAMAAJ',
@@ -330,7 +315,6 @@ export const popularBooks = [
       'http://books.google.com/books/content?id=Dj5cAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
     price: null,
     currency: null,
-    compatabilityScore: 6,
   },
   {
     id: 'FN5wMOZKTYMC',
@@ -351,7 +335,6 @@ export const popularBooks = [
       'http://books.google.com/books/content?id=FN5wMOZKTYMC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
     price: null,
     currency: null,
-    compatabilityScore: 7,
   },
   {
     id: 'y6DeDQAAQBAJ',
@@ -372,7 +355,6 @@ export const popularBooks = [
       'http://books.google.com/books/content?id=y6DeDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
     price: null,
     currency: null,
-    compatabilityScore: 7,
   },
   {
     id: 'aWZzLPhY4o0C',
@@ -393,7 +375,6 @@ export const popularBooks = [
       'http://books.google.com/books/content?id=aWZzLPhY4o0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
     price: null,
     currency: null,
-    compatabilityScore: 8,
   },
   {
     id: 'Iw_gHtk4ghYC',
@@ -414,6 +395,5 @@ export const popularBooks = [
       'http://books.google.com/books/content?id=Iw_gHtk4ghYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
     price: null,
     currency: null,
-    compatabilityScore: 9,
   },
 ];

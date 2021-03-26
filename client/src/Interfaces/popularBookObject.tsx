@@ -14,5 +14,4 @@ export interface PopularBook {
   smallThumbnail: string | null;
   price: number | null;
   currency: string | null;
-  compatabilityScore: number | null;
 }
