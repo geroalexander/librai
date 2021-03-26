@@ -1,6 +1,6 @@
 //ANDRAS
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RouteComponentProps, Link, withRouter } from 'react-router-dom';
 import { RootState } from '../../index';
 import BookItem from '../Shared/BookItem';
@@ -17,10 +17,20 @@ const SavedScreen: React.FC<SavedScreenProps> = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const books: Book[] = useSelector(
-    (state: RootState) => state.userReducer?.userWithBooks.books
+    (state: RootState) => state.userReducer.userWithBooks.books
   );
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
+    if (!books) {
+      const getBooks = async () => {
+        const action = await _getUserWithBooks();
+        dispatch(action);
+      };
+
+      getBooks();
+    }
     books && setIsLoading(false);
   }, [books]);
 
@@ -32,7 +42,6 @@ const SavedScreen: React.FC<SavedScreenProps> = () => {
           <BookmarksOutlinedIcon style={{ fontSize: 35, color: '#fffef9' }} />
         </div>
         {books && (
-          <>
             <div className="saved-list">
               {books
                 .filter((book: Book) => book.interaction.rating === null)
@@ -48,7 +57,6 @@ const SavedScreen: React.FC<SavedScreenProps> = () => {
                   </Link>
                 ))}
             </div>
-          </>
         )}
         <div className="footer"></div>
       </div>

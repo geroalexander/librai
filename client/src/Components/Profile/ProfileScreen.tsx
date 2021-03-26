@@ -1,11 +1,11 @@
 //BEN
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { RouteComponentProps, withRouter, useHistory } from 'react-router-dom';
 import { RootState } from '../../index';
 import { User } from '../../Interfaces/userObject';
 import { Book } from '../../Interfaces/bookObject';
-import { _updateProfile } from '../../Store/actions/users';
+import { _updateProfile, _getUserWithBooks } from '../../Store/actions/users';
 import './ProfileScreen.css';
 import BookItem from '../Shared/BookItem';
 import Avatar from '@material-ui/core/Avatar';
@@ -23,11 +23,22 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
 
+  const history = useHistory();
+
   const user: User = useSelector(
     (state: RootState) => state.userReducer.userWithBooks
   );
 
   useEffect(() => {
+    if (!Object.keys(user).length) {
+      const getUser = async () => {
+        const action = await _getUserWithBooks();
+        console.log(action)
+        dispatch(action);
+      };
+
+      getUser();
+    }
     user && user.books && setIsLoading(false);
   }, [user]);
 
@@ -36,6 +47,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
 
   const handleLogout = () => {
     dispatch(setLogout());
+    history.push('/login')
   };
 
   const handleUpdateProfilePic = async (
