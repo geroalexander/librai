@@ -35,44 +35,46 @@ const Login: React.FC = () => {
   };
 
   return (
-    <form onSubmit={onClickSubmitLogin} className="login-form">
-      <div className="form-inner">
-        <h2 className="title">Login</h2>
-        {/*ERROR*/}
-        <div className="form-group">
-          <div className="icon">
-            <EmailIcon style={{ color: '#fffef9' }}></EmailIcon>
+    <div className="login-wrapper">
+      <form onSubmit={onClickSubmitLogin} className="login-form">
+        <div className="login-form-inner">
+          <h2 className="title">Login</h2>
+          {/*ERROR*/}
+          <div className="form-group">
+            <div className="icon">
+              <EmailIcon style={{ color: '#fffef9' }}></EmailIcon>
+            </div>
+            <input
+              className="input"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              type="text"
+              name="email"
+              placeholder="EMAIL"
+              id="email"
+            />
           </div>
-          <input
-            className="input"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            type="text"
-            name="email"
-            placeholder="EMAIL"
-            id="email"
-          />
-        </div>
-        <div className="form-group">
-          <div className="icon">
-            <LockIcon style={{ color: '#fffef9' }}></LockIcon>
+          <div className="form-group">
+            <div className="icon">
+              <LockIcon style={{ color: '#fffef9' }}></LockIcon>
+            </div>
+            <input
+              className="input"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              type="password"
+              name="password"
+              placeholder="PASSWORD"
+              id="password"
+            />
           </div>
-          <input
-            className="input"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            type="password"
-            name="password"
-            placeholder="PASSWORD"
-            id="password"
-          />
+          <input className="submitButton" type="submit" value="LOGIN" />
+          <Link to="/register" className="to-register">
+            Need an account? Register here!
+          </Link>
         </div>
-        <input className="submitButton" type="submit" value="LOGIN" />
-        <Link to="/register" className="to-login">
-          Need an account? Register here!
-        </Link>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 

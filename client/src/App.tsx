@@ -22,6 +22,10 @@ function App() {
     (state: RootState) => state.authReducer.signedIn
   );
 
+  const fillForm = useSelector(
+    (state: RootState) => state.authReducer.fillForm
+  );
+
   return (
     <div className="App">
       <Router>
@@ -43,7 +47,7 @@ function App() {
           <Route path="/register" exact component={Register}></Route>
           <Route path="/" render={() => <div>404</div>} />
         </Switch>
-        {signedIn && <BottomTabNavigation />}
+        {signedIn && !fillForm && <BottomTabNavigation />}
       </Router>
     </div>
   );

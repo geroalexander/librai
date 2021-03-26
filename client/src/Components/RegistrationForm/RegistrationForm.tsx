@@ -13,6 +13,7 @@ import SearchBar from '../Shared/SearchBar';
 import { _registrationForm } from '../../Store/actions/users';
 import { popularBooks } from './popular_books.js';
 import { PopularBook } from '../../Interfaces/popularBookObject';
+import BookStatusBar from '../BookDetails/BookStatusBar/BookStatusBar';
 
 interface RegistrationFormProps extends RouteComponentProps {}
 
@@ -28,9 +29,6 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
   const [favoriteBooks, setFavoriteBooks] = useState<PopularBook[]>([]);
 
   const addFavoriteGenre = (e: any) => {
-    e.target.style.backgroundColor = '#f5d541';
-    console.log(e.target.innerText);
-    console.log(favoriteGenres);
     const genreToAdd = e.target.innerText;
     setFavoriteGenres((prevGenres) => [...prevGenres, genreToAdd]);
   };
@@ -67,10 +65,17 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
   const renderGenreChips = genres.map((genre: string, index: number) => (
     <Chip
       key={index}
+      variant={!favoriteGenres.includes(genre) ? 'outlined' : undefined}
       clickable
+      style={
+        !favoriteGenres.includes(genre)
+          ? { color: '#fffef9', borderColor: '#fffef9' }
+          : { color: '#140245', borderColor: '#140245' }
+      }
       label={genre}
-      onClick={addFavoriteGenre}
-      onDelete={deleteFavoriteGenre}
+      onClick={
+        !favoriteGenres.includes(genre) ? addFavoriteGenre : deleteFavoriteGenre
+      }
       className="genre-chip"
     />
   ));
@@ -82,6 +87,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
       onClick={() => handleAddOrRemoveBook(book)}
     >
       <img
+        className={favoriteBooks.includes(book) ? 'book-opaque' : ''}
         key={book.id}
         src={book.thumbnail ? book.thumbnail : undefined}
         alt={book.title}

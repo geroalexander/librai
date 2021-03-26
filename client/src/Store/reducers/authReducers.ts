@@ -28,8 +28,8 @@ function reducer(state = initialState, action: AnyAction) {
     case SET_REGISTER:
       return { ...state, signedIn: true, fillForm: true };
 
-    // case SET_ADD_FORM_INFO:
-    //   return { ...state };
+    case SET_ADD_FORM_INFO:
+      return { ...state, fillForm: false };
   }
   return state;
 }

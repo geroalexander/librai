@@ -17,6 +17,9 @@ $opensans: 'Open Sans', sans-serif;
     flex-direction: column;
     justify-content: center;
     align-content: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+
     .genre-chips {
       display: flex;
       flex-wrap: wrap;
@@ -30,17 +33,32 @@ $opensans: 'Open Sans', sans-serif;
       font-family: $montserrat;
     }
   }
+
   .book-picker-wrapper {
+    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
     margin-bottom: 20%;
+    height: 85vh;
+
     .books-wrapper {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-evenly;
       overflow-y: scroll;
+      margin-left: 1rem;
+      margin-right: 1rem;
+
+      img {
+        border-radius: 7px;
+        height: 7rem;
+      }
+
+      .book-opaque {
+        filter: brightness(25%);
+      }
     }
     .pop-book-button {
       background: transparent;
@@ -48,6 +66,7 @@ $opensans: 'Open Sans', sans-serif;
       padding: 2%;
     }
   }
+
   h1 {
     width: 90vw;
     align-self: center;
@@ -55,11 +74,12 @@ $opensans: 'Open Sans', sans-serif;
     font-family: $comfortaa;
     margin-bottom: 5%;
     color: $PRIMARY_WHITE;
+    font-size: 1.8rem;
   }
   .submit {
     color: $PRIMARY_DARK;
     align-self: center;
-    margin-top: 5%;
+    margin-top: 1.5rem;
     font-family: $montserrat;
     background-color: $PRIMARY_WHITE;
   }

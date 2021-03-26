@@ -1,9 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap");
-.login-form {
-  padding: 1em;
+.register-wrapper {
+  height: 100vh;
+  width: 100vw;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #2c0791), to(#140245));
+  background: linear-gradient(#2c0791 1%, #140245 100%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.login-form .form-inner {
+.register-wrapper .register-form .form-inner {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -17,10 +30,9 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 6rem;
 }
 
-.login-form .title {
+.register-wrapper .register-form .title {
   margin-bottom: 2rem;
   color: #fffef9;
   font-family: "Comfortaa", cursive;
@@ -28,7 +40,7 @@
   font-weight: bold;
 }
 
-.login-form .form-group {
+.register-wrapper .register-form .form-group {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -46,51 +58,53 @@
           align-items: center;
 }
 
-.login-form .form-group .input {
-  background-color: #23076e;
+.register-wrapper .register-form .form-group .input {
+  background-color: #140245;
   border-radius: 25px;
-  height: 4em;
-  width: 20em;
+  height: 2.7em;
+  width: 15em;
   color: #dfd5fc;
   border-style: hidden;
   margin: 1em;
+  outline: none;
+  font: 15px "Montserrat", sans-serif;
   padding-left: 3.6em;
 }
 
-.login-form .form-group ::-webkit-input-placeholder {
-  color: #fffef9;
+.register-wrapper .register-form .form-group ::-webkit-input-placeholder {
+  color: #c8baf3;
   font-family: "Montserrat", sans-serif;
-  font-size: 14px;
+  font-size: 1rem;
 }
 
-.login-form .form-group :-ms-input-placeholder {
-  color: #fffef9;
+.register-wrapper .register-form .form-group :-ms-input-placeholder {
+  color: #c8baf3;
   font-family: "Montserrat", sans-serif;
-  font-size: 14px;
+  font-size: 1rem;
 }
 
-.login-form .form-group ::-ms-input-placeholder {
-  color: #fffef9;
+.register-wrapper .register-form .form-group ::-ms-input-placeholder {
+  color: #c8baf3;
   font-family: "Montserrat", sans-serif;
-  font-size: 14px;
+  font-size: 1rem;
 }
 
-.login-form .form-group ::placeholder {
-  color: #fffef9;
+.register-wrapper .register-form .form-group ::placeholder {
+  color: #c8baf3;
   font-family: "Montserrat", sans-serif;
-  font-size: 14px;
+  font-size: 1rem;
 }
 
-.login-form .form-group .icon {
+.register-wrapper .register-form .form-group .icon {
   position: absolute;
-  left: 22px;
+  left: 30px;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
   padding-top: 3px;
 }
 
-.login-form .submitButton {
+.register-wrapper .register-form .submitButton {
   font-weight: bold;
   margin: 2rem;
   margin-bottom: 1rem;
@@ -106,10 +120,11 @@
           box-shadow: 1px 2px 2px 2px;
 }
 
-.login-form .to-login {
-  margin-top: none;
+.register-wrapper .register-form .to-login {
+  margin-top: 0.8em;
   text-decoration: none;
-  color: #fffef9;
+  color: #dfd5fc;
   font-size: 0.9em;
+  font-family: "Montserrat", sans-serif;
 }
 /*# sourceMappingURL=Register.css.map */

@@ -42,11 +42,26 @@ $opensans: 'Open Sans', sans-serif;
       height: 8rem;
       width: 8rem;
       margin-top: 0.5em;
-      margin-bottom: 1em;
+      margin-bottom: 2em;
       border: solid;
       border-color: $PRIMARY_WHITE;
       border-width: 2px;
       box-shadow: 0 0 10px -1px rgb(19, 16, 61);
+    }
+
+    .empty-profile {
+      border: solid;
+      border-radius: 100%;
+      border-color: $PRIMARY_WHITE;
+      border-width: 2px;
+      box-shadow: 0 0 10px -1px rgb(19, 16, 61);
+      height: 8rem;
+      width: 8rem;
+      margin-top: 0.5em;
+      margin-bottom: 2em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     h1 {

@@ -18,11 +18,12 @@ import {
   DELETE_RATING,
   REGISTRATION_FORM,
   UPDATE_PROFILE,
+  SET_ADD_FORM_INFO,
 } from './ActionTypes';
 import { Book } from '../../Interfaces/bookObject';
 import { PopularBook } from '../../Interfaces/popularBookObject';
 import { User } from '../../Interfaces/userObject';
-const { REACT_APP_ACCESS_TOKEN } = process.env;
+// const { REACT_APP_ACCESS_TOKEN } = process.env;
 
 // const accessToken: string | null = localStorage.getItem('accessToken');
 // const accessToken = REACT_APP_ACCESS_TOKEN;
@@ -92,9 +93,9 @@ export const _registrationForm = (
       books,
       favoriteGenres
     );
-    console.log(userWithBooks, '<-----userWithBooks');
 
     dispatch({ type: REGISTRATION_FORM, payload: userWithBooks });
+    dispatch({ type: SET_ADD_FORM_INFO });
   }
 };
 

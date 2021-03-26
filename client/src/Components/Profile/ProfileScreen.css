@@ -57,12 +57,34 @@
   height: 8rem;
   width: 8rem;
   margin-top: 0.5em;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
   border: solid;
   border-color: #dfd5fc;
   border-width: 2px;
   -webkit-box-shadow: 0 0 10px -1px #13103d;
           box-shadow: 0 0 10px -1px #13103d;
+}
+
+.profile-screen .user-info .empty-profile {
+  border: solid;
+  border-radius: 100%;
+  border-color: #dfd5fc;
+  border-width: 2px;
+  -webkit-box-shadow: 0 0 10px -1px #13103d;
+          box-shadow: 0 0 10px -1px #13103d;
+  height: 8rem;
+  width: 8rem;
+  margin-top: 0.5em;
+  margin-bottom: 2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .profile-screen .user-info h1 {

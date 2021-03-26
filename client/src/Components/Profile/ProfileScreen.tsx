@@ -9,8 +9,8 @@ import { _updateProfile, _getUserWithBooks } from '../../Store/actions/users';
 import './ProfileScreen.css';
 import BookItem from '../Shared/BookItem';
 import Avatar from '@material-ui/core/Avatar';
-import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
+import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import { setLogout } from '../../Store/actions/auth';
 import { uploadToCloud } from '../../ApiClientService/ImageUpload';
 import imageToBase64 from '../Shared/imageToBase64';
@@ -33,7 +33,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
     if (!Object.keys(user).length) {
       const getUser = async () => {
         const action = await _getUserWithBooks();
-        console.log(action)
+        console.log(action);
         dispatch(action);
       };
 
@@ -47,7 +47,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
 
   const handleLogout = () => {
     dispatch(setLogout());
-    history.push('/login')
+    history.push('/login');
   };
 
   const handleUpdateProfilePic = async (
@@ -86,9 +86,9 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
                 src={user.profilePic ? user.profilePic : undefined}
               />
             ) : (
-              <Avatar className="profile-picture">
-                <AddPhotoAlternateIcon />
-              </Avatar>
+              <div className="empty-profile">
+                <AddPhotoAlternateIcon style={{ fontSize: 40 }} />
+              </div>
             )}
           </label>
           <h1>{fullName}</h1>

@@ -27,6 +27,8 @@
           justify-content: center;
   -ms-flex-line-pack: center;
       align-content: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .reg-form-page .genre-form-wrapper .genre-chips {
@@ -49,6 +51,7 @@
 }
 
 .reg-form-page .book-picker-wrapper {
+  margin: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -62,6 +65,7 @@
   -ms-flex-line-pack: center;
       align-content: center;
   margin-bottom: 20%;
+  height: 85vh;
 }
 
 .reg-form-page .book-picker-wrapper .books-wrapper {
@@ -74,6 +78,18 @@
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   overflow-y: scroll;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.reg-form-page .book-picker-wrapper .books-wrapper img {
+  border-radius: 7px;
+  height: 7rem;
+}
+
+.reg-form-page .book-picker-wrapper .books-wrapper .book-opaque {
+  -webkit-filter: brightness(25%);
+          filter: brightness(25%);
 }
 
 .reg-form-page .book-picker-wrapper .pop-book-button {
@@ -91,6 +107,7 @@
   font-family: "Comfortaa", cursive;
   margin-bottom: 5%;
   color: #dfd5fc;
+  font-size: 1.8rem;
 }
 
 .reg-form-page .submit {
@@ -98,7 +115,7 @@
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
-  margin-top: 5%;
+  margin-top: 1.5rem;
   font-family: "Montserrat", sans-serif;
   background-color: #dfd5fc;
 }
