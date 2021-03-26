@@ -9,11 +9,7 @@ import bookAnimation from '../../Animations/book-animation-2.json';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import moment from 'moment';
 
-const { REACT_APP_ACCESS_TOKEN } = process.env;
-
 interface BookDetailsScreenProps extends RouteComponentProps {}
-
-const accessToken = REACT_APP_ACCESS_TOKEN;
 
 const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
   const [book, setBook] = useState(props.location.state.book);
@@ -25,13 +21,13 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
   }, []);
 
   const retrieveBookWithScore = async () => {
+    const accessToken: string | null = localStorage.getItem('accessToken');
     if (
       isNew === true ||
       (book.interaction &&
         !book.interaction.compatabilityScore &&
         book.interaction.isSaved)
     ) {
-      // const accessToken = localStorage.getItem('accessToken');
       if (accessToken) {
         const formattedBook = await getBookWithScore(accessToken, book);
         setBook(formattedBook);

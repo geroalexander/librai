@@ -5,10 +5,8 @@ import imageToBase64 from '../Shared/imageToBase64';
 import { getBookByCover } from '../../ApiClientService/Book';
 import { uploadToCloud } from '../../ApiClientService/ImageUpload';
 import { useHistory } from 'react-router-dom';
-const { REACT_APP_ACCESS_TOKEN } = process.env;
 
 // const accessToken: string | null = localStorage.getItem('accessToken');
-const accessToken = REACT_APP_ACCESS_TOKEN;
 
 interface CameraProps {
   setIsLoading: (value: React.SetStateAction<boolean>) => void;
@@ -26,6 +24,9 @@ const Camera: React.FC<CameraProps> = ({ setIsLoading }) => {
     const cloudURL = await uploadToCloud(base64Image);
 
     let book;
+    const accessToken: string | null = localStorage.getItem('accessToken');
+    console.log(accessToken, 'token here');
+
     if (accessToken) book = await getBookByCover(accessToken, cloudURL);
     if (book) {
       console.log(book, 'RETRIEVED BOOK');
