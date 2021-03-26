@@ -24,7 +24,6 @@ const loadDashboard = async (req, res) => {
 
     for (const rec of recommendations.recomms) {
       const retrievedBook = await getBookById(rec.id);
-
       const formattedBook = formatBook(retrievedBook);
       formattedBook.compatabilityScore = 10;
       bookRecArr.push(formattedBook);
