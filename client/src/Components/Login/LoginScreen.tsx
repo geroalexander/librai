@@ -5,11 +5,7 @@ import './Login.css';
 import { setLogin } from '../../Store/actions/auth';
 import LockIcon from '@material-ui/icons/Lock';
 import EmailIcon from '@material-ui/icons/Email';
-import {
-  Link,
-  withRouter,
-  useHistory,
-} from 'react-router-dom';
+import { Link, withRouter, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 const Login: React.FC = () => {
@@ -18,12 +14,11 @@ const Login: React.FC = () => {
 
   const defaultValues = { email: '', password: '' };
 
-  const { register, handleSubmit, errors, reset, setError } = useForm({ defaultValues });
+  const { register, handleSubmit, errors, reset, setError } = useForm({
+    defaultValues,
+  });
 
-  const onClickSubmitLogin = async (data: {
-    email: string;
-    password: string;
-  }) => {
+  const submitLogin = async (data: typeof defaultValues) => {
     const { email, password } = data;
     const action = setLogin({ email, password });
 
@@ -34,15 +29,16 @@ const Login: React.FC = () => {
       reset();
       history.push('/');
     } else {
-      setError("password", {
+      setError('password', {
         type: 'manual',
-        message:'Invalid email and/or password. Please try again.'})
+        message: 'Invalid email and/or password. Please try again.',
+      });
     }
   };
 
   return (
     <div className="login-wrapper">
-      <form onSubmit={handleSubmit(onClickSubmitLogin)} className="login-form">
+      <form onSubmit={handleSubmit(submitLogin)} className="login-form">
         <div className="login-form-inner">
           <h2 className="title">Login</h2>
           <div className="form-group">

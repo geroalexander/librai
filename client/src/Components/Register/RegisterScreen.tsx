@@ -1,15 +1,9 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../..';
 import './Register.css';
 import { setRegister } from '../../Store/actions/auth';
-import {
-  Link,
-  RouteComponentProps,
-  withRouter,
-  useHistory,
-} from 'react-router-dom';
+import { Link, withRouter, useHistory } from 'react-router-dom';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import PersonIcon from '@material-ui/icons/Person';
 import LockIcon from '@material-ui/icons/Lock';
@@ -30,12 +24,7 @@ const Register: React.FC = (props) => {
     defaultValues,
   });
 
-  const onClickSubmitLogin = async (data: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-  }) => {
+  const submitRegister = async (data: typeof defaultValues) => {
     const action = setRegister(data);
     await dispatch(action);
 
@@ -53,10 +42,7 @@ const Register: React.FC = (props) => {
 
   return (
     <div className="register-wrapper">
-      <form
-        onSubmit={handleSubmit(onClickSubmitLogin)}
-        className="register-form"
-      >
+      <form onSubmit={handleSubmit(submitRegister)} className="register-form">
         <div className="form-inner">
           <h2 className="title">Register</h2>
           {/*ERROR*/}
