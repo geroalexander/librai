@@ -72,7 +72,7 @@ $opensans: 'Open Sans', sans-serif;
     .books-wrapper {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: space-evenly;
       overflow-y: scroll;
       margin-left: 1rem;
       margin-right: 1rem;
@@ -81,13 +81,13 @@ $opensans: 'Open Sans', sans-serif;
         border-radius: 7px;
         height: 7rem;
         @include md {
-          height: 7rem;
+          height: 9rem;
         }
         @include lg {
-          height: 7rem;
+          height: 11rem;
         }
         @include xl {
-          height: 7rem;
+          height: 13rem;
         }
       }
 
@@ -100,6 +100,15 @@ $opensans: 'Open Sans', sans-serif;
       background: transparent;
       border: none;
       padding: 2%;
+      @include md {
+        padding: 1%;
+      }
+      @include lg {
+        padding: 1%;
+      }
+      @include xl {
+        padding: 1%;
+      }
     }
   }
 

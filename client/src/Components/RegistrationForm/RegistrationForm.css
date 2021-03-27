@@ -113,9 +113,9 @@
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   overflow-y: scroll;
   margin-left: 1rem;
   margin-right: 1rem;
@@ -128,19 +128,19 @@
 
 @media (min-width: 768px) {
   .reg-form-page .book-picker-wrapper .books-wrapper img {
-    height: 7rem;
+    height: 9rem;
   }
 }
 
 @media (min-width: 992px) {
   .reg-form-page .book-picker-wrapper .books-wrapper img {
-    height: 7rem;
+    height: 11rem;
   }
 }
 
 @media (min-width: 1200px) {
   .reg-form-page .book-picker-wrapper .books-wrapper img {
-    height: 7rem;
+    height: 13rem;
   }
 }
 
@@ -156,6 +156,24 @@
   background: transparent;
   border: none;
   padding: 2%;
+}
+
+@media (min-width: 768px) {
+  .reg-form-page .book-picker-wrapper .pop-book-button {
+    padding: 1%;
+  }
+}
+
+@media (min-width: 992px) {
+  .reg-form-page .book-picker-wrapper .pop-book-button {
+    padding: 1%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .reg-form-page .book-picker-wrapper .pop-book-button {
+    padding: 1%;
+  }
 }
 
 .reg-form-page h1 {
