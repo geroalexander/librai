@@ -122,6 +122,9 @@
 }
 
 .reg-form-page .book-picker-wrapper .books-wrapper img {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 21%;
+          flex: 1 0 21%;
   border-radius: 7px;
   height: 7rem;
 }
