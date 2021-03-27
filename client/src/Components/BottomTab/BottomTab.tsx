@@ -8,6 +8,7 @@ import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import './BottomTab.css';
 import { Link } from 'react-router-dom';
 import { Dashboard, Profile, Saved, BookDetails, Login } from '../../Routes';
+import Media from 'react-media';
 
 const useStyles = makeStyles({
   root: {

@@ -16,6 +16,7 @@ import {
   RegistrationForm,
 } from './Routes';
 import BottomTabNavigation from './Components/BottomTab/BottomTab';
+import { useMediaQuery } from 'react-responsive';
 
 function App() {
   const signedIn = useSelector(
@@ -25,6 +26,10 @@ function App() {
   const fillForm = useSelector(
     (state: RootState) => state.authReducer.fillForm
   );
+
+  const isMobile = useMediaQuery({
+    query: '(max-width: 498px)',
+  });
 
   return (
     <div className="App">
@@ -47,7 +52,7 @@ function App() {
           <Route path="/register" exact component={Register}></Route>
           <Route path="/" render={() => <div>404</div>} />
         </Switch>
-        {signedIn && !fillForm && <BottomTabNavigation />}
+        {signedIn && !fillForm && isMobile && <BottomTabNavigation />}
       </Router>
     </div>
   );
