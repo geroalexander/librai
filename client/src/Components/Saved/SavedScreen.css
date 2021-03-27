@@ -10,6 +10,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -30,12 +33,9 @@
 }
 
 .saved-screen .saved-list {
-  height: 80vh;
-  overflow: scroll;
+  height: 100%;
+  overflow-y: scroll;
   padding: 1.5rem;
-}
-
-.saved-screen .footer {
-  height: 10rem;
+  margin-bottom: 8vh;
 }
 /*# sourceMappingURL=SavedScreen.css.map */

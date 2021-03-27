@@ -23,6 +23,7 @@
     "react-lottie": "^1.2.3",
     "react-media": "^1.10.0",
     "react-redux": "^7.2.3",
+    "react-responsive": "^8.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-useanimations": "^2.0.6",
@@ -68,5 +69,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-responsive": "^8.0.2"
   }
 }

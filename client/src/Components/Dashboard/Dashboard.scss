@@ -1,4 +1,5 @@
 @import '../../Theme/colorDefinitions.scss';
+@import '../../Theme/breakpoints.scss';
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap');
 
 $comfortaa: 'Comfortaa', cursive;
@@ -6,15 +7,11 @@ $montserrat: 'Montserrat', sans-serif;
 $opensans: 'Open Sans', sans-serif;
 
 .dashboard {
-  // text-align: center
   height: 100vh;
   width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
   padding-top: 6%;
   padding-left: 10%;
+  padding-bottom: 5%;
   background: linear-gradient(#2c0791 1%, $PRIMARY_DARK 100%);
 
   header {
@@ -36,10 +33,14 @@ $opensans: 'Open Sans', sans-serif;
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 0.8rem;
+
+    @include sm_height {
+      font-size: 1.2rem;
+    }
   }
 
   .bookwrapper {
-    height: 30vh;
+    max-height: 30vh;
 
     .booklist {
       border-color: $WHITE;
@@ -52,17 +53,25 @@ $opensans: 'Open Sans', sans-serif;
       .book-preview {
         margin-right: 1rem;
         img {
-          height: 10rem;
+          max-height: 20vh;
           border-radius: 5px;
           box-shadow: 0 0 20px -1px rgb(7, 6, 22);
+
+          @include sm_height {
+            max-height: 18vh;
+          }
         }
       }
     }
   }
 
   .bookwrapper-small {
-    height: 22vh;
+    height: 20vh;
     margin-bottom: 2rem;
+
+    @include sm_height {
+      margin-bottom: 0;
+    }
 
     .booklist-small {
       // border: solid;
@@ -76,7 +85,7 @@ $opensans: 'Open Sans', sans-serif;
       .book-preview-small {
         margin-right: 1.5rem;
         img {
-          height: 8rem;
+          max-height: 15vh;
           border-radius: 5px;
           box-shadow: 0 0 20px -1px rgb(7, 6, 22);
         }

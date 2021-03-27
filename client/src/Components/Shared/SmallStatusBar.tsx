@@ -22,12 +22,23 @@ import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import SentimentSatisfiedAltIcon from '@material-ui/icons/SentimentSatisfiedAlt';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
+import { useMediaQuery } from 'react-responsive'
+
 
 interface StatusBarProps extends RouteComponentProps {
   book: Book;
 }
 
 const SmallStatusBar: React.FC<StatusBarProps> = ({ book }) => {
+
+  const isSmallMobile = useMediaQuery({
+    query: '(max-height: 720px)'
+  })
+
+  let iconSize: number;
+
+  isSmallMobile ? iconSize = 25 : iconSize = 25
+
   const [isSaved, setIsSaved] = useState(false);
   const [rated, setRated] = useState(false);
   const [rating, setRating] = useState<any>(null);
@@ -44,19 +55,19 @@ const SmallStatusBar: React.FC<StatusBarProps> = ({ book }) => {
   const handleRatingIcon = () => {
     if (rating === 1)
       return (
-        <SentimentSatisfiedAltIcon style={{ fontSize: 30, color: '#140245' }} />
+        <SentimentSatisfiedAltIcon style={{ fontSize: iconSize, color: '#140245' }} />
       );
     else if (rating === 0)
       return (
-        <SentimentSatisfiedIcon style={{ fontSize: 30, color: '#140245' }} />
+        <SentimentSatisfiedIcon style={{ fontSize: iconSize, color: '#140245' }} />
       );
     else if (rating === -1)
       return (
         <SentimentVeryDissatisfiedIcon
-          style={{ fontSize: 35, color: '#140245' }}
+          style={{ fontSize: iconSize, color: '#140245' }}
         />
       );
-    else return <CheckRoundedIcon style={{ fontSize: 30, color: '#140245' }} />;
+    else return <CheckRoundedIcon style={{ fontSize: iconSize, color: '#140245' }} />;
   };
 
   const handleRatingChange = async (newRating: number | null) => {
@@ -96,43 +107,43 @@ const SmallStatusBar: React.FC<StatusBarProps> = ({ book }) => {
           <MainButton
             iconResting={handleRatingIcon()}
             iconActive={
-              <CloseRoundedIcon style={{ fontSize: 30, color: '#140245' }} />
+              <CloseRoundedIcon style={{ fontSize: iconSize, color: '#140245' }} />
             }
             background="#c8baf3"
             onClick={() => {
               if (rated) handleRatingChange(null);
               setRated(!rated);
             }}
-            size={40}
+            size={iconSize+10}
           />
           <ChildButton
             icon={
               <SentimentSatisfiedAltIcon
-                style={{ fontSize: 30, color: '#140245' }}
+                style={{ fontSize: iconSize, color: '#140245' }}
               />
             }
             background="linear-gradient(45deg, #5018ea 1%, #dfd5fc 100%)"
-            size={40}
+            size={iconSize+10}
             onClick={() => handleRatingChange(1)}
           />
           <ChildButton
             icon={
               <SentimentSatisfiedIcon
-                style={{ fontSize: 30, color: '#140245' }}
+                style={{ fontSize: iconSize, color: '#140245' }}
               />
             }
             background="linear-gradient(45deg, #5018ea 1%, #dfd5fc 100%)"
-            size={40}
+            size={iconSize+10}
             onClick={() => handleRatingChange(0)}
           />
           <ChildButton
             icon={
               <SentimentVeryDissatisfiedIcon
-                style={{ fontSize: 30, color: '#140245' }}
+                style={{ fontSize: iconSize, color: '#140245' }}
               />
             }
             background="linear-gradient(45deg, #5018ea 1%, #dfd5fc 100%)"
-            size={40}
+            size={iconSize+10}
             onClick={() => handleRatingChange(-1)}
           />
         </FloatingMenu>
@@ -141,20 +152,20 @@ const SmallStatusBar: React.FC<StatusBarProps> = ({ book }) => {
         <div className="bookmark-wrapper">
           <FloatingMenu
             slideSpeed={500}
-            direction={Directions.Up}
+            direction={Directions.Right}
             spacing={8}
             isOpen={isSaved}
           >
             <MainButton
               iconResting={
                 <BookmarkBorderRoundedIcon
-                  style={{ fontSize: 30, color: '#140245' }}
+                  style={{ fontSize: iconSize, color: '#140245' }}
                 />
               }
               iconActive={
                 <BookmarkRoundedIcon
                   style={{
-                    fontSize: 30,
+                    fontSize: iconSize,
                     color: '#140245',
                     transform: 'rotateX(180deg)',
                   }}
@@ -162,7 +173,7 @@ const SmallStatusBar: React.FC<StatusBarProps> = ({ book }) => {
               }
               background="#c8baf3"
               onClick={handleSaveChange}
-              size={40}
+              size={iconSize+10}
             />
           </FloatingMenu>
         </div>
