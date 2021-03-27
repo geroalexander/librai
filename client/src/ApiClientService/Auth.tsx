@@ -29,8 +29,9 @@ const login = (email: string, password: string) => {
     },
     body: JSON.stringify({ email, password }),
   })
-    .then((res) => res.json())
-    .catch((err) => console.log('error with login', err));
+  .then(res => res.status < 400 ? res: Promise.reject(res.status))
+  .then(response => response.json())
+  .catch(err => err)
 };
 
 const addFormInfo = (accessToken: string, info: object) => {

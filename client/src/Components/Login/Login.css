@@ -126,4 +126,8 @@
   font-size: 0.9em;
   font-family: "Montserrat", sans-serif;
 }
+
+.login-wrapper .login-form span {
+  color: #f5d541;
+}
 /*# sourceMappingURL=Login.css.map */
