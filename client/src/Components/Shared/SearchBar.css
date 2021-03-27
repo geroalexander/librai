@@ -45,6 +45,22 @@
   }
 }
 
+.search-bar ::-webkit-input-placeholder {
+  color: #dfd5fc;
+}
+
+.search-bar :-ms-input-placeholder {
+  color: #dfd5fc;
+}
+
+.search-bar ::-ms-input-placeholder {
+  color: #dfd5fc;
+}
+
+.search-bar ::placeholder {
+  color: #dfd5fc;
+}
+
 .search-bar .overlay {
   display: -webkit-box;
   display: -ms-flexbox;

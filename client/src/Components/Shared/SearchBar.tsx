@@ -51,6 +51,7 @@ const SearchBar = () => {
         value={searchTerm}
         onChange={handleChange}
         className="search-input"
+        placeholder="Search for a book..."
       />
       {searchBoxVisible && searchResult && searchResult.length ? (
         <div id="search-box" className="overlay" ref={node}>

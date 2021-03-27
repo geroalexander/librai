@@ -9,13 +9,15 @@ $opensans: 'Open Sans', sans-serif;
 .dashboard {
   height: 100vh;
   width: 100vw;
-  padding-top: 4%;
-  padding-left: 10%;
   padding-bottom: 5%;
   background: linear-gradient(#2c0791 1%, $PRIMARY_DARK 100%);
 
   @include md {
     padding-top: 2%;
+  }
+
+  @include lg {
+    padding-top: 0;
   }
 
   header {
@@ -24,18 +26,31 @@ $opensans: 'Open Sans', sans-serif;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
+    padding-top: 5vw;
+    padding-left: 5vw;
 
     @include md {
       padding-top: 2vw;
     }
 
     @include xl {
-      padding-top: 0;
+      padding-top: 0.7vw;
+      padding-left: 0;
+      padding-bottom: 0.5vw;
+      width: 100vw;
+      background-color: #3106a5;
+      box-shadow: 0 0 8px -1px rgb(17, 16, 43);
     }
 
     img {
-      max-height: 4rem;
+      max-height: 3.2rem;
+      padding-left: 2vw;
+      padding-bottom: 0.5vw;
     }
+  }
+
+  .book-body {
+    padding-left: 5%;
   }
 
   .title-wrapper {
@@ -70,14 +85,19 @@ $opensans: 'Open Sans', sans-serif;
 
   .bookwrapper {
     max-height: 30vh;
-    @include lg {
-      margin-bottom: 8rem;
-    }
-
     @include md {
       margin-top: 3rem;
     }
 
+    @include lg {
+      margin-bottom: 7rem;
+      margin-top: 0;
+    }
+
+    @include xxl {
+      margin-bottom: 7rem;
+      margin-top: 3rem;
+    }
     .booklist {
       border-color: $WHITE;
       border-width: 1px;

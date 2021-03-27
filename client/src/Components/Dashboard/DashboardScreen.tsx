@@ -64,6 +64,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
           {isDesktop && <DropMenu/>}
           {(isTablet || isMobile) && <Camera setIsLoading={setIsLoading} /> }
         </header>
+        <div className="book-body">
         <div className="bookwrapper">
           <div className="title-wrapper">
             <p className="title">Recommended</p>
@@ -137,6 +138,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
                 </div>
               ))}
           </div>
+        </div>
         </div>
         <div className="footer"></div>
       </div>

@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Avatar from '@material-ui/core/Avatar';
+import './Menu.css'
 
 
 const DropMenu = () => {
@@ -19,7 +20,7 @@ const DropMenu = () => {
   return (
     <div>
       <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-        <Avatar/>
+        <Avatar className="profile-icon"/>
       </Button>
       <Menu
         id="simple-menu"
