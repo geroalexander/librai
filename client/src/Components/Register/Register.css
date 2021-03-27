@@ -104,6 +104,10 @@
   padding-top: 3px;
 }
 
+.register-wrapper .register-form span {
+  color: #f5d541;
+}
+
 .register-wrapper .register-form .submitButton {
   font-weight: bold;
   margin: 2rem;

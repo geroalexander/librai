@@ -12,7 +12,6 @@ import {
   SET_LOGIN,
   SET_LOGOUT,
   SET_REGISTER,
-  SET_ADD_FORM_INFO,
   LOG_USER_OUT,
 } from './ActionTypes';
 
@@ -41,10 +40,11 @@ export const setRegister = (form: RegistrationInfo) => async (
   dispatch: AppDispatch
 ) => {
   const { firstName, lastName, email, password } = form;
-  const { accessToken } = await register(firstName, lastName, email, password);
-  localStorage.setItem('accessToken', accessToken);
-  dispatch({ type: SET_REGISTER });
-  return accessToken;
+  const response = await register(firstName, lastName, email, password);
+  console.log('API RESPONSE', response);
+  if (response.accessToken) {
+    localStorage.setItem('accessToken', response.accessToken);
+    dispatch({ type: SET_REGISTER });
+  }
+  return response;
 };
-
-// const setAddFormInfo = () => async (dispatch: AppDispatch) => {}

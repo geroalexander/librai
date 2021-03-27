@@ -62,6 +62,9 @@ $opensans: 'Open Sans', sans-serif;
         padding-top: 3px;
       }
     }
+    span {
+      color: $SECONDARY;
+    }
 
     .submitButton {
       font-weight: bold;
