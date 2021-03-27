@@ -1,5 +1,3 @@
-import { responsiveFontSizes } from "@material-ui/core";
-
 const { REACT_APP_BASE_URL } = process.env;
 
 const register = (
@@ -8,7 +6,8 @@ const register = (
   email: string,
   password: string
 ) => {
-  return fetch(`${REACT_APP_BASE_URL}/auth/register`, {
+  const path = '/auth/register';
+  const options: RequestInit = {
     method: 'POST',
     credentials: 'include',
     mode: 'cors',
@@ -16,14 +15,26 @@ const register = (
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ firstName, lastName, email, password }),
-  })
-    .then((res) => res.json())
-    .catch((err) => console.log('error with register', err));
+  };
+  return fetchRequest(path, options);
+
+  // return fetch(`${REACT_APP_BASE_URL}/auth/register`, {
+  //   method: 'POST',
+  //   credentials: 'include',
+  //   mode: 'cors',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify({ firstName, lastName, email, password }),
+  // })
+  //   .then((res) => res.json())
+  //   .catch((err) => console.log('error with register', err));
 };
 
 const login = (email: string, password: string) => {
   // call client function
-  return fetch(`${REACT_APP_BASE_URL}/auth/login`, {
+  const path = '/auth/login';
+  const options: RequestInit = {
     method: 'POST',
     credentials: 'include',
     mode: 'cors',
@@ -31,14 +42,26 @@ const login = (email: string, password: string) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ email, password }),
-  })
-  .then(res => res.ok ? res: Promise.reject(res.status))
-  .then(res => res.json())
-  .catch(err => err)
+  };
+  return fetchRequest(path, options);
+
+  // return fetch(`${REACT_APP_BASE_URL}/auth/login`, {
+  //   method: 'POST',
+  //   credentials: 'include',
+  //   mode: 'cors',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify({ email, password }),
+  // })
+  //   .then((res) => (res.ok ? res : Promise.reject(res.status)))
+  //   .then((res) => res.json())
+  //   .catch((err) => err);
 };
 
 const addFormInfo = (accessToken: string, info: object) => {
-  return fetch(`${REACT_APP_BASE_URL}/auth/form`, {
+  const path = '/auth/form';
+  const options: RequestInit = {
     method: 'PATCH',
     credentials: 'include',
     mode: 'cors',
@@ -47,11 +70,24 @@ const addFormInfo = (accessToken: string, info: object) => {
       Authorization: `Bearer ${accessToken}`,
     },
     body: JSON.stringify({ info }),
-  });
+  };
+  return fetchRequest(path, options);
+
+  // return fetch(`${REACT_APP_BASE_URL}/auth/form`, {
+  //   method: 'PATCH',
+  //   credentials: 'include',
+  //   mode: 'cors',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     Authorization: `Bearer ${accessToken}`,
+  //   },
+  //   body: JSON.stringify({ info }),
+  // });
 };
 
 const logout = (accessToken: string) => {
-  return fetch(`${REACT_APP_BASE_URL}/auth/logout`, {
+  const path: string = '/auth/logout';
+  const options: RequestInit = {
     method: 'POST',
     credentials: 'include',
     mode: 'cors',
@@ -59,9 +95,30 @@ const logout = (accessToken: string) => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
     },
-  }).catch((err) => console.log('error with logout', err));
+  };
+  return fetchRequest(path, options);
+
+  // return fetch(`${REACT_APP_BASE_URL}/auth/logout`, {
+  //   method: 'POST',
+  //   credentials: 'include',
+  //   mode: 'cors',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     Authorization: `Bearer ${accessToken}`,
+  //   },
+  // }).catch((err) => console.log('error with logout', err));
 };
 
+async function fetchRequest(path: string, options: RequestInit) {
+  const url: RequestInfo = REACT_APP_BASE_URL + path;
+  const res = await fetch(url, options);
+  if (res.ok) res.json();
+  else {
+    const { msg } = await res.json();
+    console.error(`Error with path: ${path}`, msg);
+    return Promise.reject(new Error(msg));
+  }
+}
 
 // single client function(endpoint, options)
 
@@ -104,7 +161,5 @@ const logout = (accessToken: string) => {
 //       }
 //     }
 // }
-
-
 
 export { register, login, addFormInfo, logout };
