@@ -19,13 +19,16 @@ export const setLogin = (loginObject: Login) => async (
   dispatch: AppDispatch
 ) => {
   const { email, password } = loginObject;
-  const response = await login(email, password);
-  console.log('API RESPONSE', response);
-  if (response.accessToken) {
-    localStorage.setItem('accessToken', response.accessToken);
-    dispatch({ type: SET_LOGIN });
+  try {
+    const response = await login(email, password);
+    if (response.accessToken) {
+      localStorage.setItem('accessToken', response.accessToken);
+      dispatch({ type: SET_LOGIN });
+    }
+    return response;
+  } catch (error) {
+    return { error };
   }
-  return response;
 };
 
 export const setLogout = () => async (dispatch: AppDispatch) => {

@@ -22,10 +22,8 @@ const Login: React.FC = () => {
     const { email, password } = data;
     const action = setLogin({ email, password });
 
-    await dispatch(action);
-
-    const token = localStorage.getItem('accessToken');
-    if (token) {
+    const login = await dispatch(action);
+    if (!login.error) {
       reset();
       history.push('/');
     } else {
@@ -52,11 +50,11 @@ const Login: React.FC = () => {
               placeholder="EMAIL"
               id="email"
               ref={register({
-                required: 'Please enter an email address',
-                pattern: {
-                  value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                  message: 'Please enter a valid e-mail address.',
-                },
+                // required: 'Please enter an email address',
+                // pattern: {
+                //   value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                //   message: 'Please enter a valid e-mail address.',
+                // },
               })}
             />
           </div>
@@ -72,11 +70,11 @@ const Login: React.FC = () => {
               placeholder="PASSWORD"
               id="password"
               ref={register({
-                required: 'Please enter a password.',
-                minLength: {
-                  value: 5,
-                  message: 'Minimum password length is 5',
-                },
+                // required: 'Please enter a password.',
+                // minLength: {
+                //   value: 5,
+                //   message: 'Minimum password length is 5',
+                // },
               })}
             />
           </div>
