@@ -42,6 +42,9 @@ $opensans: 'Open Sans', sans-serif;
       border-radius: 25px;
     }
   }
+  ::placeholder {
+    color: $PRIMARY_WHITE;
+  }
   .overlay {
     display: flex;
     flex-direction: column;

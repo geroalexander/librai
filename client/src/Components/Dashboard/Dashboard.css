@@ -2,8 +2,6 @@
 .dashboard {
   height: 100vh;
   width: 100vw;
-  padding-top: 4%;
-  padding-left: 10%;
   padding-bottom: 5%;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #2c0791), to(#140245));
   background: linear-gradient(#2c0791 1%, #140245 100%);
@@ -12,6 +10,12 @@
 @media (min-width: 768px) {
   .dashboard {
     padding-top: 2%;
+  }
+}
+
+@media (min-width: 992px) {
+  .dashboard {
+    padding-top: 0;
   }
 }
 
@@ -27,6 +31,8 @@
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 1.5rem;
+  padding-top: 5vw;
+  padding-left: 5vw;
 }
 
 @media (min-width: 768px) {
@@ -37,12 +43,24 @@
 
 @media (min-width: 1200px) {
   .dashboard header {
-    padding-top: 0;
+    padding-top: 0.7vw;
+    padding-left: 0;
+    padding-bottom: 0.5vw;
+    width: 100vw;
+    background-color: #3106a5;
+    -webkit-box-shadow: 0 0 8px -1px #11102b;
+            box-shadow: 0 0 8px -1px #11102b;
   }
 }
 
 .dashboard header img {
-  max-height: 4rem;
+  max-height: 3.2rem;
+  padding-left: 2vw;
+  padding-bottom: 0.5vw;
+}
+
+.dashboard .book-body {
+  padding-left: 5%;
 }
 
 .dashboard .title-wrapper {
@@ -89,14 +107,22 @@
   max-height: 30vh;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .dashboard .bookwrapper {
-    margin-bottom: 8rem;
+    margin-top: 3rem;
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .dashboard .bookwrapper {
+    margin-bottom: 7rem;
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1500px) {
+  .dashboard .bookwrapper {
+    margin-bottom: 7rem;
     margin-top: 3rem;
   }
 }
