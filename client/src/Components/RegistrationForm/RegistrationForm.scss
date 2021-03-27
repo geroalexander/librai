@@ -80,6 +80,15 @@ $opensans: 'Open Sans', sans-serif;
       img {
         border-radius: 7px;
         height: 7rem;
+        @include md {
+          height: 9rem;
+        }
+        @include lg {
+          height: 11rem;
+        }
+        @include xl {
+          height: 13rem;
+        }
       }
 
       .book-opaque {
@@ -87,10 +96,19 @@ $opensans: 'Open Sans', sans-serif;
       }
     }
     .pop-book-button {
+      align-self: center;
       background: transparent;
       border: none;
       padding: 2%;
-      flex: 1 0 21%;
+      @include md {
+        padding: 1%;
+      }
+      @include lg {
+        padding: 1%;
+      }
+      @include xl {
+        padding: 1%;
+      }
     }
   }
 
