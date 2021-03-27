@@ -14,32 +14,49 @@ import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import PersonIcon from '@material-ui/icons/Person';
 import LockIcon from '@material-ui/icons/Lock';
 import EmailIcon from '@material-ui/icons/Email';
+import { useForm } from 'react-hook-form';
 
 const Register: React.FC = (props) => {
   const history = useHistory();
   const dispatch = useDispatch<AppDispatch>();
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const defaultValues = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+  };
+  const { register, handleSubmit, errors, reset, setError } = useForm({
+    defaultValues,
+  });
 
-  const onClickSubmitLogin = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    dispatch(setRegister({ firstName, lastName, email, password }))
-      .then(() => {
-        setFirstName('');
-        setLastName('');
-        setEmail('');
-        setPassword('');
-        history.push('/form');
-      })
-      .catch((err) => console.log(err));
+  const onClickSubmitLogin = async (data: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+  }) => {
+    const action = setRegister(data);
+    await dispatch(action);
+
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      reset();
+      history.push('/form');
+    } else {
+      setError('password', {
+        type: 'manual',
+        message: 'Something went wrong, please try again.',
+      });
+    }
   };
 
   return (
     <div className="register-wrapper">
-      <form onSubmit={onClickSubmitLogin} className="register-form">
+      <form
+        onSubmit={handleSubmit(onClickSubmitLogin)}
+        className="register-form"
+      >
         <div className="form-inner">
           <h2 className="title">Register</h2>
           {/*ERROR*/}
@@ -51,52 +68,78 @@ const Register: React.FC = (props) => {
             </div>
             <input
               className="input"
-              onChange={(e) => setFirstName(e.target.value)}
               type="text"
               name="firstName"
               placeholder="FIRST NAME"
               id="firstName"
+              ref={register({
+                required: 'Please enter your first name.',
+              })}
             />
           </div>
+          {errors.firstName && (
+            <span role="alert">{errors.firstName.message}</span>
+          )}
           <div className="form-group">
             <div className="icon">
               <PersonIcon style={{ color: '#fffef9' }}></PersonIcon>
             </div>
             <input
               className="input"
-              onChange={(e) => setLastName(e.target.value)}
               type="text"
               name="lastName"
               placeholder="LAST NAME"
               id="lastName"
+              ref={register({
+                required: 'Please enter your last name.',
+              })}
             />
           </div>
+          {errors.lastName && (
+            <span role="alert">{errors.lastName.message}</span>
+          )}
           <div className="form-group">
             <div className="icon">
               <EmailIcon style={{ color: '#fffef9' }}></EmailIcon>
             </div>
             <input
               className="input"
-              onChange={(e) => setEmail(e.target.value)}
               type="text"
               name="email"
               placeholder="EMAIL"
               id="email"
+              ref={register({
+                required: 'Please enter an email address',
+                pattern: {
+                  value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                  message: 'Please enter a valid e-mail address.',
+                },
+              })}
             />
           </div>
+          {errors.email && <span role="alert">{errors.email.message}</span>}
           <div className="form-group">
             <div className="icon">
               <LockIcon style={{ color: '#fffef9' }}></LockIcon>
             </div>
             <input
               className="input"
-              onChange={(e) => setPassword(e.target.value)}
               type="password"
               name="password"
               placeholder="PASSWORD"
               id="password"
+              ref={register({
+                required: 'Please enter a password.',
+                minLength: {
+                  value: 5,
+                  message: 'Minimum password length is 5',
+                },
+              })}
             />
           </div>
+          {errors.password && (
+            <span role="alert">{errors.password.message}</span>
+          )}
           <input className="submitButton" type="submit" value="SIGN UP" />
           <Link to="/login" className="to-login">
             Already have an account? Click here!
