@@ -3,7 +3,6 @@ import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import { Book } from '../../Interfaces/bookObject';
 import SmallStatusBar from '../Shared/SmallStatusBar';
 import './BookItem.css';
-import { useMediaQuery } from 'react-responsive'
 
 
 interface BookItemProps extends RouteComponentProps {
