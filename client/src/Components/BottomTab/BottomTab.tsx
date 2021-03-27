@@ -8,6 +8,7 @@ import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import './BottomTab.css';
 import { Link } from 'react-router-dom';
 import { Dashboard, Profile, Saved, BookDetails, Login } from '../../Routes';
+import Media from 'react-media';
 
 const useStyles = makeStyles({
   root: {
@@ -37,38 +38,52 @@ const BottomTabNavigation = () => {
   };
 
   return (
-    <BottomNavigation
-      value={value}
-      onChange={handleChange}
-      className={classes.root}
-    >
-      <BottomNavigationAction
-        component={Link}
-        to="/"
-        label="Home"
-        value="home"
-        icon={<HomeRoundedIcon style={{ fontSize: 30, color: '#dfd5fc' }} />}
-        classes={{ selected: classes.selected, label: classes.label }}
-      />
-      <BottomNavigationAction
-        component={Link}
-        to="/saved"
-        label="Saved"
-        value="saved"
-        icon={
-          <BarChartRoundedIcon style={{ fontSize: 30, color: '#dfd5fc' }} />
-        }
-        classes={{ selected: classes.selected, label: classes.label }}
-      />
-      <BottomNavigationAction
-        component={Link}
-        to="/profile"
-        label="Profile"
-        value="profile"
-        icon={<PersonRoundedIcon style={{ fontSize: 30, color: '#dfd5fc' }} />}
-        classes={{ selected: classes.selected, label: classes.label }}
-      />
-    </BottomNavigation>
+    <Media query="(min-width: 498px)">
+      {(matches) => {
+        return !matches ? (
+          <BottomNavigation
+            value={value}
+            onChange={handleChange}
+            className={classes.root}
+          >
+            <BottomNavigationAction
+              component={Link}
+              to="/"
+              label="Home"
+              value="home"
+              icon={
+                <HomeRoundedIcon style={{ fontSize: 30, color: '#dfd5fc' }} />
+              }
+              classes={{ selected: classes.selected, label: classes.label }}
+            />
+            <BottomNavigationAction
+              component={Link}
+              to="/saved"
+              label="Saved"
+              value="saved"
+              icon={
+                <BarChartRoundedIcon
+                  style={{ fontSize: 30, color: '#dfd5fc' }}
+                />
+              }
+              classes={{ selected: classes.selected, label: classes.label }}
+            />
+            <BottomNavigationAction
+              component={Link}
+              to="/profile"
+              label="Profile"
+              value="profile"
+              icon={
+                <PersonRoundedIcon style={{ fontSize: 30, color: '#dfd5fc' }} />
+              }
+              classes={{ selected: classes.selected, label: classes.label }}
+            />
+          </BottomNavigation>
+        ) : (
+          <div></div>
+        );
+      }}
+    </Media>
   );
 };
 
