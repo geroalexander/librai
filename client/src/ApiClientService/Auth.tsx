@@ -59,32 +59,6 @@ const login = (email: string, password: string) => {
   //   .catch((err) => err);
 };
 
-const addFormInfo = (accessToken: string, info: object) => {
-  const path = '/auth/form';
-  const options: RequestInit = {
-    method: 'PATCH',
-    credentials: 'include',
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${accessToken}`,
-    },
-    body: JSON.stringify({ info }),
-  };
-  return fetchRequest(path, options);
-
-  // return fetch(`${REACT_APP_BASE_URL}/auth/form`, {
-  //   method: 'PATCH',
-  //   credentials: 'include',
-  //   mode: 'cors',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Authorization: `Bearer ${accessToken}`,
-  //   },
-  //   body: JSON.stringify({ info }),
-  // });
-};
-
 const logout = (accessToken: string) => {
   const path: string = '/auth/logout';
   const options: RequestInit = {
@@ -162,4 +136,4 @@ async function fetchRequest(path: string, options: RequestInit) {
 //     }
 // }
 
-export { register, login, addFormInfo, logout };
+export { register, login, logout };

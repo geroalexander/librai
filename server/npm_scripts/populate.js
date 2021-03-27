@@ -46,7 +46,7 @@ const mainScript = async () => {
   await registerMockUser();
   console.log('mockUserCreated---->', mockUserCreated);
   const { id } = mockUserCreated;
-  const accessToken = jwt.sign({ _id: id }, SECRET_KEY);
+  const accessToken = jwt.sign({ _id: id }, SECRET_KEY, { expiresIn: '7d'});
   console.log('------------------ACCESS TOKEN HERE---------------------');
   console.log(accessToken);
   console.log('------------------ACCESS TOKEN HERE---------------------');

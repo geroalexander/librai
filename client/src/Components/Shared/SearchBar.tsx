@@ -10,6 +10,7 @@ const SearchBar = () => {
   const [searchResult, setSearchResult] = useState<any>([]);
   const [searchBoxVisible, setSearchBoxVisible] = useState<boolean>(false);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSave = useCallback(
     debounce((nextValue) => {
       if (nextValue)
