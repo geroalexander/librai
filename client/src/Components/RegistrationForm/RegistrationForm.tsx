@@ -79,7 +79,6 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
       className="genre-chip"
     />
   ));
-
   const renderPopularBooks = popularBooks.map((book: PopularBook) => (
     <map
       name={book.id}

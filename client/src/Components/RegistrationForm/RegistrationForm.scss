@@ -78,7 +78,6 @@ $opensans: 'Open Sans', sans-serif;
       margin-right: 1rem;
 
       img {
-        flex: 1 0 21%;
         border-radius: 7px;
         height: 7rem;
       }
@@ -91,6 +90,7 @@ $opensans: 'Open Sans', sans-serif;
       background: transparent;
       border: none;
       padding: 2%;
+      flex: 1 0 21%;
     }
   }
 
