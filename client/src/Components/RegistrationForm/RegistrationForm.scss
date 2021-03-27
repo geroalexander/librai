@@ -80,6 +80,15 @@ $opensans: 'Open Sans', sans-serif;
       img {
         border-radius: 7px;
         height: 7rem;
+        @include md {
+          height: 7rem;
+        }
+        @include lg {
+          height: 7rem;
+        }
+        @include xl {
+          height: 7rem;
+        }
       }
 
       .book-opaque {

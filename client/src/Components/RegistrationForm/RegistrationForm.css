@@ -126,6 +126,24 @@
   height: 7rem;
 }
 
+@media (min-width: 768px) {
+  .reg-form-page .book-picker-wrapper .books-wrapper img {
+    height: 7rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .reg-form-page .book-picker-wrapper .books-wrapper img {
+    height: 7rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .reg-form-page .book-picker-wrapper .books-wrapper img {
+    height: 7rem;
+  }
+}
+
 .reg-form-page .book-picker-wrapper .books-wrapper .book-opaque {
   -webkit-filter: brightness(25%);
           filter: brightness(25%);
