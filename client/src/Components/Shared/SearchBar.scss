@@ -1,4 +1,5 @@
 @import '../../Theme/colorDefinitions.scss';
+@import '../../Theme/breakpoints.scss';
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap');
 
 $comfortaa: 'Comfortaa', cursive;
@@ -10,17 +11,36 @@ $opensans: 'Open Sans', sans-serif;
   width: 78vw;
   position: relative;
 
+  @include md {
+    height: 3rem;
+  }
+
+  @include lg {
+    height: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  @include xl {
+    height: 2.5rem;
+    margin-bottom: 0rem;
+    width: 35vw;
+  }
+
   .search-input {
     background-color: #1d065c;
     border: none;
     outline: none;
-    border-radius: 7px;
+    border-radius: 25px;
     width: 95%;
     height: 85%;
     color: $WHITE;
     font-family: $montserrat;
     font-size: 1.2rem;
     padding-left: 1rem;
+
+    @include lg {
+      border-radius: 25px;
+    }
   }
   .overlay {
     display: flex;

@@ -9,7 +9,7 @@ $opensans: 'Open Sans', sans-serif;
 .dashboard {
   height: 100vh;
   width: 100vw;
-  padding-top: 6%;
+  padding-top: 4%;
   padding-left: 10%;
   padding-bottom: 5%;
   background: linear-gradient(#2c0791 1%, $PRIMARY_DARK 100%);
@@ -22,31 +22,60 @@ $opensans: 'Open Sans', sans-serif;
     width: 90vw;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
 
-    .search-placeholder {
-      height: 2.1rem;
-      background-color: $PRIMARY_LIGHT;
-      width: 78vw;
-      border-radius: 7px;
+    @include md {
+      padding-top: 2vw;
+    }
+
+    @include xl {
+      padding-top: 0;
+    }
+
+    img {
+      max-height: 4rem;
     }
   }
 
-  .title {
-    color: $WHITE;
-    font-family: $montserrat;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 0.8rem;
+  .title-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 0.8rem;
 
-    @include sm_height {
-      font-size: 1.2rem;
+    .title {
+      color: $WHITE;
+      font-family: $montserrat;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-top: 0;
+      margin-bottom: 0.7rem;
+
+      @include sm_height {
+        font-size: 1.2rem;
+      }
+
+      @include md {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+      }
+
+      @include lg {
+        font-size: 2.3rem;
+        font-weight: bolder;
+        margin: 0;
+      }
     }
   }
 
   .bookwrapper {
     max-height: 30vh;
     @include lg {
-      margin-bottom: 5rem;
+      margin-bottom: 8rem;
+    }
+
+    @include md {
+      margin-top: 3rem;
     }
 
     .booklist {
@@ -56,14 +85,25 @@ $opensans: 'Open Sans', sans-serif;
       width: 90vw;
       display: flex;
       overflow-x: scroll;
+      margin-bottom: 1.8rem;
+
       @include lg {
         margin-top: 2rem;
+      }
+
+      @include sm_height {
+        margin-bottom: 0rem;
       }
 
       .book-preview {
         margin-right: 1rem;
         @include lg {
           margin-right: 3rem;
+          transition-duration: 0.4s;
+
+          &:hover {
+            transform: scale(0.9);
+          }
         }
 
         img {
@@ -76,7 +116,7 @@ $opensans: 'Open Sans', sans-serif;
           }
 
           @include lg {
-            max-height: 25vh;
+            min-height: 26vh;
           }
         }
       }
@@ -88,7 +128,7 @@ $opensans: 'Open Sans', sans-serif;
     margin-bottom: 2rem;
 
     @include sm_height {
-      margin-bottom: 0;
+      margin-bottom: 1.8rem;
     }
 
     .booklist-small {

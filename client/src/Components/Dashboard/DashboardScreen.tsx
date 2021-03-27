@@ -19,6 +19,9 @@ import {
   isTablet,
   isMobile
 } from "react-device-detect";
+import StarRoundedIcon from '@material-ui/icons/StarRounded';
+import BookmarkRoundedIcon from '@material-ui/icons/BookmarkRounded';
+import librai_logo from '../../Assets/Librai-Logo-Outline.png'
 
 interface DashboardScreenProps extends RouteComponentProps {}
 
@@ -56,12 +59,16 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
     return (
       <div className="dashboard">
         <header>
+          {isDesktop && <img src={librai_logo}/>}
           <SearchBar />
           {isDesktop && <DropMenu/>}
           {(isTablet || isMobile) && <Camera setIsLoading={setIsLoading} /> }
         </header>
         <div className="bookwrapper">
-          <p className="title">Recommended</p>
+          <div className="title-wrapper">
+            <p className="title">Recommended</p>
+            {isTabletOrDesktop && <StarRoundedIcon style={{fontSize: 42, color: '#fffef9', marginLeft: 6}}/>}
+          </div>
           <div className="booklist">
             {recommendations.map((book: Book) => (
               <div className="book-preview" key={`rec-${book.id}`}>
@@ -82,8 +89,10 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
         </div>
         {!isTabletOrDesktop &&
         <div className="bookwrapper-small">
-          <p className="title">Your favorites</p>
-          <div className="booklist-small">
+          <div className="title-wrapper">
+            <p className="title">Your favorites</p>
+          </div>
+            <div className="booklist-small">
             {userWithBooks.books
               .filter((b: Book) => b.interaction.rating === 1)
               .map((book: Book) => (
@@ -105,7 +114,10 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
         </div>
       }
         <div className="bookwrapper">
-          <p className="title">Recently saved</p>
+        <div className="title-wrapper">
+            <p className="title">Recently saved</p>
+            {isTabletOrDesktop && <BookmarkRoundedIcon style={{fontSize: 40, color: '#fffef9', marginLeft: 6}}/>}
+          </div>
           <div className="booklist">
             {userWithBooks.books
               .filter((b: Book) => b.interaction.isSaved)
