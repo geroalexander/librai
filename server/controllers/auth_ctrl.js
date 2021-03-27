@@ -11,12 +11,11 @@ const addUser = require('../recombeeService/user');
 const register = async (req, res) => {
   const { firstName, lastName, email, password, favoriteGenres } = req.body;
 
-  const existingUser = await User.findOne({ where: { email } });
-  if (existingUser) return res.status(409).send('This user already exisits');
   try {
-    if (password === '') throw new Error('Password cannot be empty string!');
+    if (!email || !password || !firstName || !lastName) throw new Error('EMPTY');
+    const existingUser = await User.findOne({ where: { email } });
+    if (existingUser) throw new Error('EXIST')
     const hash = await bcrypt.hash(password, 10);
-
     const { id } = await User.create({
       firstName,
       lastName,
@@ -34,15 +33,17 @@ const register = async (req, res) => {
     });
     res.status(201).send({ accessToken });
   } catch (error) {
-    console.error(error, 'Could not register, fn.register');
-    res.status(400).send(error);
+    console.error(error, 'Could not login, fn.login');
+    if (error.message === 'EMPTY') res.status(400).send('Bad credentials');
+    else if (error.message = 'EXIST') res.status(409).send('This user already exisits');
+    else res.status(401).send('Unauthorised');
   }
 };
 
 const login = async (req, res) => {
   const { email, password } = req.body;
   try {
-    if (!email || !password) throw Error('BAD CREDENTIALS');
+    if (!email || !password) throw Error('EMPTY');
     const user = await User.findOne({ where: { email } });
     if (!user) throw new Error('NOT FOUND');
     const validatePassword = await bcrypt.compare(password, user.password);
@@ -51,8 +52,8 @@ const login = async (req, res) => {
     res.status(200).send({ accessToken });
   } catch (error) {
     console.error(error, 'Could not login, fn.login');
-    if (error.message === 'BAD CREDENTIALS') res.sendStatus(400);
-    else res.sendStatus(401);
+    if (error.message === 'EMPTY') res.status(400).send('Bad credentials');
+    else res.status(401).send('Unauthorised');
   }
 };
 
