@@ -14,6 +14,13 @@
   background: linear-gradient(#2c0791 1%, #140245 100%);
 }
 
+@media (min-width: 768px) {
+  .reg-form-page {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #e20a0a), to(#140245));
+    background: linear-gradient(#e20a0a 1%, #140245 100%);
+  }
+}
+
 .reg-form-page .genre-form-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -27,8 +34,8 @@
           justify-content: center;
   -ms-flex-line-pack: center;
       align-content: center;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .reg-form-page .genre-form-wrapper .genre-chips {

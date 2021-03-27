@@ -1,4 +1,5 @@
 @import '../../Theme/colorDefinitions.scss';
+@import '../../Theme/breakpoints.scss';
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap');
 $comfortaa: 'Comfortaa', cursive;
 $montserrat: 'Montserrat', sans-serif;
@@ -11,14 +12,17 @@ $opensans: 'Open Sans', sans-serif;
   justify-content: center;
   align-content: center;
   background: linear-gradient(#2c0791 1%, $PRIMARY_DARK 100%);
+  @include md {
+    background: linear-gradient(#e20a0a 1%, $PRIMARY_DARK 100%);
+  }
 
   .genre-form-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left: 10%;
+    margin-right: 10%;
 
     .genre-chips {
       display: flex;
