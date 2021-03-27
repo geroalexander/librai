@@ -58,7 +58,6 @@ const SavedScreen: React.FC<SavedScreenProps> = () => {
               ))}
           </div>
         )}
-        <div className="footer"></div>
       </div>
     );
   }

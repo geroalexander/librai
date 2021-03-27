@@ -34,6 +34,12 @@
   margin-bottom: 0.8rem;
 }
 
+@media (max-height: 720px) {
+  .dashboard .title {
+    font-size: 1.2rem;
+  }
+}
+
 .dashboard .bookwrapper {
   max-height: 30vh;
 }
@@ -60,9 +66,21 @@
           box-shadow: 0 0 20px -1px #070616;
 }
 
+@media (max-height: 720px) {
+  .dashboard .bookwrapper .booklist .book-preview img {
+    max-height: 18vh;
+  }
+}
+
 .dashboard .bookwrapper-small {
   height: 20vh;
   margin-bottom: 2rem;
+}
+
+@media (max-height: 720px) {
+  .dashboard .bookwrapper-small {
+    margin-bottom: 0;
+  }
 }
 
 .dashboard .bookwrapper-small .booklist-small {

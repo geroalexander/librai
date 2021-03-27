@@ -1,8 +1,10 @@
 .small-status {
   position: relative;
   padding-top: 0;
-  width: 50%;
+  width: 25vw;
+  height: 5vh;
   margin-left: 0.5em;
+  margin-top: 1rem;
 }
 
 .small-status .rating-wrapper {

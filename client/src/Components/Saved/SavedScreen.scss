@@ -12,6 +12,7 @@ $opensans: 'Open Sans', sans-serif;
 
   .title-wrapper {
     display: flex;
+    justify-content: center;
     align-items: center;
     border: solid;
     border-color: $PRIMARY_WHITE;
@@ -28,13 +29,11 @@ $opensans: 'Open Sans', sans-serif;
       margin-right: 0.5rem;
     }
   }
-  .saved-list {
-    height: 80vh;
-    overflow: scroll;
-    padding: 1.5rem;
-  }
 
-  .footer {
-    height: 10rem;
+  .saved-list {
+    height: 100%;
+    overflow-y: scroll;
+    padding: 1.5rem;
+    margin-bottom: 8vh;
   }
 }
