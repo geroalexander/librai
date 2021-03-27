@@ -12,9 +12,10 @@ const register = async (req, res) => {
   const { firstName, lastName, email, password, favoriteGenres } = req.body;
 
   try {
-    if (!email || !password || !firstName || !lastName) throw new Error('EMPTY');
+    if (!email || !password || !firstName || !lastName)
+      throw new Error('EMPTY');
     const existingUser = await User.findOne({ where: { email } });
-    if (existingUser) throw new Error('EXIST')
+    if (existingUser) throw new Error('EXIST');
     const hash = await bcrypt.hash(password, 10);
     const { id } = await User.create({
       firstName,
@@ -35,7 +36,8 @@ const register = async (req, res) => {
   } catch (error) {
     console.error(error, 'Could not login, fn.login');
     if (error.message === 'EMPTY') res.status(400).send('Bad credentials');
-    else if (error.message = 'EXIST') res.status(409).send('This user already exisits');
+    else if ((error.message = 'EXIST'))
+      res.status(409).send('This user already exisits');
     else res.status(401).send('Unauthorised');
   }
 };
@@ -76,7 +78,7 @@ const logout = async (req, res) => {
   try {
     // delete the token client side upon logout
     // invalidate the token (check how)
-    res.sendStatus(200);
+    res.status(200).send({ msg: 'Successful logout' });
   } catch (error) {}
 };
 

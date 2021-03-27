@@ -112,7 +112,7 @@ const logout = (accessToken: string) => {
 async function fetchRequest(path: string, options: RequestInit) {
   const url: RequestInfo = REACT_APP_BASE_URL + path;
   const res = await fetch(url, options);
-  if (res.ok) res.json();
+  if (res.ok) return await res.json();
   else {
     const { msg } = await res.json();
     console.error(`Error with path: ${path}`, msg);
