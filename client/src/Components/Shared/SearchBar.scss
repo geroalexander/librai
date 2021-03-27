@@ -11,6 +11,14 @@ $opensans: 'Open Sans', sans-serif;
   width: 78vw;
   position: relative;
 
+  .icon {
+    position: absolute;
+    align-self: center;
+    margin: auto;
+    left: 14px;
+    padding-top: 6px;
+  }
+
   @include md {
     height: 3rem;
   }
@@ -31,12 +39,12 @@ $opensans: 'Open Sans', sans-serif;
     border: none;
     outline: none;
     border-radius: 25px;
-    width: 95%;
+    width: 82%;
     height: 85%;
     color: $WHITE;
     font-family: $montserrat;
     font-size: 1.2rem;
-    padding-left: 1rem;
+    padding-left: 3rem;
 
     @include lg {
       border-radius: 25px;

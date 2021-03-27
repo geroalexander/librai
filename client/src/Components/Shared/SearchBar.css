@@ -5,6 +5,16 @@
   position: relative;
 }
 
+.search-bar .icon {
+  position: absolute;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin: auto;
+  left: 14px;
+  padding-top: 6px;
+}
+
 @media (min-width: 768px) {
   .search-bar {
     height: 3rem;
@@ -31,12 +41,12 @@
   border: none;
   outline: none;
   border-radius: 25px;
-  width: 95%;
+  width: 82%;
   height: 85%;
   color: #fffef9;
   font-family: "Montserrat", sans-serif;
   font-size: 1.2rem;
-  padding-left: 1rem;
+  padding-left: 3rem;
 }
 
 @media (min-width: 992px) {
