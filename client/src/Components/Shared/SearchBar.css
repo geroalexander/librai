@@ -8,12 +8,14 @@
 .search-bar .search-input {
   background-color: #1d065c;
   border: none;
+  outline: none;
   border-radius: 7px;
   width: 95%;
   height: 85%;
   color: #fffef9;
   font-family: "Montserrat", sans-serif;
   font-size: 1.2rem;
+  padding-left: 1rem;
 }
 
 .search-bar .overlay {

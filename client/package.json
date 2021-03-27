@@ -18,6 +18,7 @@
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "react": "^17.0.1",
+    "react-device-detect": "^1.17.0",
     "react-dom": "^17.0.1",
     "react-floating-button-menu": "^2.1.1",
     "react-lottie": "^1.2.3",

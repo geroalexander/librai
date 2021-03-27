@@ -6,18 +6,27 @@ import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import { RootState } from '../../index';
 import './Dashboard.css';
 import { Book } from '../../Interfaces/bookObject';
-import PhotoCameraRoundedIcon from '@material-ui/icons/PhotoCameraRounded';
-import PhotoCameraOutlinedIcon from '@material-ui/icons/PhotoCameraOutlined';
 import SearchBar from '../Shared/SearchBar';
 import Camera from '../Shared/Camera';
 import LottieAnimation from '../../Animations/Lottie';
 import loading from '../../Animations/paperplane-animation.json';
 import bookAnimation from '../../Animations/book-animation-2.json';
 import secondBookAnim from '../../Animations/book-animation.json';
+import DropMenu from '../Menu/Menu'
+import { useMediaQuery } from 'react-responsive'
+import {
+  isDesktop,
+  isTablet,
+  isMobile
+} from "react-device-detect";
 
 interface DashboardScreenProps extends RouteComponentProps {}
 
 const Dashboard: React.FC<DashboardScreenProps> = () => {
+  const isTabletOrDesktop = useMediaQuery({
+    query: '(min-width: 992px)'
+  })
+
   const [isLoading, setIsLoading] = useState(true);
 
   const dispatch = useDispatch();
@@ -48,7 +57,8 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
       <div className="dashboard">
         <header>
           <SearchBar />
-          <Camera setIsLoading={setIsLoading} />
+          {isDesktop && <DropMenu/>}
+          {(isTablet || isMobile) && <Camera setIsLoading={setIsLoading} /> }
         </header>
         <div className="bookwrapper">
           <p className="title">Recommended</p>
@@ -70,6 +80,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
             ))}
           </div>
         </div>
+        {!isTabletOrDesktop &&
         <div className="bookwrapper-small">
           <p className="title">Your favorites</p>
           <div className="booklist-small">
@@ -92,6 +103,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
               ))}
           </div>
         </div>
+      }
         <div className="bookwrapper">
           <p className="title">Recently saved</p>
           <div className="booklist">
@@ -118,7 +130,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
       </div>
     );
   }
-  return <LottieAnimation animation={loading} width="100%" height="100%" />;
+  return <LottieAnimation animation={loading} width={300} height={300} />;
 };
 
 export default withRouter(Dashboard);
