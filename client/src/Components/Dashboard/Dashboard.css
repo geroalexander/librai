@@ -2,21 +2,9 @@
 .dashboard {
   height: 100vh;
   width: 100vw;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
   padding-top: 6%;
   padding-left: 10%;
+  padding-bottom: 5%;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #2c0791), to(#140245));
   background: linear-gradient(#2c0791 1%, #140245 100%);
 }
@@ -47,7 +35,7 @@
 }
 
 .dashboard .bookwrapper {
-  height: 30vh;
+  max-height: 30vh;
 }
 
 .dashboard .bookwrapper .booklist {
@@ -66,14 +54,14 @@
 }
 
 .dashboard .bookwrapper .booklist .book-preview img {
-  height: 10rem;
+  max-height: 20vh;
   border-radius: 5px;
   -webkit-box-shadow: 0 0 20px -1px #070616;
           box-shadow: 0 0 20px -1px #070616;
 }
 
 .dashboard .bookwrapper-small {
-  height: 22vh;
+  height: 20vh;
   margin-bottom: 2rem;
 }
 
@@ -93,7 +81,7 @@
 }
 
 .dashboard .bookwrapper-small .booklist-small .book-preview-small img {
-  height: 8rem;
+  max-height: 15vh;
   border-radius: 5px;
   -webkit-box-shadow: 0 0 20px -1px #070616;
           box-shadow: 0 0 20px -1px #070616;
