@@ -239,6 +239,11 @@ const registrationForm = async (req, res) => {
   const user = req.user;
   try {
     const { books, favoriteGenres } = req.body;
+
+    if (favoriteGenres.length < 3 || favoriteGenres.length > 5)
+      throw new Error('Incorrect no. of genres');
+    if (books.length < 3) throw new Error('Incorrect no. of books');
+
     const oldUser = await User.findOne({
       where: { id: user.id },
       attributes: { exclude: ['password'] },
@@ -256,16 +261,17 @@ const registrationForm = async (req, res) => {
       attributes: { exclude: ['password'] },
       include: Book,
     });
-
-    console.log('userWithBooks---->', userWithBooks);
-
     res.status(201).send(userWithBooks);
   } catch (error) {
     console.error(
       error,
       'Could not complete registration, fn.registrationForm',
     );
-    res.status(400).send(error);
+    const { message } = error;
+    if (message.includes('books') || message.includes('genres')) {
+      res.status(400).send(error);
+    }
+    res.status(400).send({ message: error });
   }
 };
 

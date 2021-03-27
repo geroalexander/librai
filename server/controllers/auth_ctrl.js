@@ -45,7 +45,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
   try {
-    if (!email || !password) throw Error('EMPTY');
+    if (!email || !password) throw Error('Invalid credentials');
     const user = await User.findOne({ where: { email } });
     if (!user) throw new Error('NOT FOUND');
     const validatePassword = await bcrypt.compare(password, user.password);
@@ -54,8 +54,7 @@ const login = async (req, res) => {
     res.status(200).send({ accessToken });
   } catch (error) {
     console.error(error, 'Could not login, fn.login');
-    if (error.message === 'EMPTY') res.status(400).send({ message: 'Bad credentials' });
-    else res.status(401).send({  message: 'Unauthorised' });
+    res.status(400).send({ message: error.message });
   }
 };
 

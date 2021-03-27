@@ -1,9 +1,7 @@
 //BEN
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { RouteComponentProps, withRouter, useHistory } from 'react-router-dom';
-import { RootState } from '../../index';
-import { User } from '../../Interfaces/userObject';
 import './RegistrationForm.css';
 import { genres } from './genres';
 import Chip from '@material-ui/core/Chip';
@@ -120,10 +118,6 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
       />
     </map>
   ));
-
-  // Get here from form = true
-  // sending genres and books
-  // show list of popular books
 
   return (
     <div className="reg-form-page">
