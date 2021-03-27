@@ -24,7 +24,7 @@ export const setLogin = (loginObject: Login) => async (
   console.log('API RESPONSE', response)
   if (!response.accessToken) return response;
   else {
-    // localStorage.setItem('accessToken', response.accessToken);
+    localStorage.setItem('accessToken', response.accessToken);
     dispatch({ type: SET_LOGIN });
     return response;
   }

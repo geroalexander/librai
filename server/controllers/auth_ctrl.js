@@ -42,15 +42,17 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
   try {
+    if (!email || !password) throw Error('BAD CREDENTIALS');
     const user = await User.findOne({ where: { email } });
-    if (!user) res.status(404).send('No user found');
+    if (!user) throw new Error('NOT FOUND');
     const validatePassword = await bcrypt.compare(password, user.password);
-    if (!validatePassword) throw new Error();
+    if (!validatePassword) throw new Error('NOT FOUND');
     const accessToken = jwt.sign({ _id: user.id }, SECRET_KEY);
     res.status(200).send({ accessToken });
   } catch (error) {
     console.error(error, 'Could not login, fn.login');
-    res.status(401).send(error);
+    if (error.message === 'BAD CREDENTIALS') res.sendStatus(400);
+    else res.sendStatus(401);
   }
 };
 

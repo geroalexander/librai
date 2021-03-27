@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../..';
 import './Login.css';
 import { setLogin } from '../../Store/actions/auth';
@@ -8,43 +7,36 @@ import LockIcon from '@material-ui/icons/Lock';
 import EmailIcon from '@material-ui/icons/Email';
 import {
   Link,
-  RouteComponentProps,
   withRouter,
   useHistory,
 } from 'react-router-dom';
-import { RootState } from '../../index';
-import { useForm, NestedValue } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 const Login: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch<AppDispatch>();
 
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  const signedIn = useSelector(
-    (state: RootState) => state.authReducer.signedIn
-  );
-  const { register, handleSubmit, errors, reset } = useForm();
-  // e: React.FormEvent<HTMLFormElement>,
+  const defaultValues = { email: '', password: '' };
 
-  const onClickSubmitLogin = async (data: NestedValue<{
+  const { register, handleSubmit, errors, reset, setError } = useForm({ defaultValues });
+
+  const onClickSubmitLogin = async (data: {
     email: string;
     password: string;
-  }>): void => {
-    // e.preventDefault();
-    const {email, password} = data;
+  }) => {
+    const { email, password } = data;
     const action = setLogin({ email, password });
 
-    let response = await dispatch(action);
-    console.log(response);
+    await dispatch(action);
 
-    if (response.accesToken) {
-      // setEmail('');
-      // setPassword('');
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      reset();
       history.push('/');
     } else {
-      // this can be changed to something fancy
-      // alert('Invalid email and/or password. Please try again.')
+      setError("password", {
+        type: 'manual',
+        message:'Invalid email and/or password. Please try again.'})
     }
   };
 
@@ -53,39 +45,32 @@ const Login: React.FC = () => {
       <form onSubmit={handleSubmit(onClickSubmitLogin)} className="login-form">
         <div className="login-form-inner">
           <h2 className="title">Login</h2>
-          {/*ERROR*/}
           <div className="form-group">
             <div className="icon">
               <EmailIcon style={{ color: '#fffef9' }}></EmailIcon>
             </div>
             <input
               className="input"
-              // onChange={(e) => setEmail(e.target.value)}
-              // value={email}
               type="text"
               name="email"
               placeholder="EMAIL"
               id="email"
               ref={register({
-                required: 'Please enter a valid e-mail address.',
-                // pattern: {
-                //   value: /S+@S+.S+/,
-                //   message: 'Please enter a valid e-mail address.',
-                // },
+                required: 'Please enter an email address',
+                pattern: {
+                  value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                  message: 'Please enter a valid e-mail address.',
+                },
               })}
             />
           </div>
-          {errors.email && (
-            <span role="alert">{errors.email.message}</span>
-          )}
+          {errors.email && <span role="alert">{errors.email.message}</span>}
           <div className="form-group">
             <div className="icon">
               <LockIcon style={{ color: '#fffef9' }}></LockIcon>
             </div>
             <input
               className="input"
-              // onChange={(e) => setPassword(e.target.value)}
-              // value={password}
               type="password"
               name="password"
               placeholder="PASSWORD"
