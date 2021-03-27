@@ -6,15 +6,11 @@ $montserrat: 'Montserrat', sans-serif;
 $opensans: 'Open Sans', sans-serif;
 
 .dashboard {
-  // text-align: center
   height: 100vh;
   width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
   padding-top: 6%;
   padding-left: 10%;
+  padding-bottom: 5%;
   background: linear-gradient(#2c0791 1%, $PRIMARY_DARK 100%);
 
   header {
@@ -39,7 +35,7 @@ $opensans: 'Open Sans', sans-serif;
   }
 
   .bookwrapper {
-    height: 30vh;
+    max-height: 30vh;
 
     .booklist {
       border-color: $WHITE;
@@ -52,7 +48,7 @@ $opensans: 'Open Sans', sans-serif;
       .book-preview {
         margin-right: 1rem;
         img {
-          height: 10rem;
+          max-height: 20vh;
           border-radius: 5px;
           box-shadow: 0 0 20px -1px rgb(7, 6, 22);
         }
@@ -61,7 +57,7 @@ $opensans: 'Open Sans', sans-serif;
   }
 
   .bookwrapper-small {
-    height: 22vh;
+    height: 20vh;
     margin-bottom: 2rem;
 
     .booklist-small {
@@ -76,7 +72,7 @@ $opensans: 'Open Sans', sans-serif;
       .book-preview-small {
         margin-right: 1.5rem;
         img {
-          height: 8rem;
+          max-height: 15vh;
           border-radius: 5px;
           box-shadow: 0 0 20px -1px rgb(7, 6, 22);
         }
