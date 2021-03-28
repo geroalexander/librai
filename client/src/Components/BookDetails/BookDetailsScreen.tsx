@@ -23,8 +23,8 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
   }, []);
 
   const isDesktop = useMediaQuery({
-    query: '(min-width: 1200px)'
-  })
+    query: '(min-width: 1200px)',
+  });
 
   const retrieveBookWithScore = async () => {
     const accessToken: string | null = localStorage.getItem('accessToken');
@@ -66,7 +66,7 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
           </div>
           {isDesktop && <BookStatusBar book={book} />}
         </div>
-        {!isDesktop && <BookStatusBar book={book} />}        
+        {!isDesktop && <BookStatusBar book={book} />}
         <div className="sub-details">
           <div className="flexRow">
             <p className="title">Description</p>
@@ -85,9 +85,8 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
                   .join(' ')
                   .replace(/(<([^>]+)>)/gi, '\n') + '...'
               : 'N/A'}
-              {book.description && isDesktop
-              ? book.description
-                  .replace(/(<([^>]+)>)/gi, '\n')
+            {book.description && isDesktop
+              ? book.description.replace(/(<([^>]+)>)/gi, '\n')
               : 'N/A'}
           </p>
           <div className="add-info">

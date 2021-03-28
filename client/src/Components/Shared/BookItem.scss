@@ -14,9 +14,16 @@ $opensans: 'Open Sans', sans-serif;
   height: 18vh;
   margin-bottom: 4rem;
 
+  @include md {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    margin-right: 2rem;
+  }
   @include lg {
     width: 25vw;
     margin-right: 2rem;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
   }
 
   .italic {

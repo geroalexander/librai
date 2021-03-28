@@ -12,6 +12,7 @@ $screen-lg-min: 992px;
 //ipad pro
 $screen-mdlg-min: 1024px;
 
+$screen-lgplus-min: 1100px;
 // Large tablets and desktops
 $screen-xl-min: 1200px;
 
@@ -46,6 +47,12 @@ $screen-xxl-min: 1500px;
 // Large devices
 @mixin lg {
   @media (min-width: #{$screen-lg-min}) {
+    @content;
+  }
+}
+
+@mixin lgplus {
+  @media (min-width: #{$screen-lgplus-min}) {
     @content;
   }
 }

@@ -6,6 +6,21 @@
   background: linear-gradient(#2c0791 1%, #140245 100%);
 }
 
+@media (min-width: 768px) {
+  .saved-screen {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
 .saved-screen .title-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -22,14 +37,70 @@
   border-bottom-width: 2px;
   width: 80%;
   margin-top: 2rem;
-  margin-left: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
   z-index: 1;
+}
+
+@media (min-width: 992px) {
+  .saved-screen .title-wrapper {
+    width: 87%;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    border-bottom-width: 2px;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .saved-screen .title-wrapper {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    border-bottom-width: 2px;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+}
+
+@media (min-width: 1500px) {
+  .saved-screen .title-wrapper {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    border-bottom-width: 2px;
+    margin-left: 0;
+  }
 }
 
 .saved-screen .title-wrapper .title {
   color: #fffef9;
   font-family: "Montserrat", sans-serif;
-  margin-right: 0.5rem;
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .saved-screen .title-wrapper .title {
+    font-size: 2rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .saved-screen .title-wrapper .title {
+    margin: 0;
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1500px) {
+  .saved-screen .title-wrapper .title {
+    font-size: 3rem;
+  }
 }
 
 .saved-screen .saved-list {
@@ -39,11 +110,19 @@
   margin-bottom: 8vh;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1100px) {
   .saved-screen .saved-list {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
   }
 }
 /*# sourceMappingURL=SavedScreen.css.map */

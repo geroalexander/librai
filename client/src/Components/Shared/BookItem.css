@@ -12,10 +12,20 @@
   margin-bottom: 4rem;
 }
 
+@media (min-width: 768px) {
+  .book-item {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    margin-right: 2rem;
+  }
+}
+
 @media (min-width: 992px) {
   .book-item {
     width: 25vw;
     margin-right: 2rem;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
   }
 }
 
