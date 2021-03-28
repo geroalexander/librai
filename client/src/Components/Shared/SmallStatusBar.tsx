@@ -35,9 +35,14 @@ const SmallStatusBar: React.FC<StatusBarProps> = ({ book }) => {
     query: '(max-height: 720px)'
   })
 
+  const isDesktop = useMediaQuery({
+    query: '(min-width: 1200px)'
+  })
+
   let iconSize: number;
 
   isSmallMobile ? iconSize = 25 : iconSize = 25
+  isDesktop ? iconSize = 38 : iconSize = 25
 
   const [isSaved, setIsSaved] = useState(false);
   const [rated, setRated] = useState(false);

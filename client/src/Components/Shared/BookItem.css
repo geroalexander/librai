@@ -12,6 +12,12 @@
   margin-bottom: 4rem;
 }
 
+@media (min-width: 992px) {
+  .book-item {
+    width: 30vw;
+  }
+}
+
 .book-item .italic {
   font-style: italic;
 }
@@ -26,6 +32,12 @@
 @media (max-height: 720px) {
   .book-item img {
     height: 8em;
+  }
+}
+
+@media (min-width: 992px) {
+  .book-item img {
+    height: 14em;
   }
 }
 
@@ -61,8 +73,20 @@
   }
 }
 
+@media (min-width: 992px) {
+  .book-item .book-info .midtitle {
+    font-size: 1.2rem;
+  }
+}
+
 .book-item .book-info .subtitle {
   font-family: "Montserrat", sans-serif;
   font-size: 0.7rem;
+}
+
+@media (min-width: 992px) {
+  .book-item .book-info .subtitle {
+    font-size: 1rem;
+  }
 }
 /*# sourceMappingURL=BookItem.css.map */

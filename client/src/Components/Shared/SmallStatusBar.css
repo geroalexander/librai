@@ -7,6 +7,25 @@
   margin-top: 1rem;
 }
 
+@media (min-width: 768px) {
+  .small-status {
+    width: 14vw;
+  }
+}
+
+@media (min-width: 992px) {
+  .small-status {
+    width: 10vw;
+  }
+}
+
+@media (min-width: 1500px) {
+  .small-status {
+    width: 8vw;
+    margin-top: auto;
+  }
+}
+
 .small-status .rating-wrapper {
   position: absolute;
   left: 0;
