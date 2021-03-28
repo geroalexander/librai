@@ -48,7 +48,7 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    border-bottom-width: 2px;
+    border-bottom-width: 1px;
     margin-left: 2rem;
     margin-right: 2rem;
   }
@@ -59,7 +59,7 @@
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: flex-start;
-    border-bottom-width: 2px;
+    border-bottom-width: 1px;
     margin-left: 2rem;
     margin-right: 2rem;
   }
@@ -72,7 +72,7 @@
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: flex-start;
-    border-bottom-width: 2px;
+    border-bottom-width: 1px;
     margin-left: 0;
   }
 }
@@ -92,6 +92,7 @@
 
 @media (min-width: 1200px) {
   .saved-screen .title-wrapper .title {
+    margin-bottom: 1rem;
     margin: 0;
     font-size: 3rem;
   }
@@ -99,6 +100,7 @@
 
 @media (min-width: 1500px) {
   .saved-screen .title-wrapper .title {
+    margin-bottom: 1rem;
     font-size: 3rem;
   }
 }

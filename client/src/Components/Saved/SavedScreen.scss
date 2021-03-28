@@ -35,13 +35,13 @@ $opensans: 'Open Sans', sans-serif;
     @include lg {
       width: 87%;
       justify-content: center;
-      border-bottom-width: 2px;
+      border-bottom-width: 1px;
       margin-left: 2rem;
       margin-right: 2rem;
     }
     @include xl {
       justify-content: flex-start;
-      border-bottom-width: 2px;
+      border-bottom-width: 1px;
       margin-left: 2rem;
       margin-right: 2rem;
     }
@@ -49,7 +49,7 @@ $opensans: 'Open Sans', sans-serif;
       margin-left: 2rem;
       margin-right: 2rem;
       justify-content: flex-start;
-      border-bottom-width: 2px;
+      border-bottom-width: 1px;
       margin-left: 0;
     }
 
@@ -63,10 +63,12 @@ $opensans: 'Open Sans', sans-serif;
         padding-right: 1rem;
       }
       @include xl {
+        margin-bottom: 1rem;
         margin: 0;
         font-size: 3rem;
       }
       @include xxl {
+        margin-bottom: 1rem;
         font-size: 3rem;
       }
     }
