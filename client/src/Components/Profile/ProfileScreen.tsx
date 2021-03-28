@@ -61,6 +61,8 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
     dispatch(_updateProfile(profilePictureUrl, null, null));
   };
 
+  console.log(user);
+  
   if (!isLoading) {
     return (
       <div className="profile-screen">
@@ -83,7 +85,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
               <Avatar
                 className="profile-picture"
                 alt={fullName}
-                src={user.profilePic ? user.profilePic : undefined}
+                src={user.profilePic}
               />
             ) : (
               <div className="empty-profile">
