@@ -28,7 +28,7 @@ $opensans: 'Open Sans', sans-serif;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding-top: 4rem;
+    padding-top: 5vw;
     padding-left: 1.3rem;
     padding-right: 1.3rem;
     @include lg {
@@ -45,7 +45,7 @@ $opensans: 'Open Sans', sans-serif;
       height: 0.6px;
       background-color: $PRIMARY_WHITE;
       @include lg {
-        width: 82%;
+        width: 90%;
       }
     }
 

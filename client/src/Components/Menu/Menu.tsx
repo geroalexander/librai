@@ -66,9 +66,6 @@ const DropMenu = () => {
         <Link to="/saved" className="link">
           <StyledMenuItem onClick={handleClose}>Saved</StyledMenuItem>
         </Link>
-        <Link to="/upload" className="link">
-          <StyledMenuItem onClick={handleClose}>Upload</StyledMenuItem>
-        </Link>
         <StyledMenuItem onClick={handleLogout}>Logout</StyledMenuItem>
       </Menu>
     </div>

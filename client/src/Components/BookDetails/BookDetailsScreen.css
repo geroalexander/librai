@@ -29,7 +29,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding-top: 4rem;
+  padding-top: 5vw;
   padding-left: 1.3rem;
   padding-right: 1.3rem;
 }
@@ -55,7 +55,7 @@
 
 @media (min-width: 992px) {
   .details .main-details .line {
-    width: 82%;
+    width: 90%;
   }
 }
 

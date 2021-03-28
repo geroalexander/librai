@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../..';
 import './Login.css';
@@ -13,6 +12,7 @@ import {
   useHistory,
 } from 'react-router-dom';
 import { RootState } from '../../index';
+import { setLogout } from '../../Store/actions/auth';
 
 const Login: React.FC = () => {
   const history = useHistory();
@@ -23,11 +23,14 @@ const Login: React.FC = () => {
   const signedIn = useSelector(
     (state: RootState) => state.authReducer.signedIn
   );
+
+  useEffect(() => {
+    if (signedIn) dispatch(setLogout());
+  }, [])
+
   const onClickSubmitLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const action = setLogin({ email, password });
-    // setLogin({ email, password });
-    // console.log(signedIn)
     await dispatch(action);
     setEmail('');
     setPassword('');
