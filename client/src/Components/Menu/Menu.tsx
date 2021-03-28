@@ -3,8 +3,8 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Avatar from '@material-ui/core/Avatar';
-import './Menu.css'
-
+import { Link } from 'react-router-dom';
+import './Menu.css';
 
 const DropMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -19,8 +19,12 @@ const DropMenu = () => {
 
   return (
     <div>
-      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-        <Avatar className="profile-icon"/>
+      <Button
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={handleClick}
+      >
+        <Avatar className="profile-icon" />
       </Button>
       <Menu
         id="simple-menu"
@@ -29,13 +33,19 @@ const DropMenu = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>Saved</MenuItem>
-        <MenuItem onClick={handleClose}>Upload</MenuItem>
+        <Link to="/profile">
+          <MenuItem onClick={handleClose}>Profile</MenuItem>
+        </Link>
+        <Link to="/saved">
+          <MenuItem onClick={handleClose}>Saved</MenuItem>
+        </Link>
+        <Link to="/upload">
+          <MenuItem onClick={handleClose}>Upload</MenuItem>
+        </Link>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
     </div>
   );
-}
+};
 
-export default DropMenu
+export default DropMenu;
