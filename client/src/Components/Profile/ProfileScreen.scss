@@ -53,6 +53,9 @@ $opensans: 'Open Sans', sans-serif;
         height: 1px;
         width: 80vw;
       }
+      @include xxl {
+        height: 2px;
+      }
     }
 
     .genre-wrapper {

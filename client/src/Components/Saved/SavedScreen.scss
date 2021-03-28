@@ -11,6 +11,13 @@ $opensans: 'Open Sans', sans-serif;
   width: 100vw;
   background: linear-gradient(#2c0791 1%, $PRIMARY_DARK 100%);
 
+  @include md {
+    // padding-left: 16vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .title-wrapper {
     display: flex;
     justify-content: center;
@@ -21,13 +28,47 @@ $opensans: 'Open Sans', sans-serif;
     border-bottom-width: 2px;
     width: 80%;
     margin-top: 2rem;
-    margin-left: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
     z-index: 1;
+
+    @include lg {
+      width: 87%;
+      justify-content: center;
+      border-bottom-width: 2px;
+      margin-left: 2rem;
+      margin-right: 2rem;
+    }
+    @include xl {
+      justify-content: flex-start;
+      border-bottom-width: 2px;
+      margin-left: 2rem;
+      margin-right: 2rem;
+    }
+    @include xxl {
+      margin-left: 2rem;
+      margin-right: 2rem;
+      justify-content: flex-start;
+      border-bottom-width: 2px;
+      margin-left: 0;
+    }
 
     .title {
       color: $WHITE;
       font-family: $montserrat;
-      margin-right: 0.5rem;
+      text-align: center;
+
+      @include mdlg {
+        font-size: 2rem;
+        padding-right: 1rem;
+      }
+      @include xl {
+        margin: 0;
+        font-size: 3rem;
+      }
+      @include xxl {
+        font-size: 3rem;
+      }
     }
   }
 
@@ -37,9 +78,11 @@ $opensans: 'Open Sans', sans-serif;
     padding: 1.5rem;
     margin-bottom: 8vh;
 
-    @include xl {
-      flex-wrap: wrap;
+    @include lgplus {
+      align-items: center;
       display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
     }
   }
 }
