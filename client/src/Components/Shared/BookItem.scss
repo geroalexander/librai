@@ -42,19 +42,29 @@ $opensans: 'Open Sans', sans-serif;
 
     width: 45%;
 
-    .midtitle {
-      font-family: $montserrat;
-      @include sm_height {
-        font-size: 0.9rem;
-      }
+    @include xl {
+      width: 25%;
     }
 
-    .subtitle {
-      font-family: $montserrat;
-      font-size: 0.7rem;
-      // @include sm_height {
-      //   font-size: 0.6rem;
-      // }
+    .titles {
+      @include xl {
+        width: 100%;
+      }
+
+      .midtitle {
+        font-family: $montserrat;
+        @include sm_height {
+          font-size: 0.9rem;
+        }
+      }
+
+      .subtitle {
+        font-family: $montserrat;
+        font-size: 0.7rem;
+        // @include sm_height {
+        //   font-size: 0.6rem;
+        // }
+      }
     }
   }
 }
