@@ -37,5 +37,12 @@ header img {
   max-height: 3.2rem;
   padding-left: 2vw;
   padding-bottom: 0.5vw;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+}
+
+header img:hover {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
 }
 /*# sourceMappingURL=Header.css.map */

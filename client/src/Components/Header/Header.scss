@@ -28,5 +28,10 @@ header {
     max-height: 3.2rem;
     padding-left: 2vw;
     padding-bottom: 0.5vw;
+    transition-duration: 0.2s;
+
+    &:hover {
+      transform: scale(0.9);
+    }
   }
 }
