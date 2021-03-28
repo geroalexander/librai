@@ -23,6 +23,7 @@ import {
 interface DashboardScreenProps extends RouteComponentProps {}
 
 const Dashboard: React.FC<DashboardScreenProps> = () => {
+  
   const isTabletOrDesktop = useMediaQuery({
     query: '(min-width: 992px)'
   })
