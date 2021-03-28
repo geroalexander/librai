@@ -16,12 +16,19 @@ import { uploadToCloud } from '../../ApiClientService/ImageUpload';
 import imageToBase64 from '../Shared/imageToBase64';
 import LottieAnimation from '../../Animations/Lottie';
 import loading from '../../Animations/paperplane-animation.json';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import { useMediaQuery } from 'react-responsive';
+
 
 interface ProfileScreenProps extends RouteComponentProps {}
 
 const ProfileScreen: React.FC<ProfileScreenProps> = () => {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
+
+  const isDesktop = useMediaQuery({
+    query: '(min-width: 1200px)'
+  })
 
   const history = useHistory();
 
@@ -111,9 +118,15 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
                 : null}
             </p>
           </div>
-          <hr className="line"></hr>
+          {isDesktop  && <hr className="line"></hr>}
         </div>
         <div className="rated-books">
+          {isDesktop && 
+          <div className="title-wrapper"> 
+            <p className="title">Past reads</p>
+            <MenuBookIcon style={{fontSize: 40, color: '#fffef9', marginLeft: 15}}/>
+          </div>
+          }
           {user.books && (
             <div className="book-list">
               {user.books

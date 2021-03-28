@@ -17,7 +17,11 @@ $opensans: 'Open Sans', sans-serif;
   }
 
   @include lg {
-    padding-top: 0;
+    padding-top: 0vw;
+  }
+
+  @include xl {
+    padding-top: 1vw;
   }
 
   .book-body {
@@ -64,12 +68,12 @@ $opensans: 'Open Sans', sans-serif;
 
     @include lg {
       margin-bottom: 7rem;
-      margin-top: 0;
+      margin-top: 2rem;
     }
 
     @include xxl {
       margin-bottom: 7rem;
-      margin-top: 3rem;
+      margin-top: 2.8rem;
     }
     .booklist {
       border-color: $WHITE;

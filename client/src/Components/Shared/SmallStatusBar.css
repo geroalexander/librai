@@ -16,6 +16,7 @@
 @media (min-width: 992px) {
   .small-status {
     width: 10vw;
+    margin-top: auto;
   }
 }
 

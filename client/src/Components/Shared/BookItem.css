@@ -28,6 +28,8 @@
   -webkit-box-shadow: 0 0 12px -1px #070616;
           box-shadow: 0 0 12px -1px #070616;
   margin-right: 1rem;
+  -webkit-transition-duration: 0.4s;
+          transition-duration: 0.4s;
 }
 
 @media (max-height: 720px) {
@@ -38,8 +40,19 @@
 
 @media (min-width: 992px) {
   .book-item img {
+    height: 12em;
+  }
+}
+
+@media (min-width: 1500px) {
+  .book-item img {
     height: 14em;
   }
+}
+
+.book-item img:hover {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
 }
 
 .book-item h2,

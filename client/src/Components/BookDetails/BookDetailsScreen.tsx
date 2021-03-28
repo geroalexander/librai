@@ -9,6 +9,7 @@ import bookAnimation from '../../Animations/book-animation-2.json';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import moment from 'moment';
 import { useMediaQuery } from 'react-responsive';
+import FAB from '../FAB/FAB'
 
 interface BookDetailsScreenProps extends RouteComponentProps {}
 
@@ -108,6 +109,7 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
             </div>
           </div>
         </div>
+        <FAB book={book}/>
         <div className="footer"></div>
       </div>
     );

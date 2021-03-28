@@ -25,7 +25,7 @@ const extractText = async (image) => {
   const capitalizedWords = textArr.filter((t) => t === t.toUpperCase());
 
   let searchQuery;
-  if (capitalizedWords.length > 3)
+  if (capitalizedWords.length > 5)
     searchQuery = capitalizedWords.join('+').toLowerCase();
   else searchQuery = textArr.slice(0, 6).join('+').toLowerCase();
 

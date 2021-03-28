@@ -28,11 +28,12 @@ $opensans: 'Open Sans', sans-serif;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding-top: 5vw;
-    padding-left: 1.3rem;
+    padding-top: 10vw;
+    padding-left: 1.5rem;
     padding-right: 1.3rem;
     @include lg {
       justify-content: flex-start;
+      padding-top: 5vw;
       padding-left: 10rem;
       margin-right: 10rem;
     }

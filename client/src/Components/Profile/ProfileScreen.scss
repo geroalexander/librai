@@ -41,7 +41,7 @@ $opensans: 'Open Sans', sans-serif;
     }
 
     @include xxl {
-      padding-top: 10vh;
+      padding-top: 5vh;
     }
 
     .line {
@@ -173,11 +173,28 @@ $opensans: 'Open Sans', sans-serif;
       width: 80%;
     }
 
+    .title-wrapper {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      margin-left: 1.2rem;
+      margin-bottom: 0.3rem;
+
+      .title {
+        color: $WHITE;
+        font-family: $montserrat;
+        font-size: 2rem;
+        font-weight: bold;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    }
+
     .book-list {
       @include xl {
         display: flex;
         flex-direction: row;
-        margin-top: 5vh;
+        margin-top: 10vh;
       }
     }
   }

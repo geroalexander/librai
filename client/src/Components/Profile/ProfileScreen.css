@@ -64,7 +64,7 @@
 
 @media (min-width: 1500px) {
   .profile-screen .user-info {
-    padding-top: 10vh;
+    padding-top: 5vh;
   }
 }
 
@@ -232,6 +232,27 @@
   }
 }
 
+.profile-screen .rated-books .title-wrapper {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+
+.profile-screen .rated-books .title-wrapper .title {
+  color: #fffef9;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 @media (min-width: 1200px) {
   .profile-screen .rated-books .book-list {
     display: -webkit-box;
@@ -241,7 +262,7 @@
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
-    margin-top: 5vh;
+    margin-top: 10vh;
   }
 }
 /*# sourceMappingURL=ProfileScreen.css.map */
