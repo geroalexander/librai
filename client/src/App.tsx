@@ -33,11 +33,14 @@ function App() {
     (state: RootState) => state.authReducer.fillForm
   );
 
+  const isDesktop = useMediaQuery({
+    query: '(min-width: 1200px)'
+  })
 
   return (
     <div className="App">
       <Router>
-        {!isMobile && !isTablet && signedIn && !fillForm && <Header setIsLoading={()=>{}}/> }
+        {isDesktop && signedIn && !fillForm && <Header setIsLoading={()=>{}}/> }
         <Switch>
           <PrivateRoute path="/" exact component={Dashboard}></PrivateRoute>
           <PrivateRoute

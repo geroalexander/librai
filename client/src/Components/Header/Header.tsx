@@ -2,7 +2,12 @@ import DropMenu from '../Menu/Menu';
 import SearchBar from '../Shared/SearchBar';
 import Camera from '../Shared/Camera';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
-import { isDesktop, isTablet, isMobile } from 'react-device-detect';
+import {
+    isDesktop,
+    isTablet,
+    isMobile
+  } from "react-device-detect";
+import { useMediaQuery } from 'react-responsive';
 import librai_logo from '../../Assets/Librai-Logo-Outline.png';
 import './Header.css';
 

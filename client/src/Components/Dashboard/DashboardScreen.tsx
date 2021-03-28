@@ -27,6 +27,10 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
     query: '(min-width: 992px)'
   })
 
+  const isDesktop = useMediaQuery({
+    query: '(min-width: 1200px)'
+  })
+
   const [isLoading, setIsLoading] = useState(true);
 
   const dispatch = useDispatch();
@@ -55,7 +59,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
   if (!isLoading) {
     return (
       <div className="dashboard">
-        {(isTablet || isMobile) && <Header setIsLoading={setIsLoading}/>}
+        {!isDesktop && <Header setIsLoading={setIsLoading}/>}
         <div className="book-body">
         <div className="bookwrapper">
           <div className="title-wrapper">
