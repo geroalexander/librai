@@ -1,4 +1,5 @@
 @import '../../Theme/colorDefinitions.scss';
+@import '../../Theme/breakpoints.scss';
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap');
 $comfortaa: 'Comfortaa', cursive;
 $montserrat: 'Montserrat', sans-serif;
@@ -28,6 +29,26 @@ $opensans: 'Open Sans', sans-serif;
     align-items: center;
     padding-top: 2em;
 
+    @include lg {
+      position: relative;
+      flex-direction: row;
+      justify-content: flex-start;
+      padding-top: 6vh;
+      padding-left: 20vw;
+      height: 50vh;
+    }
+
+    .line {
+      @include lg {
+        position: absolute;
+        bottom: 0;
+        border: none;
+        background-color: $PRIMARY_WHITE;
+        height: 1px;
+        width: 80vw;
+      }
+    }
+
     .genre-wrapper {
       text-align: center;
       padding-bottom: 1.7em;
@@ -35,6 +56,13 @@ $opensans: 'Open Sans', sans-serif;
       border-color: $PRIMARY_WHITE;
       border-width: 0;
       border-bottom-width: 1.5px;
+
+      @include lg {
+        position: absolute;
+        right: 25vw;
+        bottom: 8vh;
+        border-bottom-width: 0;
+      }
     }
 
     .profile-picture {
@@ -47,6 +75,14 @@ $opensans: 'Open Sans', sans-serif;
       border-color: $PRIMARY_WHITE;
       border-width: 2px;
       box-shadow: 0 0 10px -1px rgb(19, 16, 61);
+
+      @include lg {
+        height: 12rem;
+        width: 12rem;
+        margin-right: 2vw;
+        margin-left: 2vw;
+        margin-bottom: 4vw;
+      }
     }
 
     .empty-profile {
@@ -62,6 +98,13 @@ $opensans: 'Open Sans', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
+      @include lg {
+        height: 12rem;
+        width: 12rem;
+        margin-right: 2vw;
+        margin-left: 2vw;
+        margin-bottom: 4vw;
+      }
     }
 
     h1 {
@@ -69,6 +112,10 @@ $opensans: 'Open Sans', sans-serif;
       font-family: $comfortaa;
       font-size: 1.7rem;
       padding-bottom: 0.2em;
+
+      @include lg {
+        font-size: 2.5rem;
+      }
     }
 
     .email {
@@ -82,6 +129,9 @@ $opensans: 'Open Sans', sans-serif;
       margin: 0;
       margin-top: 0.5em;
       font-family: $opensans;
+      @include lg {
+        font-size: 1.2rem;
+      }
     }
 
     .fav-genres {
@@ -89,6 +139,9 @@ $opensans: 'Open Sans', sans-serif;
       margin: 0;
       margin-top: 0.5em;
       font-family: $opensans;
+      @include lg {
+        font-size: 1rem;
+      }
     }
   }
 
@@ -101,5 +154,13 @@ $opensans: 'Open Sans', sans-serif;
     padding-top: 2rem;
     margin-bottom: 8vh;
     width: 100%;
+
+    .book-list {
+      @include lg {
+        display: flex;
+        flex-direction: row;
+        margin-top: 5vh;
+      }
+    }
   }
 }

@@ -91,8 +91,10 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
               </div>
             )}
           </label>
+          <div>
           <h1>{fullName}</h1>
           <p className="email">{user.email}</p>
+          </div>
           <div className="genre-wrapper">
             <h5 className="fav-genres-header">Favorite Genres:</h5>
             <p className="fav-genres">
@@ -107,10 +109,11 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
                 : null}
             </p>
           </div>
+          <hr className="line"></hr>
         </div>
         <div className="rated-books">
           {user.books && (
-            <div>
+            <div className="book-list">
               {user.books
                 .filter((book: Book) => book.interaction.rating !== null)
                 .map((book: Book) => (

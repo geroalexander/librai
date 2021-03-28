@@ -44,6 +44,33 @@
   padding-top: 2em;
 }
 
+@media (min-width: 992px) {
+  .profile-screen .user-info {
+    position: relative;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    padding-top: 6vh;
+    padding-left: 20vw;
+    height: 50vh;
+  }
+}
+
+@media (min-width: 992px) {
+  .profile-screen .user-info .line {
+    position: absolute;
+    bottom: 0;
+    border: none;
+    background-color: #dfd5fc;
+    height: 1px;
+    width: 80vw;
+  }
+}
+
 .profile-screen .user-info .genre-wrapper {
   text-align: center;
   padding-bottom: 1.7em;
@@ -51,6 +78,15 @@
   border-color: #dfd5fc;
   border-width: 0;
   border-bottom-width: 1.5px;
+}
+
+@media (min-width: 992px) {
+  .profile-screen .user-info .genre-wrapper {
+    position: absolute;
+    right: 25vw;
+    bottom: 8vh;
+    border-bottom-width: 0;
+  }
 }
 
 .profile-screen .user-info .profile-picture {
@@ -63,6 +99,16 @@
   border-width: 2px;
   -webkit-box-shadow: 0 0 10px -1px #13103d;
           box-shadow: 0 0 10px -1px #13103d;
+}
+
+@media (min-width: 992px) {
+  .profile-screen .user-info .profile-picture {
+    height: 12rem;
+    width: 12rem;
+    margin-right: 2vw;
+    margin-left: 2vw;
+    margin-bottom: 4vw;
+  }
 }
 
 .profile-screen .user-info .empty-profile {
@@ -87,11 +133,27 @@
           align-items: center;
 }
 
+@media (min-width: 992px) {
+  .profile-screen .user-info .empty-profile {
+    height: 12rem;
+    width: 12rem;
+    margin-right: 2vw;
+    margin-left: 2vw;
+    margin-bottom: 4vw;
+  }
+}
+
 .profile-screen .user-info h1 {
   margin: 0;
   font-family: "Comfortaa", cursive;
   font-size: 1.7rem;
   padding-bottom: 0.2em;
+}
+
+@media (min-width: 992px) {
+  .profile-screen .user-info h1 {
+    font-size: 2.5rem;
+  }
 }
 
 .profile-screen .user-info .email {
@@ -107,11 +169,23 @@
   font-family: "Open Sans", sans-serif;
 }
 
+@media (min-width: 992px) {
+  .profile-screen .user-info .fav-genres-header {
+    font-size: 1.2rem;
+  }
+}
+
 .profile-screen .user-info .fav-genres {
   font-size: 0.7rem;
   margin: 0;
   margin-top: 0.5em;
   font-family: "Open Sans", sans-serif;
+}
+
+@media (min-width: 992px) {
+  .profile-screen .user-info .fav-genres {
+    font-size: 1rem;
+  }
 }
 
 .profile-screen .rated-books {
@@ -130,5 +204,18 @@
   padding-top: 2rem;
   margin-bottom: 8vh;
   width: 100%;
+}
+
+@media (min-width: 992px) {
+  .profile-screen .rated-books .book-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    margin-top: 5vh;
+  }
 }
 /*# sourceMappingURL=ProfileScreen.css.map */

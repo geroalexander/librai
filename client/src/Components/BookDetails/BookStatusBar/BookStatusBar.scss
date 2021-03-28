@@ -12,17 +12,26 @@ $opensans: 'Open Sans', sans-serif;
   display: flex;
   justify-content: space-around;
   padding-top: 2rem;
+  margin-top: 3vw;
   width: 85vw;
   height: 8.5rem;
 
   @include lg {
+    width: 50vw;
+    margin-top: 4rem;
+  }
+
+  @include xl {
+    align-self: flex-end;
     width: 25vw;
     margin-right: 1rem;
     margin-bottom: 1rem;
+    margin-top: 0;
   }
 
   @include xxl {
     width: 20vw;
+    margin-top: 0;
   }
 
   .rating-wrapper {
