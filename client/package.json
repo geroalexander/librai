@@ -27,6 +27,7 @@
     "react-responsive": "^8.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-share": "^4.4.0",
     "react-useanimations": "^2.0.6",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",

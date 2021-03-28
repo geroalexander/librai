@@ -273,14 +273,15 @@ const registrationForm = async (req, res) => {
 const updateProfile = async (req, res) => {
   const user = req.user;
   try {
+    console.log(req.body);
     const { profilePic = null, favoriteGenres = null, email = null } = req.body;
     const userInformation = await User.findOne({
       where: { id: user.id },
       attributes: { exclude: ['password'] },
     });
-    if (email) userInformation.update({ email });
-    if (favoriteGenres) userInformation.update({ favoriteGenres });
-    if (profilePic) userInformation.update({ profilePic });
+    if (email) await userInformation.update({ email });
+    if (favoriteGenres) await userInformation.update({ favoriteGenres });
+    if (profilePic) await userInformation.update({ profilePic });
     res.sendStatus(201);
   } catch (error) {
     console.error(error, 'Could not update profile information');

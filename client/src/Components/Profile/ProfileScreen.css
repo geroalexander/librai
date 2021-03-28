@@ -16,6 +16,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  background-color: #140245;
 }
 
 .profile-screen .logout-button {
@@ -219,6 +220,7 @@
   padding-top: 2rem;
   margin-bottom: 8vh;
   width: 100%;
+  background-color: #140245;
 }
 
 @media (min-width: 1200px) {
@@ -226,7 +228,7 @@
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
-    margin-left: 10vw;
+    width: 80%;
   }
 }
 

@@ -13,6 +13,7 @@ $opensans: 'Open Sans', sans-serif;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: $PRIMARY_DARK;
 
   .logout-button {
     position: fixed;
@@ -165,10 +166,11 @@ $opensans: 'Open Sans', sans-serif;
     padding-top: 2rem;
     margin-bottom: 8vh;
     width: 100%;
+    background-color: $PRIMARY_DARK;
 
     @include xl {
       align-items: flex-start;
-      margin-left: 10vw;
+      width: 80%;
     }
 
     .book-list {

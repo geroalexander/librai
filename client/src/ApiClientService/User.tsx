@@ -112,6 +112,8 @@ const updateProfile = (
   favoriteGenres: string[] | null,
   email: string | null
 ) => {
+  console.log(profilePic, 'THIS IS PROFILE');
+  
   return fetch(`${REACT_APP_BASE_URL}/user/update`, {
     method: 'POST',
     credentials: 'include',

@@ -14,7 +14,8 @@
 
 @media (min-width: 992px) {
   .book-item {
-    width: 30vw;
+    width: 25vw;
+    margin-right: 2rem;
   }
 }
 
