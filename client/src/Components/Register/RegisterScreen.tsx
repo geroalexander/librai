@@ -1,6 +1,5 @@
-import * as React from 'react';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, {useState, useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../..';
 import './Register.css';
 import { setRegister } from '../../Store/actions/auth';
@@ -10,6 +9,8 @@ import {
   withRouter,
   useHistory,
 } from 'react-router-dom';
+import { RootState } from '../../index';
+import { setLogout } from '../../Store/actions/auth';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import PersonIcon from '@material-ui/icons/Person';
 import LockIcon from '@material-ui/icons/Lock';
@@ -23,6 +24,14 @@ const Register: React.FC = (props) => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const signedIn = useSelector(
+    (state: RootState) => state.authReducer.signedIn
+  );
+
+  useEffect(() => {
+    if (signedIn) dispatch(setLogout());
+  }, [])
 
   const onClickSubmitLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

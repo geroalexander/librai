@@ -30,13 +30,11 @@ const getRecommendedBooks = async (req, res) => {
 };
 
 const getBookByCover = async (req, res) => {
-  console.log('arriving---->', req.user);
   const user = req.user;
   try {
     const { image } = req.body;
     const searchQuery = await extractText(image);
     const retrievedBook = await fetchBook(searchQuery);
-    console.log('retrivedBook---->', retrievedBook);
 
     const formattedBook = formatBook(retrievedBook);
     const userWithBooks = await User.findOne({
