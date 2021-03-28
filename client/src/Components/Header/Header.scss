@@ -1,0 +1,32 @@
+@import '../../Theme/breakpoints.scss';
+
+header {
+  width: 90vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: inherit;
+  //   margin-bottom: 1.5rem;
+  padding-top: 5vw;
+  padding-left: 5vw;
+  z-index: 3;
+
+  @include md {
+    padding-top: 2vw;
+  }
+
+  @include xl {
+    padding-top: 0.7vw;
+    padding-left: 0;
+    padding-bottom: 0.5vw;
+    width: 100vw;
+    background-color: #3106a5;
+    box-shadow: 0 0 8px -1px rgb(17, 16, 43);
+  }
+
+  img {
+    max-height: 3.2rem;
+    padding-left: 2vw;
+    padding-bottom: 0.5vw;
+  }
+}

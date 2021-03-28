@@ -8,7 +8,7 @@ $opensans: 'Open Sans', sans-serif;
 
 .search-bar {
   height: 2.1rem;
-  width: 78vw;
+  width: 65vw;
   position: relative;
 
   .icon {
@@ -25,12 +25,15 @@ $opensans: 'Open Sans', sans-serif;
 
   @include lg {
     height: 3rem;
+    // width: 35vw;
+    margin-top: 2rem;
     margin-bottom: 2rem;
   }
 
   @include xl {
     height: 2.5rem;
-    margin-bottom: 0rem;
+    margin-bottom: 0;
+    margin-top: 0;
     width: 35vw;
   }
 

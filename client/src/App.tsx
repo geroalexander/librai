@@ -16,7 +16,13 @@ import {
   RegistrationForm,
 } from './Routes';
 import BottomTabNavigation from './Components/BottomTab/BottomTab';
+import Header from './Components/Header/Header';
 import { useMediaQuery } from 'react-responsive';
+import {
+  isDesktop,
+  isTablet,
+  isMobile
+} from "react-device-detect";
 
 function App() {
   const signedIn = useSelector(
@@ -27,13 +33,11 @@ function App() {
     (state: RootState) => state.authReducer.fillForm
   );
 
-  const isMobile = useMediaQuery({
-    query: '(max-width: 498px)',
-  });
 
   return (
     <div className="App">
       <Router>
+        {!isMobile && !isTablet && signedIn && !fillForm && <Header setIsLoading={()=>{}}/> }
         <Switch>
           <PrivateRoute path="/" exact component={Dashboard}></PrivateRoute>
           <PrivateRoute

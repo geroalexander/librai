@@ -6,22 +6,19 @@ import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import { RootState } from '../../index';
 import './Dashboard.css';
 import { Book } from '../../Interfaces/bookObject';
-import SearchBar from '../Shared/SearchBar';
-import Camera from '../Shared/Camera';
+import Header from '../Header/Header';
 import LottieAnimation from '../../Animations/Lottie';
 import loading from '../../Animations/paperplane-animation.json';
 import bookAnimation from '../../Animations/book-animation-2.json';
 import secondBookAnim from '../../Animations/book-animation.json';
-import DropMenu from '../Menu/Menu'
 import { useMediaQuery } from 'react-responsive'
+import StarRoundedIcon from '@material-ui/icons/StarRounded';
+import BookmarkRoundedIcon from '@material-ui/icons/BookmarkRounded';
 import {
   isDesktop,
   isTablet,
   isMobile
 } from "react-device-detect";
-import StarRoundedIcon from '@material-ui/icons/StarRounded';
-import BookmarkRoundedIcon from '@material-ui/icons/BookmarkRounded';
-import librai_logo from '../../Assets/Librai-Logo-Outline.png'
 
 interface DashboardScreenProps extends RouteComponentProps {}
 
@@ -58,12 +55,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
   if (!isLoading) {
     return (
       <div className="dashboard">
-        <header>
-          {isDesktop && <img src={librai_logo}/>}
-          <SearchBar />
-          {isDesktop && <DropMenu/>}
-          {(isTablet || isMobile) && <Camera setIsLoading={setIsLoading} /> }
-        </header>
+        {(isTablet || isMobile) && <Header setIsLoading={setIsLoading}/>}
         <div className="book-body">
         <div className="bookwrapper">
           <div className="title-wrapper">
