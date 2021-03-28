@@ -12,6 +12,20 @@
   height: 8.5rem;
 }
 
+@media (min-width: 992px) {
+  .book-status {
+    width: 25vw;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (min-width: 1500px) {
+  .book-status {
+    width: 20vw;
+  }
+}
+
 .book-status .rating-wrapper {
   position: absolute;
   top: 3rem;

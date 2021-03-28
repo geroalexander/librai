@@ -7,6 +7,7 @@ import {
     isTablet,
     isMobile
   } from "react-device-detect";
+import { useMediaQuery } from 'react-responsive';
 import librai_logo from '../../Assets/Librai-Logo-Outline.png';
 import './Header.css';
 
@@ -16,6 +17,7 @@ interface HeaderProps extends RouteComponentProps {
 }
 
 const Header: React.FC<HeaderProps> = ({setIsLoading}) => {
+
     return (
         <header>
           {isDesktop && <img src={librai_logo}/>}

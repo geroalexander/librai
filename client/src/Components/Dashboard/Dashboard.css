@@ -65,6 +65,7 @@
 
 .dashboard .bookwrapper {
   max-height: 30vh;
+  margin-top: 1.6rem;
 }
 
 @media (min-width: 768px) {
