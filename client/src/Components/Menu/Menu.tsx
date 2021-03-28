@@ -1,14 +1,19 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Avatar from '@material-ui/core/Avatar';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
+import { useHistory } from 'react-router-dom';
+import { setLogout } from '../../Store/actions/auth';
 import './Menu.css';
 
 const DropMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);
@@ -16,6 +21,11 @@ const DropMenu = () => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    dispatch(setLogout());
+    history.push('/login');
   };
 
   const StyledMenuItem = withStyles((theme) => ({
@@ -59,7 +69,7 @@ const DropMenu = () => {
         <Link to="/upload" className="link">
           <StyledMenuItem onClick={handleClose}>Upload</StyledMenuItem>
         </Link>
-        <StyledMenuItem onClick={handleClose}>Logout</StyledMenuItem>
+        <StyledMenuItem onClick={handleLogout}>Logout</StyledMenuItem>
       </Menu>
     </div>
   );
