@@ -38,6 +38,7 @@ $opensans: 'Open Sans', sans-serif;
     margin-bottom: 8vh;
 
     @include xl {
+      flex-wrap: wrap;
       display: flex;
     }
   }
