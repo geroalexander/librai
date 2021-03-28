@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Avatar from '@material-ui/core/Avatar';
+import { withStyles } from '@material-ui/core/styles';
 import './Menu.css'
 
 
@@ -17,6 +18,15 @@ const DropMenu = () => {
     setAnchorEl(null);
   };
 
+  const StyledMenuItem = withStyles(theme => ({
+    root: {
+        fontSize:18,
+        fontFamily: 'Montserrat',
+        backgroundColor: '#dfd5fc',
+        color: '#140245'
+    }
+}))(MenuItem);
+
   return (
     <div>
       <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
@@ -28,11 +38,18 @@ const DropMenu = () => {
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        PaperProps={{
+            style: {
+              width: '10rem',
+              backgroundColor: '#dfd5fc',
+              
+            }
+          }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>Saved</MenuItem>
-        <MenuItem onClick={handleClose}>Upload</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <StyledMenuItem onClick={handleClose}>Profile</StyledMenuItem>
+        <StyledMenuItem onClick={handleClose}>Saved</StyledMenuItem>
+        <StyledMenuItem onClick={handleClose}>Upload</StyledMenuItem>
+        <StyledMenuItem onClick={handleClose}>Logout</StyledMenuItem>
       </Menu>
     </div>
   );
