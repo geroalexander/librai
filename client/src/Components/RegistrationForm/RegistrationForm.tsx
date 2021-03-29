@@ -137,7 +137,6 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
           message={isUserPickingGenres ? genreErrorMessage : bookErrorMessage}
           open={open}
           setOpen={setOpen}
-          setMessage={setMessage}
         />
       )}
     </div>

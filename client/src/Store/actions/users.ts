@@ -19,9 +19,10 @@ import {
   REGISTRATION_FORM,
   UPDATE_PROFILE,
   SET_ADD_FORM_INFO,
-  SET_ERROR
+  SET_ERROR,
 } from './ActionTypes';
 import { Book } from '../../Interfaces/bookObject';
+import { setError } from '../actions/errors';
 import { PopularBook } from '../../Interfaces/popularBookObject';
 
 export const _loadDashboard = () => async (dispatch: AppDispatch) => {
@@ -31,9 +32,9 @@ export const _loadDashboard = () => async (dispatch: AppDispatch) => {
       const userDashboard = await loadDashboard(accessToken);
       dispatch({ type: LOAD_DASHBOARD, payload: userDashboard });
     } catch (error) {
-      console.log(error)
-      dispatch({ type: SET_ERROR, payload: { error }});
-      return { error };
+      const action = setError(error.message);
+      dispatch(action);
+      console.error(error);
     }
   }
   return { error: 'No access token' };
@@ -47,8 +48,9 @@ export const _getUserWithBooks = () => async (dispatch: AppDispatch) => {
       dispatch({ type: GET_USER_WITH_BOOKS, payload: userWithBooks });
       return userWithBooks;
     } catch (error) {
-      dispatch({ type: SET_ERROR, payload: error });
-      // return { error };
+      const action = setError(error.message);
+      dispatch(action);
+      console.error(error);
     }
   }
   return { error: 'No access token' };

@@ -5,7 +5,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import { TransitionProps } from '@material-ui/core/transitions';
 import { useDispatch } from 'react-redux';
-// import { REMOVE_ERROR } from '../../Store/actions/errors';
+import { removeError } from '../../Store/actions/errors';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & { children?: React.ReactElement<any, any> },
@@ -36,7 +36,7 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({
   const handleClose = () => {
     // setMessage('');
     setOpen(false);
-    dispatch({type: REMOVE_ERROR, payload: ''})
+    dispatch(removeError);
     if (callback)
       setTimeout(() => {
         callback();
