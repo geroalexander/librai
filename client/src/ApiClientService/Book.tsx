@@ -76,6 +76,7 @@ const getBookWithScore = (accessToken: string, googleBook: any) => {
     .then((res) => res.json())
     .catch((err) => console.log('error with getBookWithScore', err));
 };
+
 const getGoogleBook = (searchQuery: string) => {
   // searchQuery => 'the+giver'
   return fetch(
@@ -91,11 +92,25 @@ const getGoogleBook = (searchQuery: string) => {
     .catch((e) => console.log(e));
 };
 
+const getGoogleBookById = (searchId: string) => {
+  return fetch(
+    `https://www.googleapis.com/books/v1/volumes/${searchId}&key=${REACT_APP_GOOGLE_BOOKS_API_KEY}`
+  )
+    .then((res) => res.json())
+    .then((json) => {
+      if (json.items && json.items.length) {
+        return json.items.slice(0, 6);
+      }
+      console.log('Book not retrived! fn.getGoogleBookById');
+    });
+};
+
 export {
   getRecommendations,
   getBookByCover,
   getBookBySearch,
   viewBookDetails,
   getBookWithScore,
-  getGoogleBook
+  getGoogleBook,
+  getGoogleBookById,
 };
