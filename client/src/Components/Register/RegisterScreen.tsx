@@ -26,12 +26,15 @@ const Register: React.FC = (props) => {
 
   const submitRegister = async (data: typeof defaultValues) => {
     const action = setRegister(data);
-    await dispatch(action);
-
-    const token = localStorage.getItem('accessToken');
-    if (token) {
+    const register = await dispatch(action);
+    if (!register.error) {
       reset();
       history.push('/form');
+    } else if (register.error === 'This user already exists') {
+      setError('password', {
+        type: 'manual',
+        message: 'This e-mail already exists',
+      });
     } else {
       setError('password', {
         type: 'manual',
@@ -59,7 +62,7 @@ const Register: React.FC = (props) => {
               placeholder="FIRST NAME"
               id="firstName"
               ref={register({
-                required: 'Please enter your first name.',
+                // required: 'Please enter your first name.',
               })}
             />
           </div>
@@ -77,7 +80,7 @@ const Register: React.FC = (props) => {
               placeholder="LAST NAME"
               id="lastName"
               ref={register({
-                required: 'Please enter your last name.',
+                // required: 'Please enter your last name.',
               })}
             />
           </div>
@@ -95,11 +98,11 @@ const Register: React.FC = (props) => {
               placeholder="EMAIL"
               id="email"
               ref={register({
-                required: 'Please enter an email address',
-                pattern: {
-                  value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                  message: 'Please enter a valid e-mail address.',
-                },
+                // required: 'Please enter an email address',
+                // pattern: {
+                //   value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                //   message: 'Please enter a valid e-mail address.',
+                // },
               })}
             />
           </div>
@@ -115,11 +118,11 @@ const Register: React.FC = (props) => {
               placeholder="PASSWORD"
               id="password"
               ref={register({
-                required: 'Please enter a password.',
-                minLength: {
-                  value: 5,
-                  message: 'Minimum password length is 5',
-                },
+                // required: 'Please enter a password.',
+                // minLength: {
+                //   value: 5,
+                //   message: 'Minimum password length is 5',
+                // },
               })}
             />
           </div>

@@ -43,11 +43,14 @@ export const setRegister = (form: RegistrationInfo) => async (
   dispatch: AppDispatch
 ) => {
   const { firstName, lastName, email, password } = form;
-  const response = await register(firstName, lastName, email, password);
-  console.log('API RESPONSE', response);
-  if (response.accessToken) {
-    localStorage.setItem('accessToken', response.accessToken);
-    dispatch({ type: SET_REGISTER });
+  try {
+    const response = await register(firstName, lastName, email, password);
+    if (response.accessToken) {
+      localStorage.setItem('accessToken', response.accessToken);
+      dispatch({ type: SET_REGISTER });
+    }
+    return response;
+  } catch (error) {
+    return { error }
   }
-  return response;
 };

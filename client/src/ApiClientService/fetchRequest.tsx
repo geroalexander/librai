@@ -7,7 +7,7 @@ async function fetchRequest(path: string, options: RequestInit) {
   else {
     const { message } = await res.json();
     console.error(`Error with path: ${path}`, message);
-    return Promise.reject(new Error(message));
+    return Promise.reject(message);
   }
 }
 

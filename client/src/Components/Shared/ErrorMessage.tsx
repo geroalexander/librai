@@ -16,6 +16,7 @@ interface ErrorMessageProps {
   message: string;
   open: boolean;
   setOpen: (value: boolean) => void;
+  setMessage: (val: string) => void;
   callback?: () => void;
 }
 
@@ -24,11 +25,13 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({
   open,
   setOpen,
   callback,
+  setMessage
 }) => {
   // const handleClickOpen = () => {
   //   setOpen(true);
   // };
   const handleClose = () => {
+    setMessage('');
     setOpen(false);
     if (callback)
       setTimeout(() => {

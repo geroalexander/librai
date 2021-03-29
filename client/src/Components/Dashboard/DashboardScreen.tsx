@@ -19,8 +19,9 @@ import ErrorMessage from '../Shared/ErrorMessage';
 interface DashboardScreenProps extends RouteComponentProps {}
 
 const Dashboard: React.FC<DashboardScreenProps> = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [open, setOpen] = React.useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>('')
 
   const dispatch = useDispatch();
   const recommendations = useSelector(
@@ -33,7 +34,10 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
   const renderDashboard = async () => {
     const action = _loadDashboard();
     await dispatch(action);
-    if (!Object.keys(userWithBooks).length) setOpen(true);
+    if (!Object.keys(userWithBooks).length) {
+      setMessage('Could not load dashboard')
+      setOpen(true)
+    };
   };
 
   useEffect(() => {
@@ -50,10 +54,11 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
   if (open) {
     return (
       <ErrorMessage
-        message={'Could not load dashboard'}
+        message={message}
         open={open}
         setOpen={setOpen}
         callback={renderDashboard}
+        setMessage={setMessage}
       />
     );
   }
@@ -63,7 +68,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
       <div className="dashboard">
         <header>
           <SearchBar />
-          <Camera setIsLoading={setIsLoading} />
+          <Camera setIsLoading={setIsLoading} setOpen={setOpen} setMessage={setMessage} />
         </header>
         <div className="bookwrapper">
           <p className="title">Recommended</p>
