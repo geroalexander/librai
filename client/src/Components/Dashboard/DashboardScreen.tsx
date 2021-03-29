@@ -14,11 +14,24 @@ import LottieAnimation from '../../Animations/Lottie';
 import loading from '../../Animations/paperplane-animation.json';
 import bookAnimation from '../../Animations/book-animation-2.json';
 import secondBookAnim from '../../Animations/book-animation.json';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+import { TransitionProps } from '@material-ui/core/transitions';
+import ErrorMessage from '../Shared/ErrorMessage';
+
+const Transition = React.forwardRef(function Transition(
+  props: TransitionProps & { children?: React.ReactElement<any, any> },
+  ref: React.Ref<unknown>
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 interface DashboardScreenProps extends RouteComponentProps {}
 
 const Dashboard: React.FC<DashboardScreenProps> = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [open, setOpen] = React.useState(false);
 
   const dispatch = useDispatch();
   const recommendations = useSelector(
@@ -28,20 +41,33 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
     (state: RootState) => state.userReducer?.userWithBooks
   );
 
-  useEffect(() => {
-    console.log('render')
-    const renderDashboard = async () => {
-      const action = await _loadDashboard();
-      dispatch(action);
-    };
+  const renderDashboard = async () => {
+    const action = _loadDashboard();
+    await dispatch(action);
+    if (!Object.keys(userWithBooks).length) setOpen(true);
+  };
 
+  useEffect(() => {
     renderDashboard();
   }, []);
 
   useEffect(() => {
-    if (userWithBooks && userWithBooks.books && recommendations)
+    if (userWithBooks && userWithBooks.books && recommendations) {
       setIsLoading(false);
+      setOpen(false);
+    }
   }, [userWithBooks, recommendations]);
+
+  if (open) {
+    return (
+      <ErrorMessage
+        message={'Could not load dashboard'}
+        open={open}
+        setOpen={setOpen}
+        callback={renderDashboard}
+      />
+    );
+  }
 
   if (!isLoading) {
     return (

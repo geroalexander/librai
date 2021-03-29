@@ -22,20 +22,20 @@ import {
 } from './ActionTypes';
 import { Book } from '../../Interfaces/bookObject';
 import { PopularBook } from '../../Interfaces/popularBookObject';
-import { User } from '../../Interfaces/userObject';
-// const { REACT_APP_ACCESS_TOKEN } = process.env;
-
-// const accessToken: string | null = localStorage.getItem('accessToken');
-// const accessToken = REACT_APP_ACCESS_TOKEN;
 
 export const _loadDashboard = () => async (dispatch: AppDispatch) => {
   const accessToken: string | null = localStorage.getItem('accessToken');
   if (accessToken) {
-    const userDashboard = await loadDashboard(accessToken);
-
-    if (userDashboard)
-      dispatch({ type: LOAD_DASHBOARD, payload: userDashboard });
+    try {
+      const userDashboard = await loadDashboard(accessToken);
+      if (userDashboard.userWithBooks)
+        dispatch({ type: LOAD_DASHBOARD, payload: userDashboard });
+      return userDashboard;
+    } catch (error) {
+      return { error };
+    }
   }
+  return { error: 'No access token' };
 };
 
 export const _getUserWithBooks = () => async (dispatch: AppDispatch) => {
