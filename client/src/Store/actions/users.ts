@@ -22,7 +22,7 @@ import {
   SET_ERROR,
 } from './ActionTypes';
 import { Book } from '../../Interfaces/bookObject';
-import { setError } from '../actions/errors';
+import { setError, setAuthError } from '../actions/errors';
 import { PopularBook } from '../../Interfaces/popularBookObject';
 
 export const _loadDashboard = () => async (dispatch: AppDispatch) => {
@@ -38,11 +38,7 @@ export const _loadDashboard = () => async (dispatch: AppDispatch) => {
         payload: "Couldn't load dashboard, please try again",
       });
     }
-  } else
-    dispatch({
-      type: SET_ERROR,
-      payload: 'Unauthorised, No access token!',
-    });
+  } else dispatch(setAuthError());
 };
 
 export const _getUserWithBooks = () => async (dispatch: AppDispatch) => {
