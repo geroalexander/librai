@@ -1,11 +1,11 @@
 import { SET_ERROR, REMOVE_ERROR } from '../actions/ActionTypes';
 import { AnyAction } from 'redux';
 
-interface userState {
-  error: string | '';
+interface errorState {
+  error: string;
 }
 
-const initialState: userState = {
+const initialState: errorState = {
   error: '',
 };
 

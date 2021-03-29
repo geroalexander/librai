@@ -4,6 +4,6 @@ export const setError = (error: string) => {
   return { type: SET_ERROR, payload: error };
 };
 
-export const removeError = {
+export const removeError = () => ({
   type: REMOVE_ERROR,
-};
+});

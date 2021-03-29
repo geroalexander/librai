@@ -6,7 +6,7 @@ import errorReducer from './errorReducers';
 const reducers = combineReducers({
   authReducer,
   userReducer,
-  errorReducer
+  errorReducer,
 });
 
 export default reducers;

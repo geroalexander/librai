@@ -14,7 +14,7 @@ const loadDashboard = async (req, res) => {
   const user = req.user;
 
   try {
-    throw new Error('Hello')
+    throw new Error('Missing credentials');
     // const userWithBooks = await User.findByPk(user.id, {
     //   attributes: { exclude: ['password'] },
     //   include: Book,

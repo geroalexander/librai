@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -28,29 +28,16 @@ function App() {
   const fillForm = useSelector(
     (state: RootState) => state.authReducer.fillForm
   );
-  const error = useSelector(
-    (state: RootState) => state.errorReducer.error
-  )
-  if (error) {
-    setOpen(true);
-    // return (
-    //   <ErrorMessage
-    //     message={error}
-    //     open={open}
-    //     setOpen={setOpen}
-    //     // setMessage={setMessage}
-    //   />
-    // );
-  }
+  const error = useSelector((state: RootState) => state.errorReducer.error);
+
+  useEffect(() => {
+    if (error) setOpen(true);
+  }, [error]);
+
   return (
     <div className="App">
+      <ErrorMessage message={error} open={open} setOpen={setOpen} />
       <Router>
-        <ErrorMessage
-          message={error}
-          open={open}
-          setOpen={setOpen}
-          // setMessage={setMessage}
-        />
         <Switch>
           <PrivateRoute path="/" exact component={Dashboard}></PrivateRoute>
           <PrivateRoute

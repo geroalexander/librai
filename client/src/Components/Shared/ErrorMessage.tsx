@@ -1,4 +1,3 @@
-//PAMELA
 import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -18,7 +17,6 @@ interface ErrorMessageProps {
   message: string;
   open: boolean;
   setOpen: (value: boolean) => void;
-  // setMessage: (val: string) => void;
   callback?: () => void;
 }
 
@@ -27,16 +25,12 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({
   open,
   setOpen,
   callback,
-  // setMessage
 }) => {
   const dispatch = useDispatch();
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
+
   const handleClose = () => {
-    // setMessage('');
     setOpen(false);
-    dispatch(removeError);
+    dispatch(removeError());
     if (callback)
       setTimeout(() => {
         callback();

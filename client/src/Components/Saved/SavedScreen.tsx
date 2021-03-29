@@ -1,4 +1,3 @@
-//ANDRAS
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RouteComponentProps, Link, withRouter } from 'react-router-dom';

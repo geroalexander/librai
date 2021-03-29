@@ -19,8 +19,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
   const [isUserPickingGenres, setIsUserPickingGenres] = useState(true);
   const [favoriteGenres, setFavoriteGenres] = useState<string[]>([]);
   const [favoriteBooks, setFavoriteBooks] = useState<PopularBook[]>([]);
-  const [open, setOpen] = React.useState<boolean>(false);
-  const [message, setMessage] = useState<string>('');
+  const [open, setOpen] = useState<boolean>(false);
 
   const dispatch = useDispatch();
   const history = useHistory();

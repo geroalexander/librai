@@ -5,7 +5,6 @@ import imageToBase64 from '../Shared/imageToBase64';
 import { getBookByCover } from '../../ApiClientService/Book';
 import { uploadToCloud } from '../../ApiClientService/ImageUpload';
 import { useHistory } from 'react-router-dom';
-import ErrorMessage from './ErrorMessage';
 
 interface CameraProps {
   setIsLoading: (value: React.SetStateAction<boolean>) => void;

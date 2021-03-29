@@ -32,12 +32,17 @@ export const _loadDashboard = () => async (dispatch: AppDispatch) => {
       const userDashboard = await loadDashboard(accessToken);
       dispatch({ type: LOAD_DASHBOARD, payload: userDashboard });
     } catch (error) {
-      const action = setError(error.message);
-      dispatch(action);
       console.error(error);
+      dispatch({
+        type: SET_ERROR,
+        payload: "Couldn't load dashboard, please try again",
+      });
     }
-  }
-  return { error: 'No access token' };
+  } else
+    dispatch({
+      type: SET_ERROR,
+      payload: 'Unauthorised, No access token!',
+    });
 };
 
 export const _getUserWithBooks = () => async (dispatch: AppDispatch) => {
@@ -48,9 +53,9 @@ export const _getUserWithBooks = () => async (dispatch: AppDispatch) => {
       dispatch({ type: GET_USER_WITH_BOOKS, payload: userWithBooks });
       return userWithBooks;
     } catch (error) {
-      const action = setError(error.message);
-      dispatch(action);
       console.error(error);
+      const action = setError(error);
+      dispatch(action);
     }
   }
   return { error: 'No access token' };
