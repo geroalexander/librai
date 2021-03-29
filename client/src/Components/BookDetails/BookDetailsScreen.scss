@@ -54,10 +54,17 @@ $opensans: 'Open Sans', sans-serif;
       height: 13rem;
       z-index: 1;
       box-shadow: 0 0 12px -1px rgb(7, 6, 22);
+      transition-duration: 0.4s;
 
       @include lg {
         height: 16rem;
         margin-left: 5rem;
+      }
+
+      @include xl {
+        &:hover {
+          transform: scale(0.9);
+        }
       }
     }
 

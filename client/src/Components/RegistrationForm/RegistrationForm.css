@@ -124,6 +124,8 @@
 .reg-form-page .book-picker-wrapper .books-wrapper img {
   border-radius: 7px;
   height: 7rem;
+  -webkit-box-shadow: 0 0 10px -1px #070616;
+          box-shadow: 0 0 10px -1px #070616;
 }
 
 @media (min-width: 768px) {

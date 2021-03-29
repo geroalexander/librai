@@ -80,6 +80,8 @@ $opensans: 'Open Sans', sans-serif;
       img {
         border-radius: 7px;
         height: 7rem;
+        box-shadow: 0 0 10px -1px rgb(7, 6, 22);
+
         @include md {
           height: 9rem;
         }

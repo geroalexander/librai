@@ -15,13 +15,13 @@ interface BookDetailsScreenProps extends RouteComponentProps {}
 
 const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
   const bookRef = useRef(props.location.state.book);
-  const [isNew, setIsNew] = useState(props.location.state.isNew);
+  const isNewRef = useRef(props.location.state.isNew);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
     if (props.location.state.book) bookRef.current = props.location.state.book;
-    console.log('book has changed', bookRef.current);
+    if (props.location.state.isNew) isNewRef.current = props.location.state.isNew;
     bookRef.current && retrieveBookWithScore();
   }, [props.location.state.book]);
 
@@ -32,7 +32,7 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
   const retrieveBookWithScore = async () => {
     const accessToken: string | null = localStorage.getItem('accessToken');
     if (
-      isNew === true ||
+      isNewRef.current === true ||
       (bookRef.current.interaction &&
         !bookRef.current.interaction.compatabilityScore &&
         bookRef.current.interaction.isSaved)
@@ -43,10 +43,11 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
       }
     } 
     setIsLoading(false);
+    
     accessToken && (await viewBookDetails(accessToken, bookRef.current));
   };
 
-  if (!isLoading) { 
+  if (!isLoading && bookRef.current) { 
     const book = bookRef.current;  
     return (
       <div className="details">
