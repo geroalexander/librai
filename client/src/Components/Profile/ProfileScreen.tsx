@@ -62,14 +62,43 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     if (!e.target.files) return;
+    setImageLoading(true);
     const base64Image = await imageToBase64(e.target.files[0]).then(
       (base64EncodedImageString) => base64EncodedImageString
     );
     const profilePictureUrl = await uploadToCloud(base64Image);
     dispatch(_updateProfile(profilePictureUrl, null, null));
+    setImageLoading(false);
   };
 
-  console.log(user);
+  const renderProfilePic = () => {
+    if (!imageLoading) {
+      if (user.profilePic)
+        return (
+          <Avatar
+            className="profile-picture"
+            alt={fullName}
+            src={user.profilePic}
+          />
+        );
+      return (
+        <div className="empty-profile">
+          <AddPhotoAlternateIcon style={{ fontSize: 40 }} />
+        </div>
+      );
+    }
+    return (
+      <div className="empty-profile">
+        <Loader
+          type="Puff"
+          color="#dfd5fc"
+          height={100}
+          width={100}
+          timeout={3000}
+        />
+      </div>
+    );
+  };
 
   if (!isLoading) {
     return (
@@ -88,17 +117,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
               accept="image/*"
               onChange={handleUpdateProfilePic}
             />
-            {user.profilePic ? (
-              <Avatar
-                className="profile-picture"
-                alt={fullName}
-                src={user.profilePic}
-              />
-            ) : (
-              <div className="empty-profile">
-                <AddPhotoAlternateIcon style={{ fontSize: 40 }} />
-              </div>
-            )}
+            {renderProfilePic()}
           </label>
           <div>
             <h1>{fullName}</h1>

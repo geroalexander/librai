@@ -77,7 +77,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
               )}
             </div>
             <div className="booklist">
-              {recommendations.length ? (
+              {recommendations.length &&
                 recommendations.map((book: Book) => (
                   <div className="book-preview" key={`rec-${book.id}`}>
                     <Link
@@ -92,10 +92,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
                       />
                     </Link>
                   </div>
-                ))
-              ) : (
-                <Skeleton />
-              )}
+                ))}
             </div>
           </div>
           {!isTabletOrDesktop && (

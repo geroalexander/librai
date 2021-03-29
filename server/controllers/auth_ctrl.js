@@ -73,6 +73,7 @@ const googleLogin = async (req, res) => {
     const { id } = existingUser;
     const accessToken = jwt.sign({ _id: id }, SECRET_KEY);
     res.status(201).send({ accessType: 'login', accessToken });
+    return;
   }
   try {
     firstName = name.split(' ')[0];
