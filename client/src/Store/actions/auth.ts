@@ -1,8 +1,8 @@
 import {
   register,
   login,
-  // addFormInfo,
   logout,
+  googleLogin,
 } from '../../ApiClientService/Auth';
 import { Login } from '../../Interfaces/loginObject';
 import { RegistrationInfo } from '../../Interfaces/registrationObject';
@@ -24,6 +24,16 @@ export const setLogin = (loginObject: Login) => async (
   localStorage.setItem('accessToken', accessToken);
   dispatch({ type: SET_LOGIN });
   return accessToken;
+};
+
+export const setGoogleLogin = (googleData: any) => async (
+  dispatch: AppDispatch
+) => {
+  const { accessType, accessToken } = await googleLogin(googleData);
+  localStorage.setItem('accessToken', accessToken);
+  if (accessType === 'login') dispatch({ type: SET_LOGIN });
+  else if (accessType === 'register') dispatch({ type: SET_REGISTER });
+  return accessType;
 };
 
 export const setLogout = () => async (dispatch: AppDispatch) => {
