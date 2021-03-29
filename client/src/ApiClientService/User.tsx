@@ -30,19 +30,8 @@ const loadDashboard = (accessToken: string) => {
 };
 
 const getUserWithBooks = (accessToken: string) => {
-  // const path: string = '/user/profile';
-  // const options: RequestInit = {
-  //   method: 'GET',
-  //   credentials: 'include',
-  //   mode: 'cors',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Authorization: `Bearer ${accessToken}`,
-  //   },
-  // };
-  // return fetchRequest(path, options);
-
-  return fetch(`${REACT_APP_BASE_URL}/user/profile`, {
+  const path: string = '/user/profile';
+  const options: RequestInit = {
     method: 'GET',
     credentials: 'include',
     mode: 'cors',
@@ -50,9 +39,20 @@ const getUserWithBooks = (accessToken: string) => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
     },
-  })
-    .then((res) => res.json())
-    .catch((err) => console.log('error fetching userWithBooks', err));
+  };
+  return fetchRequest(path, options);
+
+  // return fetch(`${REACT_APP_BASE_URL}/user/profile`, {
+  //   method: 'GET',
+  //   credentials: 'include',
+  //   mode: 'cors',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     Authorization: `Bearer ${accessToken}`,
+  //   },
+  // })
+  //   .then((res) => res.json())
+  //   .catch((err) => console.log('error fetching userWithBooks', err));
 };
 
 const addSavedBook = (accessToken: string, book: Book) => {

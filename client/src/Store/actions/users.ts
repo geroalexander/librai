@@ -41,9 +41,15 @@ export const _loadDashboard = () => async (dispatch: AppDispatch) => {
 export const _getUserWithBooks = () => async (dispatch: AppDispatch) => {
   const accessToken: string | null = localStorage.getItem('accessToken');
   if (accessToken) {
-    const { userWithBooks } = await getUserWithBooks(accessToken);
-    dispatch({ type: GET_USER_WITH_BOOKS, payload: userWithBooks });
+    try {
+      const { userWithBooks } = await getUserWithBooks(accessToken);
+      dispatch({ type: GET_USER_WITH_BOOKS, payload: userWithBooks });
+      return userWithBooks;
+    } catch (error) {
+      return { error };
+    }
   }
+  return { error: 'No access token' };
 };
 
 export const _addSavedBook = (book: Book) => async (dispatch: AppDispatch) => {
