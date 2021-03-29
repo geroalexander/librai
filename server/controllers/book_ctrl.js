@@ -6,6 +6,7 @@ const getCompatScore = require('../recommendationScore/recommScore');
 const getRecommendations = require('../recombeeService/getRecommendations');
 const addBookView = require('../recombeeService/view');
 const { models } = require('../models/index');
+const { handleErrors } = require('./errorHandling');
 const { user, book } = models;
 const Book = book;
 const User = user;
@@ -22,7 +23,6 @@ const getRecommendedBooks = async (req, res) => {
       formattedBook.compatabilityScore = 10;
       bookRecArr.push(formattedBook);
     }
-
     res.status(201).send(bookRecArr);
   } catch (error) {
     console.error(error);
@@ -36,7 +36,6 @@ const getBookByCover = async (req, res) => {
     const { image } = req.body;
     const searchQuery = await extractText(image);
 
-
     const retrievedBook = await fetchBook(searchQuery);
 
     const formattedBook = formatBook(retrievedBook);
@@ -44,6 +43,7 @@ const getBookByCover = async (req, res) => {
       where: { id: user.id },
       include: Book,
     });
+    if (!userWithBooks) throw new Error('Could not find user');
     const compatScore = await getCompatScore(userWithBooks, formattedBook);
     formattedBook.compatabilityScore = compatScore;
     const addView = await addBookView(user.id, retrievedBook, false);
@@ -51,8 +51,7 @@ const getBookByCover = async (req, res) => {
     res.status(200).send(formattedBook);
   } catch (error) {
     console.error(error);
-    if (error === 'Recommendation engine error') return res.status(502).send({ message: error.message })
-    else res.status(400).send(error);
+    handleErrors(error, res);
   }
 };
 
@@ -60,12 +59,13 @@ const viewBookDetails = async (req, res) => {
   const user = req.user;
   try {
     const { book } = req.body;
-    if (!Object.keys(book).length) throw new Error('No book data')
-    const addView = await addBookView(user.id, book, true);
-    if (addView !== 'View added') throw new Error('Recommendation engine error')
+    if (!Object.keys(book).length) throw new Error('No book received')
+    const recombeeRequest = await addBookView(user.id, book, true);
+    if (recombeeRequest !== 'View added') throw new Error('Recommendation engine error')
     res.status(201).send('Viewing is sent');
   } catch (error) {
-    handleCtrlError(error, res)
+    console.error(error);
+    handleErrors(error, res)
   }
 };
 
@@ -86,32 +86,17 @@ const getBookWithScore = async (req, res) => {
       formattedBook = formatBook(googleBook);
       isFormatted = false;
     }
-
     const compatScore = await getCompatScore(userWithBooks, formattedBook);
     formattedBook.compatabilityScore = compatScore;
-    const addView = await addBookView(user.id, formattedBook, isFormatted);
-    if (addView !== 'View added') throw new Error('Recommendation engine error');
+    const recombeeRequest = await addBookView(user.id, formattedBook, isFormatted);
+    if (recombeeRequest !== 'View added') throw new Error('Recommendation engine error');
     res.status(201).send(formattedBook);
   } catch (error) {
-    handleCtrlError(error, res)
+    console.error(error);
+    handleErrors(error, res)
   }
 };
 
-const handleCtrlError = (error, res) => {
-  const { message } = error;
-  switch (message) {
-    case 'No book data':
-      res.status(400).send({ message })
-    case 'Could not find user':
-      res.status(500).send({ message });
-      break;
-    case 'Recommendation engine error':
-      res.status(502).send({ message });
-      break;
-    default:
-      res.status(500).send({ message });
-  }
-};
 
 module.exports = {
   getRecommendedBooks,

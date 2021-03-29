@@ -5,6 +5,7 @@ const { models } = require('../models/index');
 const { user } = models;
 const User = user;
 const addUser = require('../recombeeService/user');
+const { handleErrors } = require('./errorHandling');
 
 const register = async (req, res) => {
   const { firstName, lastName, email, password, favoriteGenres } = req.body;
@@ -24,15 +25,18 @@ const register = async (req, res) => {
     });
     const accessToken = jwt.sign({ _id: id }, SECRET_KEY, { expiresIn: '7d' });
 
-    await addUser({
+    const recombeeRequest = await addUser({
       first_name: firstName,
       last_name: lastName,
       userId: id,
       email: email,
     });
+    if (recombeeRequest !== 'User added')
+    throw new Error('Recommendation engine error');
     res.status(201).send({ accessToken });
   } catch (error) {
-    handleCtrlError(error, res)
+    console.error(error);
+    handleErrors(error, res);
   }
 };
 
@@ -47,7 +51,8 @@ const login = async (req, res) => {
     const accessToken = jwt.sign({ _id: user.id }, SECRET_KEY, { expiresIn: '7d' });
     res.status(200).send({ accessToken });
   } catch (error) {
-    handleCtrlError(error, res);
+    console.error(error);
+    handleErrors(error, res);
   }
 };
 
@@ -59,22 +64,6 @@ const logout = async (req, res) => {
   }
 };
 
-const handleCtrlError = (error, res) => {
-  const { message } = error;
-  switch (message) {
-    case 'Missing credentials':
-      res.status(400).send({ message });
-      break;
-    case 'Bad credentials':
-      res.status(401).send({ message });
-      break;
-    case 'This user already exisits':
-      res.status(409).send({ message });
-      break;
-    default:
-      res.status(500).send({ message });
-  }
-};
 
 module.exports = {
   register,
