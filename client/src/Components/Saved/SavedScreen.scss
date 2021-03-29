@@ -95,4 +95,39 @@ $opensans: 'Open Sans', sans-serif;
       flex-wrap: wrap;
     }
   }
+  .book-skeleton {
+    width: 70vw;
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid;
+    margin-top: 5vh;
+    border-width: 1.5px;
+    border-radius: 25px;
+    border-color: #c8baf3;
+    padding: 1rem;
+
+    @include md {
+      width: 350px;
+    }
+
+    @include xl {
+      align-self: flex-start;
+      margin-left: 4vw;
+    }
+
+    .alert-msg {
+      text-align: center;
+      font-family: $montserrat;
+      color: $PRIMARY_WHITE;
+
+      @include md {
+        font-size: 1.2em;
+      }
+      @include lg {
+        font-size: 1.3em;
+      }
+    }
+  }
 }
