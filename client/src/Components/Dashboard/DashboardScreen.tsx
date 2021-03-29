@@ -12,26 +12,21 @@ import LottieAnimation from '../../Animations/Lottie';
 import loading from '../../Animations/paperplane-animation.json';
 import bookAnimation from '../../Animations/book-animation-2.json';
 import secondBookAnim from '../../Animations/book-animation.json';
-import { useMediaQuery } from 'react-responsive'
+import { useMediaQuery } from 'react-responsive';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import BookmarkRoundedIcon from '@material-ui/icons/BookmarkRounded';
-import {
-  isDesktop,
-  isTablet,
-  isMobile
-} from "react-device-detect";
+import { isDesktop, isTablet, isMobile } from 'react-device-detect';
 
 interface DashboardScreenProps extends RouteComponentProps {}
 
 const Dashboard: React.FC<DashboardScreenProps> = () => {
-  
   const isTabletOrDesktop = useMediaQuery({
-    query: '(min-width: 992px)'
-  })
+    query: '(min-width: 992px)',
+  });
 
   const isDesktop = useMediaQuery({
-    query: '(min-width: 1200px)'
-  })
+    query: '(min-width: 1200px)',
+  });
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -44,7 +39,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
   );
 
   useEffect(() => {
-    console.log('render')
+    console.log('render');
     const renderDashboard = async () => {
       const action = await _loadDashboard();
       dispatch(action);
@@ -61,85 +56,95 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
   if (!isLoading) {
     return (
       <div className="dashboard">
-        {!isDesktop && <Header setIsLoading={setIsLoading}/>}
+        {!isDesktop && <Header setIsLoading={setIsLoading} />}
         <div className="book-body">
-        <div className="bookwrapper">
-          <div className="title-wrapper">
-            <p className="title">Recommended</p>
-            {isTabletOrDesktop && <StarRoundedIcon style={{fontSize: 42, color: '#fffef9', marginLeft: 6}}/>}
+          <div className="bookwrapper">
+            <div className="title-wrapper">
+              <p className="title">Recommended</p>
+              {isTabletOrDesktop && (
+                <StarRoundedIcon
+                  style={{ fontSize: 42, color: '#fffef9', marginLeft: 6 }}
+                />
+              )}
+            </div>
+            <div className="booklist">
+              {recommendations.length ? (
+                recommendations.map((book: Book) => (
+                  <div className="book-preview" key={`rec-${book.id}`}>
+                    <Link
+                      to={{
+                        pathname: `/details/${book.id}`,
+                        state: { book, isNew: false },
+                      }}
+                    >
+                      <img
+                        src={book.thumbnail ? book.thumbnail : undefined}
+                        alt={book.title}
+                      />
+                    </Link>
+                  </div>
+                ))
+              ) : (
+                <Skeleton />
+              )}
+            </div>
           </div>
-          <div className="booklist">
-            {recommendations.length ? 
-            recommendations.map((book: Book) => (
-              <div className="book-preview" key={`rec-${book.id}`}>
-                <Link
-                  to={{
-                    pathname: `/details/${book.id}`,
-                    state: { book, isNew: false },
-                  }}
-                >
-                  <img
-                    src={book.thumbnail ? book.thumbnail : undefined}
-                    alt={book.title}
-                  /> 
-                </Link>
+          {!isTabletOrDesktop && (
+            <div className="bookwrapper-small">
+              <div className="title-wrapper">
+                <p className="title">Your favorites</p>
               </div>
-            )) :
-            <Skeleton/>
-          }
+              <div className="booklist-small">
+                {userWithBooks.books
+                  .filter((b: Book) => b.interaction.rating === 1)
+                  .map((book: Book) => (
+                    <div className="book-preview-small" key={`fav-${book.id}`}>
+                      <Link
+                        to={{
+                          pathname: `/details/${book.id}`,
+                          state: { book, isNew: false },
+                        }}
+                      >
+                        <img
+                          src={book.thumbnail ? book.thumbnail : undefined}
+                          alt={book.title}
+                        />
+                      </Link>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          )}
+          <div className="bookwrapper">
+            <div className="title-wrapper">
+              <p className="title">Recently saved</p>
+              {isTabletOrDesktop && (
+                <BookmarkRoundedIcon
+                  style={{ fontSize: 40, color: '#fffef9', marginLeft: 6 }}
+                />
+              )}
+            </div>
+            <div className="booklist">
+              {}
+              {userWithBooks.books
+                .filter((b: Book) => b.interaction.isSaved)
+                .map((book: Book) => (
+                  <div className="book-preview" key={`sav-${book.id}`}>
+                    <Link
+                      to={{
+                        pathname: `/details/${book.id}`,
+                        state: { book, isNew: false },
+                      }}
+                    >
+                      <img
+                        src={book.thumbnail ? book.thumbnail : undefined}
+                        alt={book.title}
+                      />
+                    </Link>
+                  </div>
+                ))}
+            </div>
           </div>
-        </div>
-        {!isTabletOrDesktop &&
-        <div className="bookwrapper-small">
-          <div className="title-wrapper">
-            <p className="title">Your favorites</p>
-          </div>
-            <div className="booklist-small">
-            {userWithBooks.books
-              .filter((b: Book) => b.interaction.rating === 1)
-              .map((book: Book) => (
-                <div className="book-preview-small" key={`fav-${book.id}`}>
-                  <Link
-                    to={{
-                      pathname: `/details/${book.id}`,
-                      state: { book, isNew: false },
-                    }}
-                  >
-                    <img
-                      src={book.thumbnail ? book.thumbnail : undefined}
-                      alt={book.title}
-                    />
-                  </Link>
-                </div>
-              ))}
-          </div>
-        </div>
-      }
-        <div className="bookwrapper">
-        <div className="title-wrapper">
-            <p className="title">Recently saved</p>
-            {isTabletOrDesktop && <BookmarkRoundedIcon style={{fontSize: 40, color: '#fffef9', marginLeft: 6}}/>}
-          </div>
-          <div className="booklist">
-            {userWithBooks.books
-              .filter((b: Book) => b.interaction.isSaved)
-              .map((book: Book) => (
-                <div className="book-preview" key={`sav-${book.id}`}>
-                  <Link
-                    to={{
-                      pathname: `/details/${book.id}`,
-                      state: { book, isNew: false },
-                    }}
-                  >
-                    <img
-                      src={book.thumbnail ? book.thumbnail : undefined}
-                      alt={book.title}
-                    />
-                  </Link>
-                </div>
-              ))}
-          </div>
-        </div>
         </div>
         <div className="footer"></div>
       </div>
