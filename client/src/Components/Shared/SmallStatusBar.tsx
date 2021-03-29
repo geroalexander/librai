@@ -37,7 +37,7 @@ const SmallStatusBar: React.FC<StatusBarProps> = ({ book }) => {
   useEffect(() => {
     if (book.interaction) {
       book.interaction.isSaved && setIsSaved(true);
-      book.interaction.rating && setRating(book.interaction.rating);
+      book.interaction.rating !== null && setRating(book.interaction.rating);
     }
   }, []);
 

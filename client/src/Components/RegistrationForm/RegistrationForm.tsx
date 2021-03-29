@@ -37,13 +37,9 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
   const genreErrorMessage = 'Please pick between 3 and 5 genres';
   const bookErrorMessage = 'Please pick at least 3 books';
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const handleClickOpen = () => setOpen(true);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const handleClose = () => setOpen(false);
 
   const addFavoriteGenre = (e: any) => {
     const genreToAdd = e.target.innerText;
