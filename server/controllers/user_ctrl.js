@@ -1,6 +1,7 @@
 const getRecommendations = require('../recombeeService/getRecommendations');
 const { getBookById } = require('../booksApiService/getBookById');
-const { formatBook, handleErrors } = require('./helpers');
+const { formatBook } = require('./helpers');
+const handleErrors = require('./errorHandling');
 const bookmark = require('../recombeeService/bookmark');
 const bookRating = require('../recombeeService/rate');
 const { models } = require('../models/index');
