@@ -13,7 +13,7 @@ import {
   _addSavedBook,
   _deleteSavedBook,
 } from '../../Store/actions/users';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import BookmarkBorderRoundedIcon from '@material-ui/icons/BookmarkBorderRounded';
 import BookmarkRoundedIcon from '@material-ui/icons/BookmarkRounded';
@@ -22,7 +22,7 @@ import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import SentimentSatisfiedAltIcon from '@material-ui/icons/SentimentSatisfiedAlt';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
-import { SET_ERROR } from '../../Store/actions/ActionTypes';
+
 
 interface StatusBarProps extends RouteComponentProps {
   book: Book;
@@ -67,13 +67,9 @@ const SmallStatusBar: React.FC<StatusBarProps> = ({ book }) => {
       setRating(newRating);
       setIsSaved(false);
     } else {
-      // try {
         const action = await _deleteRating(book);
         dispatch(action);
         setRating(newRating);
-      // } catch (error) {
-      //   dispatch({ type: SET_ERROR, payload: error})
-      // }
     }
     setRated(!rated);
   };

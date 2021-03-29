@@ -84,23 +84,8 @@ const addSavedBook = (accessToken: string, book: Book) => {
 };
 
 const updateRating = (accessToken: string, book: Book, rating: number) => {
-  // const path: string = '/user/rating';
-  // const options = {
-  // method: 'PATCH',
-  // // credentials: 'include',
-  // // // mode: 'cors',
-  // // headers: {
-  // // // // 'Content-Type': 'application/json',
-  // // // // Authorization: `Bearer ${accessToken}`,
-  // // },
-  // // // body: JSON.stringify({
-  // // book,
-  // // // rating,
-  // // }),
-  // };
-  // return fetchRequest(path, options);
-
-  return fetch(`${REACT_APP_BASE_URL}/user/rating`, {
+  const path: string = '/user/rating';
+  const options: RequestInit = {
     method: 'PATCH',
     credentials: 'include',
     mode: 'cors',
@@ -112,9 +97,8 @@ const updateRating = (accessToken: string, book: Book, rating: number) => {
       book,
       rating,
     }),
-  })
-    .then((res) => res.json())
-    .catch((err) => console.log('error with updateRating', err));
+  };
+  return fetchRequest(path, options);
 };
 
 const deleteSavedBook = (accessToken: string, book: Book) => {
@@ -156,17 +140,6 @@ const deleteRating = (accessToken: string, book: Book) => {
     body: JSON.stringify({ book }),
   };
   return fetchRequest(path, options);
-
-  // return fetch(`${REACT_APP_BASE_URL}/user/rating`, {
-  //   method: 'DELETE',
-  //   credentials: 'include',
-  //   mode: 'cors',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Authorization: `Bearer ${accessToken}`,
-  //   },
-  //   body: JSON.stringify({ book }),
-  // }).catch((err) => console.log('error with deleteRating', err));
 };
 
 const registrationForm = (
@@ -215,7 +188,7 @@ const updateProfile = (
       Authorization: `Bearer ${accessToken}`,
     },
     body: JSON.stringify({ profilePic, favoriteGenres, email }),
-  }
+  };
   return fetchRequest(path, options);
 
   // return fetch(`${REACT_APP_BASE_URL}/user/update`, {

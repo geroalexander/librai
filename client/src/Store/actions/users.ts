@@ -82,8 +82,17 @@ export const _updateRating = (book: Book, rating: number) => async (
 ) => {
   const accessToken: string | null = localStorage.getItem('accessToken');
   if (accessToken) {
-    const savedBook = await updateRating(accessToken, book, rating);
-    dispatch({ type: UPDATE_RATING, payload: savedBook });
+    try {
+      const savedBook = await updateRating(accessToken, book, rating);
+      dispatch({ type: UPDATE_RATING, payload: savedBook });
+    } catch (error) {
+      dispatch({ type: SET_ERROR, payload: "Couldn't delete rating, please try again."})
+    }
+  } else {
+    dispatch({
+      type: SET_ERROR,
+      payload: 'Unauthorised, No access token!',
+    });
   }
 };
 
@@ -97,7 +106,7 @@ export const _deleteRating = (book: Book) => async (dispatch: AppDispatch) => {
     console.log(error)
     dispatch({
       type: SET_ERROR,
-      payload: "Couldn't delete rating, please try again",
+      payload: "Couldn't delete rating, please try again.",
     });
     }
   } else {
