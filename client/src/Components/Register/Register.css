@@ -133,6 +133,13 @@
   color: #dfd5fc;
   font-size: 0.9em;
   font-family: "Montserrat", sans-serif;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+}
+
+.register-wrapper .register-form .form-inner .to-login:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .register-wrapper .register-form .form-inner .google-btn {
