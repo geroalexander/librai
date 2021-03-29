@@ -106,6 +106,7 @@ $opensans: 'Open Sans', sans-serif;
   .sub-details {
     width: 88vw;
     margin: auto;
+    margin-bottom: 10vh;
 
     @include lg {
       margin-top: 4rem;
@@ -168,6 +169,6 @@ $opensans: 'Open Sans', sans-serif;
   }
 
   .footer {
-    height: 5rem;
+    height: 5vh;
   }
 }

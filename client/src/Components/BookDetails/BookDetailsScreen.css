@@ -124,6 +124,7 @@
 .details .sub-details {
   width: 88vw;
   margin: auto;
+  margin-bottom: 10vh;
 }
 
 @media (min-width: 992px) {
@@ -200,6 +201,6 @@
 }
 
 .details .footer {
-  height: 5rem;
+  height: 5vh;
 }
 /*# sourceMappingURL=BookDetailsScreen.css.map */
