@@ -30,10 +30,6 @@ const DropMenu = () => {
     history.push('/login');
   };
 
-  const profilePic = useSelector(
-    (state: RootState) => state.userReducer?.userWithBooks.profilePic
-  );
-
   const StyledMenuItem = withStyles((theme) => ({
     root: {
       fontSize: 18,

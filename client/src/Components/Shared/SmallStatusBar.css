@@ -20,6 +20,12 @@
   }
 }
 
+@media (min-width: 1200px) {
+  .small-status {
+    margin-bottom: 2rem;
+  }
+}
+
 @media (min-width: 1500px) {
   .small-status {
     width: 8vw;

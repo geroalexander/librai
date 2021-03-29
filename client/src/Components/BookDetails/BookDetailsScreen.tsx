@@ -1,5 +1,5 @@
 import './BookDetailsScreen.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import BookStatusBar from './BookStatusBar/BookStatusBar';
 import { Book } from '../../Interfaces/bookObject';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
@@ -14,13 +14,16 @@ import FAB from '../FAB/FAB'
 interface BookDetailsScreenProps extends RouteComponentProps {}
 
 const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
-  const [book, setBook] = useState(props.location.state.book);
-  const [isNew, setIsNew] = useState(props.location.state.isNew);
+  const bookRef = useRef(props.location.state.book);
+  const isNewRef = useRef(props.location.state.isNew);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    book && retrieveBookWithScore();
-  }, []);
+    setIsLoading(true);
+    if (props.location.state.book) bookRef.current = props.location.state.book;
+    if (props.location.state.isNew) isNewRef.current = props.location.state.isNew;
+    bookRef.current && retrieveBookWithScore();
+  }, [props.location.state.book]);
 
   const isDesktop = useMediaQuery({
     query: '(min-width: 1200px)',
@@ -29,22 +32,23 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
   const retrieveBookWithScore = async () => {
     const accessToken: string | null = localStorage.getItem('accessToken');
     if (
-      isNew === true ||
-      (book.interaction &&
-        !book.interaction.compatabilityScore &&
-        book.interaction.isSaved)
+      isNewRef.current === true ||
+      (bookRef.current.interaction &&
+        !bookRef.current.interaction.compatabilityScore &&
+        bookRef.current.interaction.isSaved)
     ) {
       if (accessToken) {
-        const formattedBook = await getBookWithScore(accessToken, book);
-        setBook(formattedBook);
+        const formattedBook = await getBookWithScore(accessToken, bookRef.current);
+        bookRef.current = formattedBook;
       }
-    }
-
+    } 
     setIsLoading(false);
-    accessToken && (await viewBookDetails(accessToken, book));
+    
+    accessToken && (await viewBookDetails(accessToken, bookRef.current));
   };
 
-  if (!isLoading) {
+  if (!isLoading && bookRef.current) { 
+    const book = bookRef.current;  
     return (
       <div className="details">
         <div className="main-details">
@@ -78,16 +82,17 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
             )}
           </div>
           <p className="subtitle">
-            {book.description && !isDesktop
-              ? book.description
+            {(book.description && !isDesktop) &&
+              book.description
                   .split(' ')
                   .slice(0, 120)
                   .join(' ')
                   .replace(/(<([^>]+)>)/gi, '\n') + '...'
-              : 'N/A'}
-            {book.description && isDesktop
-              ? book.description.replace(/(<([^>]+)>)/gi, '\n')
-              : 'N/A'}
+            }
+            {book.description && isDesktop &&
+              book.description.replace(/(<([^>]+)>)/gi, '\n')
+              }
+            {!book.description && 'N/A'}
           </p>
           <div className="add-info">
             <div>

@@ -9,6 +9,10 @@ $opensans: 'Open Sans', sans-serif;
 .saved-screen {
   height: 100vh;
   width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background: linear-gradient(#2c0791 1%, $PRIMARY_DARK 100%);
 
   @include md {
@@ -16,6 +20,11 @@ $opensans: 'Open Sans', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  @include lgplus {
+    align-items: flex-start;
+    padding-left: 4vw;
   }
 
   .title-wrapper {
@@ -44,6 +53,7 @@ $opensans: 'Open Sans', sans-serif;
       border-bottom-width: 1px;
       margin-left: 2rem;
       margin-right: 2rem;
+      padding-bottom: 1rem;
     }
     @include xxl {
       margin-left: 2rem;
@@ -63,8 +73,8 @@ $opensans: 'Open Sans', sans-serif;
         padding-right: 1rem;
       }
       @include xl {
-        margin-bottom: 1rem;
         margin: 0;
+        margin-left: 1rem;
         font-size: 3rem;
       }
       @include xxl {
@@ -76,15 +86,55 @@ $opensans: 'Open Sans', sans-serif;
 
   .saved-list {
     height: 100%;
+    width: 100%;
     overflow-y: scroll;
-    padding: 1.5rem;
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 8vh;
 
     @include lgplus {
       align-items: center;
       display: flex;
-      padding-left: 5rem;
+      padding-left: 0;
       flex-wrap: wrap;
+      width: 90vw;
+    }
+  }
+  .book-skeleton {
+    width: 70vw;
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid;
+    margin-top: 5vh;
+    border-width: 1.5px;
+    border-radius: 25px;
+    border-color: #c8baf3;
+    padding: 1rem;
+
+    @include md {
+      width: 350px;
+    }
+
+    @include xl {
+      align-self: flex-start;
+      margin-left: 4vw;
+    }
+
+    .alert-msg {
+      text-align: center;
+      font-family: $montserrat;
+      color: $PRIMARY_WHITE;
+
+      @include md {
+        font-size: 1.2em;
+      }
+      @include lg {
+        font-size: 1.3em;
+      }
     }
   }
 }

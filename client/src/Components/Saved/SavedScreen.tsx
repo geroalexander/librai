@@ -15,6 +15,7 @@ interface SavedScreenProps extends RouteComponentProps {}
 
 const SavedScreen: React.FC<SavedScreenProps> = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [savedBooks, setSavedBooks] = useState<Book[]>([]);
 
   const books: Book[] = useSelector(
     (state: RootState) => state?.userReducer?.userWithBooks?.books
@@ -31,7 +32,10 @@ const SavedScreen: React.FC<SavedScreenProps> = () => {
       const action = await _getUserWithBooks();
       await dispatch(action);
     }
-    books && books.length && setIsLoading(false);
+    if (books && books.length) {
+      setSavedBooks(books.filter((book: Book) => book.interaction.isSaved));
+      setIsLoading(false);
+    }
   };
 
   if (!isLoading) {
@@ -41,21 +45,29 @@ const SavedScreen: React.FC<SavedScreenProps> = () => {
           <h1 className="title">Saved</h1>
           <BookmarksOutlinedIcon style={{ fontSize: 35, color: '#fffef9' }} />
         </div>
-        {books && (
+        {savedBooks.length ? (
           <div className="saved-list">
-            {books
-              .filter((book: Book) => book.interaction.isSaved)
-              .map((book: Book) => (
-                // <Link
-                //   to={{
-                //     pathname: `/details/${book.id}`,
-                //     state: { book, isNew: false },
-                //   }}
-                //   style={{ textDecoration: 'none' }}
-                // >
-                <BookItem key={book.id} book={book} />
-                // </Link>
-              ))}
+            {books.map((book: Book) => (
+              // <Link
+              //   to={{
+              //     pathname: `/details/${book.id}`,
+              //     state: { book, isNew: false },
+              //   }}
+              //   style={{ textDecoration: 'none' }}
+              // >
+              <BookItem key={book.id} book={book} />
+              // </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="saved-list">
+            <div className="book-skeleton">
+              <p className="alert-msg">
+                You don't yet have any saved books! On mobile, use the camera
+                feature to take a photo of a book cover. You can also use the
+                search bar or check out our recommendations 😉
+              </p>
+            </div>
           </div>
         )}
       </div>

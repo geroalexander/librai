@@ -5,6 +5,7 @@ import { _loadDashboard } from '../../Store/actions/users';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import { RootState } from '../../index';
 import './Dashboard.css';
+import Skeleton from 'react-loading-skeleton';
 import { Book } from '../../Interfaces/bookObject';
 import Header from '../Header/Header';
 import LottieAnimation from '../../Animations/Lottie';
@@ -68,7 +69,8 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
             {isTabletOrDesktop && <StarRoundedIcon style={{fontSize: 42, color: '#fffef9', marginLeft: 6}}/>}
           </div>
           <div className="booklist">
-            {recommendations.map((book: Book) => (
+            {recommendations.length ? 
+            recommendations.map((book: Book) => (
               <div className="book-preview" key={`rec-${book.id}`}>
                 <Link
                   to={{
@@ -79,10 +81,12 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
                   <img
                     src={book.thumbnail ? book.thumbnail : undefined}
                     alt={book.title}
-                  />
+                  /> 
                 </Link>
               </div>
-            ))}
+            )) :
+            <Skeleton/>
+          }
           </div>
         </div>
         {!isTabletOrDesktop &&

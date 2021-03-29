@@ -65,12 +65,21 @@
   z-index: 1;
   -webkit-box-shadow: 0 0 12px -1px #070616;
           box-shadow: 0 0 12px -1px #070616;
+  -webkit-transition-duration: 0.4s;
+          transition-duration: 0.4s;
 }
 
 @media (min-width: 992px) {
   .details .main-details img {
     height: 16rem;
     margin-left: 5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .details .main-details img:hover {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
   }
 }
 
@@ -124,6 +133,7 @@
 .details .sub-details {
   width: 88vw;
   margin: auto;
+  margin-bottom: 10vh;
 }
 
 @media (min-width: 992px) {
@@ -200,6 +210,6 @@
 }
 
 .details .footer {
-  height: 5rem;
+  height: 5vh;
 }
 /*# sourceMappingURL=BookDetailsScreen.css.map */
