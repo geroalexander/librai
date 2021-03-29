@@ -46,7 +46,8 @@ export const _getUserWithBooks = () => async (dispatch: AppDispatch) => {
       dispatch({ type: GET_USER_WITH_BOOKS, payload: userWithBooks });
       return userWithBooks;
     } catch (error) {
-      return { error };
+      dispatch({ type: SET_ERROR, payload: error });
+      // return { error };
     }
   }
   return { error: 'No access token' };

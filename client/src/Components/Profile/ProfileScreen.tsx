@@ -32,9 +32,8 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
   useEffect(() => {
     if (!Object.keys(user).length) {
       const getUser = async () => {
-        const action = await _getUserWithBooks();
-        const userWithBooks = await dispatch(action);
-        if (!Object.keys(userWithBooks).length) // TODO:
+        const action = _getUserWithBooks();
+        dispatch(action);
       };
 
       getUser();

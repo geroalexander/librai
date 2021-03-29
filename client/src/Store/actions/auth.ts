@@ -51,6 +51,6 @@ export const setRegister = (form: RegistrationInfo) => async (
     }
     return response;
   } catch (error) {
-    return { error }
+    return { error };
   }
 };

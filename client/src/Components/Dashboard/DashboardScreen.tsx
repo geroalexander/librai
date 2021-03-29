@@ -21,7 +21,7 @@ interface DashboardScreenProps extends RouteComponentProps {}
 const Dashboard: React.FC<DashboardScreenProps> = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [open, setOpen] = useState<boolean>(false);
-  const [message, setMessage] = useState<string>('')
+  const [message, setMessage] = useState<string>('');
 
   const dispatch = useDispatch();
   const recommendations = useSelector(
@@ -35,9 +35,9 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
     const action = _loadDashboard();
     await dispatch(action);
     if (!Object.keys(userWithBooks).length) {
-      setMessage('Could not load dashboard')
-      setOpen(true)
-    };
+      setMessage('Could not load dashboard');
+      setOpen(true);
+    }
   };
 
   useEffect(() => {
@@ -68,7 +68,11 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
       <div className="dashboard">
         <header>
           <SearchBar />
-          <Camera setIsLoading={setIsLoading} setOpen={setOpen} setMessage={setMessage} />
+          <Camera
+            setIsLoading={setIsLoading}
+            setOpen={setOpen}
+            setMessage={setMessage}
+          />
         </header>
         <div className="bookwrapper">
           <p className="title">Recommended</p>
