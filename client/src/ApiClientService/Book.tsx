@@ -73,8 +73,7 @@ const getGoogleBook = (searchQuery: string) => {
     .then((json) => {
       if (json.items && json.items.length) {
         return json.items.slice(0, 6);
-      }
-      console.log('Books not retrieved! getGoogleBook');
+      } else return Promise.reject('Books not retrieved')
     })
     .catch((e) => console.log(e));
 };
