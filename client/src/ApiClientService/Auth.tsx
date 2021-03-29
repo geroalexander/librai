@@ -61,6 +61,8 @@ const logout = (accessToken: string) => {
 const googleLogin = (googleData: any) => {
   return fetch(`${REACT_APP_BASE_URL}/auth/google`, {
     method: 'POST',
+    credentials: 'include',
+    mode: 'cors',
     body: JSON.stringify({
       token: googleData.tokenId,
     }),

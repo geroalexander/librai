@@ -29,7 +29,13 @@ export const setLogin = (loginObject: Login) => async (
 export const setGoogleLogin = (googleData: any) => async (
   dispatch: AppDispatch
 ) => {
-  const { accessType, accessToken } = await googleLogin(googleData);
+  const data =await googleLogin(googleData);
+  let accessType;
+  let accessToken;
+  if (data) {
+    accessType = data.accessType;
+    accessToken = data.accessToken;
+  }
   localStorage.setItem('accessToken', accessToken);
   if (accessType === 'login') dispatch({ type: SET_LOGIN });
   else if (accessType === 'register') dispatch({ type: SET_REGISTER });
@@ -38,6 +44,8 @@ export const setGoogleLogin = (googleData: any) => async (
 
 export const setLogout = () => async (dispatch: AppDispatch) => {
   const accessToken: string | null = localStorage.getItem('accessToken');
+  console.log(accessToken, 'accessToken here');
+  
   if (accessToken) await logout(accessToken);
   localStorage.removeItem('accessToken');
   dispatch({ type: SET_LOGOUT });

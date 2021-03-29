@@ -24,7 +24,7 @@ $opensans: 'Open Sans', sans-serif;
 
   @include lgplus {
     align-items: flex-start;
-    padding-left: 4vw;
+    padding-left: 7vw;
   }
 
   .title-wrapper {
@@ -109,7 +109,7 @@ $opensans: 'Open Sans', sans-serif;
     align-items: center;
     justify-content: center;
     border: solid;
-    margin-top: 5vh;
+    margin-top: 3vh;
     border-width: 1.5px;
     border-radius: 25px;
     border-color: #c8baf3;
@@ -133,7 +133,7 @@ $opensans: 'Open Sans', sans-serif;
         font-size: 1.2em;
       }
       @include lg {
-        font-size: 1.3em;
+        font-size: 1em;
       }
     }
   }

@@ -14,6 +14,7 @@ import {
   Login,
   Register,
   RegistrationForm,
+  ErrorPage
 } from './Routes';
 import BottomTabNavigation from './Components/BottomTab/BottomTab';
 import Header from './Components/Header/Header';
@@ -57,6 +58,7 @@ function App() {
           <Route path="/login" exact component={Login}></Route>
           <Route path="/form" exact component={RegistrationForm}></Route>
           <Route path="/register" exact component={Register}></Route>
+          <Route path="/error" exact component={ErrorPage}></Route>
           <Route path="/" render={() => <div>404</div>} />
         </Switch>
         {signedIn && !fillForm && isMobile && <BottomTabNavigation />}

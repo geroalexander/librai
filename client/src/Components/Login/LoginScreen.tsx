@@ -37,6 +37,9 @@ const Login: React.FC = () => {
   };
 
   const handleGoogleLogin = async (googleData: any) => {
+    console.log('hello');
+    console.log(googleData, 'googleData');
+    
     const action = setGoogleLogin(googleData);
     const accessType = await dispatch(action);
     if (accessType === 'login') history.push('/');

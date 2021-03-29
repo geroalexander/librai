@@ -1,7 +1,7 @@
 import React from 'react';
 import Lottie from 'react-lottie';
 
-const LottieAnimation = ({ animation, width, height }) => {
+const LottieAnimation = ({ margin, animation, width, height }) => {
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -12,7 +12,7 @@ const LottieAnimation = ({ animation, width, height }) => {
   };
 
   return (
-    <div style={{ margin: 'auto' }}>
+    <div style={{ margin: margin || 'auto' }}>
       <Lottie options={defaultOptions} height={height} width={width} />
     </div>
   );

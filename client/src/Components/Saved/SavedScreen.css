@@ -39,7 +39,7 @@
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
-    padding-left: 4vw;
+    padding-left: 7vw;
   }
 }
 
@@ -174,7 +174,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   border: solid;
-  margin-top: 5vh;
+  margin-top: 3vh;
   border-width: 1.5px;
   border-radius: 25px;
   border-color: #c8baf3;
@@ -209,7 +209,7 @@
 
 @media (min-width: 992px) {
   .saved-screen .book-skeleton .alert-msg {
-    font-size: 1.3em;
+    font-size: 1em;
   }
 }
 /*# sourceMappingURL=SavedScreen.css.map */

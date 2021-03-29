@@ -73,7 +73,9 @@ const SavedScreen: React.FC<SavedScreenProps> = () => {
       </div>
     );
   }
-  return <LottieAnimation animation={loading} width={300} height={300} />;
+  return (
+    <LottieAnimation margin="" animation={loading} width={300} height={300} />
+  );
 };
 
 export default withRouter(SavedScreen);
