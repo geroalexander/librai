@@ -90,7 +90,7 @@ const Login: React.FC = () => {
                 disabled={renderProps.disabled}
               >
                 Login with Google
-                <FcGoogle style={{ marginLeft: 10 }} />
+                <FcGoogle style={{ marginLeft: 8 }} />
               </button>
             )}
           />
