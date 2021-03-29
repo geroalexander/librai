@@ -1,5 +1,5 @@
 //PAMEL
-import React, { useEffect, useState } from 'react';
+import React, { useReducer, useEffect, useState } from 'react';
 import PhotoCameraOutlinedIcon from '@material-ui/icons/PhotoCameraOutlined';
 import imageToBase64 from '../Shared/imageToBase64';
 import { getBookByCover } from '../../ApiClientService/Book';
@@ -22,21 +22,18 @@ const Camera: React.FC<CameraProps> = ({ setIsLoading }) => {
       (base64EncodedImageString) => base64EncodedImageString
     );
     const cloudURL = await uploadToCloud(base64Image);
-
     let book;
     const accessToken: string | null = localStorage.getItem('accessToken');
 
-    if (accessToken) book = await getBookByCover(accessToken, cloudURL);
-
-    if (Object.keys(book).length) {
-      setIsLoading(false);
+    try {
+      if (accessToken) book = await getBookByCover(accessToken, cloudURL);
       history.push({
-        pathname: `/details/${book.id}`,
-        state: { book, isNew: false },
-      });
-    } else {
+            pathname: `/details/${book.id}`,
+            state: { book, isNew: false },
+          });
+    } catch (error) {
       alert('Unable to retreive book details');
-      history.push('/saved');
+      setIsLoading(false);
     }
   };
 

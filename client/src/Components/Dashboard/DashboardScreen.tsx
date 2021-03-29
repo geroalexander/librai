@@ -19,6 +19,7 @@ interface DashboardScreenProps extends RouteComponentProps {}
 
 const Dashboard: React.FC<DashboardScreenProps> = () => {
   const [isLoading, setIsLoading] = useState(true);
+  // const [error, ]
 
   const dispatch = useDispatch();
   const recommendations = useSelector(
@@ -29,7 +30,6 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
   );
 
   useEffect(() => {
-    console.log('render')
     const renderDashboard = async () => {
       const action = await _loadDashboard();
       dispatch(action);

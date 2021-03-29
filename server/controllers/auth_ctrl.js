@@ -14,7 +14,7 @@ const register = async (req, res) => {
     if (!email || !password || !firstName || !lastName)
       throw new Error('Missing credentials');
     const existingUser = await User.findOne({ where: { email } });
-    if (existingUser) throw new Error('This user already exisits');
+    if (existingUser) throw new Error('This user already exists');
     const hash = await bcrypt.hash(password, 10);
     const { id } = await User.create({
       firstName,

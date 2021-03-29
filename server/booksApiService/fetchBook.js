@@ -12,10 +12,10 @@ const fetchBook = (searchQuery) => {
     .then((json) => {
       if (json.items && json.items.length) {
         return json.items[0];
-      }
-      console.log('Books not retrieved! fetchBooks');
+      } else return Promise.reject('Books not retrieved')
+      // console.log('Books not retrieved! fetchBooks');
     })
-    .catch((e) => console.log(e));
+    // .catch(e => e);
 };
 
 module.exports = { fetchBook };

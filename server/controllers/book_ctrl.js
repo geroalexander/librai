@@ -35,9 +35,9 @@ const getBookByCover = async (req, res) => {
   try {
     const { image } = req.body;
     const searchQuery = await extractText(image);
-
+    if(!searchQuery.length) throw new Error('No search query')
     const retrievedBook = await fetchBook(searchQuery);
-
+    if(retrievedBook === 'Books not retrieved') throw new Error('Could not fetch book')
     const formattedBook = formatBook(retrievedBook);
     const userWithBooks = await User.findOne({
       where: { id: user.id },
@@ -48,6 +48,7 @@ const getBookByCover = async (req, res) => {
     formattedBook.compatabilityScore = compatScore;
     const addView = await addBookView(user.id, retrievedBook, false);
     if (addView !== 'View added') throw new Error('Recommendation engine error');
+    console.log(formattedBook)
     res.status(200).send(formattedBook);
   } catch (error) {
     console.error(error);
@@ -62,7 +63,7 @@ const viewBookDetails = async (req, res) => {
     if (!Object.keys(book).length) throw new Error('No book received')
     const recombeeRequest = await addBookView(user.id, book, true);
     if (recombeeRequest !== 'View added') throw new Error('Recommendation engine error')
-    res.status(201).send('Viewing is sent');
+    res.status(201).send({ message: 'Viewing is sent' });
   } catch (error) {
     console.error(error);
     handleErrors(error, res)

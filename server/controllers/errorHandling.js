@@ -59,6 +59,12 @@ const handleErrors = (error, res) => {
     case 'Recommendation engine error':
       res.status(502).send({ message });
       break;
+    case 'No search query':
+      res.status(502).send({ message });
+      break;
+    case 'Could not fetch book':
+      res.status(502).send({ message });
+      break;
     default:
       res.status(500).send({ message });
   }
