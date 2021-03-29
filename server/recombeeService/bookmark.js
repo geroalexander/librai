@@ -20,7 +20,7 @@ const bookmark = async (userID, book) => {
     );
     if (find) await deleteBookmark(userID, bookID);
     else await addBookmark(userID, bookID);
-    return 'Successfull';
+    return 'Successful';
   } catch (err) {
     return err;
   }
