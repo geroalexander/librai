@@ -1,18 +1,20 @@
 //PAMEL
-import React, { useReducer, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PhotoCameraOutlinedIcon from '@material-ui/icons/PhotoCameraOutlined';
 import imageToBase64 from '../Shared/imageToBase64';
 import { getBookByCover } from '../../ApiClientService/Book';
 import { uploadToCloud } from '../../ApiClientService/ImageUpload';
 import { useHistory } from 'react-router-dom';
+import ErrorMessage from './ErrorMessage';
 
-// const accessToken: string | null = localStorage.getItem('accessToken');
 
 interface CameraProps {
   setIsLoading: (value: React.SetStateAction<boolean>) => void;
+  setOpen: (val: boolean) => void;
+  setMessage: (value: string) => void;
 }
 
-const Camera: React.FC<CameraProps> = ({ setIsLoading }) => {
+const Camera: React.FC<CameraProps> = ({ setIsLoading, setOpen, setMessage }) => {
   const history = useHistory();
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,8 +34,10 @@ const Camera: React.FC<CameraProps> = ({ setIsLoading }) => {
             state: { book, isNew: false },
           });
     } catch (error) {
-      alert('Unable to retreive book details');
+      // alert('Unable to retreive book details');
       setIsLoading(false);
+      setMessage('Unable to retreive book details');
+      setOpen(true);
     }
   };
 

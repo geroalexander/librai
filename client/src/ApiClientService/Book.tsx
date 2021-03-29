@@ -31,18 +31,6 @@ const getBookByCover = (accessToken: string, image: string) => {
     body: JSON.stringify({ image }),
   };
   return fetchRequest(path, options);
-  // return fetch(`${REACT_APP_BASE_URL}/book/cover`, {
-  //   method: 'POST',
-  //   credentials: 'include',
-  //   mode: 'cors',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Authorization: `Bearer ${accessToken}`,
-  //   },
-  //   body: JSON.stringify({ image }),
-  // })
-  //   .then((res) => res.json())
-  //   .catch((err) => console.log('error with getBookByCover', err));
 };
 
 

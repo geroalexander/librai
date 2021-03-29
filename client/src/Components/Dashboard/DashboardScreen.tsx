@@ -14,12 +14,14 @@ import LottieAnimation from '../../Animations/Lottie';
 import loading from '../../Animations/paperplane-animation.json';
 import bookAnimation from '../../Animations/book-animation-2.json';
 import secondBookAnim from '../../Animations/book-animation.json';
+import ErrorMessage from '../Shared/ErrorMessage';
 
 interface DashboardScreenProps extends RouteComponentProps {}
 
 const Dashboard: React.FC<DashboardScreenProps> = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  // const [error, ]
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>('')
 
   const dispatch = useDispatch();
   const recommendations = useSelector(
@@ -29,26 +31,44 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
     (state: RootState) => state.userReducer?.userWithBooks
   );
 
-  useEffect(() => {
-    const renderDashboard = async () => {
-      const action = await _loadDashboard();
-      dispatch(action);
+  const renderDashboard = async () => {
+    const action = _loadDashboard();
+    await dispatch(action);
+    if (!Object.keys(userWithBooks).length) {
+      setMessage('Could not load dashboard')
+      setOpen(true)
     };
+  };
 
+  useEffect(() => {
     renderDashboard();
   }, []);
 
   useEffect(() => {
-    if (userWithBooks && userWithBooks.books && recommendations)
+    if (userWithBooks && userWithBooks.books && recommendations) {
       setIsLoading(false);
+      setOpen(false);
+    }
   }, [userWithBooks, recommendations]);
+
+  if (open) {
+    return (
+      <ErrorMessage
+        message={message}
+        open={open}
+        setOpen={setOpen}
+        callback={renderDashboard}
+        setMessage={setMessage}
+      />
+    );
+  }
 
   if (!isLoading) {
     return (
       <div className="dashboard">
         <header>
           <SearchBar />
-          <Camera setIsLoading={setIsLoading} />
+          <Camera setIsLoading={setIsLoading} setOpen={setOpen} setMessage={setMessage} />
         </header>
         <div className="bookwrapper">
           <p className="title">Recommended</p>
