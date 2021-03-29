@@ -9,6 +9,10 @@ $opensans: 'Open Sans', sans-serif;
 .saved-screen {
   height: 100vh;
   width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background: linear-gradient(#2c0791 1%, $PRIMARY_DARK 100%);
 
   @include md {
@@ -76,8 +80,12 @@ $opensans: 'Open Sans', sans-serif;
 
   .saved-list {
     height: 100%;
+    width: 100%;
     overflow-y: scroll;
-    padding: 1.5rem;
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 8vh;
 
     @include lgplus {

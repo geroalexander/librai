@@ -19,9 +19,10 @@
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1500px) {
   .dashboard {
     padding-top: 1vw;
+    padding-bottom: 5%;
   }
 }
 
@@ -128,6 +129,9 @@
     -webkit-transition-duration: 0.4s;
             transition-duration: 0.4s;
   }
+}
+
+@media (min-width: 1200px) {
   .dashboard .bookwrapper .booklist .book-preview:hover {
     -webkit-transform: scale(0.9);
             transform: scale(0.9);

@@ -54,15 +54,17 @@
   }
 }
 
+@media (min-width: 1200px) {
+  .book-item img:hover {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+}
+
 @media (min-width: 1500px) {
   .book-item img {
     height: 14em;
   }
-}
-
-.book-item img:hover {
-  -webkit-transform: scale(0.9);
-          transform: scale(0.9);
 }
 
 .book-item h2,

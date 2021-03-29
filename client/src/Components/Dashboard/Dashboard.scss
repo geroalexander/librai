@@ -20,8 +20,9 @@ $opensans: 'Open Sans', sans-serif;
     padding-top: 0vw;
   }
 
-  @include xl {
+  @include xxl {
     padding-top: 1vw;
+    padding-bottom: 5%;
   }
 
   .book-body {
@@ -97,7 +98,9 @@ $opensans: 'Open Sans', sans-serif;
         @include lg {
           margin-right: 3rem;
           transition-duration: 0.4s;
+        }
 
+        @include xl {
           &:hover {
             transform: scale(0.9);
           }

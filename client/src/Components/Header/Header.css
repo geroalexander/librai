@@ -41,8 +41,10 @@ header img {
           transition-duration: 0.2s;
 }
 
-header img:hover {
-  -webkit-transform: scale(0.9);
-          transform: scale(0.9);
+@media (min-width: 1200px) {
+  header img:hover {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
 }
 /*# sourceMappingURL=Header.css.map */

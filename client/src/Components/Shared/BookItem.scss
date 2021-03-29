@@ -43,11 +43,13 @@ $opensans: 'Open Sans', sans-serif;
     @include lg {
       height: 12em;
     }
+    @include xl {
+      &:hover {
+        transform: scale(0.9);
+      }
+    }
     @include xxl {
       height: 14em;
-    }
-    &:hover {
-      transform: scale(0.9);
     }
   }
 
