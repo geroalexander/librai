@@ -22,7 +22,7 @@ import {
   SET_ERROR,
 } from './ActionTypes';
 import { Book } from '../../Interfaces/bookObject';
-import { setError } from '../actions/errors';
+import { setError, setAuthError } from '../actions/errors';
 import { PopularBook } from '../../Interfaces/popularBookObject';
 
 export const _loadDashboard = () => async (dispatch: AppDispatch) => {
@@ -32,16 +32,11 @@ export const _loadDashboard = () => async (dispatch: AppDispatch) => {
       const userDashboard = await loadDashboard(accessToken);
       dispatch({ type: LOAD_DASHBOARD, payload: userDashboard });
     } catch (error) {
-      dispatch({
-        type: SET_ERROR,
-        payload: "Couldn't load dashboard, please try again",
-      });
+      console.error(error);
+      const action = setError("Couldn't load dashboard, please try again");
+      dispatch(action);
     }
-  } else
-    dispatch({
-      type: SET_ERROR,
-      payload: 'Unauthorised, No access token!',
-    });
+  } else dispatch(setAuthError());
 };
 
 export const _getUserWithBooks = () => async (dispatch: AppDispatch) => {
@@ -50,21 +45,26 @@ export const _getUserWithBooks = () => async (dispatch: AppDispatch) => {
     try {
       const { userWithBooks } = await getUserWithBooks(accessToken);
       dispatch({ type: GET_USER_WITH_BOOKS, payload: userWithBooks });
-      return userWithBooks;
     } catch (error) {
-      const action = setError(error);
+      console.error(error);
+      const action = setError("Couldn't get your books from the database");
       dispatch(action);
     }
-  }
-  return { error: 'No access token' };
+  } else dispatch(setAuthError());
 };
 
 export const _addSavedBook = (book: Book) => async (dispatch: AppDispatch) => {
   const accessToken: string | null = localStorage.getItem('accessToken');
   if (accessToken) {
-    const savedBook = await addSavedBook(accessToken, book);
-    dispatch({ type: ADD_SAVED_BOOK, payload: savedBook });
-  }
+    try {
+      const savedBook = await addSavedBook(accessToken, book);
+      dispatch({ type: ADD_SAVED_BOOK, payload: savedBook });
+    } catch (error) {
+      console.error(error);
+      const action = setError("Sorry, we couldn't save your book");
+      dispatch(action);
+    }
+  } else dispatch(setAuthError());
 };
 
 export const _deleteSavedBook = (book: Book) => async (
@@ -72,9 +72,15 @@ export const _deleteSavedBook = (book: Book) => async (
 ) => {
   const accessToken: string | null = localStorage.getItem('accessToken');
   if (accessToken) {
-    await deleteSavedBook(accessToken, book);
-    dispatch({ type: DELETE_SAVED_BOOK, payload: book });
-  }
+    try {
+      await deleteSavedBook(accessToken, book);
+      dispatch({ type: DELETE_SAVED_BOOK, payload: book });
+    } catch (error) {
+      console.error(error);
+      const action = setError("Sorry, we couldn't remove your saved book");
+      dispatch(action);
+    }
+  } else dispatch(setAuthError());
 };
 
 export const _updateRating = (book: Book, rating: number) => async (
@@ -123,14 +129,22 @@ export const _registrationForm = (
 ) => async (dispatch: AppDispatch) => {
   const accessToken: string | null = localStorage.getItem('accessToken');
   if (accessToken) {
-    const userWithBooks = await registrationForm(
-      accessToken,
-      books,
-      favoriteGenres
-    );
-    dispatch({ type: REGISTRATION_FORM, payload: userWithBooks });
-    dispatch({ type: SET_ADD_FORM_INFO });
-  }
+    try {
+      const userWithBooks = await registrationForm(
+        accessToken,
+        books,
+        favoriteGenres
+      );
+      dispatch({ type: REGISTRATION_FORM, payload: userWithBooks });
+      dispatch({ type: SET_ADD_FORM_INFO });
+    } catch (error) {
+      console.error(error);
+      const action = setError(
+        "Sorry, we couldn't complete your favorites form"
+      );
+      dispatch(action);
+    }
+  } else dispatch(setAuthError());
 };
 
 export const _updateProfile = (
@@ -140,10 +154,16 @@ export const _updateProfile = (
 ) => async (dispatch: AppDispatch) => {
   const accessToken: string | null = localStorage.getItem('accessToken');
   if (accessToken) {
-    await updateProfile(accessToken, profilePic, favoriteGenres, email);
-    dispatch({
-      type: UPDATE_PROFILE,
-      payload: { profilePic, favoriteGenres, email },
-    });
-  }
+    try {
+      await updateProfile(accessToken, profilePic, favoriteGenres, email);
+      dispatch({
+        type: UPDATE_PROFILE,
+        payload: { profilePic, favoriteGenres, email },
+      });
+    } catch (error) {
+      console.error(error);
+      const action = setError("Sorry, we couldn't update your profile");
+      dispatch(action);
+    }
+  } else dispatch(setAuthError());
 };
