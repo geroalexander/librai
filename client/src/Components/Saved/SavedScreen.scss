@@ -22,6 +22,11 @@ $opensans: 'Open Sans', sans-serif;
     align-items: center;
   }
 
+  @include lgplus {
+    align-items: flex-start;
+    padding-left: 4vw;
+  }
+
   .title-wrapper {
     display: flex;
     justify-content: center;
@@ -48,6 +53,7 @@ $opensans: 'Open Sans', sans-serif;
       border-bottom-width: 1px;
       margin-left: 2rem;
       margin-right: 2rem;
+      padding-bottom: 1rem;
     }
     @include xxl {
       margin-left: 2rem;
@@ -67,8 +73,8 @@ $opensans: 'Open Sans', sans-serif;
         padding-right: 1rem;
       }
       @include xl {
-        margin-bottom: 1rem;
         margin: 0;
+        margin-left: 1rem;
         font-size: 3rem;
       }
       @include xxl {
@@ -91,8 +97,9 @@ $opensans: 'Open Sans', sans-serif;
     @include lgplus {
       align-items: center;
       display: flex;
-      padding-left: 5rem;
+      padding-left: 0;
       flex-wrap: wrap;
+      width: 90vw;
     }
   }
   .book-skeleton {
