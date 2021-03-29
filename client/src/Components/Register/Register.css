@@ -175,13 +175,19 @@
 
 @media (min-width: 768px) {
   .register-wrapper .register-form .form-inner .google-btn {
-    width: 25vw;
+    width: 1rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .register-wrapper .register-form .form-inner .google-btn {
+    width: 1rem;
   }
 }
 
 @media (min-width: 1200px) {
   .register-wrapper .register-form .form-inner .google-btn {
-    width: 15vw;
+    width: 1rem;
   }
 }
 /*# sourceMappingURL=Register.css.map */

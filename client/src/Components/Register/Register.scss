@@ -117,11 +117,15 @@ $opensans: 'Open Sans', sans-serif;
         }
 
         @include md {
-          width: 25vw;
+          width: 1rem;
+        }
+
+        @include lg {
+          width: 1rem;
         }
 
         @include xl {
-          width: 15vw;
+          width: 1rem;
         }
       }
     }

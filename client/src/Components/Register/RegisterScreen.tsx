@@ -133,7 +133,7 @@ const Register: React.FC = (props) => {
                 disabled={renderProps.disabled}
               >
                 Sign up with Google
-                <FcGoogle style={{ marginLeft: 10 }} />
+                <FcGoogle style={{ marginLeft: 8 }} />
               </button>
             )}
           />
