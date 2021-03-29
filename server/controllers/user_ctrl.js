@@ -14,27 +14,28 @@ const loadDashboard = async (req, res) => {
   const user = req.user;
 
   try {
-    const userWithBooks = await User.findByPk(user.id, {
-      attributes: { exclude: ['password'] },
-      include: Book,
-    });
-    if (!userWithBooks) throw new Error('Could not find user');
+    throw new Error('Hello')
+    // const userWithBooks = await User.findByPk(user.id, {
+    //   attributes: { exclude: ['password'] },
+    //   include: Book,
+    // });
+    // if (!userWithBooks) throw new Error('Could not find user');
 
-    const recommendations = await getRecommendations(user.id, 10);
-    if (!recommendations) throw new Error('Recommendation engine error');
+    // const recommendations = await getRecommendations(user.id, 10);
+    // if (!recommendations) throw new Error('Recommendation engine error');
 
-    const bookRecArr = [];
+    // const bookRecArr = [];
 
-    for (const rec of recommendations.recomms) {
-      const retrievedBook = await getBookById(rec.id);
-      const formattedBook = formatBook(retrievedBook);
-      formattedBook.compatabilityScore = 10;
-      bookRecArr.push(formattedBook);
-    }
-    res.status(201).send({
-      userWithBooks,
-      recommendations: bookRecArr,
-    });
+    // for (const rec of recommendations.recomms) {
+    //   const retrievedBook = await getBookById(rec.id);
+    //   const formattedBook = formatBook(retrievedBook);
+    //   formattedBook.compatabilityScore = 10;
+    //   bookRecArr.push(formattedBook);
+    // }
+    // res.status(201).send({
+    //   userWithBooks,
+    //   recommendations: bookRecArr,
+    // });
   } catch (error) {
     console.error(error, 'Could not load dashboard, fn.loadDashboard');
     handleErrors(error, res);

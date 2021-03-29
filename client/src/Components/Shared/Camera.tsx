@@ -7,14 +7,11 @@ import { uploadToCloud } from '../../ApiClientService/ImageUpload';
 import { useHistory } from 'react-router-dom';
 import ErrorMessage from './ErrorMessage';
 
-
 interface CameraProps {
   setIsLoading: (value: React.SetStateAction<boolean>) => void;
-  setOpen: (val: boolean) => void;
-  setMessage: (value: string) => void;
 }
 
-const Camera: React.FC<CameraProps> = ({ setIsLoading, setOpen, setMessage }) => {
+const Camera: React.FC<CameraProps> = ({ setIsLoading }) => {
   const history = useHistory();
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,14 +27,14 @@ const Camera: React.FC<CameraProps> = ({ setIsLoading, setOpen, setMessage }) =>
     try {
       if (accessToken) book = await getBookByCover(accessToken, cloudURL);
       history.push({
-            pathname: `/details/${book.id}`,
-            state: { book, isNew: false },
-          });
+        pathname: `/details/${book.id}`,
+        state: { book, isNew: false },
+      });
     } catch (error) {
-      // alert('Unable to retreive book details');
+      alert('Unable to retreive book details');
       setIsLoading(false);
-      setMessage('Unable to retreive book details');
-      setOpen(true);
+      // setMessage('Unable to retreive book details');
+      // setOpen(true);
     }
   };
 

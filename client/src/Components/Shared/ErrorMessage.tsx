@@ -4,6 +4,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import { TransitionProps } from '@material-ui/core/transitions';
+import { useDispatch } from 'react-redux';
+// import { REMOVE_ERROR } from '../../Store/actions/errors';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & { children?: React.ReactElement<any, any> },
@@ -16,7 +18,7 @@ interface ErrorMessageProps {
   message: string;
   open: boolean;
   setOpen: (value: boolean) => void;
-  setMessage: (val: string) => void;
+  // setMessage: (val: string) => void;
   callback?: () => void;
 }
 
@@ -25,14 +27,16 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({
   open,
   setOpen,
   callback,
-  setMessage
+  // setMessage
 }) => {
+  const dispatch = useDispatch();
   // const handleClickOpen = () => {
   //   setOpen(true);
   // };
   const handleClose = () => {
-    setMessage('');
+    // setMessage('');
     setOpen(false);
+    dispatch({type: REMOVE_ERROR, payload: ''})
     if (callback)
       setTimeout(() => {
         callback();
