@@ -9,6 +9,7 @@ import { googleLogin } from '../../ApiClientService/Auth';
 import { Link, withRouter, useHistory } from 'react-router-dom';
 import { RootState } from '../../index';
 import { GoogleLogin } from 'react-google-login';
+import { FcGoogle } from 'react-icons/fc';
 
 const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
 
@@ -77,16 +78,25 @@ const Login: React.FC = () => {
             />
           </div>
           <input className="submitButton" type="submit" value="LOGIN" />
-          <Link to="/register" className="to-register">
-            Need an account? Register here!
-          </Link>
           <GoogleLogin
             clientId={REACT_APP_GOOGLE_CLIENT_ID || ''}
-            buttonText="Login"
             onSuccess={handleGoogleLogin}
             onFailure={handleGoogleLogin}
             cookiePolicy={'single_host_origin'}
+            render={(renderProps) => (
+              <button
+                className="google-btn"
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+              >
+                Login with Google
+                <FcGoogle style={{ marginLeft: 10 }} />
+              </button>
+            )}
           />
+          <Link to="/register" className="to-register">
+            Need an account? Register here!
+          </Link>
         </div>
       </form>
     </div>
