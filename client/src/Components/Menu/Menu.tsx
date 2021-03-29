@@ -1,9 +1,11 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../index';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Avatar from '@material-ui/core/Avatar';
+import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
@@ -28,6 +30,10 @@ const DropMenu = () => {
     history.push('/login');
   };
 
+  const profilePic = useSelector(
+    (state: RootState) => state.userReducer?.userWithBooks.profilePic
+  );
+
   const StyledMenuItem = withStyles((theme) => ({
     root: {
       fontSize: 18,
@@ -45,7 +51,9 @@ const DropMenu = () => {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        <Avatar className="profile-icon" />
+        <div className="profile-icon">
+          <AccountCircleOutlinedIcon style={{fontSize: 60, color: "#fffef9"}} />
+          </div>
       </Button>
       <Menu
         id="simple-menu"

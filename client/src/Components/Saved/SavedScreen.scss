@@ -83,7 +83,7 @@ $opensans: 'Open Sans', sans-serif;
     @include lgplus {
       align-items: center;
       display: flex;
-      justify-content: space-evenly;
+      padding-left: 5rem;
       flex-wrap: wrap;
     }
   }

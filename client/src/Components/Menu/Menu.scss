@@ -1,6 +1,9 @@
 .profile-icon {
   margin-right: 1rem;
   transition-duration: 0.2s;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 100%;
 
   &:hover {
     transform: scale(0.9);
@@ -9,7 +12,4 @@
 
 .link {
   text-decoration: none;
-}
-.menu-item {
-  font-size: 80;
 }
