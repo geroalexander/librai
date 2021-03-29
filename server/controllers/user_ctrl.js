@@ -132,82 +132,82 @@ const addSavedBook = async (req, res) => {
 const updateRating = async (req, res) => {
   const user = req.user;
   try {
-    // const { book, rating } = req.body;
-    // if (!Object.keys(book).length || !book) throw new Error('No book received');
-    // if (rating < -1 || rating > 1 || typeof rating !== 'number')
-    //   throw new Error('Invalid book rating');
+    const { book, rating } = req.body;
+    if (!Object.keys(book).length || !book) throw new Error('No book received');
+    if (rating < -1 || rating > 1 || typeof rating !== 'number')
+      throw new Error('Invalid book rating');
 
-    // const { compatabilityScore } = book;
-    // const {
-    //   id,
-    //   authors,
-    //   title,
-    //   subtitle,
-    //   description,
-    //   pageCount,
-    //   categories,
-    //   publisher,
-    //   publishedDate,
-    //   averageRating,
-    //   ratingsCount,
-    //   thumbnail,
-    //   smallThumbnail,
-    //   price,
-    //   currency,
-    // } = book;
+    const { compatabilityScore } = book;
+    const {
+      id,
+      authors,
+      title,
+      subtitle,
+      description,
+      pageCount,
+      categories,
+      publisher,
+      publishedDate,
+      averageRating,
+      ratingsCount,
+      thumbnail,
+      smallThumbnail,
+      price,
+      currency,
+    } = book;
 
-    // let targetBook = await Book.findByPk(id);
-    // if (!targetBook)
-    //   targetBook = await Book.create({
-    //     id,
-    //     authors,
-    //     title,
-    //     subtitle,
-    //     description,
-    //     pageCount,
-    //     categories,
-    //     publisher,
-    //     publishedDate,
-    //     averageRating,
-    //     ratingsCount,
-    //     thumbnail,
-    //     smallThumbnail,
-    //     price,
-    //     currency,
-    //   });
+    let targetBook = await Book.findByPk(id);
+    if (!targetBook)
+      targetBook = await Book.create({
+        id,
+        authors,
+        title,
+        subtitle,
+        description,
+        pageCount,
+        categories,
+        publisher,
+        publishedDate,
+        averageRating,
+        ratingsCount,
+        thumbnail,
+        smallThumbnail,
+        price,
+        currency,
+      });
     if (!targetBook) throw new Error('Book could not be created');
 
-    // const targetInteraction = await Interaction.findOne({
-    //   where: { userId: user.id, bookId: book.id },
-    // });
+    const targetInteraction = await Interaction.findOne({
+      where: { userId: user.id, bookId: book.id },
+    });
 
-    // if (targetInteraction) {
-    //   const updatedBook = await targetInteraction.update({
-    //     rating,
-    //     isSaved: false,
-    //   });
-    //   if (!updatedBook) throw new Error('Rating could not be updated');
-    //   const recombeeRequest = await bookRating(user.id, targetBook, rating); // book object (book.id for id)
-    //   if (recombeeRequest !== 'Rating added')
-    //     throw new Error('Recommendation engine error');
-    // } else {
-    //   const ratedBook = await user.addBook(targetBook, {
-    //     through: { rating, compatabilityScore, isSaved: false },
-    //   });
-    //   if (!ratedBook) throw new Error('Rated book could not be saved');
-    //   const recombeeRequest = await bookRating(user.id, targetBook, rating); // book object (book.id for id)
-    //   console.log('2', recombeeRequest);
-    //   if (recombeeRequest !== 'Rating added')
-    //     throw new Error('Recommendation engine error');
-    // }
+    if (targetInteraction) {
+      const updatedBook = await targetInteraction.update({
+        rating,
+        isSaved: false,
+      });
+      if (!updatedBook) throw new Error('Rating could not be updated');
+      const recombeeRequest = await bookRating(user.id, targetBook, rating); // book object (book.id for id)
+      if (recombeeRequest !== 'Rating added')
+        throw new Error('Recommendation engine error');
+    } else {
+      const ratedBook = await user.addBook(targetBook, {
+        through: { rating, compatabilityScore, isSaved: false },
+      });
+      if (!ratedBook) throw new Error('Rated book could not be saved');
+      const recombeeRequest = await bookRating(user.id, targetBook, rating); // book object (book.id for id)
+      console.log('2', recombeeRequest);
+      if (recombeeRequest !== 'Rating added')
+        throw new Error('Recommendation engine error');
+    }
 
-    // const userWithBooks = await User.findByPk(user.id, {
-    //   attributes: { exclude: ['password'] },
-    //   include: [{ model: Book, where: { id } }],
-    // });
-    // if (!userWithBooks) throw new Error('Could not find user');
+    const userWithBooks = await User.findByPk(user.id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Book, where: { id } }],
+    });
+    if (!userWithBooks) throw new Error('Could not find user');
 
-    // res.status(201).send(userWithBooks.books[0]);
+    res.status(201).send(userWithBooks.books[0]);
   } catch (error) {
     console.error(error, 'Could not update rating, fn.updateRating');
     handleErrors(error, res);
