@@ -19,6 +19,7 @@ import {
   REGISTRATION_FORM,
   UPDATE_PROFILE,
   SET_ADD_FORM_INFO,
+  SET_ERROR
 } from './ActionTypes';
 import { Book } from '../../Interfaces/bookObject';
 import { PopularBook } from '../../Interfaces/popularBookObject';
@@ -28,10 +29,10 @@ export const _loadDashboard = () => async (dispatch: AppDispatch) => {
   if (accessToken) {
     try {
       const userDashboard = await loadDashboard(accessToken);
-      if (userDashboard.userWithBooks)
-        dispatch({ type: LOAD_DASHBOARD, payload: userDashboard });
-      return userDashboard;
+      dispatch({ type: LOAD_DASHBOARD, payload: userDashboard });
     } catch (error) {
+      console.log(error)
+      dispatch({ type: SET_ERROR, payload: { error }});
       return { error };
     }
   }

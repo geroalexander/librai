@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -16,8 +16,11 @@ import {
   RegistrationForm,
 } from './Routes';
 import BottomTabNavigation from './Components/BottomTab/BottomTab';
+import ErrorMessage from './Components/Shared/ErrorMessage';
 
 function App() {
+  const [open, setOpen] = useState<boolean>(false);
+
   const signedIn = useSelector(
     (state: RootState) => state.authReducer.signedIn
   );
@@ -25,10 +28,29 @@ function App() {
   const fillForm = useSelector(
     (state: RootState) => state.authReducer.fillForm
   );
-
+  const error = useSelector(
+    (state: RootState) => state.errorReducer.error
+  )
+  if (error) {
+    setOpen(true);
+    // return (
+    //   <ErrorMessage
+    //     message={error}
+    //     open={open}
+    //     setOpen={setOpen}
+    //     // setMessage={setMessage}
+    //   />
+    // );
+  }
   return (
     <div className="App">
       <Router>
+        <ErrorMessage
+          message={error}
+          open={open}
+          setOpen={setOpen}
+          // setMessage={setMessage}
+        />
         <Switch>
           <PrivateRoute path="/" exact component={Dashboard}></PrivateRoute>
           <PrivateRoute

@@ -20,8 +20,9 @@ interface DashboardScreenProps extends RouteComponentProps {}
 
 const Dashboard: React.FC<DashboardScreenProps> = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [open, setOpen] = useState<boolean>(false);
-  const [message, setMessage] = useState<string>('')
+  // const [open, setOpen] = useState<boolean>(false);
+  // const [message, setMessage] = useState<string>('')
+  // const [firstLoad, setFirstLoad] = useState<boolean>(true);
 
   const dispatch = useDispatch();
   const recommendations = useSelector(
@@ -34,41 +35,47 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
   const renderDashboard = async () => {
     const action = _loadDashboard();
     await dispatch(action);
-    if (!Object.keys(userWithBooks).length) {
-      setMessage('Could not load dashboard')
-      setOpen(true)
-    };
+    // if (!Object.keys(userWithBooks).length) {
+    //   setMessage('Could not load dashboard')
+    //   setOpen(true)
+    // };
   };
 
   useEffect(() => {
     renderDashboard();
+    // setFirstLoad(false);
+    // console.log('1');
+
   }, []);
 
+
   useEffect(() => {
+    // console.log('2');
+
     if (userWithBooks && userWithBooks.books && recommendations) {
       setIsLoading(false);
-      setOpen(false);
+      // setOpen(false);
     }
   }, [userWithBooks, recommendations]);
 
-  if (open) {
-    return (
-      <ErrorMessage
-        message={message}
-        open={open}
-        setOpen={setOpen}
-        callback={renderDashboard}
-        setMessage={setMessage}
-      />
-    );
-  }
+  // if (open) {
+  //   return (
+  //     <ErrorMessage
+  //       message={'Could not load dashboardj'}
+  //       open={open}
+  //       setOpen={setOpen}
+  //       callback={renderDashboard}
+  //       // setMessage={setMessage}
+  //     />
+  //   );
+  // }
 
   if (!isLoading) {
     return (
       <div className="dashboard">
         <header>
           <SearchBar />
-          <Camera setIsLoading={setIsLoading} setOpen={setOpen} setMessage={setMessage} />
+          <Camera setIsLoading={setIsLoading} />
         </header>
         <div className="bookwrapper">
           <p className="title">Recommended</p>
