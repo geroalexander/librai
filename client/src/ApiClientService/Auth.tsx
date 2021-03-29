@@ -58,4 +58,18 @@ const logout = (accessToken: string) => {
   }).catch((err) => console.log('error with logout', err));
 };
 
-export { register, login, addFormInfo, logout };
+const googleLogin = (googleData: any) => {
+  return fetch(`${REACT_APP_BASE_URL}/auth/google`, {
+    method: 'POST',
+    body: JSON.stringify({
+      token: googleData.tokenId,
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log('error with googleLogin'));
+};
+
+export { register, login, addFormInfo, logout, googleLogin };

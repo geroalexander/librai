@@ -29,6 +29,8 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
   });
 
   const [isLoading, setIsLoading] = useState(true);
+  const [savedBooks, setSavedBooks] = useState<Book[]>([]);
+  const [ratedBooks, setRatedBooks] = useState<Book[]>([]);
 
   const dispatch = useDispatch();
   const recommendations = useSelector(
@@ -49,8 +51,15 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
   }, []);
 
   useEffect(() => {
-    if (userWithBooks && userWithBooks.books && recommendations)
+    if (userWithBooks && userWithBooks.books && recommendations) {
+      setSavedBooks(
+        userWithBooks.books.filter((b: Book) => b.interaction.isSaved)
+      );
+      setRatedBooks(
+        userWithBooks.books.filter((b: Book) => b.interaction.rating === 1)
+      );
       setIsLoading(false);
+    }
   }, [userWithBooks, recommendations]);
 
   if (!isLoading) {
@@ -95,9 +104,8 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
                 <p className="title">Your favorites</p>
               </div>
               <div className="booklist-small">
-                {userWithBooks.books
-                  .filter((b: Book) => b.interaction.rating === 1)
-                  .map((book: Book) => (
+                {ratedBooks.length ? (
+                  ratedBooks.map((book: Book) => (
                     <div className="book-preview-small" key={`fav-${book.id}`}>
                       <Link
                         to={{
@@ -111,7 +119,15 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
                         />
                       </Link>
                     </div>
-                  ))}
+                  ))
+                ) : (
+                  <div className="book-skeleton">
+                    <p className="alert-msg">
+                      You don't have any rated books yet. The more ratings we
+                      have, the better our recommendations for you will be! 😉
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           )}
@@ -125,10 +141,8 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
               )}
             </div>
             <div className="booklist">
-              {}
-              {userWithBooks.books
-                .filter((b: Book) => b.interaction.isSaved)
-                .map((book: Book) => (
+              {savedBooks.length ? (
+                savedBooks.map((book: Book) => (
                   <div className="book-preview" key={`sav-${book.id}`}>
                     <Link
                       to={{
@@ -142,7 +156,16 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
                       />
                     </Link>
                   </div>
-                ))}
+                ))
+              ) : (
+                <div className="book-skeleton">
+                  <p className="alert-msg">
+                    You don't have any saved books yet! On mobile, use the
+                    camera feature to take a photo of a book cover. You can also
+                    use the search bar or check out our recommendations 😉
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>

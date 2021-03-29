@@ -26,9 +26,7 @@ module.exports = (sequelize) => {
       },
     },
     password: {
-      // This would need to be hashed in the future or changed to OAuth
       type: STRING,
-      allowNull: false,
     },
     profilePic: {
       type: STRING,

@@ -1,18 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../..';
 import './Login.css';
-import { setLogin } from '../../Store/actions/auth';
+import { setLogin, setLogout, setGoogleLogin } from '../../Store/actions/auth';
 import LockIcon from '@material-ui/icons/Lock';
 import EmailIcon from '@material-ui/icons/Email';
-import {
-  Link,
-  RouteComponentProps,
-  withRouter,
-  useHistory,
-} from 'react-router-dom';
+import { googleLogin } from '../../ApiClientService/Auth';
+import { Link, withRouter, useHistory } from 'react-router-dom';
 import { RootState } from '../../index';
-import { setLogout } from '../../Store/actions/auth';
+import { GoogleLogin } from 'react-google-login';
+import { FcGoogle } from 'react-icons/fc';
+
+const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
 
 const Login: React.FC = () => {
   const history = useHistory();
@@ -26,7 +25,7 @@ const Login: React.FC = () => {
 
   useEffect(() => {
     if (signedIn) dispatch(setLogout());
-  }, [])
+  }, []);
 
   const onClickSubmitLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -35,6 +34,13 @@ const Login: React.FC = () => {
     setEmail('');
     setPassword('');
     history.push('/');
+  };
+
+  const handleGoogleLogin = async (googleData: any) => {
+    const action = setGoogleLogin(googleData);
+    const accessType = await dispatch(action);
+    if (accessType === 'login') history.push('/');
+    else if (accessType === 'register') history.push('/form');
   };
 
   return (
@@ -72,6 +78,22 @@ const Login: React.FC = () => {
             />
           </div>
           <input className="submitButton" type="submit" value="LOGIN" />
+          <GoogleLogin
+            clientId={REACT_APP_GOOGLE_CLIENT_ID || ''}
+            onSuccess={handleGoogleLogin}
+            onFailure={handleGoogleLogin}
+            cookiePolicy={'single_host_origin'}
+            render={(renderProps) => (
+              <button
+                className="google-btn"
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+              >
+                Login with Google
+                <FcGoogle style={{ marginLeft: 10 }} />
+              </button>
+            )}
+          />
           <Link to="/register" className="to-register">
             Need an account? Register here!
           </Link>

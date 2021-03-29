@@ -1,8 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../..';
 import './Register.css';
-import { setRegister } from '../../Store/actions/auth';
+import {
+  setRegister,
+  setLogout,
+  setGoogleLogin,
+} from '../../Store/actions/auth';
 import {
   Link,
   RouteComponentProps,
@@ -10,11 +14,14 @@ import {
   useHistory,
 } from 'react-router-dom';
 import { RootState } from '../../index';
-import { setLogout } from '../../Store/actions/auth';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import PersonIcon from '@material-ui/icons/Person';
 import LockIcon from '@material-ui/icons/Lock';
 import EmailIcon from '@material-ui/icons/Email';
+import { GoogleLogin } from 'react-google-login';
+import { FcGoogle } from 'react-icons/fc';
+
+const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
 
 const Register: React.FC = (props) => {
   const history = useHistory();
@@ -31,7 +38,7 @@ const Register: React.FC = (props) => {
 
   useEffect(() => {
     if (signedIn) dispatch(setLogout());
-  }, [])
+  }, []);
 
   const onClickSubmitLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -44,6 +51,13 @@ const Register: React.FC = (props) => {
         history.push('/form');
       })
       .catch((err) => console.log(err));
+  };
+
+  const handleGoogleLogin = async (googleData: any) => {
+    const action = setGoogleLogin(googleData);
+    const accessType = await dispatch(action);
+    if (accessType === 'login') history.push('/');
+    else if (accessType === 'register') history.push('/form');
   };
 
   return (
@@ -107,6 +121,22 @@ const Register: React.FC = (props) => {
             />
           </div>
           <input className="submitButton" type="submit" value="SIGN UP" />
+          <GoogleLogin
+            clientId={REACT_APP_GOOGLE_CLIENT_ID || ''}
+            onSuccess={handleGoogleLogin}
+            onFailure={handleGoogleLogin}
+            cookiePolicy={'single_host_origin'}
+            render={(renderProps) => (
+              <button
+                className="google-btn"
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+              >
+                Sign up with Google
+                <FcGoogle style={{ marginLeft: 10 }} />
+              </button>
+            )}
+          />
           <Link to="/login" className="to-login">
             Already have an account? Click here!
           </Link>

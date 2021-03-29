@@ -1,4 +1,5 @@
 @import '../../Theme/colorDefinitions.scss';
+@import '../../Theme/breakpoints.scss';
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap');
 
 $comfortaa: 'Comfortaa', cursive;
@@ -19,70 +20,112 @@ $opensans: 'Open Sans', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-    }
 
-    .title {
-      margin-bottom: 2rem;
-      color: $WHITE;
-      font-family: $comfortaa;
-      font-size: 2.5rem;
-      font-weight: bold;
-    }
+      .title {
+        margin-bottom: 2rem;
+        color: $WHITE;
+        font-family: $comfortaa;
+        font-size: 2.5rem;
+        font-weight: bold;
+      }
 
-    .form-group {
-      position: relative;
-      display: flex;
-      flex-direction: row;
-      padding: 0.1em;
-      justify-content: center;
-      align-items: center;
+      .form-group {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        padding: 0.1em;
+        justify-content: center;
+        align-items: center;
 
-      .input {
-        background-color: $PRIMARY_DARK;
+        .input {
+          background-color: $PRIMARY_DARK;
+          border-radius: 25px;
+          height: 2.7em;
+          width: 15em;
+          color: $PRIMARY_WHITE;
+          border-style: hidden;
+          margin: 1em;
+          outline: none;
+          font: 15px $montserrat;
+          padding-left: 3.6em;
+        }
+        ::placeholder {
+          color: #c8baf3;
+          font-family: $montserrat;
+          font-size: 1rem;
+        }
+
+        .icon {
+          position: absolute;
+          left: 30px;
+          align-self: center;
+          padding-top: 3px;
+        }
+      }
+
+      .submitButton {
+        font-weight: bold;
+        margin: 2rem;
+        margin-bottom: 1rem;
         border-radius: 25px;
-        height: 2.7em;
-        width: 15em;
-        color: $PRIMARY_WHITE;
-        border-style: hidden;
-        margin: 1em;
-        outline: none;
-        font: 15px $montserrat;
-        padding-left: 3.6em;
-      }
-      ::placeholder {
-        color: #c8baf3;
+        height: 3em;
+        width: 12em;
+        background-color: $PRIMARY_WHITE;
         font-family: $montserrat;
-        font-size: 1rem;
+        font-size: 0.8rem;
+        color: $PRIMARY_LIGHT;
+        border-style: hidden;
+        box-shadow: 1px 2px 2px 2px;
+        transition-duration: 0.2s;
+
+        &:hover {
+          transform: scale(0.9);
+        }
       }
 
-      .icon {
-        position: absolute;
-        left: 30px;
-        align-self: center;
-        padding-top: 3px;
+      .to-register {
+        margin-top: 0.8em;
+        text-decoration: none;
+        color: $PRIMARY_WHITE;
+        font-size: 0.9em;
+        font-family: $montserrat;
+        transition-duration: 0.2s;
+
+        &:hover {
+          transform: scale(1.1);
+        }
       }
-    }
 
-    .submitButton {
-      font-weight: bold;
-      margin: 2rem;
-      border-radius: 25px;
-      height: 3em;
-      width: 12em;
-      background-color: $PRIMARY_WHITE;
-      font-family: $montserrat;
-      font-size: 0.8rem;
-      color: $PRIMARY_LIGHT;
-      border-style: hidden;
-      box-shadow: 1px 2px 2px 2px;
-    }
+      .google-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 25px;
+        font-weight: bold;
+        height: 4em;
+        width: 50vw;
+        border: solid;
+        border-color: $PRIMARY_WHITE;
+        background-color: transparent;
+        color: $PRIMARY_WHITE;
+        font-family: $montserrat;
+        font-size: 0.8rem;
+        transition-duration: 0.2s;
 
-    .to-register {
-      margin-top: 0.8em;
-      text-decoration: none;
-      color: $PRIMARY_WHITE;
-      font-size: 0.9em;
-      font-family: $montserrat;
+        &:hover {
+          transform: scale(0.9);
+        }
+
+        @include md {
+          width: 25vw;
+        }
+
+        @include xl {
+          width: 12vw;
+        }
+      }
     }
   }
 }
