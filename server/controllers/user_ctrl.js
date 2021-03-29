@@ -271,7 +271,7 @@ const deleteRating = async (req, res) => {
     if (recombeeRequest !== 'Rating deleted')
       throw new Error('Recommendation engine error');
 
-    res.status(203).send('Book rating was removed');
+    res.status(203).send({ message: 'Book rating was removed'});
   } catch (error) {
     console.error(error, 'Could not delete rating, fn.deleteRating');
     handleErrors(error, res);

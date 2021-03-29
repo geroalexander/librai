@@ -22,6 +22,7 @@ import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import SentimentSatisfiedAltIcon from '@material-ui/icons/SentimentSatisfiedAlt';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
+import { SET_ERROR } from '../../Store/actions/ActionTypes';
 
 interface StatusBarProps extends RouteComponentProps {
   book: Book;
@@ -66,9 +67,13 @@ const SmallStatusBar: React.FC<StatusBarProps> = ({ book }) => {
       setRating(newRating);
       setIsSaved(false);
     } else {
-      const action = await _deleteRating(book);
-      dispatch(action);
-      setRating(newRating);
+      // try {
+        const action = await _deleteRating(book);
+        dispatch(action);
+        setRating(newRating);
+      // } catch (error) {
+      //   dispatch({ type: SET_ERROR, payload: error})
+      // }
     }
     setRated(!rated);
   };

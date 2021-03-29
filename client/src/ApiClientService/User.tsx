@@ -144,20 +144,8 @@ const deleteSavedBook = (accessToken: string, book: Book) => {
 };
 
 const deleteRating = (accessToken: string, book: Book) => {
-  // const path: string = '/user/rating';
-  // const options: RequestInit = {
-  //   method: 'DELETE',
-  //   credentials: 'include',
-  //   mode: 'cors',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Authorization: `Bearer ${accessToken}`,
-  //   },
-  //   body: JSON.stringify({ book }),
-  // };
-  // return fetchRequest(path, options);
-
-  return fetch(`${REACT_APP_BASE_URL}/user/rating`, {
+  const path: string = '/user/rating';
+  const options: RequestInit = {
     method: 'DELETE',
     credentials: 'include',
     mode: 'cors',
@@ -166,7 +154,19 @@ const deleteRating = (accessToken: string, book: Book) => {
       Authorization: `Bearer ${accessToken}`,
     },
     body: JSON.stringify({ book }),
-  }).catch((err) => console.log('error with deleteRating', err));
+  };
+  return fetchRequest(path, options);
+
+  // return fetch(`${REACT_APP_BASE_URL}/user/rating`, {
+  //   method: 'DELETE',
+  //   credentials: 'include',
+  //   mode: 'cors',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     Authorization: `Bearer ${accessToken}`,
+  //   },
+  //   body: JSON.stringify({ book }),
+  // }).catch((err) => console.log('error with deleteRating', err));
 };
 
 const registrationForm = (
@@ -205,20 +205,8 @@ const updateProfile = (
   favoriteGenres: string[] | null,
   email: string | null
 ) => {
-  // const path: string = '/user/update';
-  // const options: RequestInit = {
-  //   method: 'POST',
-  //   credentials: 'include',
-  //   mode: 'cors',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Authorization: `Bearer ${accessToken}`,
-  //   },
-  //   body: JSON.stringify({ profilePic, favoriteGenres, email }),
-  // }
-  // return fetchRequest(path, options);
-
-  return fetch(`${REACT_APP_BASE_URL}/user/update`, {
+  const path: string = '/user/update';
+  const options: RequestInit = {
     method: 'POST',
     credentials: 'include',
     mode: 'cors',
@@ -227,7 +215,19 @@ const updateProfile = (
       Authorization: `Bearer ${accessToken}`,
     },
     body: JSON.stringify({ profilePic, favoriteGenres, email }),
-  }).catch((err) => console.log('error with updateProfile', err));
+  }
+  return fetchRequest(path, options);
+
+  // return fetch(`${REACT_APP_BASE_URL}/user/update`, {
+  //   method: 'POST',
+  //   credentials: 'include',
+  //   mode: 'cors',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     Authorization: `Bearer ${accessToken}`,
+  //   },
+  //   body: JSON.stringify({ profilePic, favoriteGenres, email }),
+  // }).catch((err) => console.log('error with updateProfile', err));
 };
 
 export {

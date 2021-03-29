@@ -32,7 +32,6 @@ export const _loadDashboard = () => async (dispatch: AppDispatch) => {
       const userDashboard = await loadDashboard(accessToken);
       dispatch({ type: LOAD_DASHBOARD, payload: userDashboard });
     } catch (error) {
-      console.error(error);
       dispatch({
         type: SET_ERROR,
         payload: "Couldn't load dashboard, please try again",
@@ -53,7 +52,6 @@ export const _getUserWithBooks = () => async (dispatch: AppDispatch) => {
       dispatch({ type: GET_USER_WITH_BOOKS, payload: userWithBooks });
       return userWithBooks;
     } catch (error) {
-      console.error(error);
       const action = setError(error);
       dispatch(action);
     }
@@ -92,8 +90,21 @@ export const _updateRating = (book: Book, rating: number) => async (
 export const _deleteRating = (book: Book) => async (dispatch: AppDispatch) => {
   const accessToken: string | null = localStorage.getItem('accessToken');
   if (accessToken) {
-    await deleteRating(accessToken, book);
-    dispatch({ type: DELETE_RATING, payload: book });
+      try {
+      await deleteRating(accessToken, book);
+      dispatch({ type: DELETE_RATING, payload: book });
+    } catch (error) {
+    console.log(error)
+    dispatch({
+      type: SET_ERROR,
+      payload: "Couldn't delete rating, please try again",
+    });
+    }
+  } else {
+    dispatch({
+      type: SET_ERROR,
+      payload: 'Unauthorised, No access token!',
+    });
   }
 };
 
@@ -108,7 +119,6 @@ export const _registrationForm = (
       books,
       favoriteGenres
     );
-
     dispatch({ type: REGISTRATION_FORM, payload: userWithBooks });
     dispatch({ type: SET_ADD_FORM_INFO });
   }
