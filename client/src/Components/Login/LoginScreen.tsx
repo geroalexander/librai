@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../..';
 import './Login.css';
@@ -13,6 +13,7 @@ import {
 } from 'react-router-dom';
 import { RootState } from '../../index';
 import { setLogout } from '../../Store/actions/auth';
+import { GoogleLogin } from 'react-google-login';
 
 const Login: React.FC = () => {
   const history = useHistory();
@@ -26,7 +27,7 @@ const Login: React.FC = () => {
 
   useEffect(() => {
     if (signedIn) dispatch(setLogout());
-  }, [])
+  }, []);
 
   const onClickSubmitLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -75,6 +76,13 @@ const Login: React.FC = () => {
           <Link to="/register" className="to-register">
             Need an account? Register here!
           </Link>
+          {/* <GoogleLogin
+          clientId=
+          buttonText="Login with Google"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={'single_host_origin'}
+/> */}
         </div>
       </form>
     </div>
