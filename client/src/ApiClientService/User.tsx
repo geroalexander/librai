@@ -15,18 +15,6 @@ const loadDashboard = (accessToken: string) => {
     },
   };
   return fetchRequest(path, options);
-
-  // return fetch(`${REACT_APP_BASE_URL}/user/dashboard`, {
-  //   method: 'GET',
-  //   credentials: 'include',
-  //   mode: 'cors',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Authorization: `Bearer ${accessToken}`,
-  //   },
-  // })
-  //   .then((res) => res.json())
-  //   .catch((err) => console.log('error fetching dashboard', err));
 };
 
 const getUserWithBooks = (accessToken: string) => {
@@ -41,35 +29,11 @@ const getUserWithBooks = (accessToken: string) => {
     },
   };
   return fetchRequest(path, options);
-
-  // return fetch(`${REACT_APP_BASE_URL}/user/profile`, {
-  //   method: 'GET',
-  //   credentials: 'include',
-  //   mode: 'cors',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Authorization: `Bearer ${accessToken}`,
-  //   },
-  // })
-  //   .then((res) => res.json())
-  //   .catch((err) => console.log('error fetching userWithBooks', err));
 };
 
 const addSavedBook = (accessToken: string, book: Book) => {
-  // const path: string = '/user/saved';
-  // const options: RequestInit = {
-  // method: 'PATCH',
-  // credentials: 'include',
-  // // mode: 'cors',
-  // headers: {
-  // 'Content-Type': 'application/json',
-  // // Authorization: `Bearer ${accessToken}`,
-  // // },
-  // // body: JSON.stringify({ book }),
-  // };
-  // return fetchRequest(path, options);
-
-  return fetch(`${REACT_APP_BASE_URL}/user/saved`, {
+  const path: string = '/user/saved';
+  const options: RequestInit = {
     method: 'PATCH',
     credentials: 'include',
     mode: 'cors',
@@ -78,9 +42,8 @@ const addSavedBook = (accessToken: string, book: Book) => {
       Authorization: `Bearer ${accessToken}`,
     },
     body: JSON.stringify({ book }),
-  })
-    .then((res) => res.json())
-    .catch((err) => console.log('error with addSavedBook', err));
+  };
+  return fetchRequest(path, options);
 };
 
 const updateRating = (accessToken: string, book: Book, rating: number) => {
@@ -118,20 +81,8 @@ const updateRating = (accessToken: string, book: Book, rating: number) => {
 };
 
 const deleteSavedBook = (accessToken: string, book: Book) => {
-  // const path: string = '/user/saved';
-  // const options: RequestInit = {
-  //   method: 'DELETE',
-  //   credentials: 'include',
-  //   mode: 'cors',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Authorization: `Bearer ${accessToken}`,
-  //   },
-  //   body: JSON.stringify({ book }),
-  // };
-  // return fetchRequest(path, options);
-
-  return fetch(`${REACT_APP_BASE_URL}/user/saved`, {
+  const path: string = '/user/saved';
+  const options: RequestInit = {
     method: 'DELETE',
     credentials: 'include',
     mode: 'cors',
@@ -140,7 +91,8 @@ const deleteSavedBook = (accessToken: string, book: Book) => {
       Authorization: `Bearer ${accessToken}`,
     },
     body: JSON.stringify({ book }),
-  }).catch((err) => console.log('error with deleteSavedBook', err));
+  };
+  return fetchRequest(path, options);
 };
 
 const deleteRating = (accessToken: string, book: Book) => {
@@ -174,20 +126,8 @@ const registrationForm = (
   books: PopularBook[],
   favoriteGenres: string[]
 ) => {
-  // const path: string = '/user/form';
-  // const options: RequestInit = {
-  //   method: 'POST',
-  //   credentials: 'include',
-  //   mode: 'cors',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Authorization: `Bearer ${accessToken}`,
-  //   },
-  //   body: JSON.stringify({ books, favoriteGenres }),
-  // }
-  // return fetchRequest(path, options);
-
-  return fetch(`${REACT_APP_BASE_URL}/user/form`, {
+  const path: string = '/user/form';
+  const options: RequestInit = {
     method: 'POST',
     credentials: 'include',
     mode: 'cors',
@@ -196,7 +136,8 @@ const registrationForm = (
       Authorization: `Bearer ${accessToken}`,
     },
     body: JSON.stringify({ books, favoriteGenres }),
-  }).catch((err) => console.log('error with registrationForm', err));
+  };
+  return fetchRequest(path, options);
 };
 
 const updateProfile = (
@@ -205,20 +146,8 @@ const updateProfile = (
   favoriteGenres: string[] | null,
   email: string | null
 ) => {
-  // const path: string = '/user/update';
-  // const options: RequestInit = {
-  //   method: 'POST',
-  //   credentials: 'include',
-  //   mode: 'cors',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Authorization: `Bearer ${accessToken}`,
-  //   },
-  //   body: JSON.stringify({ profilePic, favoriteGenres, email }),
-  // }
-  // return fetchRequest(path, options);
-
-  return fetch(`${REACT_APP_BASE_URL}/user/update`, {
+  const path: string = '/user/update';
+  const options: RequestInit = {
     method: 'POST',
     credentials: 'include',
     mode: 'cors',
@@ -227,7 +156,8 @@ const updateProfile = (
       Authorization: `Bearer ${accessToken}`,
     },
     body: JSON.stringify({ profilePic, favoriteGenres, email }),
-  }).catch((err) => console.log('error with updateProfile', err));
+  };
+  return fetchRequest(path, options);
 };
 
 export {
