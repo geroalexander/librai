@@ -16,6 +16,7 @@ import { uploadToCloud } from '../../ApiClientService/ImageUpload';
 import imageToBase64 from '../Shared/imageToBase64';
 import LottieAnimation from '../../Animations/Lottie';
 import loading from '../../Animations/paperplane-animation.json';
+import Loader from "react-loader-spinner";
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import { useMediaQuery } from 'react-responsive';
 
@@ -24,6 +25,7 @@ interface ProfileScreenProps extends RouteComponentProps {}
 
 const ProfileScreen: React.FC<ProfileScreenProps> = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [imageLoading, setImageLoading] = useState(false);
   const dispatch = useDispatch();
 
   const isDesktop = useMediaQuery({
@@ -85,7 +87,6 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
               style={{ display: 'none' }}
               type="file"
               accept="image/*"
-              // capture="environment"
               onChange={handleUpdateProfilePic}
             />
             {user.profilePic ? (
@@ -98,7 +99,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
               <div className="empty-profile">
                 <AddPhotoAlternateIcon style={{ fontSize: 40 }} />
               </div>
-            )}
+              )}
           </label>
           <div>
           <h1>{fullName}</h1>
