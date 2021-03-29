@@ -98,11 +98,10 @@ const getGoogleBookById = (searchId: string) => {
   )
     .then((res) => res.json())
     .then((json) => {
-      if (json.items && json.items.length) {
-        return json.items.slice(0, 6);
-      }
+      if (json) return json;
       console.log('Book not retrived! fn.getGoogleBookById');
-    });
+    })
+    .catch((e) => console.log(e));
 };
 
 export {
