@@ -23,7 +23,7 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
     if (props.location.state.book) bookRef.current = props.location.state.book;
     if (props.location.state.isNew) isNewRef.current = props.location.state.isNew;
     bookRef.current && retrieveBookWithScore();
-  }, [props.location.state.book]);
+  }, [props.location.state.book]); 
 
   const isDesktop = useMediaQuery({
     query: '(min-width: 1200px)',
