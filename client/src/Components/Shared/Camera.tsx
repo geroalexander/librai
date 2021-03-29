@@ -25,17 +25,18 @@ const Camera: React.FC<CameraProps> = ({ setIsLoading }) => {
 
     let book;
     const accessToken: string | null = localStorage.getItem('accessToken');
-    console.log(accessToken, 'token here');
 
     if (accessToken) book = await getBookByCover(accessToken, cloudURL);
-    if (book) {
-      console.log(book, 'RETRIEVED BOOK');
 
+    if (Object.keys(book).length) {
       setIsLoading(false);
       history.push({
         pathname: `/details/${book.id}`,
         state: { book, isNew: false },
       });
+    } else {
+      alert('Unable to retreive book details');
+      history.push('/saved');
     }
   };
 

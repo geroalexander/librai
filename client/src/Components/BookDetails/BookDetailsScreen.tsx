@@ -1,8 +1,7 @@
 import './BookDetailsScreen.css';
 import React, { useState, useEffect } from 'react';
 import BookStatusBar from './BookStatusBar/BookStatusBar';
-import { Book } from '../../Interfaces/bookObject';
-import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
+import {  RouteComponentProps, withRouter } from 'react-router-dom';
 import { getBookWithScore, viewBookDetails } from '../../ApiClientService/Book';
 import LottieAnimation from '../../Animations/Lottie';
 import bookAnimation from '../../Animations/book-animation-2.json';

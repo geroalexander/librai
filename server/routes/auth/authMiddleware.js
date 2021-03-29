@@ -6,7 +6,7 @@ const SECRET_KEY = process.env.SECRET_KEY;
 
 const authMiddleware = async (req, res, next) => {
   const authHeaders = req.headers['authorization'];
-  if (!authHeaders) return res.sendStatus(403);
+  if (!authHeaders) return res.status(401).send({ message: 'Unauthorized' });
   const token = authHeaders.split(' ')[1];
 
   try {
@@ -15,11 +15,11 @@ const authMiddleware = async (req, res, next) => {
     const user = await User.findOne({ where: { id: _id } });
     console.log('user---->', user);
 
-    if (!user) return res.sendStatus(401);
+    if (!user) return res.status(403).send({ message: 'Forbidden' });
     req.user = user;
     next();
   } catch (error) {
-    res.sendStatus(401);
+    res.status(400).send({ message: 'Something went wrong' });
   }
 };
 

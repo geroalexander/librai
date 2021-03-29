@@ -10,6 +10,7 @@ const { user, book } = models;
 const Book = book;
 const User = user;
 
+// Currently unused
 const getRecommendedBooks = async (req, res) => {
   const user = req.user;
   try {
@@ -30,13 +31,13 @@ const getRecommendedBooks = async (req, res) => {
 };
 
 const getBookByCover = async (req, res) => {
-  console.log('arriving---->', req.user);
   const user = req.user;
   try {
     const { image } = req.body;
     const searchQuery = await extractText(image);
+
+
     const retrievedBook = await fetchBook(searchQuery);
-    console.log('retrivedBook---->', retrievedBook);
 
     const formattedBook = formatBook(retrievedBook);
     const userWithBooks = await User.findOne({
@@ -45,59 +46,26 @@ const getBookByCover = async (req, res) => {
     });
     const compatScore = await getCompatScore(userWithBooks, formattedBook);
     formattedBook.compatabilityScore = compatScore;
-    await addBookView(user.id, retrievedBook, false);
-    res.status(201).send(formattedBook);
+    const addView = await addBookView(user.id, retrievedBook, false);
+    if (addView !== 'View added') throw new Error('Recommendation engine error');
+    res.status(200).send(formattedBook);
   } catch (error) {
     console.error(error);
-    res.status(400).send(error);
+    if (error === 'Recommendation engine error') return res.status(502).send({ message: error.message })
+    else res.status(400).send(error);
   }
 };
-
-//getBookWithScore
-// const getBookBySearch = async (req, res) => {
-// const getBookWithScore = async (req, res) => {
-//   const user = req.user;
-//   try {
-//     const { googleBook } = req.body;
-//     const userWithBooks = await User.findOne({
-//       where: { id: user.id },
-//       include: Book,
-//     });
-//     const compatScore = await getCompatScore(userWithBooks, googleBook);
-
-//     const formattedBook = formatBook(googleBook);
-//     formattedBook.compatabilityScore = compatScore;
-//     await addBookView(user.id, googleBook, false);
-//     res.status(201).send(formattedBook);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(400).send(error);
-//   }
-// };
-
-// const getBookDetails = async (req, res) => {
-//   const user = req.user;
-//   try {
-//     const { bookId } = req.params;
-//     const retrievedBook = await getBookById(bookId);
-//     const compatScore = await getCompatScore(user.dataValues, retrievedBook);
-//     retrievedBook.compatabilityScore = compatScore;
-//     await addBookView(user.id, retrievedBook, false);
-//     res.status(201).send(retrievedDetails);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(400).send(error);
-// }
 
 const viewBookDetails = async (req, res) => {
   const user = req.user;
   try {
     const { book } = req.body;
-    await addBookView(user.id, book, true);
+    if (!Object.keys(book).length) throw new Error('No book data')
+    const addView = await addBookView(user.id, book, true);
+    if (addView !== 'View added') throw new Error('Recommendation engine error')
     res.status(201).send('Viewing is sent');
   } catch (error) {
-    console.error(error);
-    res.status(400).send(error);
+    handleCtrlError(error, res)
   }
 };
 
@@ -109,6 +77,8 @@ const getBookWithScore = async (req, res) => {
       where: { id: user.id },
       include: Book,
     });
+    if (!userWithBooks) throw new Error('Could not find user');
+
     let isFormatted = true;
     let formattedBook = googleBook;
 
@@ -119,11 +89,27 @@ const getBookWithScore = async (req, res) => {
 
     const compatScore = await getCompatScore(userWithBooks, formattedBook);
     formattedBook.compatabilityScore = compatScore;
-    await addBookView(user.id, formattedBook, isFormatted);
+    const addView = await addBookView(user.id, formattedBook, isFormatted);
+    if (addView !== 'View added') throw new Error('Recommendation engine error');
     res.status(201).send(formattedBook);
   } catch (error) {
-    console.error(error);
-    res.status(400).send(error);
+    handleCtrlError(error, res)
+  }
+};
+
+const handleCtrlError = (error, res) => {
+  const { message } = error;
+  switch (message) {
+    case 'No book data':
+      res.status(400).send({ message })
+    case 'Could not find user':
+      res.status(500).send({ message });
+      break;
+    case 'Recommendation engine error':
+      res.status(502).send({ message });
+      break;
+    default:
+      res.status(500).send({ message });
   }
 };
 
