@@ -1,6 +1,5 @@
 'use strict';
-
-require('dotenv').config({ path: __dirname + '/../../.env' });
+require('dotenv').config();
 const config = process.env;
 const { DB_NAME, DB_USER, DB_PASSWORD, DB_PORT, DB_HOST, DB_DIALECT } = config;
 const { Sequelize } = require('sequelize');

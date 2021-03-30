@@ -1,4 +1,5 @@
 'use strict';
+console.log(process.env.BANANA);
 require('dotenv').config();
 const LOCAL_HOST = process.env.LOCAL_HOST;
 const PORT = process.env.PORT || 8000;
