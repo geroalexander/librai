@@ -4,12 +4,10 @@ require('dotenv').config();
 const config = process.env;
 const { Sequelize } = require('sequelize');
 const associations = require('./associations');
-const { DB_NAME, DB_USER, DB_PASSWORD, DB_PORT, DB_HOST, DB_DIALECT } = config;
+const { DATABASE_URL } = config;
+// const { DB_NAME, DB_USER, DB_PASSWORD, DB_PORT, DB_HOST, DB_DIALECT } = config;
 
-const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
-  host: DB_HOST,
-  dialect: DB_DIALECT,
-  port: DB_PORT,
+const sequelize = new Sequelize(DATABASE_URL, {
   pool: {
     max: 5,
     min: 0,

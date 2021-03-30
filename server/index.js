@@ -5,7 +5,6 @@ const PORT = process.env.PORT || 8000;
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-const bodyParser = require('body-parser');
 
 const sequelize = require('./models/index');
 const router = require('./routes/router.js');
