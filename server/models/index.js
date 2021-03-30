@@ -1,6 +1,6 @@
 'use strict';
 
-require('dotenv').config({ path: '../../.env' });
+require('dotenv').config({ path: __dirname + '/../../.env' });
 const config = process.env;
 const { Sequelize } = require('sequelize');
 const associations = require('./associations');
