@@ -1,7 +1,6 @@
 import { Book } from '../Interfaces/bookObject';
 import { PopularBook } from '../Interfaces/popularBookObject';
 import { fetchRequest } from './fetchRequest';
-const { REACT_APP_BASE_URL } = process.env;
 
 const loadDashboard = (accessToken: string) => {
   const path: string = '/user/dashboard';

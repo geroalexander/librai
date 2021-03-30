@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../..';
 import './Login.css';
@@ -7,16 +7,13 @@ import LockIcon from '@material-ui/icons/Lock';
 import EmailIcon from '@material-ui/icons/Email';
 import { Link, withRouter, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { googleLogin } from '../../ApiClientService/Auth';
 import { RootState } from '../../index';
 import { GoogleLogin } from 'react-google-login';
 import { FcGoogle } from 'react-icons/fc';
 
 const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
 
-interface LoginProps {}
-
-const Login: React.FC = () => {
+const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch<AppDispatch>();
 
@@ -40,6 +37,7 @@ const Login: React.FC = () => {
         message: 'Invalid email and/or password. Please try again.',
       });
     }
+  };
   // UNTIL NO AUTH ROUTE
 
   // const [email, setEmail] = useState('');

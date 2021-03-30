@@ -1,5 +1,5 @@
 //PAMEL
-import React, { useState } from 'react';
+import React from 'react';
 import PhotoCameraOutlinedIcon from '@material-ui/icons/PhotoCameraOutlined';
 import imageToBase64 from '../Shared/imageToBase64';
 import { getBookByCover } from '../../ApiClientService/Book';

@@ -239,7 +239,7 @@ const deleteSavedBook = async (req, res) => {
     if (recombeeRequest !== 'Successful')
       throw new Error('Recommendation engine error');
 
-    res.status(203).send('Book was unsaved');
+    res.status(203).send({ message: 'Book was unsaved'});
   } catch (error) {
     console.error(error, 'Could not delete saved book, fn.deleteSavedBook');
     handleErrors(error, res);

@@ -9,13 +9,9 @@ import { Book } from '../../Interfaces/bookObject';
 import Header from '../Header/Header';
 import LottieAnimation from '../../Animations/Lottie';
 import loading from '../../Animations/paperplane-animation.json';
-import bookAnimation from '../../Animations/book-animation-2.json';
-import secondBookAnim from '../../Animations/book-animation.json';
-import ErrorMessage from '../Shared/ErrorMessage';
 import { useMediaQuery } from 'react-responsive';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import BookmarkRoundedIcon from '@material-ui/icons/BookmarkRounded';
-import { isDesktop, isTablet, isMobile } from 'react-device-detect';
 
 interface DashboardScreenProps extends RouteComponentProps {}
 

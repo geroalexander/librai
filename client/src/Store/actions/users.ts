@@ -24,7 +24,6 @@ import {
 import { Book } from '../../Interfaces/bookObject';
 import { setError, setAuthError } from '../actions/errors';
 import { PopularBook } from '../../Interfaces/popularBookObject';
-import { User } from '../../Interfaces/userObject';
 
 
 export const _loadDashboard = () => async (dispatch: AppDispatch) => {

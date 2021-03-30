@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../..';
 import './Register.css';
@@ -9,7 +9,6 @@ import {
 } from '../../Store/actions/auth';
 import {
   Link,
-  RouteComponentProps,
   withRouter,
   useHistory,
 } from 'react-router-dom';
@@ -24,7 +23,7 @@ import { FcGoogle } from 'react-icons/fc';
 
 const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
 
-const Register: React.FC = (props) => {
+const Register = () => {
   const history = useHistory();
   const dispatch = useDispatch<AppDispatch>();
 
@@ -55,6 +54,7 @@ const Register: React.FC = (props) => {
         message: 'Something went wrong, please try again.',
       });
     }
+  };
   const signedIn = useSelector(
     (state: RootState) => state.authReducer.signedIn
   );

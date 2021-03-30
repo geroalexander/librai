@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from './index';
 import PrivateRoute from './Components/Routes/Private';
-import AuthRoute from './Components/Routes/Auth';
+
 import {
   Dashboard,
   Profile,
@@ -21,8 +21,6 @@ import ErrorMessage from './Components/Shared/ErrorMessage';
 import Header from './Components/Header/Header';
 import { useMediaQuery } from 'react-responsive';
 import {
-  isDesktop,
-  isTablet,
   isMobile
 } from "react-device-detect";
 

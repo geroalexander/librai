@@ -49,7 +49,8 @@ const logout = (accessToken: string) => {
 };
 
 const googleLogin = (googleData: any) => {
-  return fetch(`${REACT_APP_BASE_URL}/auth/google`, {
+  const path = '/auth/google'
+  const options: RequestInit = {
     method: 'POST',
     credentials: 'include',
     mode: 'cors',
@@ -59,22 +60,8 @@ const googleLogin = (googleData: any) => {
     headers: {
       'Content-Type': 'application/json',
     },
-  })
-    .then((res) => res.json())
-    .catch((err) => console.log('error with googleLogin'));
-  // return fetch(`${REACT_APP_BASE_URL}/auth/google`, {
-  //   method: 'POST',
-  //   credentials: 'include',
-  //   mode: 'cors',
-  //   body: JSON.stringify({
-  //     token: googleData.tokenId,
-  //   }),
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  // })
-  //   .then((res) => res.json())
-  //   .catch((err) => console.log('error with googleLogin'));
+  };
+  return fetchRequest(path, options);
 };
 
 export { register, login, logout, googleLogin };
