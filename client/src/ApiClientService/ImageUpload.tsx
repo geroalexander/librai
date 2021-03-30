@@ -31,17 +31,17 @@ const uploadToCloud = async (file: string, dispatch: AppDispatch) => {
     dispatch(action);
   }
 
-  const cloudinaryImage = await fetch(cloudUrl, options)
-    .then((res) => res.json())
-    .catch((error) => {
-      console.error(error);
-      const action = setError(
-        "Sorry we, couldn't upload your image to the cloud"
-      );
-      dispatch(action);
-    });
+  // const cloudinaryImage = await fetch(cloudUrl, options)
+  //   .then((res) => res.json())
+  //   .catch((error) => {
+  //     console.error(error);
+  //     const action = setError(
+  //       "Sorry we, couldn't upload your image to the cloud"
+  //     );
+  //     dispatch(action);
+  //   });
 
-  return cloudinaryImage.url;
+  // return cloudinaryImage.url;
 };
 
 export { uploadToCloud };
