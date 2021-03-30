@@ -34,7 +34,7 @@ const Camera: React.FC<CameraProps> = ({ setIsLoading }) => {
         state: { book, isNew: false },
       });
     } catch (error) {
-      dispatch({ type: SET_ERROR, payload: 'Unable to retreive book details' });
+      dispatch({ type: SET_ERROR, payload: 'Unable to retrieve book details' });
       setIsLoading(false);
     }
   };

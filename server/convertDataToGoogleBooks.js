@@ -2,7 +2,6 @@ const { fetchBooks } = require('./booksApiService/fetchBooks');
 const fs = require('fs');
 
 const rawBooks = require('../10kBooks.json');
-// const recombeeBooks = require('./recombeeBooks.json');
 
 const booksArray = [];
 

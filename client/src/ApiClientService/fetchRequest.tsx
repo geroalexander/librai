@@ -2,8 +2,6 @@ const { REACT_APP_BASE_URL } = process.env;
 
 async function fetchRequest(path: string, options: RequestInit) {
   const url: RequestInfo = `${REACT_APP_BASE_URL}${path}`;
-  console.log(url, 'URL HERE <-------');
-
   const res = await fetch(url, options);
   if (res.ok) return await res.json();
   else {
