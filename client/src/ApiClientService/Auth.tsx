@@ -48,4 +48,20 @@ const logout = (accessToken: string) => {
   return fetchRequest(path, options);
 };
 
-export { register, login, logout };
+const googleLogin = (googleData: any) => {
+  const path = '/auth/google'
+  const options: RequestInit = {
+    method: 'POST',
+    credentials: 'include',
+    mode: 'cors',
+    body: JSON.stringify({
+      token: googleData.tokenId,
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  return fetchRequest(path, options);
+};
+
+export { register, login, logout, googleLogin };

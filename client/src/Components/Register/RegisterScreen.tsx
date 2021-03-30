@@ -1,16 +1,29 @@
-import * as React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../..';
 import './Register.css';
-import { setRegister } from '../../Store/actions/auth';
-import { Link, withRouter, useHistory } from 'react-router-dom';
+import {
+  setRegister,
+  setLogout,
+  setGoogleLogin,
+} from '../../Store/actions/auth';
+import {
+  Link,
+  withRouter,
+  useHistory,
+} from 'react-router-dom';
+import { RootState } from '../../index';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import PersonIcon from '@material-ui/icons/Person';
 import LockIcon from '@material-ui/icons/Lock';
 import EmailIcon from '@material-ui/icons/Email';
 import { useForm } from 'react-hook-form';
+import { GoogleLogin } from 'react-google-login';
+import { FcGoogle } from 'react-icons/fc';
 
-const Register: React.FC = (props) => {
+const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
+
+const Register = () => {
   const history = useHistory();
   const dispatch = useDispatch<AppDispatch>();
 
@@ -41,6 +54,33 @@ const Register: React.FC = (props) => {
         message: 'Something went wrong, please try again.',
       });
     }
+  };
+  const signedIn = useSelector(
+    (state: RootState) => state.authReducer.signedIn
+  );
+
+  useEffect(() => {
+    if (signedIn) dispatch(setLogout());
+  }, []);
+
+  // const onClickSubmitLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   dispatch(setRegister({ firstName, lastName, email, password }))
+  //     .then(() => {
+  //       setFirstName('');
+  //       setLastName('');
+  //       setEmail('');
+  //       setPassword('');
+  //       history.push('/form');
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+
+  const handleGoogleLogin = async (googleData: any) => {
+    const action = setGoogleLogin(googleData);
+    const accessType = await dispatch(action);
+    if (accessType === 'login') history.push('/');
+    else if (accessType === 'register') history.push('/form');
   };
 
   return (
@@ -130,6 +170,22 @@ const Register: React.FC = (props) => {
             <span role="alert">{errors.password.message}</span>
           )}
           <input className="submitButton" type="submit" value="SIGN UP" />
+          <GoogleLogin
+            clientId={REACT_APP_GOOGLE_CLIENT_ID || ''}
+            onSuccess={handleGoogleLogin}
+            onFailure={handleGoogleLogin}
+            cookiePolicy={'single_host_origin'}
+            render={(renderProps) => (
+              <button
+                className="google-btn"
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+              >
+                Sign up with Google
+                <FcGoogle style={{ marginLeft: 8 }} />
+              </button>
+            )}
+          />
           <Link to="/login" className="to-login">
             Already have an account? Click here!
           </Link>

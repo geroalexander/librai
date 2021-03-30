@@ -32,7 +32,7 @@
           align-items: center;
 }
 
-.register-wrapper .register-form .title {
+.register-wrapper .register-form .form-inner .title {
   margin-bottom: 2rem;
   color: #fffef9;
   font-family: "Comfortaa", cursive;
@@ -40,7 +40,7 @@
   font-weight: bold;
 }
 
-.register-wrapper .register-form .form-group {
+.register-wrapper .register-form .form-inner .form-group {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -58,7 +58,7 @@
           align-items: center;
 }
 
-.register-wrapper .register-form .form-group .input {
+.register-wrapper .register-form .form-inner .form-group .input {
   background-color: #140245;
   border-radius: 25px;
   height: 2.7em;
@@ -71,31 +71,31 @@
   padding-left: 3.6em;
 }
 
-.register-wrapper .register-form .form-group ::-webkit-input-placeholder {
+.register-wrapper .register-form .form-inner .form-group ::-webkit-input-placeholder {
   color: #c8baf3;
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
 }
 
-.register-wrapper .register-form .form-group :-ms-input-placeholder {
+.register-wrapper .register-form .form-inner .form-group :-ms-input-placeholder {
   color: #c8baf3;
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
 }
 
-.register-wrapper .register-form .form-group ::-ms-input-placeholder {
+.register-wrapper .register-form .form-inner .form-group ::-ms-input-placeholder {
   color: #c8baf3;
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
 }
 
-.register-wrapper .register-form .form-group ::placeholder {
+.register-wrapper .register-form .form-inner .form-group ::placeholder {
   color: #c8baf3;
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
 }
 
-.register-wrapper .register-form .form-group .icon {
+.register-wrapper .register-form .form-inner .form-group .icon {
   position: absolute;
   left: 30px;
   -ms-flex-item-align: center;
@@ -104,11 +104,7 @@
   padding-top: 3px;
 }
 
-.register-wrapper .register-form span {
-  color: #f5d541;
-}
-
-.register-wrapper .register-form .submitButton {
+.register-wrapper .register-form .form-inner .submitButton {
   font-weight: bold;
   margin: 2rem;
   margin-bottom: 1rem;
@@ -122,13 +118,76 @@
   border-style: hidden;
   -webkit-box-shadow: 1px 2px 2px 2px;
           box-shadow: 1px 2px 2px 2px;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
 }
 
-.register-wrapper .register-form .to-login {
+.register-wrapper .register-form .form-inner .submitButton:hover {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+.register-wrapper .register-form .form-inner .to-login {
   margin-top: 0.8em;
   text-decoration: none;
   color: #dfd5fc;
   font-size: 0.9em;
   font-family: "Montserrat", sans-serif;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+}
+
+.register-wrapper .register-form .form-inner .to-login:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.register-wrapper .register-form .form-inner .google-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 25px;
+  font-weight: bold;
+  height: 4em;
+  width: 55vw;
+  border: solid;
+  border-color: #dfd5fc;
+  background-color: transparent;
+  color: #dfd5fc;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8rem;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+}
+
+.register-wrapper .register-form .form-inner .google-btn:hover {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+@media (min-width: 768px) {
+  .register-wrapper .register-form .form-inner .google-btn {
+    width: 1rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .register-wrapper .register-form .form-inner .google-btn {
+    width: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .register-wrapper .register-form .form-inner .google-btn {
+    width: 1rem;
+  }
 }
 /*# sourceMappingURL=Register.css.map */

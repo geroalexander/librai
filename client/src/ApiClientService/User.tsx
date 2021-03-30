@@ -1,7 +1,6 @@
 import { Book } from '../Interfaces/bookObject';
 import { PopularBook } from '../Interfaces/popularBookObject';
 import { fetchRequest } from './fetchRequest';
-const { REACT_APP_BASE_URL } = process.env;
 
 const loadDashboard = (accessToken: string) => {
   const path: string = '/user/dashboard';
@@ -47,23 +46,8 @@ const addSavedBook = (accessToken: string, book: Book) => {
 };
 
 const updateRating = (accessToken: string, book: Book, rating: number) => {
-  // const path: string = '/user/rating';
-  // const options = {
-  // method: 'PATCH',
-  // // credentials: 'include',
-  // // // mode: 'cors',
-  // // headers: {
-  // // // // 'Content-Type': 'application/json',
-  // // // // Authorization: `Bearer ${accessToken}`,
-  // // },
-  // // // body: JSON.stringify({
-  // // book,
-  // // // rating,
-  // // }),
-  // };
-  // return fetchRequest(path, options);
-
-  return fetch(`${REACT_APP_BASE_URL}/user/rating`, {
+  const path: string = '/user/rating';
+  const options: RequestInit = {
     method: 'PATCH',
     credentials: 'include',
     mode: 'cors',
@@ -75,9 +59,8 @@ const updateRating = (accessToken: string, book: Book, rating: number) => {
       book,
       rating,
     }),
-  })
-    .then((res) => res.json())
-    .catch((err) => console.log('error with updateRating', err));
+  };
+  return fetchRequest(path, options);
 };
 
 const deleteSavedBook = (accessToken: string, book: Book) => {
@@ -96,20 +79,8 @@ const deleteSavedBook = (accessToken: string, book: Book) => {
 };
 
 const deleteRating = (accessToken: string, book: Book) => {
-  // const path: string = '/user/rating';
-  // const options: RequestInit = {
-  //   method: 'DELETE',
-  //   credentials: 'include',
-  //   mode: 'cors',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Authorization: `Bearer ${accessToken}`,
-  //   },
-  //   body: JSON.stringify({ book }),
-  // };
-  // return fetchRequest(path, options);
-
-  return fetch(`${REACT_APP_BASE_URL}/user/rating`, {
+  const path: string = '/user/rating';
+  const options: RequestInit = {
     method: 'DELETE',
     credentials: 'include',
     mode: 'cors',
@@ -118,7 +89,8 @@ const deleteRating = (accessToken: string, book: Book) => {
       Authorization: `Bearer ${accessToken}`,
     },
     body: JSON.stringify({ book }),
-  }).catch((err) => console.log('error with deleteRating', err));
+  };
+  return fetchRequest(path, options);
 };
 
 const registrationForm = (

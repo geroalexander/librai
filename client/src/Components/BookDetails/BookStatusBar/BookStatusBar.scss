@@ -1,4 +1,5 @@
 @import '../../../Theme/colorDefinitions.scss';
+@import '../../../Theme/breakpoints.scss';
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap');
 
 $comfortaa: 'Comfortaa', cursive;
@@ -10,18 +11,34 @@ $opensans: 'Open Sans', sans-serif;
   margin: auto;
   display: flex;
   justify-content: space-around;
-  // align-items: center;
   padding-top: 2rem;
+  margin-top: 3vw;
   width: 85vw;
   height: 8.5rem;
+
+  @include lg {
+    width: 50vw;
+    margin-top: 4rem;
+  }
+
+  @include xl {
+    align-self: flex-end;
+    width: 25vw;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 0;
+  }
+
+  @include xxl {
+    width: 20vw;
+    margin-top: 0;
+  }
 
   .rating-wrapper {
     position: absolute;
     top: 3rem;
     left: 1.8rem;
   }
-
-  // .rating-wrapper
 
   .bookmark-wrapper {
     position: absolute;
@@ -34,7 +51,6 @@ $opensans: 'Open Sans', sans-serif;
     top: 1.5rem;
     height: 4rem;
     width: 4rem;
-    // background-color: #c8baf3;
     border: solid;
     border-color: $SECONDARY;
     border-radius: 100%;

@@ -1,8 +1,36 @@
 .small-status {
   position: relative;
   padding-top: 0;
-  width: 50%;
+  width: 25vw;
+  height: 5vh;
   margin-left: 0.5em;
+  margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  .small-status {
+    width: 14vw;
+  }
+}
+
+@media (min-width: 992px) {
+  .small-status {
+    width: 10vw;
+    margin-top: auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .small-status {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (min-width: 1500px) {
+  .small-status {
+    width: 8vw;
+    margin-top: auto;
+  }
 }
 
 .small-status .rating-wrapper {

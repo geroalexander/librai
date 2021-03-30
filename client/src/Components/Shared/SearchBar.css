@@ -1,19 +1,76 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap");
 .search-bar {
   height: 2.1rem;
-  width: 78vw;
+  width: 65vw;
   position: relative;
+}
+
+.search-bar .icon {
+  position: absolute;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin: auto;
+  left: 14px;
+  padding-top: 6px;
+}
+
+@media (min-width: 768px) {
+  .search-bar {
+    height: 3rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .search-bar {
+    height: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .search-bar {
+    height: 2.5rem;
+    margin-bottom: 0;
+    margin-top: 0;
+    width: 35vw;
+  }
 }
 
 .search-bar .search-input {
   background-color: #1d065c;
   border: none;
-  border-radius: 7px;
-  width: 95%;
+  outline: none;
+  border-radius: 25px;
+  width: 82%;
   height: 85%;
   color: #fffef9;
   font-family: "Montserrat", sans-serif;
   font-size: 1.2rem;
+  padding-left: 3rem;
+}
+
+@media (min-width: 992px) {
+  .search-bar .search-input {
+    border-radius: 25px;
+  }
+}
+
+.search-bar ::-webkit-input-placeholder {
+  color: #dfd5fc;
+}
+
+.search-bar :-ms-input-placeholder {
+  color: #dfd5fc;
+}
+
+.search-bar ::-ms-input-placeholder {
+  color: #dfd5fc;
+}
+
+.search-bar ::placeholder {
+  color: #dfd5fc;
 }
 
 .search-bar .overlay {
@@ -25,12 +82,21 @@
       -ms-flex-direction: column;
           flex-direction: column;
   background-color: #140245;
-  width: 75vw;
+  margin-top: 0.1rem;
+  width: 95%;
   -ms-flex-pack: distribute;
       justify-content: space-around;
   -webkit-box-shadow: 0 0 12px -1px #070616;
           box-shadow: 0 0 12px -1px #070616;
   padding: 0.5rem;
+  z-index: 2;
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .search-bar .overlay {
+    width: 95%;
+  }
 }
 
 .search-bar .overlay .book-preview-small {

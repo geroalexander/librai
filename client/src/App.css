@@ -11,6 +11,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: #140245;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #2c0791), to(#140245));
+  background: linear-gradient(#2c0791 1%, #140245 100%);
 }
 /*# sourceMappingURL=App.css.map */

@@ -5,31 +5,37 @@ const getRecommendations = require('../recombeeService/getRecommendations');
 const getCompatScore = async (user, book) => {
   let similarityWithRecomms = 0;
   const recommBooks = await getRecommendations(user.id, 4);
+  let bookGenreArr = [];
+  console.log(book.categories);
+  if (book.categories && book.categories.length) 
+  bookGenreArr = book.categories[0].split(' / ');
 
   for (const rec of recommBooks.recomms) {
     const retrievedBook = await getBookById(rec.id);
-    if (retrievedBook) {
-      if (retrievedBook.id === book.id) return 10;
-      let similarityScore = 0;
-      if (retrievedBook.volumeInfo.categories) {
-        const sameGenre = retrievedBook.volumeInfo.categories.some((c) =>
-          book.categories.includes(c),
-        );
-        if (sameGenre) similarityScore++;
-      }
-      const sameAuthor = retrievedBook.volumeInfo.authors.some((a) =>
-        book.authors.includes(a),
+    if (!retrievedBook || !retrievedBook.volumeInfo) throw new Error('getCompatScore failed', retrievedBook);
+    if (retrievedBook.id === book.id) return 10;
+    let similarityScore = 0;
+    if (retrievedBook.volumeInfo.categories && retrievedBook.volumeInfo.categories.length) {
+      const formattedGenreArr = retrievedBook.volumeInfo.categories[0].split(' / ');
+      const sameGenre = formattedGenreArr.some((c) =>
+      bookGenreArr.includes(c),
       );
-      if (sameAuthor) similarityScore++;
-      if (
-        book.pageCount >= retrievedBook.volumeInfo.pageCount - 200 &&
-        book.pageCount <= retrievedBook.volumeInfo.pageCount + 200
-      )
-        similarityScore++;
-      if (book.publisher === retrievedBook.volumeInfo.publisher)
-        similarityScore++;
-      if (similarityScore > 1) similarityWithRecomms++;
+      if (sameGenre) similarityScore += 2;
     }
+    const sameAuthor = retrievedBook.volumeInfo.authors.some((a) =>
+      book.authors.includes(a),
+    );
+    if (sameAuthor) similarityScore++;
+    if (
+      book.pageCount >= retrievedBook.volumeInfo.pageCount - 200 &&
+      book.pageCount <= retrievedBook.volumeInfo.pageCount + 200
+    )
+      similarityScore++;
+    if (book.publisher === retrievedBook.volumeInfo.publisher)
+      similarityScore++;
+    if (similarityScore > 1 && similarityScore < 3) similarityWithRecomms += 2;
+    else if (similarityScore >= 3) similarityWithRecomms += 4;
+    
   }
 
   // check the average rating;
@@ -39,7 +45,7 @@ const getCompatScore = async (user, book) => {
   // compare it with favorite genres list
   let isFavoriteGenre = 0;
   const inFavoriteGenres = user.favoriteGenres.some((g) =>
-    book.categories.includes(g),
+    bookGenreArr.includes(g),
   );
   if (inFavoriteGenres) isFavoriteGenre++;
 
@@ -50,17 +56,20 @@ const getCompatScore = async (user, book) => {
 
   ratedBooks.forEach((rated) => {
     let similarityScore = 0;
-    const sameGenre = rated.categories.some((c) => book.categories.includes(c));
+    let formattedRatedGenreArr = [];
+    if (rated.categories.length) formattedRatedGenreArr = rated.categories[0].split(' / ');
+    const sameGenre = formattedRatedGenreArr.some((c) => bookGenreArr.includes(c));
     if (sameGenre) similarityScore++;
     const sameAuthor = rated.authors.some((a) => book.authors.includes(a));
-    if (sameAuthor) similarityScore++;
+    if (sameAuthor) similarityScore += 2;
     if (
       book.pageCount >= rated.pageCount - 200 &&
       book.pageCount <= rated.pageCount + 200
     )
       similarityScore++;
     if (book.publisher === rated.publisher) similarityScore++;
-    if (similarityScore > 1) isSimilarToRatings++;
+    if (similarityScore > 1 && similarityScore < 3) isSimilarToRatings += 2;
+    else if (similarityScore >= 3) isSimilarToRatings += 4;
   });
 
   let similarityWithPast = 0;

@@ -24,6 +24,7 @@ import { Book } from '../../Interfaces/bookObject';
 import { setError, setAuthError } from '../actions/errors';
 import { PopularBook } from '../../Interfaces/popularBookObject';
 
+
 export const _loadDashboard = () => async (dispatch: AppDispatch) => {
   const accessToken: string | null = localStorage.getItem('accessToken');
   if (accessToken) {
@@ -87,16 +88,38 @@ export const _updateRating = (book: Book, rating: number) => async (
 ) => {
   const accessToken: string | null = localStorage.getItem('accessToken');
   if (accessToken) {
-    const savedBook = await updateRating(accessToken, book, rating);
-    dispatch({ type: UPDATE_RATING, payload: savedBook });
+    try {
+      const savedBook = await updateRating(accessToken, book, rating);
+      dispatch({ type: UPDATE_RATING, payload: savedBook });
+    } catch (error) {
+      dispatch({ type: SET_ERROR, payload: "Couldn't delete rating, please try again."})
+    }
+  } else {
+    dispatch({
+      type: SET_ERROR,
+      payload: 'Unauthorised, No access token!',
+    });
   }
 };
 
 export const _deleteRating = (book: Book) => async (dispatch: AppDispatch) => {
   const accessToken: string | null = localStorage.getItem('accessToken');
   if (accessToken) {
-    await deleteRating(accessToken, book);
-    dispatch({ type: DELETE_RATING, payload: book });
+      try {
+      await deleteRating(accessToken, book);
+      dispatch({ type: DELETE_RATING, payload: book });
+    } catch (error) {
+    console.log(error)
+    dispatch({
+      type: SET_ERROR,
+      payload: "Couldn't delete rating, please try again.",
+    });
+    }
+  } else {
+    dispatch({
+      type: SET_ERROR,
+      payload: 'Unauthorised, No access token!',
+    });
   }
 };
 

@@ -23,10 +23,14 @@ const BookItem: React.FC<BookItemProps> = ({ book }) => {
         />
       </Link>
       <div className="book-info">
-        <div>
-          <h2 className="midtitle">{book.title}</h2>
+        <div className="titles">
+          <h2 className="midtitle">
+            {book.title.length > 35
+              ? `${book.title.slice(0, 30)}...`
+              : book.title}
+          </h2>
           <p className="subtitle italic">by {book.authors[0]}</p>
-          <p className="subtitle">{book.categories[0]}</p>
+          {/* <p className="subtitle">{book.categories[0]}</p> */}
         </div>
         <SmallStatusBar book={book} />
       </div>

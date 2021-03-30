@@ -1,0 +1,19 @@
+.fab {
+  position: fixed;
+  bottom: 20vw;
+  right: 5vw;
+}
+
+@media (min-width: 768px) {
+  .fab {
+    bottom: 12vw;
+  }
+}
+
+@media (min-width: 992px) {
+  .fab {
+    bottom: 2vw;
+    right: 2vw;
+  }
+}
+/*# sourceMappingURL=FAB.css.map */

@@ -5,6 +5,7 @@ import BookDetails from './Components/BookDetails/BookDetailsScreen';
 import Login from './Components/Login/LoginScreen';
 import Register from './Components/Register/RegisterScreen';
 import RegistrationForm from './Components/RegistrationForm/RegistrationForm';
+import ErrorPage from './Components/Error/Error';
 
 export {
   Dashboard,
@@ -14,4 +15,5 @@ export {
   Login,
   Register,
   RegistrationForm,
+  ErrorPage,
 };

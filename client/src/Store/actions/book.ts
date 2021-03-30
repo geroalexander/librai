@@ -5,6 +5,7 @@ import { AppDispatch } from '../../index';
 
 const accessToken: string | null = localStorage.getItem('accessToken');
 
+// Currently unused
 export const _getRecommendations = () => async (dispatch: AppDispatch) => {
   let data;
   const accessToken: string | null = localStorage.getItem('accessToken');

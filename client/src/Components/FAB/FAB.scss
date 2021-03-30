@@ -1,0 +1,16 @@
+@import '../../Theme/breakpoints.scss';
+
+.fab {
+  position: fixed;
+  bottom: 20vw;
+  right: 5vw;
+
+  @include md {
+    bottom: 12vw;
+  }
+
+  @include lg {
+    bottom: 2vw;
+    right: 2vw;
+  }
+}

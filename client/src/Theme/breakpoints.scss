@@ -1,0 +1,71 @@
+// Small tablets and large smartphones (landscape view)
+$screen-sm-min: 576px;
+
+$screen-sm-max_height: 720px;
+
+// Small tablets (portrait view)
+$screen-md-min: 768px;
+
+// Tablets and small desktops
+$screen-lg-min: 992px;
+
+//ipad pro
+$screen-mdlg-min: 1024px;
+
+$screen-lgplus-min: 1100px;
+// Large tablets and desktops
+$screen-xl-min: 1200px;
+
+$screen-xxl-min: 1500px;
+
+// Small devices
+@mixin sm {
+  @media (min-width: #{$screen-sm-min}) {
+    @content;
+  }
+}
+
+@mixin sm_height {
+  @media (max-height: #{$screen-sm-max_height}) {
+    @content;
+  }
+}
+
+// Medium devices
+@mixin md {
+  @media (min-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
+@mixin mdlg {
+  @media (min-width: #{$screen-mdlg-min}) {
+    @content;
+  }
+}
+
+// Large devices
+@mixin lg {
+  @media (min-width: #{$screen-lg-min}) {
+    @content;
+  }
+}
+
+@mixin lgplus {
+  @media (min-width: #{$screen-lgplus-min}) {
+    @content;
+  }
+}
+
+// Extra large devices
+@mixin xl {
+  @media (min-width: #{$screen-xl-min}) {
+    @content;
+  }
+}
+
+@mixin xxl {
+  @media (min-width: #{$screen-xxl-min}) {
+    @content;
+  }
+}
