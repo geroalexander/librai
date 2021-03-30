@@ -27,8 +27,8 @@
           justify-content: center;
   -ms-flex-line-pack: center;
       align-content: center;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .reg-form-page .genre-form-wrapper .genre-chips {
@@ -45,9 +45,48 @@
   margin-top: 5%;
 }
 
+@media (min-width: 768px) {
+  .reg-form-page .genre-form-wrapper .genre-chips {
+    margin-top: 3%;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 992px) {
+  .reg-form-page .genre-form-wrapper .genre-chips {
+    margin-top: 2%;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .reg-form-page .genre-form-wrapper .genre-chips {
+    margin-top: 1%;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 .reg-form-page .genre-form-wrapper .genre-chip {
   margin-bottom: 0.5em;
   font-family: "Montserrat", sans-serif;
+}
+
+@media (min-width: 992px) {
+  .reg-form-page .genre-form-wrapper .genre-chip {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .reg-form-page .genre-form-wrapper .genre-chip {
+    font-size: 1.2rem;
+  }
 }
 
 .reg-form-page .book-picker-wrapper {
@@ -85,6 +124,26 @@
 .reg-form-page .book-picker-wrapper .books-wrapper img {
   border-radius: 7px;
   height: 7rem;
+  -webkit-box-shadow: 0 0 10px -1px #070616;
+          box-shadow: 0 0 10px -1px #070616;
+}
+
+@media (min-width: 768px) {
+  .reg-form-page .book-picker-wrapper .books-wrapper img {
+    height: 9rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .reg-form-page .book-picker-wrapper .books-wrapper img {
+    height: 11rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .reg-form-page .book-picker-wrapper .books-wrapper img {
+    height: 13rem;
+  }
 }
 
 .reg-form-page .book-picker-wrapper .books-wrapper .book-opaque {
@@ -93,9 +152,30 @@
 }
 
 .reg-form-page .book-picker-wrapper .pop-book-button {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
   background: transparent;
   border: none;
   padding: 2%;
+}
+
+@media (min-width: 768px) {
+  .reg-form-page .book-picker-wrapper .pop-book-button {
+    padding: 1%;
+  }
+}
+
+@media (min-width: 992px) {
+  .reg-form-page .book-picker-wrapper .pop-book-button {
+    padding: 1%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .reg-form-page .book-picker-wrapper .pop-book-button {
+    padding: 1%;
+  }
 }
 
 .reg-form-page h1 {
@@ -105,9 +185,21 @@
       align-self: center;
   text-align: center;
   font-family: "Comfortaa", cursive;
-  margin-bottom: 5%;
+  margin-bottom: 3%;
   color: #dfd5fc;
   font-size: 1.8rem;
+}
+
+@media (min-width: 992px) {
+  .reg-form-page h1 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .reg-form-page h1 {
+    font-size: 2.4rem;
+  }
 }
 
 .reg-form-page .submit {
@@ -118,5 +210,18 @@
   margin-top: 1.5rem;
   font-family: "Montserrat", sans-serif;
   background-color: #dfd5fc;
+}
+
+@media (min-width: 992px) {
+  .reg-form-page .submit {
+    font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .reg-form-page .submit {
+    font-size: 1.3rem;
+    margin-top: 1.9rem;
+  }
 }
 /*# sourceMappingURL=RegistrationForm.css.map */

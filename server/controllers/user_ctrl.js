@@ -12,7 +12,6 @@ const Interaction = interaction;
 
 const loadDashboard = async (req, res) => {
   const user = req.user;
-
   try {
     const userWithBooks = await User.findByPk(user.id, {
       attributes: { exclude: ['password'] },
@@ -327,6 +326,7 @@ const registrationForm = async (req, res) => {
 const updateProfile = async (req, res) => {
   const user = req.user;
   try {
+    console.log(req.body);
     const { profilePic = null, favoriteGenres = null, email = null } = req.body;
     const userInformation = await User.findByPK(user.id, {
       attributes: { exclude: ['password'] },
@@ -335,15 +335,15 @@ const updateProfile = async (req, res) => {
     let updated;
     let profileError = new Error('Profile could not be updated');
     if (email) {
-      updated = userInformation.update({ email });
+      updated = await userInformation.update({ email });
       if (!updated) throw profileError;
     }
     if (favoriteGenres) {
-      updated = userInformation.update({ favoriteGenres });
+      updated = await userInformation.update({ favoriteGenres });
       if (!updated) throw profileError;
     }
     if (profilePic) {
-      updated = userInformation.update({ profilePic });
+      updated = await userInformation.update({ profilePic });
       if (!updated) throw profileError;
     }
 

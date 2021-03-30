@@ -35,9 +35,9 @@ const getBookByCover = async (req, res) => {
   try {
     const { image } = req.body;
     const searchQuery = await extractText(image);
-    if(!searchQuery.length) throw new Error('No search query')
+    if (!searchQuery.length) throw new Error('No search query')
     const retrievedBook = await fetchBook(searchQuery);
-    if(retrievedBook === 'Books not retrieved') throw new Error('Could not fetch book')
+    if (retrievedBook === 'Books not retrieved') throw new Error('Could not fetch book')
     const formattedBook = formatBook(retrievedBook);
     const userWithBooks = await User.findOne({
       where: { id: user.id },

@@ -48,4 +48,33 @@ const logout = (accessToken: string) => {
   return fetchRequest(path, options);
 };
 
-export { register, login, logout };
+const googleLogin = (googleData: any) => {
+  return fetch(`${REACT_APP_BASE_URL}/auth/google`, {
+    method: 'POST',
+    credentials: 'include',
+    mode: 'cors',
+    body: JSON.stringify({
+      token: googleData.tokenId,
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log('error with googleLogin'));
+  // return fetch(`${REACT_APP_BASE_URL}/auth/google`, {
+  //   method: 'POST',
+  //   credentials: 'include',
+  //   mode: 'cors',
+  //   body: JSON.stringify({
+  //     token: googleData.tokenId,
+  //   }),
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  // })
+  //   .then((res) => res.json())
+  //   .catch((err) => console.log('error with googleLogin'));
+};
+
+export { register, login, logout, googleLogin };

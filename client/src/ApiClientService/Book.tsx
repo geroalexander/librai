@@ -78,10 +78,23 @@ const getGoogleBook = (searchQuery: string) => {
     .catch((e) => console.log(e));
 };
 
+const getGoogleBookById = (searchId: string) => {
+  return fetch(
+    `https://www.googleapis.com/books/v1/volumes/${searchId}&key=${REACT_APP_GOOGLE_BOOKS_API_KEY}`
+  )
+    .then((res) => res.json())
+    .then((json) => {
+      if (json) return json;
+      console.log('Book not retrived! fn.getGoogleBookById');
+    })
+    .catch((e) => console.log(e));
+};
+
 export {
   getRecommendations,
   getBookByCover,
   viewBookDetails,
   getBookWithScore,
-  getGoogleBook
+  getGoogleBook,
+  getGoogleBookById,
 };

@@ -1,4 +1,5 @@
 @import '../../Theme/colorDefinitions.scss';
+@import '../../Theme/breakpoints.scss';
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap');
 
 $comfortaa: 'Comfortaa', cursive;
@@ -7,27 +8,69 @@ $opensans: 'Open Sans', sans-serif;
 
 .search-bar {
   height: 2.1rem;
-  width: 78vw;
+  width: 65vw;
   position: relative;
+
+  .icon {
+    position: absolute;
+    align-self: center;
+    margin: auto;
+    left: 14px;
+    padding-top: 6px;
+  }
+
+  @include md {
+    height: 3rem;
+  }
+
+  @include lg {
+    height: 3rem;
+    // width: 35vw;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  @include xl {
+    height: 2.5rem;
+    margin-bottom: 0;
+    margin-top: 0;
+    width: 35vw;
+  }
 
   .search-input {
     background-color: #1d065c;
     border: none;
-    border-radius: 7px;
-    width: 95%;
+    outline: none;
+    border-radius: 25px;
+    width: 82%;
     height: 85%;
     color: $WHITE;
     font-family: $montserrat;
     font-size: 1.2rem;
+    padding-left: 3rem;
+
+    @include lg {
+      border-radius: 25px;
+    }
+  }
+  ::placeholder {
+    color: $PRIMARY_WHITE;
   }
   .overlay {
     display: flex;
     flex-direction: column;
     background-color: $PRIMARY_DARK;
-    width: 75vw;
+    margin-top: 0.1rem;
+    width: 95%;
     justify-content: space-around;
     box-shadow: 0 0 12px -1px rgb(7, 6, 22);
     padding: 0.5rem;
+    z-index: 2;
+    position: relative;
+
+    @include lg {
+      width: 95%;
+    }
 
     .book-preview-small {
       display: flex;

@@ -1,4 +1,5 @@
 @import '../../Theme/colorDefinitions.scss';
+@import '../../Theme/breakpoints.scss';
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&family=Montserrat:wght@300;400&family=Open+Sans:wght@300;400&display=swap');
 $comfortaa: 'Comfortaa', cursive;
 $montserrat: 'Montserrat', sans-serif;
@@ -17,8 +18,8 @@ $opensans: 'Open Sans', sans-serif;
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left: 10%;
+    margin-right: 10%;
 
     .genre-chips {
       display: flex;
@@ -26,11 +27,36 @@ $opensans: 'Open Sans', sans-serif;
       justify-content: space-evenly;
       align-content: center;
       margin-top: 5%;
+
+      @include md {
+        margin-top: 3%;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      @include lg {
+        margin-top: 2%;
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      @include xl {
+        margin-top: 1%;
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
 
     .genre-chip {
       margin-bottom: 0.5em;
       font-family: $montserrat;
+      @include lg {
+        font-size: 1rem;
+      }
+      @include xl {
+        font-size: 1.2rem;
+      }
     }
   }
 
@@ -54,6 +80,17 @@ $opensans: 'Open Sans', sans-serif;
       img {
         border-radius: 7px;
         height: 7rem;
+        box-shadow: 0 0 10px -1px rgb(7, 6, 22);
+
+        @include md {
+          height: 9rem;
+        }
+        @include lg {
+          height: 11rem;
+        }
+        @include xl {
+          height: 13rem;
+        }
       }
 
       .book-opaque {
@@ -61,9 +98,19 @@ $opensans: 'Open Sans', sans-serif;
       }
     }
     .pop-book-button {
+      align-self: center;
       background: transparent;
       border: none;
       padding: 2%;
+      @include md {
+        padding: 1%;
+      }
+      @include lg {
+        padding: 1%;
+      }
+      @include xl {
+        padding: 1%;
+      }
     }
   }
 
@@ -72,9 +119,15 @@ $opensans: 'Open Sans', sans-serif;
     align-self: center;
     text-align: center;
     font-family: $comfortaa;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
     color: $PRIMARY_WHITE;
     font-size: 1.8rem;
+    @include lg {
+      font-size: 2.2rem;
+    }
+    @include xl {
+      font-size: 2.4rem;
+    }
   }
   .submit {
     color: $PRIMARY_DARK;
@@ -82,5 +135,12 @@ $opensans: 'Open Sans', sans-serif;
     margin-top: 1.5rem;
     font-family: $montserrat;
     background-color: $PRIMARY_WHITE;
+    @include lg {
+      font-size: 0.8rem;
+    }
+    @include xl {
+      font-size: 1.3rem;
+      margin-top: 1.9rem;
+    }
   }
 }

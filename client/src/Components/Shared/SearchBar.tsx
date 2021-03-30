@@ -4,6 +4,7 @@ import './SearchBar.css';
 import { getGoogleBook } from '../../ApiClientService/Book';
 import debounce from 'lodash/debounce';
 import { Link } from 'react-router-dom';
+import SearchIcon from '@material-ui/icons/Search';
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -47,11 +48,15 @@ const SearchBar = () => {
 
   return (
     <div className="search-bar">
+      <div className="icon">
+        <SearchIcon style={{ color: '#fffef9' }}></SearchIcon>
+      </div>
       <input
         type="text"
         value={searchTerm}
         onChange={handleChange}
         className="search-input"
+        placeholder="Search for a book..."
       />
       {searchBoxVisible && searchResult && searchResult.length ? (
         <div id="search-box" className="overlay" ref={node}>

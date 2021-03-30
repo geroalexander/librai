@@ -16,6 +16,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  background-color: #140245;
 }
 
 .profile-screen .logout-button {
@@ -42,6 +43,46 @@
       -ms-flex-align: center;
           align-items: center;
   padding-top: 2em;
+  text-align: center;
+}
+
+@media (min-width: 1200px) {
+  .profile-screen .user-info {
+    position: relative;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    padding-top: 3.5vh;
+    padding-left: 20vw;
+    height: 50vh;
+  }
+}
+
+@media (min-width: 1500px) {
+  .profile-screen .user-info {
+    padding-top: 5vh;
+  }
+}
+
+@media (min-width: 1200px) {
+  .profile-screen .user-info .line {
+    position: absolute;
+    bottom: 0;
+    border: none;
+    background-color: #dfd5fc;
+    height: 1px;
+    width: 80vw;
+  }
+}
+
+@media (min-width: 1500px) {
+  .profile-screen .user-info .line {
+    height: 2px;
+  }
 }
 
 .profile-screen .user-info .genre-wrapper {
@@ -51,6 +92,17 @@
   border-color: #dfd5fc;
   border-width: 0;
   border-bottom-width: 1.5px;
+  width: 80vw;
+}
+
+@media (min-width: 1200px) {
+  .profile-screen .user-info .genre-wrapper {
+    position: absolute;
+    width: 20vw;
+    right: 20vw;
+    bottom: 8vh;
+    border-bottom-width: 0;
+  }
 }
 
 .profile-screen .user-info .profile-picture {
@@ -63,6 +115,16 @@
   border-width: 2px;
   -webkit-box-shadow: 0 0 10px -1px #13103d;
           box-shadow: 0 0 10px -1px #13103d;
+}
+
+@media (min-width: 992px) {
+  .profile-screen .user-info .profile-picture {
+    height: 12rem;
+    width: 12rem;
+    margin-right: 2vw;
+    margin-left: 2vw;
+    margin-bottom: 4vw;
+  }
 }
 
 .profile-screen .user-info .empty-profile {
@@ -87,11 +149,27 @@
           align-items: center;
 }
 
+@media (min-width: 992px) {
+  .profile-screen .user-info .empty-profile {
+    height: 12rem;
+    width: 12rem;
+    margin-right: 2vw;
+    margin-left: 2vw;
+    margin-bottom: 4vw;
+  }
+}
+
 .profile-screen .user-info h1 {
   margin: 0;
   font-family: "Comfortaa", cursive;
   font-size: 1.7rem;
   padding-bottom: 0.2em;
+}
+
+@media (min-width: 992px) {
+  .profile-screen .user-info h1 {
+    font-size: 2.5rem;
+  }
 }
 
 .profile-screen .user-info .email {
@@ -101,10 +179,22 @@
   font-size: 0.8rem;
 }
 
+@media (min-width: 992px) {
+  .profile-screen .user-info .email {
+    font-size: 1.2rem;
+  }
+}
+
 .profile-screen .user-info .fav-genres-header {
   margin: 0;
   margin-top: 0.5em;
   font-family: "Open Sans", sans-serif;
+}
+
+@media (min-width: 992px) {
+  .profile-screen .user-info .fav-genres-header {
+    font-size: 1.2rem;
+  }
 }
 
 .profile-screen .user-info .fav-genres {
@@ -114,9 +204,71 @@
   font-family: "Open Sans", sans-serif;
 }
 
+@media (min-width: 992px) {
+  .profile-screen .user-info .fav-genres {
+    font-size: 1rem;
+  }
+}
+
 .profile-screen .rated-books {
   height: 100%;
   overflow-y: scroll;
-  padding: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 2rem;
+  margin-bottom: 8vh;
+  width: 100%;
+  background-color: #140245;
+}
+
+@media (min-width: 1200px) {
+  .profile-screen .rated-books {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    width: 80%;
+  }
+}
+
+.profile-screen .rated-books .title-wrapper {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+
+.profile-screen .rated-books .title-wrapper .title {
+  color: #fffef9;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+@media (min-width: 1200px) {
+  .profile-screen .rated-books .book-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    margin-top: 10vh;
+  }
 }
 /*# sourceMappingURL=ProfileScreen.css.map */

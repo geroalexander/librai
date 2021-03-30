@@ -14,9 +14,17 @@ import {
   Login,
   Register,
   RegistrationForm,
+  ErrorPage
 } from './Routes';
 import BottomTabNavigation from './Components/BottomTab/BottomTab';
 import ErrorMessage from './Components/Shared/ErrorMessage';
+import Header from './Components/Header/Header';
+import { useMediaQuery } from 'react-responsive';
+import {
+  isDesktop,
+  isTablet,
+  isMobile
+} from "react-device-detect";
 
 function App() {
   const [open, setOpen] = useState<boolean>(false);
@@ -34,10 +42,15 @@ function App() {
     if (error) setOpen(true);
   }, [error]);
 
+  const isDesktop = useMediaQuery({
+    query: '(min-width: 1200px)'
+  })
+
   return (
     <div className="App">
       <ErrorMessage message={error} open={open} setOpen={setOpen} />
       <Router>
+        {isDesktop && signedIn && !fillForm && <Header setIsLoading={()=>{}}/> }
         <Switch>
           <PrivateRoute path="/" exact component={Dashboard}></PrivateRoute>
           <PrivateRoute
@@ -54,9 +67,10 @@ function App() {
           <Route path="/login" exact component={Login}></Route>
           <Route path="/form" exact component={RegistrationForm}></Route>
           <Route path="/register" exact component={Register}></Route>
+          <Route path="/error" exact component={ErrorPage}></Route>
           <Route path="/" render={() => <div>404</div>} />
         </Switch>
-        {signedIn && !fillForm && <BottomTabNavigation />}
+        {signedIn && !fillForm && isMobile && <BottomTabNavigation />}
       </Router>
     </div>
   );

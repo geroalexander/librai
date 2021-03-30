@@ -33,6 +33,7 @@ const BookStatusBar: React.FC<BookStatusBarProps> = ({ book }) => {
   const [rated, setRated] = useState(false);
   const [rating, setRating] = useState<any>(null);
 
+
   const dispatch = useDispatch();
 
   useEffect(() => {
