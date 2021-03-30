@@ -17,7 +17,6 @@ const register = (
     body: JSON.stringify({ firstName, lastName, email, password }),
   };
   return fetchRequest(path, options);
-
 };
 
 const login = (email: string, password: string) => {
@@ -49,7 +48,7 @@ const logout = (accessToken: string) => {
 };
 
 const googleLogin = (googleData: any) => {
-  const path = '/auth/google'
+  const path = '/auth/google';
   const options: RequestInit = {
     method: 'POST',
     credentials: 'include',
