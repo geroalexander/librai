@@ -53,7 +53,9 @@ const login = async (req, res) => {
     if (!user) throw new Error('Bad credentials');
     const validatePassword = await bcrypt.compare(password, user.password);
     if (!validatePassword) throw new Error('Bad credentials');
-    const accessToken = jwt.sign({ _id: user.id }, SECRET_KEY, { expiresIn: '7d' });
+    const accessToken = jwt.sign({ _id: user.id }, SECRET_KEY, {
+      expiresIn: '7d',
+    });
     res.status(200).send({ accessToken });
   } catch (error) {
     console.error(error);
@@ -96,14 +98,10 @@ const googleLogin = async (req, res) => {
     res.status(201).send({ accessType: 'register', accessToken });
   } catch (error) {
     console.error(error, 'Could not register, fn.googleLogin');
-    res.status(400).send(error);
+    res.status(400).send({ message: error.message });
   }
 };
 
-// const form = async (req, res) => {
-//   const user = req.user;
-//   // const { info } = req.body;
-//   // const { favoriteGenres, }
 const logout = async (req, res) => {
   try {
     res.status(200).send({ message: 'Successful logout' });
@@ -111,7 +109,6 @@ const logout = async (req, res) => {
     res.status(400).send({ message: 'Logout unsuccessful' });
   }
 };
-
 
 module.exports = {
   register,
