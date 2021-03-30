@@ -1,6 +1,7 @@
 'use strict';
 require('dotenv').config();
 const LOCAL_HOST = process.env.LOCAL_HOST;
+const PORT = process.env.PORT || 8000;
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -10,7 +11,6 @@ const sequelize = require('./models/index');
 const router = require('./routes/router.js');
 
 const app = express();
-const PORT = 8000;
 
 const corsConfig = {
   origin: LOCAL_HOST,

@@ -4,7 +4,8 @@
   "description": "Don't judge a book by its cover, we'll judge it for you.",
   "main": "index.js",
   "scripts": {
-    "test": "npm test --prefix server && npm test --prefix client"
+    "test": "npm test --prefix server && npm test --prefix client",
+    "heroku-postbuild": "cd server && npm i"
   },
   "repository": {
     "type": "git",
