@@ -19,11 +19,11 @@ import {
   REGISTRATION_FORM,
   UPDATE_PROFILE,
   SET_ADD_FORM_INFO,
+  SET_ERROR,
 } from './ActionTypes';
 import { Book } from '../../Interfaces/bookObject';
 import { setError, setAuthError } from '../actions/errors';
 import { PopularBook } from '../../Interfaces/popularBookObject';
-
 
 export const _loadDashboard = () => async (dispatch: AppDispatch) => {
   const accessToken: string | null = localStorage.getItem('accessToken');
@@ -92,7 +92,10 @@ export const _updateRating = (book: Book, rating: number) => async (
       const savedBook = await updateRating(accessToken, book, rating);
       dispatch({ type: UPDATE_RATING, payload: savedBook });
     } catch (error) {
-      dispatch({ type: SET_ERROR, payload: "Couldn't delete rating, please try again."})
+      dispatch({
+        type: SET_ERROR,
+        payload: "Couldn't delete rating, please try again.",
+      });
     }
   } else {
     dispatch({
@@ -105,15 +108,15 @@ export const _updateRating = (book: Book, rating: number) => async (
 export const _deleteRating = (book: Book) => async (dispatch: AppDispatch) => {
   const accessToken: string | null = localStorage.getItem('accessToken');
   if (accessToken) {
-      try {
+    try {
       await deleteRating(accessToken, book);
       dispatch({ type: DELETE_RATING, payload: book });
     } catch (error) {
-    console.log(error)
-    dispatch({
-      type: SET_ERROR,
-      payload: "Couldn't delete rating, please try again.",
-    });
+      console.log(error);
+      dispatch({
+        type: SET_ERROR,
+        payload: "Couldn't delete rating, please try again.",
+      });
     }
   } else {
     dispatch({

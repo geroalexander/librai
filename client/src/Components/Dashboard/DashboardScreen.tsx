@@ -72,22 +72,21 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
               )}
             </div>
             <div className="booklist">
-              {recommendations.length &&
-                recommendations.map((book: Book) => (
-                  <div className="book-preview" key={`rec-${book.id}`}>
-                    <Link
-                      to={{
-                        pathname: `/details/${book.id}`,
-                        state: { book, isNew: false },
-                      }}
-                    >
-                      <img
-                        src={book.thumbnail ? book.thumbnail : undefined}
-                        alt={book.title}
-                      />
-                    </Link>
-                  </div>
-                ))}
+              {recommendations.map((book: Book) => (
+                <div className="book-preview" key={`rec-${book.id}`}>
+                  <Link
+                    to={{
+                      pathname: `/details/${book.id}`,
+                      state: { book, isNew: false },
+                    }}
+                  >
+                    <img
+                      src={book.thumbnail ? book.thumbnail : undefined}
+                      alt={book.title}
+                    />
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
           {!isTabletOrDesktop && (

@@ -46,16 +46,8 @@ const SavedScreen: React.FC<SavedScreenProps> = () => {
         </div>
         {savedBooks.length ? (
           <div className="saved-list">
-            {books.map((book: Book) => (
-              // <Link
-              //   to={{
-              //     pathname: `/details/${book.id}`,
-              //     state: { book, isNew: false },
-              //   }}
-              //   style={{ textDecoration: 'none' }}
-              // >
+            {savedBooks.map((book: Book) => (
               <BookItem key={book.id} book={book} />
-              // </Link>
             ))}
           </div>
         ) : (
