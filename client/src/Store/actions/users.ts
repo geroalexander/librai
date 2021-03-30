@@ -19,7 +19,6 @@ import {
   REGISTRATION_FORM,
   UPDATE_PROFILE,
   SET_ADD_FORM_INFO,
-  SET_ERROR,
 } from './ActionTypes';
 import { Book } from '../../Interfaces/bookObject';
 import { setError, setAuthError } from '../actions/errors';
