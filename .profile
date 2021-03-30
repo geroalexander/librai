@@ -1,1 +1,1 @@
-echo ${GOOGLE_CREDENTIALS} > /server/google-credentials.json
+cd server && echo ${GOOGLE_CREDENTIALS} > google-credentials.json
