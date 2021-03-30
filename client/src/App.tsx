@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from './index';
 import PrivateRoute from './Components/Routes/Private';
-
 import {
   Dashboard,
   Profile,
@@ -37,7 +35,13 @@ function App() {
   const error = useSelector((state: RootState) => state.errorReducer.error);
 
   useEffect(() => {
-    if (error) setOpen(true);
+    if (error) {
+      if (error === "Couldn't load dashboard, please try again") {
+        console.log(error)
+      } else {
+        setOpen(true)
+      }
+    };
   }, [error]);
 
   const isDesktop = useMediaQuery({
@@ -66,7 +70,7 @@ function App() {
           <Route path="/form" exact component={RegistrationForm}></Route>
           <Route path="/register" exact component={Register}></Route>
           <Route path="/error" exact component={ErrorPage}></Route>
-          <Route path="/" render={() => <div>404</div>} />
+          <Route path="/" component={ErrorPage} />
         </Switch>
         {signedIn && !fillForm && isMobile && <BottomTabNavigation />}
       </Router>
