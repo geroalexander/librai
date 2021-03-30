@@ -239,7 +239,7 @@ const deleteSavedBook = async (req, res) => {
     if (recombeeRequest !== 'Successful')
       throw new Error('Recommendation engine error');
 
-    res.status(203).send({ message: 'Book was unsaved'});
+    res.status(203).send({ message: 'Book was unsaved' });
   } catch (error) {
     console.error(error, 'Could not delete saved book, fn.deleteSavedBook');
     handleErrors(error, res);
@@ -270,7 +270,7 @@ const deleteRating = async (req, res) => {
     if (recombeeRequest !== 'Rating deleted')
       throw new Error('Recommendation engine error');
 
-    res.status(203).send({ message: 'Book rating was removed'});
+    res.status(203).send({ message: 'Book rating was removed' });
   } catch (error) {
     console.error(error, 'Could not delete rating, fn.deleteRating');
     handleErrors(error, res);
@@ -328,7 +328,7 @@ const updateProfile = async (req, res) => {
   try {
     console.log(req.body);
     const { profilePic = null, favoriteGenres = null, email = null } = req.body;
-    const userInformation = await User.findByPK(user.id, {
+    const userInformation = await User.findByPk(user.id, {
       attributes: { exclude: ['password'] },
     });
 
@@ -347,7 +347,7 @@ const updateProfile = async (req, res) => {
       if (!updated) throw profileError;
     }
 
-    res.sendStatus(201);
+    res.status(201).send({ message: 'Profile updated successfully' });
   } catch (error) {
     console.error(error, 'Could not update profile information');
     handleErrors(error, res);
