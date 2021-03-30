@@ -1,12 +1,13 @@
 'use strict';
 
-require('dotenv').config();
+require('dotenv').config({ path: '../../.env' });
 const config = process.env;
 const { Sequelize } = require('sequelize');
 const associations = require('./associations');
 const { DATABASE_URL } = config;
 // const { DB_NAME, DB_USER, DB_PASSWORD, DB_PORT, DB_HOST, DB_DIALECT } = config;
 
+console.log(DATABASE_URL, 'DATABASEURL');
 const sequelize = new Sequelize(DATABASE_URL, {
   pool: {
     max: 5,
