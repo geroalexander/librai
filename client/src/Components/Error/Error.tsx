@@ -3,7 +3,9 @@ import LottieAnimation from '../../Animations/Lottie';
 import errorAnimation from '../../Animations/errorAnimation.json';
 import './Error.css';
 
-const ErrorPage = () => {
+interface ErrorPageProps {}
+
+const ErrorPage: React.FC<ErrorPageProps> = (props: any) => {
   return (
     <div className="error-wrapper">
       <p className="title">

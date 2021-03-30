@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { _loadDashboard } from '../../Store/actions/users';
-import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
+import { Link, RouteComponentProps, withRouter, useHistory } from 'react-router-dom';
 import { RootState } from '../../index';
 import './Dashboard.css';
 import Skeleton from 'react-loading-skeleton';
@@ -24,6 +24,8 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
     query: '(min-width: 1200px)',
   });
 
+  const error = useSelector((state: RootState) => state.errorReducer.error);
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [savedBooks, setSavedBooks] = useState<Book[]>([]);
   const [ratedBooks, setRatedBooks] = useState<Book[]>([]);
@@ -35,11 +37,17 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
   const userWithBooks = useSelector(
     (state: RootState) => state.userReducer?.userWithBooks
   );
-
+  const history = useHistory();
   const renderDashboard = async () => {
     const action = _loadDashboard();
     dispatch(action);
   };
+
+  useEffect(() => {
+    if (error === "Couldn't load dashboard, please try again") {
+      history.push('/error')
+    }
+  },[error])
 
   useEffect(() => {
     renderDashboard();
