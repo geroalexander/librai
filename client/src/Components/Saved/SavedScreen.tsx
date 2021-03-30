@@ -31,7 +31,7 @@ const SavedScreen: React.FC<SavedScreenProps> = () => {
       const action = await _getUserWithBooks();
       await dispatch(action);
     }
-    if (books && books.length) {
+    if (books) {
       setSavedBooks(books.filter((book: Book) => book.interaction.isSaved));
       setIsLoading(false);
     }
@@ -54,7 +54,7 @@ const SavedScreen: React.FC<SavedScreenProps> = () => {
           <div className="saved-list">
             <div className="book-skeleton">
               <p className="alert-msg">
-                You don't yet have any saved books! On mobile, use the camera
+                You don't have any saved books yet! On mobile, use the camera
                 feature to take a photo of a book cover. You can also use the
                 search bar or check out our recommendations 😉
               </p>

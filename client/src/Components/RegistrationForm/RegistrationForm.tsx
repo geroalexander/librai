@@ -11,7 +11,7 @@ import { _registrationForm } from '../../Store/actions/users';
 import { popularBooks } from './popular_books.js';
 import { PopularBook } from '../../Interfaces/popularBookObject';
 import BookStatusBar from '../BookDetails/BookStatusBar/BookStatusBar';
-import ErrorMessage from '../Shared/ErrorMessage';
+import ErrorMessage from '../Error/ErrorMessage';
 
 interface RegistrationFormProps extends RouteComponentProps {}
 
@@ -75,7 +75,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
       clickable
       style={
         !favoriteGenres.includes(genre)
-          ? { color: '#fffef9', borderColor: '#fffef9' }
+          ? { color: '#dfd5fc', borderColor: '#dfd5fc' }
           : { color: '#140245', borderColor: '#140245' }
       }
       label={genre}

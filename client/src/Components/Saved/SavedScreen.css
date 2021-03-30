@@ -163,7 +163,7 @@
 
 .saved-screen .book-skeleton {
   width: 70vw;
-  height: 20vh;
+  height: 14vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -174,11 +174,19 @@
       -ms-flex-pack: center;
           justify-content: center;
   border: solid;
-  margin-top: 3vh;
+  margin-top: 1.7vh;
   border-width: 1.5px;
   border-radius: 25px;
   border-color: #c8baf3;
   padding: 1rem;
+}
+
+@media (max-height: 720px) {
+  .saved-screen .book-skeleton {
+    margin-top: 1vh;
+    height: 8vh;
+    font-size: 0.6em;
+  }
 }
 
 @media (min-width: 768px) {
@@ -191,7 +199,6 @@
   .saved-screen .book-skeleton {
     -ms-flex-item-align: start;
         align-self: flex-start;
-    margin-left: 4vw;
   }
 }
 
@@ -199,6 +206,7 @@
   text-align: center;
   font-family: "Montserrat", sans-serif;
   color: #dfd5fc;
+  font-size: 0.8em;
 }
 
 @media (min-width: 768px) {

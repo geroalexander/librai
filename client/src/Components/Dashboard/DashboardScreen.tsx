@@ -112,7 +112,7 @@ const Dashboard: React.FC<DashboardScreenProps> = () => {
                     </div>
                   ))
                 ) : (
-                  <div className="book-skeleton">
+                  <div className="small-book-skeleton">
                     <p className="alert-msg">
                       You don't have any rated books yet. The more ratings we
                       have, the better our recommendations for you will be! 😉

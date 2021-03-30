@@ -104,16 +104,22 @@ $opensans: 'Open Sans', sans-serif;
   }
   .book-skeleton {
     width: 70vw;
-    height: 20vh;
+    height: 14vh;
     display: flex;
     align-items: center;
     justify-content: center;
     border: solid;
-    margin-top: 3vh;
+    margin-top: 1.7vh;
     border-width: 1.5px;
     border-radius: 25px;
     border-color: #c8baf3;
     padding: 1rem;
+
+    @include sm_height {
+      margin-top: 1vh;
+      height: 8vh;
+      font-size: 0.6em;
+    }
 
     @include md {
       width: 350px;
@@ -121,13 +127,14 @@ $opensans: 'Open Sans', sans-serif;
 
     @include xl {
       align-self: flex-start;
-      margin-left: 4vw;
+      // margin-left: 4vw;
     }
 
     .alert-msg {
       text-align: center;
       font-family: $montserrat;
       color: $PRIMARY_WHITE;
+      font-size: 0.8em;
 
       @include md {
         font-size: 1.2em;

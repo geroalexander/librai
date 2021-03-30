@@ -25,6 +25,8 @@ interface ProfileScreenProps extends RouteComponentProps {}
 const ProfileScreen: React.FC<ProfileScreenProps> = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [imageLoading, setImageLoading] = useState(false);
+  const [ratedBooks, setRatedBooks] = useState<Book[]>([]);
+
   const dispatch = useDispatch();
 
   const isDesktop = useMediaQuery({
@@ -46,7 +48,12 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
 
       getUser();
     }
-    user && user.books && setIsLoading(false);
+    if (user && user.books) {
+      setRatedBooks(
+        user.books.filter((book: Book) => book.interaction.rating !== null)
+      );
+      setIsLoading(false);
+    }
   }, [user]);
 
   const fullName = `${user.firstName} ${user.lastName}`;
@@ -149,11 +156,18 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
           )}
           {user.books && (
             <div className="book-list">
-              {user.books
-                .filter((book: Book) => book.interaction.rating !== null)
-                .map((book: Book) => (
+              {ratedBooks.length ? (
+                ratedBooks.map((book: Book) => (
                   <BookItem key={book.id} book={book} />
-                ))}
+                ))
+              ) : (
+                <div className="book-skeleton">
+                  <p className="alert-msg">
+                    You don't have any rated books yet. The more ratings we
+                    have, the better our recommendations for you will be! 😉
+                  </p>
+                </div>
+              )}
             </div>
           )}
         </div>

@@ -5,6 +5,9 @@ import Slide from '@material-ui/core/Slide';
 import { TransitionProps } from '@material-ui/core/transitions';
 import { useDispatch } from 'react-redux';
 import { removeError } from '../../Store/actions/errors';
+import { withStyles } from '@material-ui/core/styles';
+
+import './ErrorMessage.css';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & { children?: React.ReactElement<any, any> },
@@ -36,8 +39,28 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({
         callback();
       }, 500);
   };
+
+  const StyledDialog = withStyles((theme) => ({
+    paper: {
+      borderRadius: 100,
+      backgroundColor: '#dfd5fc',
+    },
+  }))(Dialog);
+
+  const StyledDialogTitle = withStyles((theme) => ({
+    root: {
+      textAlign: 'center',
+      '& h2': {
+        fontFamily: 'Montserrat',
+        fontSize: 18,
+        color: '#140245',
+      },
+    },
+  }))(DialogTitle);
+
   return (
-    <Dialog
+    <StyledDialog
+      className="error-dialog"
       open={open}
       TransitionComponent={Transition}
       keepMounted
@@ -45,8 +68,10 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({
       aria-labelledby="alert-dialog-slide-title"
       aria-describedby="alert-dialog-slide-description"
     >
-      <DialogTitle id="alert-dialog-slide-title">{message}</DialogTitle>
-    </Dialog>
+      <StyledDialogTitle id="alert-dialog-slide-title">
+        {message}
+      </StyledDialogTitle>
+    </StyledDialog>
   );
 };
 

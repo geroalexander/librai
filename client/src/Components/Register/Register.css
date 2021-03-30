@@ -157,7 +157,7 @@
   border-radius: 25px;
   font-weight: bold;
   height: 4em;
-  width: 55vw;
+  width: 50vw;
   border: solid;
   border-color: #dfd5fc;
   background-color: transparent;
@@ -175,19 +175,17 @@
 
 @media (min-width: 768px) {
   .register-wrapper .register-form .form-inner .google-btn {
-    width: 1rem;
-  }
-}
-
-@media (min-width: 992px) {
-  .register-wrapper .register-form .form-inner .google-btn {
-    width: 1rem;
+    width: 25vw;
   }
 }
 
 @media (min-width: 1200px) {
   .register-wrapper .register-form .form-inner .google-btn {
-    width: 1rem;
+    width: 14vw;
   }
+}
+
+.register-wrapper .register-form span {
+  color: #f5d541;
 }
 /*# sourceMappingURL=Register.css.map */

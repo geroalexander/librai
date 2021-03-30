@@ -103,7 +103,7 @@ $opensans: 'Open Sans', sans-serif;
         border-radius: 25px;
         font-weight: bold;
         height: 4em;
-        width: 55vw;
+        width: 50vw;
         border: solid;
         border-color: $PRIMARY_WHITE;
         background-color: transparent;
@@ -117,17 +117,16 @@ $opensans: 'Open Sans', sans-serif;
         }
 
         @include md {
-          width: 1rem;
-        }
-
-        @include lg {
-          width: 1rem;
+          width: 25vw;
         }
 
         @include xl {
-          width: 1rem;
+          width: 14vw;
         }
       }
+    }
+    span {
+      color: $SECONDARY;
     }
   }
 }

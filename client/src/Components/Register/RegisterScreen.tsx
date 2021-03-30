@@ -7,11 +7,7 @@ import {
   setLogout,
   setGoogleLogin,
 } from '../../Store/actions/auth';
-import {
-  Link,
-  withRouter,
-  useHistory,
-} from 'react-router-dom';
+import { Link, withRouter, useHistory } from 'react-router-dom';
 import { RootState } from '../../index';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import PersonIcon from '@material-ui/icons/Person';
@@ -63,19 +59,6 @@ const Register = () => {
     if (signedIn) dispatch(setLogout());
   }, []);
 
-  // const onClickSubmitLogin = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   dispatch(setRegister({ firstName, lastName, email, password }))
-  //     .then(() => {
-  //       setFirstName('');
-  //       setLastName('');
-  //       setEmail('');
-  //       setPassword('');
-  //       history.push('/form');
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-
   const handleGoogleLogin = async (googleData: any) => {
     const action = setGoogleLogin(googleData);
     const accessType = await dispatch(action);
@@ -88,7 +71,6 @@ const Register = () => {
       <form onSubmit={handleSubmit(submitRegister)} className="register-form">
         <div className="form-inner">
           <h2 className="title">Register</h2>
-          {/*ERROR*/}
           <div className="form-group">
             <div className="icon">
               <PersonOutlineIcon
