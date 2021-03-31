@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from './index';
 import PrivateRoute from './Components/Routes/Private';
 import {
@@ -19,9 +19,11 @@ import ErrorMessage from './Components/Error/ErrorMessage';
 import Header from './Components/Header/Header';
 import { useMediaQuery } from 'react-responsive';
 import { isMobile } from 'react-device-detect';
+import { setError } from './Store/actions/errors';
 
 function App() {
   const [open, setOpen] = useState<boolean>(false);
+  const dispatch = useDispatch();
 
   const signedIn = useSelector(
     (state: RootState) => state.authReducer.signedIn
@@ -35,16 +37,29 @@ function App() {
   useEffect(() => {
     if (error) {
       if (error === "Couldn't load dashboard, please try again") {
-        console.log(error)
+        console.log(error);
       } else {
-        setOpen(true)
+        setOpen(true);
       }
-    };
+    }
   }, [error]);
 
   const isDesktop = useMediaQuery({
     query: '(min-width: 1200px)',
   });
+
+  useEffect(() => {
+    if (isMobile || isDesktop) {
+      const visited = localStorage.getItem('visitedLibrai');
+      if (!visited) {
+        localStorage.setItem('visitedLibrai', 'true');
+        const action = setError(
+          'This app is optimised to be a PWA, download it to your Home Screen to get the full experience:'
+        );
+        dispatch(action);
+      }
+    }
+  }, [isDesktop, dispatch]);
 
   return (
     <div className="App">
