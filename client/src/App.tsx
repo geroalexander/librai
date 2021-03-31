@@ -50,7 +50,6 @@ function App() {
   }, [error]);
 
   useEffect(() => {
-    console.log(pwaError);
     if (pwaError) setOpenPwa(true);
   }, [pwaError]);
 

@@ -49,7 +49,6 @@ export const setGoogleLogin = (googleData: any) => async (
 
 export const setLogout = () => async (dispatch: AppDispatch) => {
   const accessToken: string | null = localStorage.getItem('accessToken');
-  console.log(accessToken, 'accessToken here');
 
   if (accessToken) await logout(accessToken);
   localStorage.removeItem('accessToken');

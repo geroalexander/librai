@@ -6,7 +6,7 @@ const getCompatScore = async (user, book) => {
   let similarityWithRecomms = 0;
   const recommBooks = await getRecommendations(user.id, 4);
   let bookGenreArr = [];
-  console.log(book.categories);
+
   if (book.categories && book.categories.length)
     bookGenreArr = book.categories[0].split(' / ');
 

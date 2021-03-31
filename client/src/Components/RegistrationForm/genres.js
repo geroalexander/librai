@@ -33,10 +33,3 @@ export const genres = [
   'Young Adult Fiction',
 ];
 
-// genres.forEach((genre) => {
-//   const words = genre.split(' ');
-//   for (let i = 0; i < words.length; i++) {
-//     words[i] = words[i][0].toUpperCase() + words[i].substr(1);
-//   }
-//   console.log(words.join(' '));
-// });

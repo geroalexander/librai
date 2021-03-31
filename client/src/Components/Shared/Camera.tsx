@@ -16,7 +16,6 @@ const Camera: React.FC<CameraProps> = ({ setIsLoading }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('In handleImageChange');
 
     setIsLoading(true);
     if (!e.target.files) return;

@@ -110,7 +110,6 @@ const addSavedBook = async (req, res) => {
     if (!savedBook) throw new Error('Book could not be saved');
 
     const recombeeRequest = await bookmark(user.id, targetBook);
-    console.log('4');
     if (recombeeRequest !== 'Successful')
       throw new Error('Recommendation engine error');
 
@@ -118,7 +117,6 @@ const addSavedBook = async (req, res) => {
       attributes: { exclude: ['password'] },
       include: [{ model: Book, where: { id } }],
     });
-    console.log('5');
     if (!userWithBooks) throw new Error('Could not find user');
 
     res.status(201).send(userWithBooks.books[0]);
@@ -195,7 +193,7 @@ const updateRating = async (req, res) => {
       });
       if (!ratedBook) throw new Error('Rated book could not be saved');
       const recombeeRequest = await bookRating(user.id, targetBook, rating); // book object (book.id for id)
-      console.log('2', recombeeRequest);
+
       if (recombeeRequest !== 'Rating added')
         throw new Error('Recommendation engine error');
     }
@@ -326,7 +324,6 @@ const registrationForm = async (req, res) => {
 const updateProfile = async (req, res) => {
   const user = req.user;
   try {
-    console.log(req.body);
     const { profilePic = null, favoriteGenres = null, email = null } = req.body;
     const userInformation = await User.findByPk(user.id, {
       attributes: { exclude: ['password'] },

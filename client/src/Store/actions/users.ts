@@ -104,7 +104,6 @@ export const _deleteRating = (book: Book) => async (dispatch: AppDispatch) => {
       await deleteRating(accessToken, book);
       dispatch({ type: DELETE_RATING, payload: book });
     } catch (error) {
-      console.log(error);
       const action = setError("Couldn't delete rating, please try again.");
       dispatch(action);
     }

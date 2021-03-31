@@ -65,7 +65,6 @@ const login = async (req, res) => {
 
 const googleLogin = async (req, res) => {
   const { token } = req.body;
-  console.log(token, 'TOKEN');
   const ticket = await client.verifyIdToken({
     idToken: token,
     audience: GOOGLE_CLIENT_ID,
