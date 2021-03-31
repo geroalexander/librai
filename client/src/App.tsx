@@ -59,6 +59,8 @@ function App() {
 
   useEffect(() => {
     if (isBrowser) {
+      console.log('this is browser');
+
       const action = setPwaError();
       dispatch(action);
       // const userHasVisited: string | null = localStorage.getItem(
