@@ -2,13 +2,23 @@ import { AppDispatch } from '..';
 import { setError } from '../Store/actions/errors';
 import { CloudinaryFormData } from '../Interfaces/cloudinaryFormData';
 
-const { REACT_APP_CLOUD_NAME, REACT_APP_UPLOAD_PRESET } = process.env;
+const {
+  REACT_APP_CLOUD_NAME,
+  REACT_APP_UPLOAD_PRESET,
+  REACT_APP_UPLOAD_PRESET_EXPIRE,
+} = process.env;
 
-const uploadToCloud = async (file: string, dispatch: AppDispatch) => {
+const uploadToCloud = async (
+  file: string,
+  dispatch: AppDispatch,
+  expire: boolean
+) => {
   const cloudUrl: string = `https://api.cloudinary.com/v1_1/${REACT_APP_CLOUD_NAME}/upload`;
   const formData: CloudinaryFormData = {
     file,
-    upload_preset: REACT_APP_UPLOAD_PRESET,
+    upload_preset: expire
+      ? REACT_APP_UPLOAD_PRESET_EXPIRE
+      : REACT_APP_UPLOAD_PRESET,
   };
 
   const options: RequestInit = {

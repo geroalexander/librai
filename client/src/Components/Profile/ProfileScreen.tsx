@@ -72,7 +72,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = () => {
     const base64Image = await imageToBase64(e.target.files[0]).then(
       (base64EncodedImageString) => base64EncodedImageString
     );
-    const profilePictureUrl = await uploadToCloud(base64Image, dispatch);
+    const profilePictureUrl = await uploadToCloud(base64Image, dispatch, false);
     dispatch(_updateProfile(profilePictureUrl, null, null));
     setImageLoading(false);
   };

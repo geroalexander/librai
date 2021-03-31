@@ -16,13 +16,12 @@ const Camera: React.FC<CameraProps> = ({ setIsLoading }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-
     setIsLoading(true);
     if (!e.target.files) return;
     const base64Image = await imageToBase64(e.target.files[0]).then(
       (base64EncodedImageString) => base64EncodedImageString
     );
-    const cloudURL = await uploadToCloud(base64Image, dispatch);
+    const cloudURL = await uploadToCloud(base64Image, dispatch, true);
     let book;
     const accessToken: string | null = localStorage.getItem('accessToken');
 
