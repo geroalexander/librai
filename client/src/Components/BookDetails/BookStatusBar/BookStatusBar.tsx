@@ -40,21 +40,24 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     paper: {
       padding: theme.spacing(1),
+      backgroundColor: '#dfd5fc',
     },
     typography: {
       padding: theme.spacing(2),
+      fontFamily: 'Montserrat',
+      color: '#140245',
     },
-    "@keyframes enter": {
-      "0%": {
-        transform: "scale(0)",
-        opacity: 0
+    '@keyframes enter': {
+      '0%': {
+        transform: 'scale(0)',
+        opacity: 0,
       },
-      "100%": {
-        transform: "scale(0)",
-        opacity: 0
-      }
-    }
-    })
+      '100%': {
+        transform: 'scale(0)',
+        opacity: 0,
+      },
+    },
+  })
 );
 
 const BookStatusBar: React.FC<BookStatusBarProps> = ({ book }) => {
