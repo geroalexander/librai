@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from './index';
 import PrivateRoute from './Components/Routes/Private';
 import {
@@ -18,10 +18,14 @@ import BottomTabNavigation from './Components/BottomTab/BottomTab';
 import ErrorMessage from './Components/Error/ErrorMessage';
 import Header from './Components/Header/Header';
 import { useMediaQuery } from 'react-responsive';
-import { isMobile } from 'react-device-detect';
+import { isMobile, isBrowser } from 'react-device-detect';
+import { setPwaError } from './Store/actions/errors';
+import PwaPopup from './Components/Error/PwaPopup';
 
 function App() {
   const [open, setOpen] = useState<boolean>(false);
+  const [openPwa, setOpenPwa] = useState<boolean>(false);
+  const dispatch = useDispatch();
 
   const signedIn = useSelector(
     (state: RootState) => state.authReducer.signedIn
@@ -31,23 +35,44 @@ function App() {
     (state: RootState) => state.authReducer.fillForm
   );
   const error = useSelector((state: RootState) => state.errorReducer.error);
+  const pwaError = useSelector(
+    (state: RootState) => state.errorReducer.pwaError
+  );
 
   useEffect(() => {
     if (error) {
       if (error === "Couldn't load dashboard, please try again") {
-        console.log(error)
+        console.log(error);
       } else {
-        setOpen(true)
+        setOpen(true);
       }
-    };
+    }
   }, [error]);
+
+  useEffect(() => {
+    if (pwaError) setOpenPwa(true);
+  }, [pwaError]);
 
   const isDesktop = useMediaQuery({
     query: '(min-width: 1200px)',
   });
 
+  useEffect(() => {
+    if (isMobile || isBrowser) {
+      const userHasVisited: string | null = localStorage.getItem(
+        'visitedLibrai'
+      );
+      if (!userHasVisited) {
+        localStorage.setItem('visitedLibrai', 'true');
+        const action = setPwaError();
+        dispatch(action);
+      }
+    }
+  }, [dispatch]);
+
   return (
     <div className="App">
+      <PwaPopup open={openPwa} setOpen={setOpenPwa} />
       <ErrorMessage message={error} open={open} setOpen={setOpen} />
       <Router>
         {isDesktop && signedIn && !fillForm && (

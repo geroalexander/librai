@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form';
 import { RootState } from '../../index';
 import { GoogleLogin } from 'react-google-login';
 import { FcGoogle } from 'react-icons/fc';
+import { setError as reduxSetError } from '../../Store/actions/errors';
 
 const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
 
@@ -38,10 +39,8 @@ const Login = () => {
       });
     }
   };
-  // UNTIL NO AUTH ROUTE
 
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
+  // UNTIL NO AUTH ROUTE
   const signedIn = useSelector(
     (state: RootState) => state.authReducer.signedIn
   );
@@ -50,23 +49,18 @@ const Login = () => {
     if (signedIn) dispatch(setLogout());
   }, []);
 
-  // const onClickSubmitLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   const action = setLogin({ email, password });
-  //   await dispatch(action);
-  //   setEmail('');
-  //   setPassword('');
-  //   history.push('/');
-  // };
-
-  const handleGoogleLogin = async (googleData: any) => {
-    console.log('hello');
-    console.log(googleData, 'googleData');
-
+  const handleGoogleLoginSuccess = async (googleData: any) => {
     const action = setGoogleLogin(googleData);
     const accessType = await dispatch(action);
     if (accessType === 'login') history.push('/');
     else if (accessType === 'register') history.push('/form');
+  };
+
+  const handleGoogleLoginFailure = () => {
+    const action = reduxSetError(
+      'Google authentication failed, please try again'
+    );
+    dispatch(action);
   };
 
   return (
@@ -119,8 +113,8 @@ const Login = () => {
           <input className="submitButton" type="submit" value="LOGIN" />
           <GoogleLogin
             clientId={REACT_APP_GOOGLE_CLIENT_ID || ''}
-            onSuccess={handleGoogleLogin}
-            onFailure={handleGoogleLogin}
+            onSuccess={handleGoogleLoginSuccess}
+            onFailure={handleGoogleLoginFailure}
             cookiePolicy={'single_host_origin'}
             render={(renderProps) => (
               <button

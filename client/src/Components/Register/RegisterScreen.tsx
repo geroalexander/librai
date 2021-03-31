@@ -16,6 +16,7 @@ import EmailIcon from '@material-ui/icons/Email';
 import { useForm } from 'react-hook-form';
 import { GoogleLogin } from 'react-google-login';
 import { FcGoogle } from 'react-icons/fc';
+import { setError as reduxSetError } from '../../Store/actions/errors';
 
 const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
 
@@ -59,11 +60,18 @@ const Register = () => {
     if (signedIn) dispatch(setLogout());
   }, []);
 
-  const handleGoogleLogin = async (googleData: any) => {
+  const handleGoogleLoginSuccess = async (googleData: any) => {
     const action = setGoogleLogin(googleData);
     const accessType = await dispatch(action);
     if (accessType === 'login') history.push('/');
     else if (accessType === 'register') history.push('/form');
+  };
+
+  const handleGoogleLoginFailure = () => {
+    const action = reduxSetError(
+      'Google authentication failed, please try again'
+    );
+    dispatch(action);
   };
 
   return (
@@ -84,7 +92,7 @@ const Register = () => {
               placeholder="FIRST NAME"
               id="firstName"
               ref={register({
-                // required: 'Please enter your first name.',
+                required: 'Please enter your first name.',
               })}
             />
           </div>
@@ -102,7 +110,7 @@ const Register = () => {
               placeholder="LAST NAME"
               id="lastName"
               ref={register({
-                // required: 'Please enter your last name.',
+                required: 'Please enter your last name.',
               })}
             />
           </div>
@@ -120,11 +128,11 @@ const Register = () => {
               placeholder="EMAIL"
               id="email"
               ref={register({
-                // required: 'Please enter an email address',
-                // pattern: {
-                //   value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                //   message: 'Please enter a valid e-mail address.',
-                // },
+                required: 'Please enter an email address',
+                pattern: {
+                  value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                  message: 'Please enter a valid e-mail address.',
+                },
               })}
             />
           </div>
@@ -140,11 +148,11 @@ const Register = () => {
               placeholder="PASSWORD"
               id="password"
               ref={register({
-                // required: 'Please enter a password.',
-                // minLength: {
-                //   value: 5,
-                //   message: 'Minimum password length is 5',
-                // },
+                required: 'Please enter a password.',
+                minLength: {
+                  value: 5,
+                  message: 'Minimum password length is 5',
+                },
               })}
             />
           </div>
@@ -154,8 +162,8 @@ const Register = () => {
           <input className="submitButton" type="submit" value="SIGN UP" />
           <GoogleLogin
             clientId={REACT_APP_GOOGLE_CLIENT_ID || ''}
-            onSuccess={handleGoogleLogin}
-            onFailure={handleGoogleLogin}
+            onSuccess={handleGoogleLoginSuccess}
+            onFailure={handleGoogleLoginFailure}
             cookiePolicy={'single_host_origin'}
             render={(renderProps) => (
               <button

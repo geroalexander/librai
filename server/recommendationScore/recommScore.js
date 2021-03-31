@@ -7,19 +7,23 @@ const getCompatScore = async (user, book) => {
   const recommBooks = await getRecommendations(user.id, 4);
   let bookGenreArr = [];
   console.log(book.categories);
-  if (book.categories && book.categories.length) 
-  bookGenreArr = book.categories[0].split(' / ');
+  if (book.categories && book.categories.length)
+    bookGenreArr = book.categories[0].split(' / ');
 
   for (const rec of recommBooks.recomms) {
     const retrievedBook = await getBookById(rec.id);
-    if (!retrievedBook || !retrievedBook.volumeInfo) throw new Error('getCompatScore failed', retrievedBook);
+    if (!retrievedBook || !retrievedBook.volumeInfo)
+      throw new Error('getCompatScore failed', retrievedBook);
     if (retrievedBook.id === book.id) return 10;
     let similarityScore = 0;
-    if (retrievedBook.volumeInfo.categories && retrievedBook.volumeInfo.categories.length) {
-      const formattedGenreArr = retrievedBook.volumeInfo.categories[0].split(' / ');
-      const sameGenre = formattedGenreArr.some((c) =>
-      bookGenreArr.includes(c),
+    if (
+      retrievedBook.volumeInfo.categories &&
+      retrievedBook.volumeInfo.categories.length
+    ) {
+      const formattedGenreArr = retrievedBook.volumeInfo.categories[0].split(
+        ' / ',
       );
+      const sameGenre = formattedGenreArr.some((c) => bookGenreArr.includes(c));
       if (sameGenre) similarityScore += 2;
     }
     const sameAuthor = retrievedBook.volumeInfo.authors.some((a) =>
@@ -35,7 +39,6 @@ const getCompatScore = async (user, book) => {
       similarityScore++;
     if (similarityScore > 1 && similarityScore < 3) similarityWithRecomms += 2;
     else if (similarityScore >= 3) similarityWithRecomms += 4;
-    
   }
 
   // check the average rating;
@@ -44,9 +47,9 @@ const getCompatScore = async (user, book) => {
 
   // compare it with favorite genres list
   let isFavoriteGenre = 0;
-  const inFavoriteGenres = user.favoriteGenres.some((g) =>
-    bookGenreArr.includes(g),
-  );
+  const inFavoriteGenres =
+    user.favoriteGenres &&
+    user.favoriteGenres.some((g) => bookGenreArr.includes(g));
   if (inFavoriteGenres) isFavoriteGenre++;
 
   // compare it with past ratings
@@ -57,8 +60,11 @@ const getCompatScore = async (user, book) => {
   ratedBooks.forEach((rated) => {
     let similarityScore = 0;
     let formattedRatedGenreArr = [];
-    if (rated.categories.length) formattedRatedGenreArr = rated.categories[0].split(' / ');
-    const sameGenre = formattedRatedGenreArr.some((c) => bookGenreArr.includes(c));
+    if (rated.categories.length)
+      formattedRatedGenreArr = rated.categories[0].split(' / ');
+    const sameGenre = formattedRatedGenreArr.some((c) =>
+      bookGenreArr.includes(c),
+    );
     if (sameGenre) similarityScore++;
     const sameAuthor = rated.authors.some((a) => book.authors.includes(a));
     if (sameAuthor) similarityScore += 2;
