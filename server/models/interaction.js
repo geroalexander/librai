@@ -18,6 +18,6 @@ module.exports = (sequelize) => {
         default: null,
       },
     },
-    { timestamps: false }, // Do we need these?
+    { timestamps: false },
   );
 };
