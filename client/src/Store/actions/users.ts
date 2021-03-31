@@ -92,17 +92,10 @@ export const _updateRating = (book: Book, rating: number) => async (
       const savedBook = await updateRating(accessToken, book, rating);
       dispatch({ type: UPDATE_RATING, payload: savedBook });
     } catch (error) {
-      dispatch({
-        type: SET_ERROR,
-        payload: "Couldn't delete rating, please try again.",
-      });
+      const action = setError("Couldn't update rating, please try again.");
+      dispatch(action);
     }
-  } else {
-    dispatch({
-      type: SET_ERROR,
-      payload: 'Unauthorised, No access token!',
-    });
-  }
+  } else dispatch(setAuthError());
 };
 
 export const _deleteRating = (book: Book) => async (dispatch: AppDispatch) => {
@@ -113,17 +106,10 @@ export const _deleteRating = (book: Book) => async (dispatch: AppDispatch) => {
       dispatch({ type: DELETE_RATING, payload: book });
     } catch (error) {
       console.log(error);
-      dispatch({
-        type: SET_ERROR,
-        payload: "Couldn't delete rating, please try again.",
-      });
+      const action = setError("Couldn't delete rating, please try again.");
+      dispatch(action);
     }
-  } else {
-    dispatch({
-      type: SET_ERROR,
-      payload: 'Unauthorised, No access token!',
-    });
-  }
+  } else dispatch(setAuthError());
 };
 
 export const _registrationForm = (

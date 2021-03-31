@@ -7,6 +7,7 @@ import { getBookByCover } from '../../ApiClientService/Book';
 import { uploadToCloud } from '../../ApiClientService/ImageUpload';
 import { useHistory } from 'react-router-dom';
 import { SET_ERROR } from '../../Store/actions/ActionTypes';
+import { setError } from '../../Store/actions/errors';
 
 interface CameraProps {
   setIsLoading: (value: React.SetStateAction<boolean>) => void;
@@ -34,7 +35,8 @@ const Camera: React.FC<CameraProps> = ({ setIsLoading }) => {
         state: { book, isNew: false },
       });
     } catch (error) {
-      dispatch({ type: SET_ERROR, payload: 'Unable to retrieve book details' });
+      const action = setError('Unable to retrieve book details');
+      dispatch(action);
       setIsLoading(false);
     }
   };
