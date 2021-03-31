@@ -63,11 +63,10 @@ function App() {
         (displayMode) =>
           window.matchMedia('(display-mode: ' + displayMode + ')').matches
       );
-      console.log(isInstalled);
-      if (isInstalled) {
-        const action = setPwaError();
-        dispatch(action);
-      }
+      if (isInstalled) return;
+      const action = setPwaError();
+      dispatch(action);
+
       // const userHasVisited: string | null = localStorage.getItem(
       //   'visitedLibrai'
       // );
