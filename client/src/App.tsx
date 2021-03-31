@@ -64,17 +64,14 @@ function App() {
           window.matchMedia('(display-mode: ' + displayMode + ')').matches
       );
       if (isInstalled) return;
-      const action = setPwaError();
-      dispatch(action);
-
-      // const userHasVisited: string | null = localStorage.getItem(
-      //   'visitedLibrai'
-      // );
-      // if (!userHasVisited) {
-      //   localStorage.setItem('visitedLibrai', 'true');
-      //   const action = setPwaError();
-      //   dispatch(action);
-      // }
+      const userHasVisited: string | null = localStorage.getItem(
+        'visitedLibrai'
+      );
+      if (!userHasVisited) {
+        localStorage.setItem('visitedLibrai', 'true');
+        const action = setPwaError();
+        dispatch(action);
+      }
     }
   }, [dispatch]);
 
