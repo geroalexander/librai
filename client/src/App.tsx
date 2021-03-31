@@ -21,6 +21,10 @@ import { useMediaQuery } from 'react-responsive';
 import { isMobile } from 'react-device-detect';
 import { setError } from './Store/actions/errors';
 
+// Exported to error message component
+export const downloadPwaMessage =
+  'This app is optimised to be a PWA, download it to your Home Screen to get the full experience:';
+
 function App() {
   const [open, setOpen] = useState<boolean>(false);
   const dispatch = useDispatch();
@@ -53,9 +57,7 @@ function App() {
       const visited = localStorage.getItem('visitedLibrai');
       if (!visited) {
         localStorage.setItem('visitedLibrai', 'true');
-        const action = setError(
-          'This app is optimised to be a PWA, download it to your Home Screen to get the full experience:'
-        );
+        const action = setError(downloadPwaMessage);
         dispatch(action);
       }
     }

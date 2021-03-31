@@ -10,6 +10,7 @@ import { removeError } from '../../Store/actions/errors';
 import { withStyles } from '@material-ui/core/styles';
 import { IoShareOutline } from 'react-icons/io5';
 import { BsThreeDotsVertical } from 'react-icons/bs';
+import { downloadPwaMessage } from '../../App';
 
 import './ErrorMessage.css';
 
@@ -70,9 +71,6 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({
       color: '#140245',
     },
   }))(DialogContentText);
-
-  const downloadPwaMessage =
-    'This app is optimised to be a PWA, download it to your Home Screen to get the full experience:';
 
   return (
     <StyledDialog
