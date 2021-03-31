@@ -39,7 +39,7 @@ const PwaPopup: React.FC<PwaPopupProps> = ({ open, setOpen }) => {
 
   const StyledDialog = withStyles((theme) => ({
     paper: {
-      borderRadius: 50,
+      borderRadius: 7,
       backgroundColor: '#dfd5fc',
     },
   }))(Dialog);

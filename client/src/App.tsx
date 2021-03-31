@@ -58,7 +58,7 @@ function App() {
   });
 
   useEffect(() => {
-    if (isMobile || isBrowser) {
+    if (isMobile && isBrowser) {
       const userHasVisited: string | null = localStorage.getItem(
         'visitedLibrai'
       );
