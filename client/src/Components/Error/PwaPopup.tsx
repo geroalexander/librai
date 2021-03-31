@@ -79,6 +79,9 @@ const PwaPopup: React.FC<PwaPopupProps> = ({ open, setOpen }) => {
       </StyledDialogTitle>
       <DialogContent>
         <StyledDialogContentText id="alert-dialog-slide-description">
+          On web you can install it as a Desktop app
+        </StyledDialogContentText>
+        <StyledDialogContentText id="alert-dialog-slide-description">
           For IOS: tap the <IoShareOutline /> icon on Safari
         </StyledDialogContentText>
         <StyledDialogContentText id="alert-dialog-slide-description">
