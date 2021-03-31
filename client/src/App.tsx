@@ -58,6 +58,9 @@ function App() {
   });
 
   useEffect(() => {
+    console.log('inside useEffect');
+    console.log(isBrowser, 'is browser');
+
     if (isBrowser) {
       console.log('this is browser');
 
