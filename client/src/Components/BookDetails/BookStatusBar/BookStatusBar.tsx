@@ -38,6 +38,9 @@ const useStyles = makeStyles((theme: Theme) =>
     popover: {
       pointerEvents: 'none',
     },
+    root: {
+      backgroundColor: '#dfd5fc',
+    },
     paper: {
       padding: theme.spacing(1),
       backgroundColor: '#dfd5fc',
