@@ -114,7 +114,7 @@ const Login = () => {
           <GoogleLogin
             clientId={REACT_APP_GOOGLE_CLIENT_ID || ''}
             onSuccess={handleGoogleLoginSuccess}
-            // onFailure={handleGoogleLoginFailure}
+            onFailure={handleGoogleLoginFailure}
             cookiePolicy={'single_host_origin'}
             render={(renderProps) => (
               <button
