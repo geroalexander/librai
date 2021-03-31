@@ -59,8 +59,15 @@ function App() {
 
   useEffect(() => {
     if (isBrowser || isMobile) {
-      const action = setPwaError();
-      dispatch(action);
+      const isInstalled = ['fullscreen', 'standalone', 'minimal-ui'].some(
+        (displayMode) =>
+          window.matchMedia('(display-mode: ' + displayMode + ')').matches
+      );
+      console.log(isInstalled);
+      if (isInstalled) {
+        const action = setPwaError();
+        dispatch(action);
+      }
       // const userHasVisited: string | null = localStorage.getItem(
       //   'visitedLibrai'
       // );
