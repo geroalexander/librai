@@ -18,15 +18,13 @@ import BottomTabNavigation from './Components/BottomTab/BottomTab';
 import ErrorMessage from './Components/Error/ErrorMessage';
 import Header from './Components/Header/Header';
 import { useMediaQuery } from 'react-responsive';
-import { isMobile } from 'react-device-detect';
-import { setError } from './Store/actions/errors';
-
-// Exported to error message component
-export const downloadPwaMessage =
-  'This app is optimised to be a PWA, download it to your Home Screen to get the full experience:';
+import { isMobile, isBrowser } from 'react-device-detect';
+import { setPwaError } from './Store/actions/errors';
+import PwaPopup from './Components/Error/PwaPopup';
 
 function App() {
   const [open, setOpen] = useState<boolean>(false);
+  const [openPwa, setOpenPwa] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   const signedIn = useSelector(
@@ -53,18 +51,21 @@ function App() {
   });
 
   useEffect(() => {
-    if (isMobile || isDesktop) {
-      const visited = localStorage.getItem('visitedLibrai');
-      if (!visited) {
+    if (isMobile || isBrowser) {
+      const userHasVisited: string | null = localStorage.getItem(
+        'visitedLibrai'
+      );
+      if (!userHasVisited) {
         localStorage.setItem('visitedLibrai', 'true');
-        const action = setError(downloadPwaMessage);
+        const action = setPwaError();
         dispatch(action);
       }
     }
-  }, [isDesktop, dispatch]);
+  }, [dispatch]);
 
   return (
     <div className="App">
+      <PwaPopup open={openPwa} setOpen={setOpenPwa} />
       <ErrorMessage message={error} open={open} setOpen={setOpen} />
       <Router>
         {isDesktop && signedIn && !fillForm && (
