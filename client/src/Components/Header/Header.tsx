@@ -7,7 +7,6 @@ import {
     isTablet,
     isMobile
   } from "react-device-detect";
-import { useMediaQuery } from 'react-responsive';
 import librai_logo from '../../Assets/Librai-Logo-Outline.png';
 import './Header.css';
 
@@ -20,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({ setIsLoading }) => {
     <header>
       {isDesktop && (
         <Link to="/" className="to-dashboard">
-          <img src={librai_logo} />
+          <img src={librai_logo} alt=""/>
         </Link>
       )}
       <SearchBar />

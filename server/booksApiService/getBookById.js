@@ -18,4 +18,3 @@ const getBookById = (bookId) => {
 };
 
 module.exports = { getBookById };
-// getBookById('Eo-uAwAAQBAJ');

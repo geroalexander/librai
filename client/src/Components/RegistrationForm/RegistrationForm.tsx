@@ -102,9 +102,6 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
 
   return (
     <div className="reg-form-page">
-      {/* <header>
-        <SearchBar />
-      </header> */}
       {isUserPickingGenres ? (
         <div className="genre-form-wrapper">
           <h1>Choose your favorite genres!</h1>

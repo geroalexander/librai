@@ -4,7 +4,6 @@ import { _loadDashboard } from '../../Store/actions/users';
 import { Link, RouteComponentProps, withRouter, useHistory } from 'react-router-dom';
 import { RootState } from '../../index';
 import './Dashboard.css';
-import Skeleton from 'react-loading-skeleton';
 import { Book } from '../../Interfaces/bookObject';
 import Header from '../Header/Header';
 import LottieAnimation from '../../Animations/Lottie';

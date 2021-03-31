@@ -23,7 +23,6 @@ $opensans: 'Open Sans', sans-serif;
 
   .main-details {
     position: relative;
-    // background: linear-gradient(#2c0791, $PRIMARY_DARK);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -145,8 +144,6 @@ $opensans: 'Open Sans', sans-serif;
       font-family: $montserrat;
       margin: 0;
       margin-bottom: 1em;
-      // text-decoration: underline;
-      // text-decoration-color: $SECONDARY;
     }
 
     .add-info {
@@ -157,7 +154,6 @@ $opensans: 'Open Sans', sans-serif;
         margin-top: 4rem;
         width: 75vw;
       }
-      // margin-left: 1rem;
 
       .publisher-wrapper {
         max-width: 50vw;

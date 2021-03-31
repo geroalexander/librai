@@ -6,7 +6,7 @@ import {
   ChildButton,
   Directions,
 } from 'react-floating-button-menu';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Book } from '../../../Interfaces/bookObject';
 import {
   _updateRating,
@@ -14,7 +14,7 @@ import {
   _addSavedBook,
   _deleteSavedBook,
 } from '../../../Store/actions/users';
-import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import BookmarkBorderRoundedIcon from '@material-ui/icons/BookmarkBorderRounded';
 import BookmarkRoundedIcon from '@material-ui/icons/BookmarkRounded';
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';

@@ -9,16 +9,14 @@ import ShareIcon from '@material-ui/icons/Share';
 import CloseIcon from '@material-ui/icons/Close';
 import './FAB.css';
 import {
-  EmailShareButton,
   FacebookShareButton,
-  FacebookMessengerShareButton,
   TwitterShareButton,
   WhatsappShareButton,
 } from 'react-share';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Book } from '../../Interfaces/bookObject';
 
 interface FABProps extends RouteComponentProps {

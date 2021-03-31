@@ -7,7 +7,6 @@ import BarChartRoundedIcon from '@material-ui/icons/BarChartRounded';
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import './BottomTab.css';
 import { Link } from 'react-router-dom';
-import { Dashboard, Profile, Saved, BookDetails, Login } from '../../Routes';
 
 const useStyles = makeStyles({
   root: {

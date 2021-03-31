@@ -22,6 +22,7 @@ const BookDetailsScreen: React.FC<BookDetailsScreenProps> = (props: any) => {
     if (props.location.state.isNew)
       isNewRef.current = props.location.state.isNew;
     bookRef.current && retrieveBookWithScore();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.location.state.book]);
 
   const isDesktop = useMediaQuery({

@@ -6,7 +6,6 @@ import imageToBase64 from '../Shared/imageToBase64';
 import { getBookByCover } from '../../ApiClientService/Book';
 import { uploadToCloud } from '../../ApiClientService/ImageUpload';
 import { useHistory } from 'react-router-dom';
-import { SET_ERROR } from '../../Store/actions/ActionTypes';
 import { setError } from '../../Store/actions/errors';
 
 interface CameraProps {
