@@ -1,10 +1,8 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../index';
+import { useDispatch } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Avatar from '@material-ui/core/Avatar';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
@@ -13,11 +11,11 @@ import { setLogout } from '../../Store/actions/auth';
 import './Menu.css';
 
 const DropMenu = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState<Element | null>(null);
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleClick = (event: any) => {
+  const handleClick = (event: React.MouseEvent) => {
     setAnchorEl(event.currentTarget);
   };
 

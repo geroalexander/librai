@@ -48,7 +48,6 @@ const getBookByCover = async (req, res) => {
     formattedBook.compatabilityScore = compatScore;
     const addView = await addBookView(user.id, retrievedBook, false);
     if (addView !== 'View added') throw new Error('Recommendation engine error');
-    console.log(formattedBook)
     res.status(200).send(formattedBook);
   } catch (error) {
     console.error(error);

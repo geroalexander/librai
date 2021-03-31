@@ -6,11 +6,9 @@ import './RegistrationForm.css';
 import { genres } from './genres';
 import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
-import SearchBar from '../Shared/SearchBar';
 import { _registrationForm } from '../../Store/actions/users';
 import { popularBooks } from './popular_books.js';
 import { PopularBook } from '../../Interfaces/popularBookObject';
-import BookStatusBar from '../BookDetails/BookStatusBar/BookStatusBar';
 import ErrorMessage from '../Error/ErrorMessage';
 
 interface RegistrationFormProps extends RouteComponentProps {}
@@ -27,13 +25,15 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
   const genreErrorMessage = 'Please pick between 3 and 5 genres';
   const bookErrorMessage = 'Please pick at least 3 books';
 
-  const addFavoriteGenre = (e: any) => {
-    const genreToAdd = e.target.innerText;
+  const addFavoriteGenre = (e: React.MouseEvent) => {
+    const chip = e.target as HTMLElement
+    const genreToAdd = chip.innerText;
     setFavoriteGenres((prevGenres) => [...prevGenres, genreToAdd]);
   };
 
-  const deleteFavoriteGenre = (e: any) => {
-    const genreToDelete = e.target.innerText;
+  const deleteFavoriteGenre = (e: React.MouseEvent) => {
+    const chip = e.target as HTMLElement
+    const genreToDelete = chip.innerText;
     setFavoriteGenres((prevGenres) =>
       prevGenres.filter((genre) => genre !== genreToDelete)
     );
