@@ -35,6 +35,9 @@ function App() {
     (state: RootState) => state.authReducer.fillForm
   );
   const error = useSelector((state: RootState) => state.errorReducer.error);
+  const pwaError = useSelector(
+    (state: RootState) => state.errorReducer.pwaError
+  );
 
   useEffect(() => {
     if (error) {
@@ -45,6 +48,10 @@ function App() {
       }
     }
   }, [error]);
+
+  useEffect(() => {
+    if (pwaError) setOpenPwa(true);
+  }, [pwaError]);
 
   const isDesktop = useMediaQuery({
     query: '(min-width: 1200px)',
