@@ -1,5 +1,5 @@
 import React from 'react';
-import { RootState } from '../../index';
+import { AppDispatch, RootState } from '../../index';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -30,7 +30,7 @@ const PwaPopup: React.FC<PwaPopupProps> = ({ open, setOpen }) => {
   const pwaError = useSelector(
     (state: RootState) => state.errorReducer.pwaError
   );
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleClose = () => {
     setOpen(false);

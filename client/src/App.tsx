@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from './index';
+import { AppDispatch, RootState } from './index';
 import PrivateRoute from './Components/Routes/Private';
 import {
   Dashboard,
@@ -25,7 +25,7 @@ import PwaPopup from './Components/Error/PwaPopup';
 function App() {
   const [open, setOpen] = useState<boolean>(false);
   const [openPwa, setOpenPwa] = useState<boolean>(false);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const signedIn = useSelector(
     (state: RootState) => state.authReducer.signedIn
@@ -50,6 +50,7 @@ function App() {
   }, [error]);
 
   useEffect(() => {
+    console.log(pwaError);
     if (pwaError) setOpenPwa(true);
   }, [pwaError]);
 
