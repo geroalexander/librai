@@ -58,22 +58,15 @@ function App() {
   });
 
   useEffect(() => {
-    console.log('inside useEffect');
-    console.log(isBrowser, 'is browser');
-
-    if (isBrowser) {
-      console.log('this is browser');
-
-      const action = setPwaError();
-      dispatch(action);
-      // const userHasVisited: string | null = localStorage.getItem(
-      //   'visitedLibrai'
-      // );
-      // if (!userHasVisited) {
-      //   localStorage.setItem('visitedLibrai', 'true');
-      //   const action = setPwaError();
-      //   dispatch(action);
-      // }
+    if (isBrowser || isMobile) {
+      const userHasVisited: string | null = localStorage.getItem(
+        'visitedLibrai'
+      );
+      if (!userHasVisited) {
+        localStorage.setItem('visitedLibrai', 'true');
+        const action = setPwaError();
+        dispatch(action);
+      }
     }
   }, [dispatch]);
 
