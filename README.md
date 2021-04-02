@@ -101,9 +101,6 @@ Setup an account and get an API key from the following sources:
 
 # Contributors ✨
 
-![59074533](https://user-images.githubusercontent.com/59074533/113453085-34656000-93fd-11eb-9a6b-950700b3dc8e.jpeg)
-
-
 <table>
   <tr>
     <td align="center"><a href="https://github.com/pamelakaylin"><img src="https://avatars.githubusercontent.com/u/59074533?v=4" width="100px;" alt=""/><br /><sub><b>Pamela Chen</b></sub></a><br /><a href="https://github.com/geroalexander/librai/commits?author=pamelakaylin" title="Code">💻</a> <a href="#ideas-pamela" title="Ideas & Planning">🤔</a> <a href="#pm-pamela" title="Project Management">📆</a> <a href="#design-pamela" title="Design">🎨</a></td>
