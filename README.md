@@ -12,4 +12,6 @@ Librai is a progressive web app that runs on machine learning and AI.
 
 # App demo video
 
+Here is the original app demo video on Youtube:
+
 [![Screenshot 2021-04-02 at 21 02 44](https://user-images.githubusercontent.com/59074533/113449988-ecdbd580-93f6-11eb-9b22-93062d06da0d.png)](https://www.youtube.com/watch?v=x52aUU-3No8)
