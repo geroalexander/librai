@@ -36,6 +36,7 @@ npm install
 
 - Navigate into client and run ` npm start `
 - Navigate into server and run ` nodemon  ` or ` node index.js `
+
 *Optional* 
 - Populate the DB by running ` npm run populate ` from the server folder. 
 - Log into the app with 'pams@hollywood.com' as the email and 'password' as the password. 
