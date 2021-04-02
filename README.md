@@ -100,6 +100,7 @@ Setup an account and get an API key from the following sources:
 - [Cloudinary](https://cloudinary.com/) 
 
 # Contributors ✨
+Github's and LinkedIn's linked below!
 
 <table>
   <tr>
