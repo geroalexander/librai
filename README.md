@@ -99,3 +99,15 @@ Setup an account and get an API key from the following sources:
 - [Recombee](https://www.recombee.com/)
 - [Cloudinary](https://cloudinary.com/) 
 
+# Contributors ✨
+
+![59074533](https://user-images.githubusercontent.com/59074533/113453085-34656000-93fd-11eb-9a6b-950700b3dc8e.jpeg)
+
+
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/pamelakaylin"><img src="https://avatars.githubusercontent.com/u/59074533?v=4" width="100px;" alt=""/><br /><sub><b>Pamela Chen</b></sub></a><br /><a href="https://github.com/geroalexander/librai/commits?author=pamelakaylin" title="Code">💻</a> <a href="#ideas-pamela" title="Ideas & Planning">🤔</a> <a href="#pm-pamela" title="Project Management">📆</a> <a href="#design-pamela" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/andrasvaradi"><img src="https://avatars.githubusercontent.com/u/65424110?v=4" width="100px;" alt=""/><br /><sub><b>Andras Varadi</b></sub></a><br /><a href="https://github.com/geroalexander/librai/commits?author=andrasvaradi" title="Code">💻</a> <a href="data-andras" title="Data">🔣</a> <a href="#tools-andras" title="Tools">🔧</a></td>
+    <td align="center"><a href="https://github.com/IB3N"><img src="https://avatars.githubusercontent.com/u/62890543?v=4" width="100px;" alt=""/><br /><sub><b>Ben Pearce</b></sub></a><br /><a href="https://github.com/geroalexander/librai/commits?author=IB3N" title="Code">💻</a> <a href="#infra-ben" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a><a href="#test-ben" title="Tests">⚠️</a></td>
+  </tr>
+</table>
