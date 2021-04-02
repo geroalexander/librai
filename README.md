@@ -1,30 +1,5 @@
 # Librai
 
-Don't judge a book by its cover --- we'll judge it for you ;)
-
-## Git workflow
-Important: Refer to the Git workflow notes before committing / branching / merging! 
-
-## Daily standups 
-8:30 AM unless otherwise specified :) 
-
-## Monday Workspace
-Refer to Monday for everyone's daily tasks and project overview!
-https://pamelakaylin.monday.com/boards/1143592131
-
-## Wireframe
-https://balsamiq.cloud/s8dhwg5/pynflwg
-
-## User flow 
-https://lucid.app/lucidchart/invitations/accept/0921ac82-88cb-4b3e-b3aa-f36b43454ce0?viewport_loc=-156.81706485005628%2C71.55730143643345%2C2445.1282150406837%2C1227.1315948460717%2C0_0
-
-## Colour scheme
-https://colorhunt.co/palette/271395
-
-## Overview: Original slides 
-https://docs.google.com/presentation/d/1Ys_48IRrdOWxfRlaLMNG7kIZcO4xA-4_nl_NvgIkjns/edit
-
-## Shared docs
-https://docs.google.com/document/d/1pAxtyun9X31P6DUFrutcyyzpQKFEuY2b8cWi7rJL5ek/edit?usp=sharing
-
-## Pull Requests
+![librai demo (6)](https://user-images.githubusercontent.com/59074533/113449457-c5383d80-93f5-11eb-95a9-554c97838883.png)
+![librai demo (7)](https://user-images.githubusercontent.com/59074533/113449459-c79a9780-93f5-11eb-806a-429c3ec0eb54.png)
+![librai demo (8)](https://user-images.githubusercontent.com/59074533/113449464-c9645b00-93f5-11eb-8fb0-c2f3e9d05cea.png)
