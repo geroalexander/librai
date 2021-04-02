@@ -18,6 +18,58 @@ Here is the original app demo video on Youtube:
 
 # Getting started 
 
+#### 1. Clone this repo
+```
+git clone https://github.com/geroalexander/librai
+```
+
+#### 2. Navigate into both client and server folders and install dependencies
+```
+npm install
+```
+
+## Setup Prerequisites
+
+First, create a .env in both client and server
+
+### Database 
+
+- Ensure you have docker installed and run the following command 
+```
+docker-compose up -d
+```
+
+### APIs
+Setup an account and get an API key from the following sources: 
+
+- Google Books
+- Google Cloud Vision AI
+- Recombee 
+- Cloudinary
+
+### OAuth
+- Configure an OAuth consent screen and get a client ID from Google Cloud Platform 
+
 # Tech Stack
+
+### Frontend 
+- React (PWA setup)
+- Typescript
+- Redux 
+- Sass
+- Lottie
+
+### Backend
+- Express 
+- Sequelize 
+- PostgreSQL
+- Docker 
+
+## APIs
+- Google Books 
+- Google Cloud Vision AI
+- Recombee
+- [Cloudinary](https://cloudinary.com/) 
+
 
 # Contributors
