@@ -28,6 +28,10 @@ git clone https://github.com/geroalexander/librai
 npm install
 ```
 
+#### 3. Refer to the below section Setup Prequisites for instructions on how to configure environment variables 
+
+- See ` client/.env.example ` and ` server/.env.example ` for an example of how the variables should be named
+
 ## Setup Prerequisites
 
 First, create a .env in both client and server
@@ -38,6 +42,8 @@ First, create a .env in both client and server
 ```
 docker-compose up -d
 ```
+- Refer to server/.env.example to configure local environment variables such as DB_NAME, DB_PORT, etc. 
+
 
 ### APIs
 Setup an account and get an API key from the following sources: 
@@ -53,23 +59,33 @@ Setup an account and get an API key from the following sources:
 # Tech Stack
 
 ### Frontend 
-- React (PWA setup)
-- Typescript
-- Redux 
-- Sass
-- Lottie
+- [React (PWA setup)](https://reactjs.org/)
+- [Typescript](https://www.typescriptlang.org/) 
+- [Redux](https://redux.js.org/) 
+- [Sass](https://sass-lang.com/)
+- [Lottie](https://airbnb.io/lottie/#/)
 
 ### Backend
-- Express 
-- Sequelize 
-- PostgreSQL
-- Docker 
+- [Node.js](https://nodejs.org/en/)
+- [Express](https://expressjs.com/) 
+- [Sequelize](https://sequelize.org/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Docker](https://www.docker.com/) 
+
+### CI/CD
+- [Github Actions](https://github.com/features/actions)
+
+### Deployment
+- [Heroku (server)](https://www.heroku.com/)
+- [Netlify (client)](https://www.netlify.com/)
+
+## Authentication 
+- [Google OAuth](https://developers.google.com/identity/protocols/oauth2)
+
 
 ## APIs
-- Google Books 
-- Google Cloud Vision AI
-- Recombee
+- [Google Books](https://developers.google.com/books) 
+- [Google Cloud Vision AI](https://cloud.google.com/vision)
+- [Recombee](https://www.recombee.com/)
 - [Cloudinary](https://cloudinary.com/) 
 
-
-# Contributors
