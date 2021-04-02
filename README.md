@@ -1,7 +1,5 @@
 # Librai
 
-## A book app that knows you
-
 Librai is a progressive web app that runs on machine learning and AI. 
 - It adjusts to user preferences and offers intelligent, evolving book recommendations that users will genuinely like. 
 - While browsing in a book store or just feeling lazy, users can scan a book cover with the Smart Camera feature and immediately get results with a personalised compatability score every time.
