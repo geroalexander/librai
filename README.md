@@ -112,3 +112,8 @@ Github's and LinkedIn's linked below!
     <td align="center"><a href="https://github.com/geroalexander"><img src="https://avatars.githubusercontent.com/u/59166685?v=4" width="120px;" alt=""/><br /><sub><b><a href="https://www.linkedin.com/in/gero-kassing-9b79311a3/" title="linkedin">Gero Kassing</a></b></sub></a><br /><a href="https://github.com/geroalexander/librai/commits?author=geroalexander" title="Code">💻</a> <a href="#infra-gero" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a><a href="#security-gero" title="Security">🛡️</a> <a href="https://www.youtube.com/watch?v=x52aUU-3No8" title="Video">📹</a></td>
   </tr>
 </table>
+
+([emoji key](https://allcontributors.org/docs/en/emoji-key))
+
+Big thanks to team Librai.
+
