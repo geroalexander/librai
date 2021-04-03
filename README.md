@@ -102,7 +102,8 @@ Setup an account and get an API key from the following sources:
 - [Cloudinary](https://cloudinary.com/) 
 
 # Contributors ✨
-Github's and LinkedIn's linked below!
+Github's and LinkedIn's linked below! 
+([emoji key](https://allcontributors.org/docs/en/emoji-key))
 
 <table>
   <tr>
@@ -113,7 +114,5 @@ Github's and LinkedIn's linked below!
   </tr>
 </table>
 
-([emoji key](https://allcontributors.org/docs/en/emoji-key))
-
-Big thanks to team Librai.
+Big thanks to Team Librai.
 
