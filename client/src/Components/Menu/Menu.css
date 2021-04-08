@@ -8,6 +8,9 @@
 }
 
 @media (min-width: 1200px) {
+  .profile-icon {
+    height: 3.5rem;
+  }
   .profile-icon:hover {
     -webkit-transform: scale(0.9);
             transform: scale(0.9);

@@ -42,6 +42,9 @@ header img {
 }
 
 @media (min-width: 1200px) {
+  header img {
+    max-height: 3rem;
+  }
   header img:hover {
     -webkit-transform: scale(0.9);
             transform: scale(0.9);
