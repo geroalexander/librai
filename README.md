@@ -1,30 +1,118 @@
 # Librai
 
-Don't judge a book by its cover --- we'll judge it for you ;)
+Librai is a progressive web app that runs on machine learning and AI. 
+- It adjusts to user preferences and offers intelligent, evolving book recommendations that users will genuinely like. 
+- While browsing in a book store or just feeling lazy, users can scan a book cover with the Smart Camera feature and get immediate results with a personalised compatability score every time.
 
-## Git workflow
-Important: Refer to the Git workflow notes before committing / branching / merging! 
+### Available at [librai.netlify.app](https://librai.netlify.app/)
 
-## Daily standups 
-8:30 AM unless otherwise specified :) 
+![librai demo (6)](https://user-images.githubusercontent.com/59074533/113449457-c5383d80-93f5-11eb-95a9-554c97838883.png)
 
-## Monday Workspace
-Refer to Monday for everyone's daily tasks and project overview!
-https://pamelakaylin.monday.com/boards/1143592131
+![librai demo (7)](https://user-images.githubusercontent.com/59074533/113449459-c79a9780-93f5-11eb-806a-429c3ec0eb54.png)
 
-## Wireframe
-https://balsamiq.cloud/s8dhwg5/pynflwg
+![librai demo (8)](https://user-images.githubusercontent.com/59074533/113449464-c9645b00-93f5-11eb-8fb0-c2f3e9d05cea.png)
 
-## User flow 
-https://lucid.app/lucidchart/invitations/accept/0921ac82-88cb-4b3e-b3aa-f36b43454ce0?viewport_loc=-156.81706485005628%2C71.55730143643345%2C2445.1282150406837%2C1227.1315948460717%2C0_0
+# App demo video
 
-## Colour scheme
-https://colorhunt.co/palette/271395
+Here is the original app demo video on Youtube:
 
-## Overview: Original slides 
-https://docs.google.com/presentation/d/1Ys_48IRrdOWxfRlaLMNG7kIZcO4xA-4_nl_NvgIkjns/edit
+[![Screenshot 2021-04-02 at 21 02 44](https://user-images.githubusercontent.com/59074533/113449988-ecdbd580-93f6-11eb-9b22-93062d06da0d.png)](https://www.youtube.com/watch?v=x52aUU-3No8)
 
-## Shared docs
-https://docs.google.com/document/d/1pAxtyun9X31P6DUFrutcyyzpQKFEuY2b8cWi7rJL5ek/edit?usp=sharing
+# Getting started 
 
-## Pull Requests
+#### 1. Clone this repo
+```
+git clone https://github.com/geroalexander/librai
+```
+
+#### 2. Navigate into both client and server folders and install dependencies
+```
+npm install
+```
+
+#### 3. Refer to the below section Setup Prequisites for instructions on how to configure environment variables 
+
+- See ` client/.env.example ` and ` server/.env.example ` for an example of how the variables should be named
+
+#### 4. After the setup, start the app!
+
+- Navigate into client and run ` npm start `
+- Navigate into server and run ` nodemon  ` or ` node index.js `
+
+*Optional* 
+- Populate the DB by running ` npm run populate ` from the server folder. 
+- Log into the app with 'pams@hollywood.com' as the email and 'password' as the password. 
+- Enjoy!
+
+## Setup Prerequisites
+
+First, create a .env in both client and server
+
+### Database 
+
+- Ensure you have docker installed and run the following command 
+```
+docker-compose up -d
+```
+- Refer to server/.env.example to configure local environment variables such as DB_NAME, DB_PORT, etc. 
+
+
+### APIs
+Setup an account and get an API key from the following sources: 
+
+- Google Books
+- Google Cloud Vision AI
+- Recombee 
+- Cloudinary
+
+### OAuth
+- Configure an OAuth consent screen and get a client ID from Google Cloud Platform 
+
+# Tech Stack
+
+### Frontend 
+- [React (PWA setup)](https://reactjs.org/)
+- [Typescript](https://www.typescriptlang.org/) 
+- [Redux](https://redux.js.org/) 
+- [Sass](https://sass-lang.com/)
+- [Lottie](https://airbnb.io/lottie/#/)
+
+### Backend
+- [Node.js](https://nodejs.org/en/)
+- [Express](https://expressjs.com/) 
+- [Sequelize](https://sequelize.org/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Docker](https://www.docker.com/) 
+
+### CI/CD
+- [Github Actions](https://github.com/features/actions)
+
+### Deployment
+- [Heroku (server)](https://www.heroku.com/)
+- [Netlify (client)](https://www.netlify.com/)
+
+## Authentication 
+- [Google OAuth](https://developers.google.com/identity/protocols/oauth2)
+
+
+## APIs
+- [Google Books](https://developers.google.com/books) 
+- [Google Cloud Vision AI](https://cloud.google.com/vision)
+- [Recombee](https://www.recombee.com/)
+- [Cloudinary](https://cloudinary.com/) 
+
+# Contributors ✨
+Github's and LinkedIn's linked below! 
+([emoji key](https://allcontributors.org/docs/en/emoji-key))
+
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/pamelakaylin"><img src="https://avatars.githubusercontent.com/u/59074533?v=4" width="120px;" alt=""/><br /><sub><b><a href="https://www.linkedin.com/in/pamelakaylin/" title="linkedin">Pamela Chen</a></b></sub></a><br /><a href="https://github.com/geroalexander/librai/commits?author=pamelakaylin" title="Code">💻</a> <a href="#ideas-pamela" title="Ideas & Planning">🤔</a> <a href="#pm-pamela" title="Project Management">📆</a> <a href="#design-pamela" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/andrasvaradi"><img src="https://avatars.githubusercontent.com/u/65424110?v=4" width="120px;" alt=""/><br /><sub><b><a href="https://www.linkedin.com/in/andras-varadi-a20517bb/" title="linkedin">Andras Varadi</a></b></sub></a><br /><a href="https://github.com/geroalexander/librai/commits?author=andrasvaradi" title="Code">💻</a> <a href="data-andras" title="Data">🔣</a> <a href="#tools-andras" title="Tools">🔧</a></td>
+    <td align="center"><a href="https://github.com/IB3N"><img src="https://avatars.githubusercontent.com/u/62890543?v=4" width="120px;" alt=""/><br /><sub><b><a href="https://www.linkedin.com/in/ben-pearce-a27b81145/" title="linkedin">Ben Pearce</a></b></sub></a><br /><a href="https://github.com/geroalexander/librai/commits?author=IB3N" title="Code">💻</a> <a href="#infra-ben" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a><a href="#test-ben" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/geroalexander"><img src="https://avatars.githubusercontent.com/u/59166685?v=4" width="120px;" alt=""/><br /><sub><b><a href="https://www.linkedin.com/in/gerokassing/" title="linkedin">Gero Kassing</a></b></sub></a><br /><a href="https://github.com/geroalexander/librai/commits?author=geroalexander" title="Code">💻</a> <a href="#infra-gero" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a><a href="#security-gero" title="Security">🛡️</a> <a href="https://www.youtube.com/watch?v=x52aUU-3No8" title="Video">📹</a></td>
+  </tr>
+</table>
+
+Big thanks to Team Librai.
+
