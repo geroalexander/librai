@@ -30,6 +30,7 @@ header {
     transition-duration: 0.2s;
 
     @include xl {
+      max-height: 3rem;
       &:hover {
         transform: scale(0.9);
       }

@@ -8,6 +8,7 @@
   border-radius: 100%;
 
   @include xl {
+    height: 3.5rem;
     &:hover {
       transform: scale(0.9);
     }
